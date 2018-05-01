@@ -3,34 +3,32 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <title></title>
   </head>
   <body>
-    <div class="header">
-
-        <img src="img/logo.png" alt="">
-
-        <nav class="menu">
-
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Área cliente</a></li>
-            <li><a href="#">Registar</a></li>
-            <li><a href="#">Login</a></li>
-          </ul>
-
-        </nav>
-
-        <div class="contact">
-
-          <img src="img/phone.png" alt="">
-          296012345
-
-        </div>
-
+  <div class="container_header">
+     <div class="header">
+            <div class="icon">
+              <img id="icon" src="images/logo.png"/>
+              <p id="homeIconName">
+            </div>
+            <div class="navItems">
+                <a href="index.php"><p id="navItem">HOME</p></a>
+                 <a href="register.php"><p id="navItem">REGISTAR</p></a>
+                <a href="logout.php"><p id="navItem">LOGIN</p></a>
+            </div>
+            <div class="phone">
+              <img id="phoneIcon" src="images/call-answer.svg"/>
+              <p id="phone">296 012 345</p>
+            </div>
+      </div>
   </div>
+
     <!-- <div class="pesquisa">
       <form class="" action="" method="post">
         <input type="text" id="local" name="" value="">
@@ -40,10 +38,15 @@
     <div class="map">
 
     </div>
-    <div class="footer">
-      <img src="img/logo.png" alt="">
-      <div class="">
-        <img src="img/phone.png" alt=""> 296012345
+    <div class="container_footer">
+      <div class="footer">
+           <div class="icon">
+              <img id="icon" src="images/logoBranco.png"/>
+              <p id="homeIconName">
+            </div>
+            <div class="copyright">
+				<p class="copyright">&#169; 2018 MaisImobiliária</p>
+            </div>
       </div>
     </div>
   </body>

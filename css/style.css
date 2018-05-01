@@ -19,8 +19,6 @@ html, body{
 
 }
 
-
-
 .header img{
   height: 50px;
 }
@@ -72,13 +70,65 @@ html, body{
   height: 80%;
 }
 
-.footer{
-  height: 10%;
-  background-color: red;
+.container_footer{
+  background-color: #DC2D27;
   display: flex;
-  justify-content: space-between;
+    height: 80px;
+    align-items: center;
+    font-family: 'PT Sans';
+    justify-content: center;
 }
 
-.footer  img{
-  height: 50px;
+.footer {
+      display: flex;
+    width: 80%;
+}
+
+.navItems {
+    display: flex;
+    align-self: center;
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+.phone {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2%;
+}
+
+#phoneIcon {
+    align-self: center;
+    width: 12%;
+    height: 70%;
+    padding-left: 2%;
+}
+
+.header {
+    display: flex;
+    width: 80%;
+    height: 100%;
+}
+.container_header {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    font-family: 'PT Sans';
+    justify-content: center;
+}
+
+#icon {
+    align-self: center;
+    height: 60px;
+    padding-left: 2%;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2%;
+    width: 100%;
+    color:white;
 }
