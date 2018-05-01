@@ -48,7 +48,7 @@ html, body{
 
 .pesquisa{
   height: 10%;
-  background-color: grey;
+  background-color: #282828;
   display: flex;
   align-items: baseline;
 
@@ -85,7 +85,7 @@ html, body{
    display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: grey;
+    background-color: #282828;
     align-self: center;
 }
 
