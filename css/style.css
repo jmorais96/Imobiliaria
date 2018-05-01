@@ -2,7 +2,11 @@
   padding: 0;
   margin: 0;
   border: 0;
+    font-size: 15px;
 }
+
+.formTitle > p {color:white; font-size: 20px;}
+
 html, body{
   height: 100vh;
   width: 100%;
@@ -68,15 +72,81 @@ html, body{
 
 .map{
   height: 80%;
+    width: 75%;
+    display: flex;
+}
+.center {
+    display: flex;
+    flex-direction: row;
+}
+
+.container_form {
+    height: 80%;
+   display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: grey;
+    align-self: center;
 }
 
 .container_footer{
   background-color: #DC2D27;
+    
   display: flex;
     height: 80px;
     align-items: center;
     font-family: 'PT Sans';
     justify-content: center;
+}
+
+.formTitle {
+     width: 80%;
+    display: flex;
+    align-self: center;
+    text-align: center;
+}
+
+option {
+    display: flex;
+    width: 20px;
+    height: 50%;
+}
+
+.searchForm {
+    display: flex;
+    align-self: center;
+    width: 80%;
+    height: 70%;
+}
+
+#searchForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-right: 20%;
+}
+
+button {
+    align-self: center;
+    border-radius: 3px;
+    margin-top: 3%;
+    background-color: #DC2D27;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 10%;
+    cursor: pointer;
+}
+
+#index, #ilha, #concelho, #freguesia {
+    margin-top: 5px;
+    border-radius: 3px;
+    border: none;
+    width: 100%;
+    height: 8%;
 }
 
 .footer {
@@ -103,6 +173,13 @@ html, body{
     width: 12%;
     height: 70%;
     padding-left: 2%;
+}
+
+#lupaIcon {
+    align-self: center;
+    width: 7%;
+    padding-left: 2%;
+    margin-right: 20px;
 }
 
 .header {
