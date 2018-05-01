@@ -21,6 +21,8 @@
     <!-- HEADER/NAVBAR DA HOMEPAGE-->
     <div class="header">
 
+      <div class="container-header"></div>
+
         <!-- Logótipo da homepage -->
         <img src="images/logo.png" alt="Lógotipo da imobiliária">
 
@@ -43,7 +45,7 @@
           296012345
         </div>
         <!-- FIM DO HEADER DA HOMEPAGE -->
-
+</div>
   </div>
     <!-- <div class="pesquisa">
       <form class="" action="" method="post">
