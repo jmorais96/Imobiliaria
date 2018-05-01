@@ -1,0 +1,124 @@
+/* verde turquesa: #35C0CA
+ texto: #5A5B5D
+ verde esmeralda: #00271E
+ cinza claro: rgb(240,240,242)
+ títulos: oswald
+ texto: pt sans */
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'PT Sans';
+}
+
+.header {
+    display: flex;
+    width: 80%;
+    height: 10%;
+}
+
+.navItems {
+    display: flex;
+    align-self: center;
+    width: 50%;
+    justify-content: space-around;
+}
+
+a {
+    text-decoration: none;
+}
+
+.phone {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2%;
+}
+
+#phoneIcon {
+    align-self: center;
+    width: 12%;
+    height: 70%;
+    padding-left: 2%;
+}
+
+#phone {
+    color: #5A5B5D;
+    font-weight: bold;
+}
+
+#homeIconName {
+    align-self: center;
+    color: #5A5B5D;
+}
+
+#navItem {
+    color: #5A5B5D;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#navItem:hover {
+    color: #35C0CA;
+    cursor: pointer;
+}
+
+button {
+    align-self: center;
+    border-radius: 3px;
+    margin-top: 3%;
+    background-color: #35C0CA;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 8%;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 10%;
+    background-color: rgb(11,53,45);
+}
+.footer2 {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 10%;
+    background-color: rgb(11,53,45);
+     position: fixed;
+   bottom: 0;
+}
+
+#icon {
+    align-self: center;
+    height: 60%;
+    padding-left: 2%;
+}
+
+#name {
+    align-self: center;
+    color: #fff;
+}
+
+#address {
+    align-self: center;
+    color: #fff;
+}
+
+.icon {
+    display: flex;
+    align-items: flex-start;
+}
+
+.address {
+    display: flex;
+    align-items: flex-end;
+    width: 15%;
+}
