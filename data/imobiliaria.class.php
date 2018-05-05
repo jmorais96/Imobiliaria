@@ -33,7 +33,7 @@ class imobiliaria extends Database {
       //echo sizeof($imoveis);
       for ($i=0; $i < sizeof($imoveis) ; $i++) {
         //var_dump($imoveis[$i]);
-        echo $i;
+        //echo $i;
         $imoveis[$i]->marcador();
       }
 
