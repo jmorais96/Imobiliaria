@@ -93,7 +93,7 @@ html, body{
   background-color: #DC2D27;
     
   display: flex;
-    height: 80px;
+    height: 10%;
     align-items: center;
     font-family: 'PT Sans';
     justify-content: center;
@@ -189,7 +189,7 @@ button {
 }
 .container_header {
     display: flex;
-    height: 80px;
+    height: 10%;
     align-items: center;
     font-family: 'PT Sans';
     justify-content: center;

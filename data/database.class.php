@@ -1,7 +1,7 @@
 <?php
 
-class Database extends PDO {
-	
+  abstract class Database extends PDO {
+
 	#atributos de configuração
 	private $driver;
 	private $host;
@@ -19,7 +19,7 @@ class Database extends PDO {
 	public function __construct($configFile){
 		#obter dados do ficheiro de configuração
 		$config = parse_ini_file($configFile);
-		
+
 
 		$this->driver = $config['driver'];
 		$this->host = $config['host'];
@@ -36,8 +36,8 @@ class Database extends PDO {
 			$this->conn = new PDO($dsn, $this->user, $this->password);
 		}
 		catch (PDOException $e){
-			
-			echo '<script>alert("'.$e->getMessage().'")</script>';
+
+			//echo '<script>alert("'.$e->getMessage().'")</script>';
 			$this->conn = null;
 		}
 	}
@@ -53,29 +53,29 @@ class Database extends PDO {
                 $this->queries = $this->conn->prepare($query);
 
                 foreach ($parameters as $placeholder => $value) {
-					if (is_string($value)) 
+					if (is_string($value))
 						$type = PDO::PARAM_STR;
-					elseif (is_int($value)) 
+					elseif (is_int($value))
 						$type = PDO::PARAM_INT;
-					elseif (is_bool($value)) 
+					elseif (is_bool($value))
 						$type = PDO::PARAM_BOOL;
-					else 
+					else
 						$type = PDO::PARAM_NULL;
-					
-					echo $this->queries->bindValue($placeholder, $value, $type);
+
+					$this->queries->bindValue($placeholder, $value, $type);
                 }
 
                 $this->queries->execute();
 
-                
-                if ($singleResult === true) 
+
+                if ($singleResult === true)
 					$results = $this->queries->fetch(PDO::FETCH_ASSOC);
-                else 
+                else
                     $results = $this->queries->fetchAll(PDO::FETCH_ASSOC);
 
                 return $results;
 
-            } 
+            }
             catch (PDOException $e) {
                 $this->error = $e->getMessage();
 			}
@@ -88,20 +88,20 @@ class Database extends PDO {
     }
 
 
-    public function existsEmail($email){
-
-		$sql = "SELECT COUNT(*) FROM utilizador WHERE email = ?";
-
-		$stmt = $this->conn->prepare($sql);
-		$stmt->bindValue(1, $email);
-		$stmt->execute();
-
-		$result = $stmt->fetch();
-		if ($result[0] == 0)
-			return 'false';
-		else
-			return 'true';
-	}
+  //   public function existsEmail($email){
+	//
+	// 	$sql = "SELECT COUNT(*) FROM utilizador WHERE email = ?";
+	//
+	// 	$stmt = $this->conn->prepare($sql);
+	// 	$stmt->bindValue(1, $email);
+	// 	$stmt->execute();
+	//
+	// 	$result = $stmt->fetch();
+	// 	if ($result[0] == 0)
+	// 		return 'false';
+	// 	else
+	// 		return 'true';
+	// }
 
 
 }

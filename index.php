@@ -1,3 +1,8 @@
+<?php
+
+  require_once('data/imovel.class.php');
+
+?>
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
   <head>
@@ -110,4 +115,11 @@
 
   </body>
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
+
+    <?php
+
+      $bd = new imobiliaria('data/config.ini');
+      $bd->pequisa();
+    ?>
+
 </html>
