@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" media='screen and (min-width: 260px) and (max-width: 767px)' href="../../css/mobile.css"/>
     <link rel="stylesheet" media='screen and (min-width: 768px) and (max-width: 1100px)' href="../../css/tablet.css"/>
-    <link rel="stylesheet" media='screen and (min-width: 1101px)' href="../../css/admin_desktop.css"/>
+    <link rel="stylesheet" media='screen and (min-width: 1101px)' href="../../css/admin_desktop-property.css"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   </head>
   <body>
