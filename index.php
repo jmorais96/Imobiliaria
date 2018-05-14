@@ -3,20 +3,32 @@
   require_once('data/imovel.class.php');
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
   <head>
+    
+    <!-- MetaTags -->
     <meta charset="utf-8">
+    
+    <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
-      
+
+    <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
-      <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <title></title>
+
+    <!-- Font-family PT Sans -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    
+    <!-- Título da página -->
+    <title>Mais Imobiliária | Bem-vindo</title>
   </head>
+
   <body>
+
+  <!-- HEADER -->
   <div class="container_header">
      <div class="header">
             <div class="icon">
@@ -34,22 +46,21 @@
             </div>
       </div>
   </div>
+  <!-- FINAL DO HEADER -->
 
-    <!-- <div class="pesquisa">
-      <form class="" action="" method="post">
-        <input type="text" id="local" name="" value="">
-        <input type="submit" value="Pesquisar...">
-      </form>
-    </div> -->
+   <!-- ÁREA CENTRAL DA PÁGINA -->
+   <div class="map" style="float:left;"></div>
 
-   <div class="map" style="float:left;">
-
-   </div>
+    <!-- PESQUISA DO ÍNDEX -->
     <div class="container_form">
+        
+        <!-- Título do formulário de pesquisa -->
         <div class="formTitle">
             <img id="lupaIcon" src="images/lupa.png"/>
-            <p>PESQUISAR IMÓVEL</p> <br>
+            <p>PESQUISAR IMÓVEL</p>
         </div>
+        
+        <!-- Formulário de pesquisa -->
         <div class="searchForm">
             <form id="searchForm" action="resultado_pesquisa.php" method="POST">
                 <select id="index" name="finalidade">
@@ -99,8 +110,11 @@
                 <button id="encontrar">ENCONTRAR</button>
             </form>
         </div>
+        <!-- Final do formulário de pesquisa -->
     </div>
+    <!-- FINAL DA PESQUISA DO ÍNDEX -->
 
+    <!-- FOOTER -->
     <div class="container_footer">
       <div class="footer">
            <div class="icon">
@@ -112,14 +126,18 @@
             </div>
       </div>
     </div>
+    <!-- FINAL DO FOOTER -->
 
   </body>
+
+  <!-- API Google Maps -->
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
 
     <?php
 
       $bd = new imobiliaria('data/config.ini');
       $bd->pequisa();
+    
     ?>
 
 </html>
