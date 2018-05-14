@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     
     <!-- Folhas de estilo -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/homepage.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
 
     <!-- Ficheiros JavaScript -->
@@ -32,19 +32,22 @@
   <div class="container_header">
      <div class="header">
             <div class="icon">
-              <img id="icon" src="images/logo.png"/>
+              <a href="index.php"><img id="icon" src="images/logo.png"/></a>
               <p id="homeIconName">
             </div>
+            
             <div class="navItems">
                 <a href="index.php"><p id="navItem">HOME</p></a>
                  <a href="register.php"><p id="navItem">REGISTAR</p></a>
                 <a href="logout.php"><p id="navItem">LOGIN</p></a>
             </div>
+            
             <div class="phone">
               <img id="phoneIcon" src="images/call-answer.svg"/>
               <p id="phone">296 012 345</p>
             </div>
-      </div>
+      
+        </div>
   </div>
   <!-- FINAL DO HEADER -->
 
@@ -64,13 +67,13 @@
         <div class="searchForm">
             <form id="searchForm" action="resultado_pesquisa.php" method="POST">
                 <select id="index" name="finalidade">
-                    <option value="">FINALIDADE</option>
+                    <option value="">Finalidade pretendida</option>
                     <option id="index" value="Compra">Compra</option>
                     <option id="index" value="Aluguer">Aluguer</option>
                     <option id="index" value="Permuta">Permuta</option>
                 </select>
                 <select id="index" name="tipoImovel">
-                    <option value="">TIPO DE IMÓVEL</option>
+                    <option value="">Tipo de imóvel</option>
                     <option id="index" value="Apartamento">Apartamento</option>
                     <option id="index" value="Moradia">Moradia</option>
                     <option id="index" value="Terreno">Terreno</option>
@@ -79,7 +82,7 @@
                     <option id="index" value="Outros">Outros</option>
                 </select>
                 <select id="index" name="tipologia">
-                    <option value="">TIPOLOGIA</option>
+                    <option value="">Tipologia</option>
                     <option id="index" value="T0">T0</option>
                     <option id="index" value="T1">T1</option>
                     <option id="index" value="T2">T2</option>
@@ -89,7 +92,7 @@
                     <option id="index" value="Outros">Outros</option>
                 </select>
                 <select id="ilha" name="ilha">
-                    <option value="">Selecione uma Ilha</option>
+                    <option value="">Selecione uma ilha</option>
                     <option id="saoMiguel" value="São Miguel">São Miguel</option>
                     <option id="santaMaria" value="Santa Maria">Santa Maria</option>
                     <option id="saoJorge" value="São Jorge">São Jorge</option>
@@ -101,13 +104,15 @@
                     <option id="graciosa" value="Graciosa">Graciosa</option>
                 </select>
                 <select id="concelho" name="concelho">
-                    <option value="">Selecione um Concelho</option>
+                    <option value="">Selecione um concelho</option>
                 </select>
                 <select id="freguesia" name="freguesia">
-                    <option value="">Selecione uma Freguesia</option>
+                    <option value="">Selecione uma freguesia</option>
                 </select>
-                <input id="index" type="text" name="preco" placeholder="PREÇO MÁXIMO DO IMÓVEL"/>
-                <button id="encontrar">ENCONTRAR</button>
+                
+                <input id="index" type="text" name="preco" placeholder="Preço máximo do imóvel"/>
+                
+                <button id="encontrar">Encontrar Imóvel</button>
             </form>
         </div>
         <!-- Final do formulário de pesquisa -->
