@@ -3,12 +3,12 @@
 
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
-  
+
   <head>
-    
+
     <!-- MetaTags -->
     <meta charset="utf-8">
-    
+
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
@@ -19,10 +19,10 @@
 
     <!-- Font-family PT Sans -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-    
+
     <!-- Título da página -->
     <title>Mais Imobiliária | Bem-vindo</title>
-  
+
   </head>
 
   <body>
@@ -34,18 +34,18 @@
               <a href="index.php"><img id="icon" src="images/logo.png"/></a>
               <p id="homeIconName">
             </div>
-            
+
             <div class="navItems">
                 <a href="index.php"><p id="navItem">Home</p></a>
                  <a href="register.php"><p id="navItem">Registo</p></a>
                 <a href="logout.php"><p id="navItem">Login</p></a>
             </div>
-            
+
             <div class="phone">
               <img id="phoneIcon" src="images/call-answer.svg"/>
               <p id="phone-number">296 012 345</p>
             </div>
-      
+
         </div>
   </div>
   <!-- FINAL DO HEADER -->
@@ -55,17 +55,17 @@
 
     <!-- PESQUISA DO ÍNDEX -->
     <div class="container_form">
-        
+
         <!-- Título do formulário de pesquisa -->
         <div class="formTitle">
             <img id="lupaIcon" src="images/lupa.png"/>
             <p>O que procuras?</p>
         </div>
-        
+
         <!-- Formulário de pesquisa -->
         <div class="searchForm">
             <form id="searchForm" action="resultado_pesquisa.php" method="POST">
-                
+
                 <select id="index" name="finalidade">
                     <option value="">Finalidade pretendida</option>
                     <option id="index" value="Compra">Compra</option>
@@ -93,12 +93,12 @@
                     <option id="index" value="T5">T5</option>
                     <option id="index" value="Outros">Outros</option>
                 </select>
-                
+
                 <div class="formTitleSecondary">
-                <img id="locationIcon" src="images/location.png"/>                    
+                <img id="locationIcon" src="images/location.png"/>
                 <p>Onde procuras?</p>
                 </div>
-                
+
                 <select id="ilha" name="ilha">
                     <option value="">Selecione uma ilha</option>
                     <option id="saoMiguel" value="São Miguel">São Miguel</option>
@@ -119,9 +119,9 @@
                 <select id="freguesia" name="freguesia">
                     <option value="">Selecione uma freguesia</option>
                 </select>
-                
+
                 <input id="index" type="text" name="preco" placeholder="Preço máximo do imóvel"/>
-                
+
                 <button id="encontrar">Encontrar Imóvel</button>
             </form>
         </div>
@@ -152,7 +152,7 @@
 
       $bd = new imobiliaria('data/config.ini');
       $bd->pequisa();
-    
-    ?> 
+
+    ?>
 
 </html>
