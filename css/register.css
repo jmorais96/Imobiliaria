@@ -1,0 +1,8 @@
+/* HEADER DA PÁGINA DE REGISTO */ 
+
+/* Título da página de registo */
+.navItems h3 {
+  font-size: 25px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
