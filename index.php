@@ -29,6 +29,7 @@
 
   <!-- HEADER -->
   <div class="container_header">
+     
      <div class="header">
             <div class="icon">
               <a href="index.php"><img id="icon" src="images/logo.png"/></a>
@@ -47,6 +48,7 @@
             </div>
 
         </div>
+  
   </div>
   <!-- FINAL DO HEADER -->
 
@@ -137,7 +139,7 @@
               <p id="homeIconName">
             </div>
             <div class="copyright">
-				<p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 MaisImobiliária</p>
+				<p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
             </div>
       </div>
     </div>

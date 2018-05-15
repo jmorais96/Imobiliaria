@@ -6,3 +6,9 @@
   margin-bottom: 5px;
   text-transform: uppercase;
 }
+
+/* FORMULÁRIO DE REGISTO */
+#formulario-registo {
+  background-color: #B9BBBD;
+  color: black;
+}

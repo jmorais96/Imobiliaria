@@ -25,8 +25,8 @@
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">    
-    <link rel="stylesheet"  href="css/register.css" type="text/css">    
-
+    <link rel="stylesheet"  href="css/register.css" type="text/css">   
+    
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
@@ -43,6 +43,7 @@
 
   <!-- HEADER -->
   <div class="container_header">
+     
      <div class="header">
             <div class="icon">
               <a href="index.php"><img id="icon" src="images/logo.png"/></a>
@@ -59,12 +60,44 @@
             </div>
 
         </div>
+  
   </div>
   <!-- FINAL DO HEADER -->
 
   <!-- FORMULÁRIO DE REGISTO --> 
   <div id="formulario-registo">
+
+    <form action="">
     
+    <!-- Nome próprio -->
+    <label for="firstname">Nome próprio</label>
+    <input type="text" name="firstname">
+    
+    <!-- Apelido -->
+    <label for="lastname">Apelido</label>
+    <input type="text" name="lastname">
+    
+    <!-- Username -->
+    <label for="username">Username</label>
+    <input type="text" name="username">
+    
+    <!-- Palavra-passe escolhida -->
+    <label for="password">Escolha uma palavra-passe</label>
+    <input type="password" name="password">
+    
+    <!-- Confirmação da palavra-passe escolhida -->
+    <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
+    <input type="text" name="password_rewrite">
+    
+    <!-- Morada -->
+    <label for="address">Morada</label>
+    <input type="text" name="address">
+
+    <!-- Botão de submissão -->
+    <button type="submit" name="submit">Submeter formulário</button>
+
+    </form>
+
   </div>
   
   <!-- FINAL DO FORMULÁRIO DE REGISTO -->

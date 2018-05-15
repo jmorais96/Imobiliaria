@@ -5,6 +5,7 @@
     border: 0;
     font-size: 15px;
     font-family: 'PT Sans';
+    letter-spacing: .5px;
 }
 
 html, body{height: 100vh; width: 100%;}
