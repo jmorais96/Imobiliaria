@@ -3,9 +3,11 @@ require_once('database.class.php');
 
 class imobiliaria extends Database {
 
-  public function pequisa($sql='select * from imovel'){
+  public function pequisa($sql='select * from destaque where destaque=1'){
+
 
     $pesquisa=$this->query($sql);
+
     //var_dump($pesquisa);
     foreach ($pesquisa as $id) {
       //var_dump($id);
