@@ -1,11 +1,9 @@
-<?php
-
-  require_once('data/imovel.class.php');
-
-?>
+<!-- Adicionar a classe imóvel -->
+<?php require_once('data/imovel.class.php'); ?>
 
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
+  
   <head>
     
     <!-- MetaTags -->
@@ -24,6 +22,7 @@
     
     <!-- Título da página -->
     <title>Mais Imobiliária | Bem-vindo</title>
+  
   </head>
 
   <body>
@@ -37,14 +36,14 @@
             </div>
             
             <div class="navItems">
-                <a href="index.php"><p id="navItem">HOME</p></a>
-                 <a href="register.php"><p id="navItem">REGISTAR</p></a>
-                <a href="logout.php"><p id="navItem">LOGIN</p></a>
+                <a href="index.php"><p id="navItem">Home</p></a>
+                 <a href="register.php"><p id="navItem">Registo</p></a>
+                <a href="logout.php"><p id="navItem">Login</p></a>
             </div>
             
             <div class="phone">
               <img id="phoneIcon" src="images/call-answer.svg"/>
-              <p id="phone">296 012 345</p>
+              <p id="phone-number">296 012 345</p>
             </div>
       
         </div>
@@ -60,18 +59,20 @@
         <!-- Título do formulário de pesquisa -->
         <div class="formTitle">
             <img id="lupaIcon" src="images/lupa.png"/>
-            <p>PESQUISAR IMÓVEL</p>
+            <p>O que procuras?</p>
         </div>
         
         <!-- Formulário de pesquisa -->
         <div class="searchForm">
             <form id="searchForm" action="resultado_pesquisa.php" method="POST">
+                
                 <select id="index" name="finalidade">
                     <option value="">Finalidade pretendida</option>
                     <option id="index" value="Compra">Compra</option>
                     <option id="index" value="Aluguer">Aluguer</option>
                     <option id="index" value="Permuta">Permuta</option>
                 </select>
+
                 <select id="index" name="tipoImovel">
                     <option value="">Tipo de imóvel</option>
                     <option id="index" value="Apartamento">Apartamento</option>
@@ -81,6 +82,7 @@
                     <option id="index" value="Armazém">Armazém</option>
                     <option id="index" value="Outros">Outros</option>
                 </select>
+
                 <select id="index" name="tipologia">
                     <option value="">Tipologia</option>
                     <option id="index" value="T0">T0</option>
@@ -91,6 +93,12 @@
                     <option id="index" value="T5">T5</option>
                     <option id="index" value="Outros">Outros</option>
                 </select>
+                
+                <div class="formTitleSecondary">
+                <img id="locationIcon" src="images/location.png"/>                    
+                <p>Onde procuras?</p>
+                </div>
+                
                 <select id="ilha" name="ilha">
                     <option value="">Selecione uma ilha</option>
                     <option id="saoMiguel" value="São Miguel">São Miguel</option>
@@ -103,9 +111,11 @@
                     <option id="pico" value="Pico">Pico</option>
                     <option id="graciosa" value="Graciosa">Graciosa</option>
                 </select>
+
                 <select id="concelho" name="concelho">
                     <option value="">Selecione um concelho</option>
                 </select>
+
                 <select id="freguesia" name="freguesia">
                     <option value="">Selecione uma freguesia</option>
                 </select>
@@ -127,7 +137,7 @@
               <p id="homeIconName">
             </div>
             <div class="copyright">
-				<p class="copyright">&#169; 2018 MaisImobiliária</p>
+				<p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 MaisImobiliária</p>
             </div>
       </div>
     </div>
@@ -143,6 +153,6 @@
       $bd = new imobiliaria('data/config.ini');
       $bd->pequisa();
     
-    ?>
+    ?> 
 
 </html>

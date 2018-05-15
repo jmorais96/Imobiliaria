@@ -10,7 +10,7 @@
 html, body{height: 100vh; width: 100%;}
 
 /* HEADER */
-.header{
+.header {
     width: 80%;
     height: 100%;
     display: flex; 
@@ -23,6 +23,33 @@ html, body{height: 100vh; width: 100%;}
     height: 16%;
     align-items: center;
     justify-content: center;
+}
+
+/* Items de navegação */
+.navItems {
+    display: flex;
+    align-self: center;
+    width: 50%;
+    justify-content: space-evenly;
+    font-weight: bold;
+    margin: 0 auto;
+    border-bottom: 2px solid #ED2B2A;
+}
+
+.navItems #navItem {padding: 5px 50px;}
+
+#navItem {
+    font-size: 18px;
+    margin-bottom: 8px;
+    padding: 6px 30px 3px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    color: #231F20;
+}
+
+#navItem:hover {
+    background-color: #ED2B2A;
+    color: #fff;
 }
 
 /* Logótipo */
@@ -44,19 +71,69 @@ html, body{height: 100vh; width: 100%;}
     margin-right: 5px;
 }
 
+#phone-number {
+    font-size: 17px;
+    font-weight: bold;
+}
+
 /* CENTRO DA PÁGINA */
 
 /* Formulário de pesquisa */
+
+img#lupaIcon {
+    align-self: center;
+    margin-right: 10px;
+    height: 25px;
+    width: 25px; 
+}
+
+img#locationIcon {
+    align-self: center;
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+}
+
+#icon {align-self: center;}
+
 .formTitle {
     width: 80%;
     display: flex;
     align-self: center;
-    margin-bottom: -20px;
+    margin-bottom: -5px;
+    text-transform: uppercase;
 }
 
-.formTitle > p {color:white; font-size: 20px;}
+.formTitleSecondary {
+    margin: 12px 39px 0 0;
+    width: 80%;
+    display: flex;
+    align-self: center;
+    text-transform: uppercase;  
+}
+
+.formTitle > p,
+.formTitleSecondary > p {
+    color: #fff;
+    font-size: 20px;
+}
+
+.searchForm {
+    display: flex;
+    align-self: center;
+    width: 80%;
+    height: 70%;
+}
+
+#searchForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
 
 /* Menu do formulário de pesquisa */
+
 .menu ul {
   display: flex;
   list-style-type: none;
@@ -68,6 +145,12 @@ html, body{height: 100vh; width: 100%;}
   text-decoration: none;
   color: Grey;
   font-weight: bold;
+}
+
+option {
+    display: flex;
+    width: 20px;
+    height: 50%;
 }
 
 .pesquisa {
@@ -93,6 +176,16 @@ html, body{height: 100vh; width: 100%;}
   font-weight: bold;
 }
 
+#index,
+#ilha,
+#concelho,
+#freguesia {
+    margin-top: 8px;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+    height: 8%;
+}
 
 /* Mapa */
 .map {
@@ -109,58 +202,7 @@ html, body{height: 100vh; width: 100%;}
     background-color: #282828;
 }
 
-option {
-    display: flex;
-    width: 20px;
-    height: 50%;
-}
-
-.searchForm {
-    display: flex;
-    align-self: center;
-    width: 80%;
-    height: 70%;
-}
-
-#searchForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-}
-
-#index,
-#ilha,
-#concelho,
-#freguesia {
-    margin-top: 5px;
-    border-radius: 3px;
-    border: none;
-    width: 100%;
-    height: 8%;
-}
-
-.navItems {
-    display: flex;
-    align-self: center;
-    width: 50%;
-    justify-content: space-evenly;
-}
-
-#lupaIcon {
-    align-self: center;
-    width: 7%;
-    margin-right: 10px;
-}
-
-#icon {
-    align-self: center;
-    height: 60px;
-}
-
-
-
-button {
+button#encontrar {
     align-self: center;
     border-radius: 3px;
     margin-top: 5%;
@@ -171,18 +213,33 @@ button {
     color: #fff;
     width: 100%;
     height: 10%;
+    letter-spacing: 1px;
+    font-weight: 600;
     cursor: pointer;
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
 }
 
-#encontrar {text-transform: uppercase;}
+button#encontrar:hover {
+    background-color: #fff;
+    color: #DC2D27;
+}
 
 /* FOOTER */
-.footer {display: flex; width: 80%;}
+.footer {
+    display: flex; 
+    width: 80%;
+}
+
+img#icon {
+    height: 70px;
+}
 
 .container_footer {
     background-color: #DC2D27;
+    height: 15%;
     display: flex;
-    height: 10%;
     align-items: center;
     justify-content: center;
 }
@@ -191,7 +248,16 @@ button {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 2%;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-weight: 500;
     width: 100%;
     color:white;
+}
+
+.copyright-simbol {
+    margin-right: 5px;
+    font-size: 25px;
+    font-weight: 500;
 }
