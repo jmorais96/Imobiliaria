@@ -1,0 +1,263 @@
+/* GERAL */
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-size: 15px;
+    font-family: 'PT Sans';
+}
+
+html, body{height: 100vh; width: 100%;}
+
+/* HEADER */
+.header {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container_header {
+    display: flex;
+    height: 15%;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Items de navegação */
+.navItems {
+    display: flex;
+    align-self: center;
+    width: 50%;
+    justify-content: space-evenly;
+    font-weight: bold;
+    margin: 0 auto;
+    border-bottom: 2px solid #ED2B2A;
+}
+
+.navItems #navItem {padding: 5px 50px;}
+
+#navItem {
+    font-size: 18px;
+    margin-bottom: 8px;
+    padding: 6px 30px 3px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    color: #231F20;
+}
+
+#navItem:hover {
+    background-color: #ED2B2A;
+    color: #fff;
+}
+
+/* Logótipo */
+.header img{height: 70px;}
+
+/* Contacto */
+.contact img {height: 30px;}
+
+.phone {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#phoneIcon {
+    align-self: center;
+    width: 12%;
+    height: 70%;
+    margin-right: 5px;
+}
+
+#phone-number {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* CENTRO DA PÁGINA */
+
+/* Formulário de pesquisa */
+
+img#lupaIcon {
+    align-self: center;
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+}
+
+img#locationIcon {
+    align-self: center;
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+}
+
+#icon {align-self: center;}
+
+.formTitle {
+    width: 80%;
+    display: flex;
+    align-self: center;
+    margin-bottom: -5px;
+    text-transform: uppercase;
+}
+
+.formTitleSecondary {
+    margin: 12px 39px 0 0;
+    width: 80%;
+    display: flex;
+    align-self: center;
+    text-transform: uppercase;
+}
+
+.formTitle > p,
+.formTitleSecondary > p {
+    color: #fff;
+    font-size: 20px;
+}
+
+.searchForm {
+    display: flex;
+    align-self: center;
+    width: 80%;
+    height: 70%;
+}
+
+#searchForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Menu do formulário de pesquisa */
+
+.menu ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-around;
+  width: 150%;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: Grey;
+  font-weight: bold;
+}
+
+option {
+    display: flex;
+    width: 20px;
+    height: 50%;
+}
+
+.pesquisa {
+  height: 10%;
+  background-color: #282828;
+  display: flex;
+  align-items: baseline;
+}
+
+.pesquisa * {
+  margin-top: 5%;
+  height: 70%;
+  border-radius: 25px;
+}
+
+.pesquisa form {
+  margin-left: 20%;
+}
+
+.pesquisa input[type="submit"]{
+  background-color: grey;
+  color: white;
+  font-weight: bold;
+}
+
+#index,
+#ilha,
+#concelho,
+#freguesia {
+    margin-top: 8px;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+    height: 8%;
+}
+
+/* Mapa */
+.map {
+    height: 70%;
+    width: 75%;
+    display: flex;
+}
+
+.container_form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #282828;
+}
+
+button#encontrar {
+    align-self: center;
+    border-radius: 3px;
+    margin-top: 5%;
+    background-color: #DC2D27;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 10%;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+button#encontrar:hover {
+    background-color: #fff;
+    color: #DC2D27;
+}
+
+/* FOOTER */
+.footer {
+    display: flex;
+    width: 80%;
+}
+
+img#icon {
+    height: 70px;
+}
+
+.container_footer {
+    background-color: #DC2D27;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    color:white;
+}
+
+.copyright-simbol {
+    margin-right: 5px;
+    font-size: 25px;
+    font-weight: 500;
+}
