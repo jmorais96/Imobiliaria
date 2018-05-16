@@ -33,7 +33,7 @@
 
   <!-- HEADER/NAVBAR --> 
   <div class="container-header">
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="index.php"><img id="icon" src="images/logo.png"/></a>
 
   <!-- Toogler que aparecerá nos menores ecrãs -->
