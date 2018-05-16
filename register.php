@@ -90,12 +90,12 @@
     <div class="super_container_form">
        
     
-        <div class="container_form">
+        <div class="container_form2">
 
             <!-- Formulário de pesquisa -->
 
                 <div class="formulario-registo">
-                   <div class="formTitle">
+                   <div class="formTitle2">
                         <img id="lupaIcon" src="images/lupa.png"/>
                         <p>Formulário de registo</p>
                     </div>

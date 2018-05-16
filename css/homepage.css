@@ -20,7 +20,7 @@ label {
 }
 
 /* HEADER/NAVBAR */
-.container-header {width: 100%;}
+.container-header {width: 100%;    height: 15%;}
 nav.navbar.navbar-expand-lg.navbar-light {
     margin: 0 10%;
 }
@@ -122,6 +122,13 @@ img#locationIcon {
 #icon {align-self: center;}
 
 .formTitle {
+    width: 80%;
+    display: flex;
+    align-self: center;
+    text-align: center;
+}
+
+.formTitle2 {
     width: 100%;
     display: flex;
     align-self: center;
@@ -237,6 +244,15 @@ option {
 }
 
 .container_form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #282828;
+    align-self: center;
+}
+
+.container_form2 {
     height: 60%;
     display: flex;
     flex-direction: column;
