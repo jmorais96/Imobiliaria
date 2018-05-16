@@ -25,7 +25,7 @@ function initMap() {
       }
 
       function addMarker(lat, lng) {
-        alert('here');
+        //alert('here');
         var marker  = new google.maps.Marker({
           position: { lat: lat, lng: lng }
         });
