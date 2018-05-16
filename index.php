@@ -33,7 +33,7 @@
 
   <!-- HEADER/NAVBAR --> 
   <div class="container-header">
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="index.php"><img id="icon" src="images/logo.png"/></a>
 
   <!-- Toogler que aparecerá nos menores ecrãs -->
@@ -56,7 +56,7 @@
         
         <!-- Link de navegação que abre o módulo de "Login" -->    
         <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" data-toggle="modal" data-target="#loginWindow">Login</a>
         </li>
 
         </ul>
@@ -71,8 +71,41 @@
 
     </nav>
 </div>
-    <!-- FINAL DO HEADER/NAVBAR  -->
+<!-- FINAL DO HEADER/NAVBAR  -->
 
+
+<!-- MÓDULO DE LOGIN -->
+<div class="modal fade" id="loginWindow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <!-- Header do módulo --> 
+            <div class="modal-header">
+                <h3 class="modal-title">Efetue o seu login</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Body do módulo -->
+            <div class="modal-body">
+                <form action="" role="form">
+                    <div class="form-group">
+                        <input type="email"  placeholder="Escreva aqui o seu email..." class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <input type="password"  placeholder="Escreva aqui a sua palavra-passe" class="form-control"> 
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer do módulo -->
+            <div class="modal-footer">
+                <button class="btn btn-block">Iniciar Sessão</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- FINAL DO MÓDULO DE LOGIN -->
 
    <!-- ÁREA CENTRAL DA PÁGINA -->
    <div class="map" style="float:left;"></div>
