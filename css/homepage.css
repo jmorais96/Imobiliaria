@@ -5,25 +5,14 @@
     border: 0;
     font-size: 15px;
     font-family: 'PT Sans';
+    letter-spacing: .5px;
 }
 
 html, body{height: 100vh; width: 100%;}
 
-/* HEADER */
-.header {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.container_header {
-    display: flex;
-    height: 15%;
-    align-items: center;
-    justify-content: center;
-}
+/* HEADER/NAVBAR */
+.container-header {width: 100%;}
+nav.navbar.navbar-expand-lg {margin: 0 10%;}
 
 /* Items de navegação */
 .navItems {
@@ -50,6 +39,19 @@ html, body{height: 100vh; width: 100%;}
 #navItem:hover {
     background-color: #ED2B2A;
     color: #fff;
+}
+
+.menu ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    width: 150%;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: Grey;
+    font-weight: bold;
 }
 
 /* Logótipo */
@@ -132,20 +134,7 @@ img#locationIcon {
     width: 100%;
 }
 
-/* Menu do formulário de pesquisa */
-
-.menu ul {
-  display: flex;
-  list-style-type: none;
-  justify-content: space-around;
-  width: 150%;
-}
-
-.menu ul li a {
-  text-decoration: none;
-  color: Grey;
-  font-weight: bold;
-}
+/* Formulário de pesquisa */
 
 option {
     display: flex;
