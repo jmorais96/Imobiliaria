@@ -81,7 +81,7 @@
             
             <!-- Header do módulo --> 
             <div class="modal-header">
-                <h3 class="modal-title">Iniciar Sessão</h3>
+                <h3 class="modal-title">Efetue o seu login</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -99,7 +99,7 @@
 
             <!-- Footer do módulo -->
             <div class="modal-footer">
-                <button class="btn btn-default btn-block">Iniciar Sessão</button>
+                <button class="btn btn-block">Iniciar Sessão</button>
             </div>
 
         </div>
