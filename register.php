@@ -11,7 +11,7 @@
       header("location:index.php");
 
   }
-
+ 
 ?> -->
 
 <!DOCTYPE html>
@@ -25,7 +25,8 @@
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">    
-    <link rel="stylesheet"  href="css/register.css" type="text/css">   
+    <link rel="stylesheet"  href="css/register.css" type="text/css">  
+    <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
     
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
