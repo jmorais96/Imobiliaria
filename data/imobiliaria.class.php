@@ -48,7 +48,7 @@ class imobiliaria extends Database {
         // $sql='select concelho from concelho where idConcelho = :idConcelho';
         // $concelho=$this->query($sql, $id['idConcelho']);
         // $sql='select ilha from freguesia where idFreguesia = :idFreguesia';
-        // $freguesia=$this->query($sql, $id['idFreguesia']);
+        // $freguesia=$this->query($sql, $id['idFreguesia'])
       }
 
       //echo ($extra);
