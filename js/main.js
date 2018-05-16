@@ -3,8 +3,7 @@ let geocoder;
 function initMap() {
         map = new google.maps.Map($('.map').get(0), {
           /* se login zoom 13 else 9 ?*/
-          zoom: 12
-
+          zoom: 9
         });
         geocoder = new google.maps.Geocoder();
 
@@ -15,7 +14,7 @@ function initMap() {
 
       function geocodeAddress(geocoder, resultsMap) {
         /*  select localização */
-        var address = 'Ponta Delgada';
+        var address = 'Açores';
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
@@ -25,20 +24,10 @@ function initMap() {
         });
       }
 
-      function addMarker(address) {
-        //alert(address);
-        address= "Açores, " + address;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            //alert(results[0].geometry.location);
-             var marker  = new google.maps.Marker({
-               position:results[0].geometry.location
-             });
-             marker.setMap(map);
-             map.setCenter(results[0].geometry.location);
-             console.log(results[0].geometry.location);
-          }
+      function addMarker(lat, lng) {
+        //alert('here');
+        var marker  = new google.maps.Marker({
+          position: { lat: lat, lng: lng }
         });
-
-
+        marker.setMap(map);
       }

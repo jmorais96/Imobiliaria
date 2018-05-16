@@ -2,60 +2,72 @@
 require_once('imobiliaria.class.php');
 class imovel extends imobiliaria {
 
-  private $idImovel;
-  private $finalidade;
-  private $tipoImovel;
-  private $tipologia;
-  private $tamanho;
-  private $quartos;
-  private $casasBanho;
-  private $mobilia;
-  private $dataConstrucao;
-  private $garagem;
-  private $espacoExterior;
-  private $piscina;
-  private $preco;
-  private $descricao;
-  private $ilha;
-  private $concelho;
-  private $freguesia;
-  private $morada;
-  private $estado;
-  private $destaque;
+
+   private $idImovel;
+   private $idGestor;
+   private $finalidade;
+   private $tipoImovel;
+   private $area;
+   private $preco;
+   private $descricao;
+   private $rua;
+   private $codPostal;
+   private $lat;
+   private $lng;
+   private $ilha;
+   private $concelho;
+   private $freguesia;
+   private $situacao;
+   private $estado;
+
+  // private $idImovel;
+  // private $finalidade;
+  // private $tipoImovel;
+  // private $tipologia;
+  // private $tamanho;
+  // private $quartos;
+  // private $casasBanho;
+  // private $mobilia;
+  // private $dataConstrucao;
+  // private $garagem;
+  // private $espacoExterior;
+  // private $piscina;
+  // private $preco;
+  // private $descricao;
+  // private $ilha;
+  // private $concelho;
+  // private $freguesia;
+  // private $morada;
+  // private $estado;
+  // private $destaque;
 
 
 
-  function __construct($id, $finalidade, $tipo, $tamanho, $preco, $descricao, $data, $morada, $destaque, $estado, $ilha ,$concelho, $freguesia=NULL, $tipologia=NULL, $quartos=NULL, $casasBanho=NULL, $espacoExterior=NULL, $garagem=NULL, $piscina=NULL, $mobilia=NULL){
-    $this->idImovel=$id;
+  function __construct($idImovel, $idGestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $ilha, $concelho, $freguesia, $situacao, $estado){
+    $this->idImovel=$idImovel;
+    $this->idGestor=$idGestor;
     $this->finalidade=$finalidade;
-    $this->tipoImovel=$tipo;
-    $this->tamanho=$tamanho;
+    $this->tipoImovel=$tipoImovel;
+    $this->area=$area;
     $this->preco=$preco;
-    $this->destaque=$destaque;
     $this->descricao=$descricao;
-    $this->estado=$estado;
-    $this->data=$data;
+    $this->rua=$rua;
+    $this->codPostal=$codPostal;
+    $this->lat=$lat;
+    $this->lng=$lng;
     $this->ilha=$ilha;
     $this->concelho=$concelho;
     $this->freguesia=$freguesia;
-    $this->morada=$morada;
-    $this->tipologia=$tipologia;
-    $this->quartos=$quartos;
-    $this->casasBanho=$casasBanho;
-    $this->mobilia=$mobilia;
-    $this->garagem=$garagem;
-    $this->espacoExterior=$espacoExterior;
-    $this->piscina=$piscina;
+    $this->situacao=$situacao;
+    $this->estado=$estado;
 
   }
 
 
-  public function marcador(){
-
-      // echo "<script>alert('here');</script>";
-     echo " <script type=\"text/javascript\">
-     addMarker(\"$this->morada\");
-     </script>";
+  public function addMarker(){
+    echo("<script> 
+            addMarker(". $this->lat .", ". $this->lng ." );
+          </script>");
   }
 
 
