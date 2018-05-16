@@ -27,6 +27,7 @@ a.nav-link {
     padding: 5px 50px;
     transition-duration: 0.5s;
     transition-timing-function: linear;
+    cursor: pointer;
 }
 
 a.nav-link:hover {
@@ -67,7 +68,6 @@ button.navbar-toggler {background-color: #ED2B2A;}
 /* CENTRO DA PÁGINA */
 
 /* Formulário de pesquisa */
-
 img#lupaIcon {
     align-self: center;
     margin-right: 10px;
@@ -119,8 +119,6 @@ img#locationIcon {
     justify-content: center;
     width: 100%;
 }
-
-/* Formulário de pesquisa */
 
 option {
     display: flex;
