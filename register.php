@@ -8,9 +8,16 @@
       header("location:index.php");
  
   }
- 
-?>
+  
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+/* necessário criar condições de incerção */
+    
+    $bd=new imobiliaria("data/config.ini");
+    
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
 
@@ -97,7 +104,7 @@
                         <p>Formulário de registo</p>
                     </div>
                    
-                    <form id="formulario-registo" action="resultado_pesquisa.php" method="POST">
+                    <form id="formulario-registo" action="" method="POST">
 
                         <!-- Nome próprio -->
                         <label for="firstname">Nome próprio</label>

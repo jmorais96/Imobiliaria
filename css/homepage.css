@@ -82,6 +82,13 @@ button.navbar-toggler {background-color: #ED2B2A;}
 
 .modal-title {text-transform: uppercase;}
 
+.modal-body {margin-top: 15px;}
+
+.fa-user-alt, .fa-unlock {font-size: 25px; color: #111;}
+
+input.form-control.input-email {margin-left: 10px; width: 90%;}
+input.form-control.input-password {margin: 8px 0 0 13px; width: 90%;}
+
 .close {
     color: #e9e9e9;
     transition-duration: 0.5s;
