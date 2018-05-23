@@ -1,8 +1,5 @@
-<!-- <?php session_start(); ?>
-
-<?php include("assets/logout.php"); ?>
-
-<?php include("registar_ok.php"); ?>
+<!-- Adicionar a classe imóvel -->
+<?php require_once('data/imovel.class.php'); ?>
 
 <?php
 
@@ -12,7 +9,7 @@
  
   }
  
-?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
