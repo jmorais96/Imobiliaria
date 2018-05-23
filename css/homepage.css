@@ -134,6 +134,7 @@ img#locationIcon {
     align-self: center;
     margin-bottom: -5px;
     text-transform: uppercase;
+    color: white;
 }
 
 .formTitleSecondary {
