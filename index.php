@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
 
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
@@ -92,11 +95,11 @@
             <!-- Body do módulo -->
             <div class="modal-body">
                 <form action="" role="form">
-                    <div class="form-group">
-                        <input type="email"  placeholder="Escreva aqui o seu email..." class="form-control"> 
+                    <div class="form-inline">
+                        <i class="fas fa-user-alt"></i> <input type="email" placeholder="Escreva aqui o seu email..." class="form-control input-email">
                     </div>
-                    <div class="form-group">
-                        <input type="password"  placeholder="Escreva aqui a sua palavra-passe" class="form-control"> 
+                    <div class="form-inline">
+                         <i class="fas fa-unlock"></i> <input type="password"  placeholder="Escreva aqui a sua palavra-passe..." class="form-control input-password"> 
                     </div>
                 </form>
             </div>
