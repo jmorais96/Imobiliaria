@@ -1,5 +1,9 @@
 <!-- Adicionar a classe imóvel -->
-<?php require_once('data/imovel.class.php'); ?>
+<?php require_once('data/imovel.class.php'); 
+
+    $bd = new imobiliaria('data/config.ini');
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
@@ -124,31 +128,15 @@
             <form id="searchForm" action="resultado_pesquisa.php" method="POST">
 
                 <select id="index" name="finalidade">
-                    <option value="">Finalidade pretendida</option>
-                    <option id="index" value="Compra">Compra</option>
-                    <option id="index" value="Aluguer">Aluguer</option>
-                    <option id="index" value="Permuta">Permuta</option>
+                    <?php $bd->selectFinalidade(); ?>
                 </select>
 
                 <select id="index" name="tipoImovel">
-                    <option value="">Tipo de imóvel</option>
-                    <option id="index" value="Apartamento">Apartamento</option>
-                    <option id="index" value="Moradia">Moradia</option>
-                    <option id="index" value="Terreno">Terreno</option>
-                    <option id="index" value="Espaço Comercial">Espaço Comercial</option>
-                    <option id="index" value="Armazém">Armazém</option>
-                    <option id="index" value="Outros">Outros</option>
+                   <?php $bd->selectTipoImovel(); ?>
                 </select>
 
                 <select id="index" name="tipologia">
-                    <option value="">Tipologia</option>
-                    <option id="index" value="T0">T0</option>
-                    <option id="index" value="T1">T1</option>
-                    <option id="index" value="T2">T2</option>
-                    <option id="index" value="T3">T3</option>
-                    <option id="index" value="T4">T4</option>
-                    <option id="index" value="T5">T5</option>
-                    <option id="index" value="Outros">Outros</option>
+                    <?php $bd->selectTipologia(); ?>
                 </select>
 
                 <div class="formTitleSecondary">
@@ -157,16 +145,7 @@
                 </div>
 
                 <select id="ilha" name="ilha">
-                    <option value="">Selecione uma ilha</option>
-                    <option id="saoMiguel" value="São Miguel">São Miguel</option>
-                    <option id="santaMaria" value="Santa Maria">Santa Maria</option>
-                    <option id="saoJorge" value="São Jorge">São Jorge</option>
-                    <option id="corvo" value="Corvo">Corvo</option>
-                    <option id="terceira" value="Terceira">Terceira</option>
-                    <option id="faial" value="Faial">Faial</option>
-                    <option id="flores" value="Flores">Flores</option>
-                    <option id="pico" value="Pico">Pico</option>
-                    <option id="graciosa" value="Graciosa">Graciosa</option>
+                    <?php $bd->selectIlha(); ?>
                 </select>
 
                 <select id="concelho" name="concelho">
@@ -210,17 +189,31 @@
     <!-- jQuery -->  
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
+    <!-- Latest compiled Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-    <?php
+    <?php $bd->pequisa(); ?>
 
-      $bd = new imobiliaria('data/config.ini');
-      $bd->pequisa();
-
-    ?>
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#ilha").change(function(){
+                let ilha = $("#ilha").val();
+                $.ajax({
+                type:'POST',
+                url:'concelho.php',
+                data:"idIlha="+ ilha,
+                success:function(html){
+                    $('#concelho').html(html);
+                    
+                }
+            });
+            });
+        });
+    </script>
 </html>

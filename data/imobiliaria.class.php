@@ -3,6 +3,12 @@ require_once('database.class.php');
 
 class imobiliaria extends Database {
 
+  public function registarUtilizador($email, $nome, $sobrenome, $password, $contacto, $concelho){
+  
+    
+
+  }
+
   public function pequisa($sql='select * from destaque where estado=1'){
 
 
@@ -108,6 +114,17 @@ class imobiliaria extends Database {
       echo("<option value=".$value['idIlha']."   id='index'>".utf8_decode($value['ilha'])."</option>");
     }
 
+  }
+
+  public function selectConcelho($ilha){
+    echo("<option value=''>Selecione um concelho</option>");
+    $sql='select * from concelho where idIlha = :idIlha';
+    $ilha=  array('idIlha' => $idIlha);
+    $concelho=$this->query($sql, $ilha);
+    foreach ($concelho as $value) {
+      echo("<option value=".$value['idConcelho']."   id='index'>".utf8_decode($value['concelho'])."</option>");
+    }
+    
   }
 
 
