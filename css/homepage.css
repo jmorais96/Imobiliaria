@@ -162,14 +162,6 @@ img#locationIcon {
     flex-direction: column;
     justify-content: center;
 }
- 
-#formulario-registo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    color: white;
-}
 
 option {
     display: flex;
@@ -230,16 +222,6 @@ option {
     justify-content: center;
     background-color: #282828;
     align-self: center;
-}
-
-.container_form2 {
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #282828;
-    width: 40%;
-    position: absolute;
 }
 
 button#encontrar {

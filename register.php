@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
+    <link rel="stylesheet" href="css/register.css" type="text/css">   
 
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
@@ -61,20 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <ul class="navbar-nav mx-auto">
 
-        <!-- Link de navegação "Home" -->
-        <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-        </li>
-        
-        <!-- Link de navegação "Registo" 
-        <li class="nav-item">
-            <a class="nav-link" href="register.php">Registo</a>
-        </li>-->
-        
-        <!-- Link de navegação que abre o módulo de "Login" -->    
-        <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-        </li>
+            <h3>Página de registo da imobiliária</h3>
 
         </ul>
 
@@ -90,19 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
     <!-- FINAL DO HEADER/NAVBAR  -->
 
-    <!-- PESQUISA DO ÍNDEX -->
+    <!-- ÁREA DE REGISTO DA IMOBILIÁRIA -->
     <div class="super_container_form">
-       
     
         <div class="container_form2">
 
             <!-- Formulário de pesquisa -->
 
                 <div class="formulario-registo">
-                   <div class="formTitle2">
-                        <img id="lupaIcon" src="images/lupa.png"/>
-                        <p>Formulário de registo</p>
-                    </div>
                    
                     <form id="formulario-registo" action="" method="POST">
 
@@ -136,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Final do formulário de pesquisa -->
         </div>
    </div>
-    <!-- FINAL DA PESQUISA DO ÍNDEX -->
+    <!-- FINAL DA ÁREA DE REGISTO DA IMOBILIÁRIA -->
 
     <!-- FOOTER -->
     <div class="container_footer">

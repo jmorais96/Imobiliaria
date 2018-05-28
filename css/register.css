@@ -1,0 +1,23 @@
+/****************************************/
+/* ESTILIZAÇÃO DA FORMULÁRIO DE REGISTO */
+/****************************************/
+
+/* Container do formulário de registo */
+.container_form2 {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #282828;
+    width: 40%;
+    position: absolute;
+}
+
+/* Formulário de registo */
+#formulario-registo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    color: white;
+}
