@@ -2,15 +2,43 @@
 /* ESTILIZAÇÃO DA FORMULÁRIO DE REGISTO */
 /****************************************/
 
+/* HEADER/NAVBAR DO FORMULÁRIO DE PESQUISA */
+
+.header-registo h3 {
+    font-size: 25px;
+    color: #231F20;
+    border-bottom: 2px solid #ED2B2A;
+    margin: 0 20px;    
+    padding: 5px 50px;
+    text-transform: uppercase;
+}
+
+/* Container geral da página de registo */
+.super_container_form_registo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/houseRegister.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /* Container do formulário de registo */
 .container_form2 {
-    height: 60%;
+    height: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: #282828;
-    width: 40%;
+    width: 60%;
     position: absolute;
+    opacity: 0.9;
+}
+
+.super_container_form_registo label {
+    font-size: 19px;
 }
 
 /* Formulário de registo */
@@ -20,4 +48,21 @@
     justify-content: center;
     width: 100%;
     color: white;
+}
+
+input.form-control {
+    color: black;
+    font-size: 16px;
+}
+
+/* Botão do formulário de registo */
+#formulario-registo button {
+    padding: 25px;
+    font-size: 20px;
+    line-height: 50%;
+}
+
+#formulario-registo button:hover {
+    background-color: #fff;
+    color: #DC2D27;
 }

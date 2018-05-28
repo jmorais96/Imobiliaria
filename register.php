@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav mx-auto">
+        <ul class="navbar-nav mx-auto header-registo">
 
             <h3>Página de registo da imobiliária</h3>
 
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- FINAL DO HEADER/NAVBAR  -->
 
     <!-- ÁREA DE REGISTO DA IMOBILIÁRIA -->
-    <div class="super_container_form">
+    <div class="super_container_form_registo">
     
         <div class="container_form2">
 
@@ -91,29 +91,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <!-- Nome próprio -->
                         <label for="firstname">Nome próprio</label>
-                        <input type="text" name="firstname">
+                        <input type="text" name="firstname" placeholder="Escreva aqui o seu nome próprio" class="form-control">
 
                          <!-- Apelido -->
                         <label for="lastname">Apelido</label>
-                        <input type="text" name="lastname">
+                        <input type="text" name="lastname" placeholder="Escreva aqui o seu apelido" class="form-control">
 
                         <!-- Username -->
                         <label for="username">Username</label>
-                        <input type="text" name="username">
+                        <input type="text" name="username" placeholder="Escolha um nome de utilizador" class="form-control">
 
                         <!-- Palavra-passe escolhida -->
                         <label for="password">Escolha uma palavra-passe</label>
-                        <input type="password" name="password">
+                        <input type="password" name="password" placeholder="Digite a palavra-passe pretendida" class="form-control">
 
                         <!-- Confirmação da palavra-passe escolhida -->
                         <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
-                        <input type="text" name="password_rewrite">
+                        <input type="text" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" class="form-control">
 
                         <!-- Morada -->
                         <label for="address">Morada</label>
-                        <input type="text" name="address">
-
-                        <button id="registar" name="registar">Registar</button>
+                        <input type="text" name="address" placeholder="Escreva aqui qual é a sua morada" class="form-control">
+                        
+                        <!-- Botão de registo do formulário -->
+                        <button id="registar" name="registar">Registar-se</button>
+                    
                     </form>
                 </div>
             <!-- Final do formulário de pesquisa -->
