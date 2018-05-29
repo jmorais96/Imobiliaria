@@ -292,9 +292,8 @@ img#icon {
     align-items: center;
     justify-content: flex-end;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: bold;
     text-transform: uppercase;
-    font-weight: 500;
     width: 100%;
     color:white;
 }
@@ -308,6 +307,7 @@ img#icon {
 /*****************/
 /* MEDIA QUERIES */
 /*****************/
+
  @media only screen and (max-width: 600px) {
     
     .phone {margin-right: 30%;}    
