@@ -38,7 +38,11 @@
 }
 
 .super_container_form_registo label {
+<<<<<<< HEAD
     font-size: 19px;
+=======
+    font-size: 17px;
+>>>>>>> 915b4c5e42ee3d0b765291d00ec69b762edf5572
 }
 
 /* Formulário de registo */
@@ -55,6 +59,12 @@ input.form-control {
     font-size: 16px;
 }
 
+<<<<<<< HEAD
+=======
+/* Labels do formulário de registo */
+label {margin: 0 2%;}
+
+>>>>>>> 915b4c5e42ee3d0b765291d00ec69b762edf5572
 /* Botão do formulário de registo */
 #formulario-registo button {
     padding: 25px;

@@ -111,23 +111,33 @@ class imobiliaria extends Database {
     $sql='select * from ilha';
     $ilha=$this->query($sql);
     foreach ($ilha as $value) {
-      echo("<option value=".$value['idIlha']."   id='index'>".utf8_decode($value['ilha'])."</option>");
+      echo("<option value=".$value['idIlha']."   id='index'>". 
+      ($value['ilha']) ."</option>");
     }
 
   }
 
   public function selectConcelho($ilha){
-    echo("<option value=''>Selecione um concelho</option>");
     $sql='select * from concelho where idIlha = :idIlha';
-    $ilha=  array('idIlha' => $idIlha);
+    $ilha=  array('idIlha' => $ilha);
     $concelho=$this->query($sql, $ilha);
+    echo("<option >Selecione um concelho</option>");
     foreach ($concelho as $value) {
-      echo("<option value=".$value['idConcelho']."   id='index'>".utf8_decode($value['concelho'])."</option>");
+      echo("<option value=".$value['idConcelho']."   id='index'>".($value['concelho'])."</option>");
+
     }
-    
   }
 
-
+  public function selectFreguesia($concelho){
+    $sql='select * from freguesia where idconcelho = :idConcelho';
+    $concelho=  array('idConcelho' => $concelho);
+    $freguesia=$this->query($sql, $concelho);
+    echo("<option >Selecione uma freguesia</option>");
+    foreach ($freguesia as $value) {
+      echo("<option value=".$value['idFreguesia']."   id='index'>".($value['freguesia'])."</option>");
+    }
+  }
+  
 }
 
 ?>
