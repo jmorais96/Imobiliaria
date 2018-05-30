@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
 
@@ -83,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         <div class="container_form2">
 
-            <!-- Formulário de pesquisa -->
+            <!-- Formulário de registo -->
 
                 <div class="formulario-registo">
                    
@@ -107,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <!-- Confirmação da palavra-passe escolhida -->
                         <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
-                        <input type="text" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
+                        <input type="password" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
 
                         <!-- Morada -->
                         <label for="address">Morada</label>
@@ -139,9 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   </body>
 
-  <!-- API Google Maps -->
-  <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
-
     <!-- Ficheiros JavaScript pessois -->
     
     <!-- jQuery -->  
@@ -154,9 +152,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
     <?php
-
-      $bd = new imobiliaria('data/config.ini');
-      $bd->pequisa();
+        
+        if(isset($_POST['registar'])) {
+            
+            $firstname = $_POST['firstname']; 
+            $lastname = $_POST['lastname'];
+            $username = $_POST['username']; 
+            $password = $_POST['password'];  
+            $password_rewrite = $_POST['password_rewrite'];  
+            $address = $_POST['address'];
+             
+        }
+        
 
     ?>
 
