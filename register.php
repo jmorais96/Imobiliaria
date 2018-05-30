@@ -50,6 +50,22 @@ if(isset($_POST['registar'])) {
     if($password !== $password_rewrite) {
         
         $message = "<p class='alert alert-danger'>As palavras-passe digitadas necessitam ser iguais!</p>";    
+    } else {
+
+        $password = $password_rewrite;
+
+    }
+
+    // Criar a classe utilizador 
+    class User extends Database {
+        
+        // $this->firstname = $firstname; 
+        // $this->lastname = $lastname;
+        // $this->username = $username;
+        // $this->password = $password;
+        // $this->address = $address;
+
+
     }
            
 }
@@ -127,13 +143,21 @@ if(isset($_POST['registar'])) {
                    
                     <form id="formulario-registo" action="" method="POST">
 
-                        <!-- Nome próprio -->
-                        <label for="firstname">Nome próprio</label>
-                        <input type="text" name="firstname" placeholder="Escreva aqui o seu nome próprio" required class="form-control">
+                        <div class="form-group">
 
-                         <!-- Apelido -->
-                        <label for="lastname">Apelido</label>
-                        <input type="text" name="lastname" placeholder="Escreva aqui o seu apelido" required class="form-control">
+                            <div class="form-inline">
+                            
+                            <!-- Nome próprio -->
+                            <label for="firstname">Nome próprio</label>
+                            <input type="text" name="firstname" required class="form-control">
+
+                            <!-- Apelido -->
+                            <label for="lastname">Apelido</label>
+                            <input type="text" name="lastname" required class="form-control">
+                            
+                        </div>
+                        
+                        </div>
 
                         <!-- Username -->
                         <label for="username">Username</label>
@@ -147,6 +171,14 @@ if(isset($_POST['registar'])) {
                         <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
                         <input type="password" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
                         <?php echo $message; ?>
+
+                        <!-- Email -->
+                        <label for="username">Email</label>
+                        <input type="email" name="email" placeholder="Escreva aqui o seu email"  required class="form-control">
+
+                        <!-- Contacto -->
+                        <label for="username">Contacto</label>
+                        <input type="text" name="contact" placeholder="Escolha o seu contacto preferencial"  required class="form-control">
 
                         <!-- Morada -->
                         <label for="address">Morada</label>
