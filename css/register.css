@@ -38,7 +38,7 @@
 }
 
 .super_container_form_registo label {
-    font-size: 19px;
+    font-size: 17px;
 }
 
 /* Formulário de registo */
@@ -54,6 +54,9 @@ input.form-control {
     color: black;
     font-size: 16px;
 }
+
+/* Labels do formulário de registo */
+label {margin: 0 2%;}
 
 /* Botão do formulário de registo */
 #formulario-registo button {
