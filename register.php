@@ -17,6 +17,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 }
 
+// MENSAGENS DE VERIFICAÇÃO 
+$message = "";
+
+// PROCESSO DE REGISTO     
+if(isset($_POST['registar'])) {
+    
+    $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
+    $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
+    $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
+    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+    $password_rewrite = !empty($_POST['password_rewrite']) ? trim($_POST['password_rewrite']) : null;
+
+    // Verificar se existem campos vazios 
+    if(empty($firstname) || empty($lastname) || empty($username) || empty($password) || empty($password_rewrite)) {
+        
+        $message = "<p class='alert alert-danger'>Não podem existir campos por preencher!</p>";
+
+    }
+
+    // Verificação dos tamanhos das palavras-passe
+    if(strlen($password) < 8) {
+        
+        $message = "<p class='alert alert-danger'>A palavra-passe necessita ter oito ou mais caracteres!</p>";
+
+    } elseif(strlen($password) < 3) {
+        
+        $message = "<p class='alert alert-danger'>A palavra-passe necessita ter mais que três caracteres!</p>";
+    }
+
+    // Verificar se as palavras-passe digitadas correspondem 
+    if($password !== $password_rewrite) {
+        
+        $message = "<p class='alert alert-danger'>As palavras-passe digitadas necessitam ser iguais!</p>";    
+    }
+           
+}
+        
 ?>
 
 <!DOCTYPE html>
@@ -109,6 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- Confirmação da palavra-passe escolhida -->
                         <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
                         <input type="password" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
+                        <?php echo $message; ?>
 
                         <!-- Morada -->
                         <label for="address">Morada</label>
@@ -150,21 +188,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
-    <?php
-        
-        if(isset($_POST['registar'])) {
-            
-            $firstname = $_POST['firstname']; 
-            $lastname = $_POST['lastname'];
-            $username = $_POST['username']; 
-            $password = $_POST['password'];  
-            $password_rewrite = $_POST['password_rewrite'];  
-            $address = $_POST['address'];
-             
-        }
-        
-
-    ?>
 
 </html>
