@@ -1,4 +1,21 @@
 
+<?php
+//include("assets/constantes.php");
+session_start();
+
+echo "bem-vindo" . $_SESSION['email'];
+
+if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
+   session_start();
+   session_destroy();
+    
+   header('location: index.php');    
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
   <head>

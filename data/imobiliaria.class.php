@@ -5,7 +5,7 @@ class imobiliaria extends Database {
 
   public function registarUtilizador($email, $nome, $sobrenome, $password, $contacto, $concelho){
   
-    
+     
 
   }
 
