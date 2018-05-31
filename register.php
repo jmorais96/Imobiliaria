@@ -163,6 +163,14 @@ if(isset($_POST['registar'])) {
                         <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
                         <input type="text" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
 
+                        <!-- Email -->
+                        <label for="email">Email</label>
+                        <input type="email" required name="email" placeholder="examplo@imobiliaria.pt" class="form-control">
+
+                        <!-- Contacto -->
+                        <label for="contact">Contacto</label>
+                        <input type="text" required name="address" placeholder="Escreva aqui o seu contacto de preferência" class="form-control">
+
                         <!-- Morada -->
                         <label for="address">Morada</label>
                         <input type="text" required name="address" placeholder="Escreva aqui qual é a sua morada" class="form-control">
