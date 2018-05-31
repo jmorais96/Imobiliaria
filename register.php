@@ -143,7 +143,6 @@ if(isset($_POST['registar'])) {
                    
                     <form id="formulario-registo" action="" method="POST">
 
-<<<<<<< HEAD
                         <!-- Nome próprio -->
                         <label for="firstname">Nome próprio</label>
                         <input type="text" name="firstname" placeholder="Escreva aqui o seu nome próprio" required class="form-control">
@@ -151,23 +150,6 @@ if(isset($_POST['registar'])) {
                          <!-- Apelido -->
                         <label for="lastname">Apelido</label>
                         <input type="text" name="lastname" placeholder="Escreva aqui o seu apelido" required class="form-control">
-=======
-                        <div class="form-group">
-
-                            <div class="form-inline">
-                            
-                            <!-- Nome próprio -->
-                            <label for="firstname">Nome próprio</label>
-                            <input type="text" name="firstname" required class="form-control">
-
-                            <!-- Apelido -->
-                            <label for="lastname">Apelido</label>
-                            <input type="text" name="lastname" required class="form-control">
-                            
-                        </div>
-                        
-                        </div>
->>>>>>> 915b4c5e42ee3d0b765291d00ec69b762edf5572
 
                         <!-- Username -->
                         <label for="username">Username</label>
@@ -179,20 +161,7 @@ if(isset($_POST['registar'])) {
 
                         <!-- Confirmação da palavra-passe escolhida -->
                         <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
-<<<<<<< HEAD
                         <input type="text" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
-=======
-                        <input type="password" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
-                        <?php echo $message; ?>
-
-                        <!-- Email -->
-                        <label for="username">Email</label>
-                        <input type="email" name="email" placeholder="Escreva aqui o seu email"  required class="form-control">
-
-                        <!-- Contacto -->
-                        <label for="username">Contacto</label>
-                        <input type="text" name="contact" placeholder="Escolha o seu contacto preferencial"  required class="form-control">
->>>>>>> 915b4c5e42ee3d0b765291d00ec69b762edf5572
 
                         <!-- Morada -->
                         <label for="address">Morada</label>
