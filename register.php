@@ -133,56 +133,7 @@ if(isset($_POST['registar'])) {
     <!-- FINAL DO HEADER/NAVBAR  -->
 
     <!-- ÁREA DE REGISTO DA IMOBILIÁRIA -->
-    <div class="super_container_form_registo">
     
-        <div class="container_form2">
-
-            <!-- Formulário de registo -->
-
-                <div class="formulario-registo">
-                   
-                    <form id="formulario-registo" action="" method="POST">
-
-                        <!-- Nome próprio -->
-                        <label for="firstname">Nome próprio</label>
-                        <input type="text" name="firstname" placeholder="Escreva aqui o seu nome próprio" required class="form-control">
-
-                         <!-- Apelido -->
-                        <label for="lastname">Apelido</label>
-                        <input type="text" name="lastname" placeholder="Escreva aqui o seu apelido" required class="form-control">
-
-                        <!-- Username -->
-                        <label for="username">Username</label>
-                        <input type="text" name="username" placeholder="Escolha um nome de utilizador"  required class="form-control">
-
-                        <!-- Palavra-passe escolhida -->
-                        <label for="password">Escolha uma palavra-passe</label>
-                        <input type="password" name="password" placeholder="Digite a palavra-passe pretendida" required class="form-control">
-
-                        <!-- Confirmação da palavra-passe escolhida -->
-                        <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
-                        <input type="text" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
-
-                        <!-- Email -->
-                        <label for="email">Email</label>
-                        <input type="email" required name="email" placeholder="examplo@imobiliaria.pt" class="form-control">
-
-                        <!-- Contacto -->
-                        <label for="contact">Contacto</label>
-                        <input type="text" required name="address" placeholder="Escreva aqui o seu contacto de preferência" class="form-control">
-
-                        <!-- Morada -->
-                        <label for="address">Morada</label>
-                        <input type="text" required name="address" placeholder="Escreva aqui qual é a sua morada" class="form-control">
-                        
-                        <!-- Botão de registo do formulário -->
-                        <button id="registar" name="registar">Registar-se</button>
-                    
-                    </form>
-                </div>
-            <!-- Final do formulário de pesquisa -->
-        </div>
-   </div>
     <!-- FINAL DA ÁREA DE REGISTO DA IMOBILIÁRIA -->
 
     <!-- FOOTER DA PÁGINA DE REGISTO -->
