@@ -133,6 +133,47 @@ if(isset($_POST['registar'])) {
     <!-- FINAL DO HEADER/NAVBAR  -->
 
     <!-- ÁREA DE REGISTO DA IMOBILIÁRIA -->
+    <div class="register-wrapper">
+    
+        <form action="">   
+    
+            <!-- Nome próprio do utilizador -->
+            <div class="form-group">
+                <label for="firstname">Nome Próprio</label>
+                <input type="text" name="firstname" id="firstname" class="form-control">
+            </div>
+            
+            <!-- Apelido do utilizador -->
+            <div class="form-group">
+                <label for="firstname">Apelido</label>
+                <input type="text" name="lastname" id="lastname" class="form-control">
+            </div>
+            
+            <!-- Username do utilizador -->
+            <div class="form-group">
+                <label for="username">Nome de utilizador</label>
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+
+            <div class="form-full-width">
+                
+                <!-- Palavra-passe do utilizador -->
+                <div class="form-group">
+                    <label for="password">Palavra-passe</label>
+                    <input type="text" name="password" id="password" class="form-control">
+                </div>
+                
+                <!-- Rewrite da palavra-passe do utilizador -->
+                <div class="form-group">
+                    <label for="password_rewrite">Reescreva a palavra-passe</label>
+                    <input type="text" name="password_rewrite" id="password_rewrite" class="form-control">
+                </div>
+            
+            </div>
+        
+        </form>
+    
+    </div>
     
     <!-- FINAL DA ÁREA DE REGISTO DA IMOBILIÁRIA -->
 

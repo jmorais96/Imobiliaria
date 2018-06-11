@@ -15,3 +15,20 @@
 
 
 /* Formulário de registo */
+.register-wrapper {
+    margin: 20px 5%;
+    display: grid; 
+    grid-template-columns: 1fr;
+}
+
+.register-wrapper form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 25px;
+}
+
+.register-wrapper form .form-full-width {
+    
+}
+
+.register-wrapper label {font-size: 1.3rem;}
