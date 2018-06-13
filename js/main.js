@@ -1,4 +1,3 @@
-$(document).ready(function(){
 
     let map;
     let geocoder;
@@ -12,6 +11,38 @@ $(document).ready(function(){
       geocodeAddress(geocoder, map);
 
     }
+    function addMarker(lat, lng, descricao) {
+      //alert('here');
+      var marker  = new google.maps.Marker({
+        position: { lat: lat, lng: lng }
+      });
+
+      var infowindow = new google.maps.InfoWindow({
+        content: descricao
+      });
+
+      marker.setMap(map);
+
+
+      marker.addListener('click', function() {
+
+        function isInfoWindowOpen(infoWindow){
+            var map = infoWindow.getMap();
+            return (map !== null && typeof map !== "undefined");
+        }
+
+        if (isInfoWindowOpen(infowindow)){
+            infowindow.close(map, marker);
+        } else {
+            infowindow.open(map, marker);
+        }
+
+      });
+
+
+
+
+    }
 
     function geocodeAddress(geocoder, resultsMap) {
       /*  select localização */
@@ -22,14 +53,3 @@ $(document).ready(function(){
         }
       });
     }
-
-    function addMarker(lat, lng) {
-      //alert('here');
-      var marker  = new google.maps.Marker({
-        position: { lat: lat, lng: lng }
-      });
-      marker.setMap(map);
-    }
-
-
-});
