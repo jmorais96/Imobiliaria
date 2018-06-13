@@ -16,19 +16,54 @@
 
 /* Formulário de registo */
 .register-wrapper {
-    margin: 20px 5%;
-    display: grid; 
-    grid-template-columns: 1fr;
+    background-image: url(../images/houseRegister.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
 }
 
-.register-wrapper form {
+#top-form {
+    margin: 20px 25px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 25px;
 }
 
-.register-wrapper form .form-full-width {
-    
+#pass-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    margin: 20px 6%;
 }
 
-.register-wrapper label {font-size: 1.3rem;}
+#contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    grid-gap: 30px;
+    margin: 20px 6%;
+}
+
+.register-wrapper label {
+    color: #fff;
+    margin-top: 30px;
+    font-size: 1.5rem;
+}
+
+.register-wrapper form .btn-user {
+    display: block;
+    text-align: center;
+    margin: auto;
+    font-size: 1.2rem;
+    padding: 20px;
+    background: #ED2B2A;
+    color: #fff;
+    text-transform: uppercase;
+    transition: background 300ms ease-in-out;
+    margin-bottom: 0;
+}
+
+.register-wrapper form .btn-user:hover {
+    background: rgb(172, 0, 0);
+    cursor: pointer;
+}
