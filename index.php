@@ -1,5 +1,5 @@
 <!-- Adicionar a classe imóvel -->
-<?php require_once('data/imovel.class.php'); 
+<?php require_once('data/imovel.class.php');
 
     $bd = new imobiliaria('data/config.ini');
 
@@ -38,7 +38,7 @@
 
   <body>
 
-  <!-- HEADER/NAVBAR --> 
+  <!-- HEADER/NAVBAR -->
   <div class="container-header">
   <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="index.php"><img id="icon" src="images/logo.png"/></a>
@@ -55,13 +55,13 @@
         <li class="nav-item">
             <a class="nav-link" href="index.php">Home</a>
         </li>
-        
+
         <!-- Link de navegação "Registo" -->
         <li class="nav-item">
             <a class="nav-link" href="register.php">Registo</a>
         </li>
-        
-        <!-- Link de navegação que abre o módulo de "Login" -->    
+
+        <!-- Link de navegação que abre o módulo de "Login" -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#loginWindow">Login</a>
         </li>
@@ -69,7 +69,7 @@
         </ul>
 
     </div>
-    
+
         <!-- Contacto Telefónico -->
         <div class="phone">
             <img id="phoneIcon" src="images/call-answer.svg" alt="Contacto Telefónico"/>
@@ -85,8 +85,8 @@
 <div class="modal fade" id="loginWindow">
     <div class="modal-dialog">
         <div class="modal-content">
-            
-            <!-- Header do módulo --> 
+
+            <!-- Header do módulo -->
             <div class="modal-header">
                 <h3 class="modal-title">Efetue o seu log in</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -99,7 +99,7 @@
                         <i class="fas fa-user-alt"></i> <input type="email" placeholder="Escreva aqui o seu email..." class="form-control input-email">
                     </div>
                     <div class="form-inline">
-                         <i class="fas fa-unlock"></i> <input type="password"  placeholder="Escreva aqui a sua palavra-passe..." class="form-control input-password"> 
+                         <i class="fas fa-unlock"></i> <input type="password"  placeholder="Escreva aqui a sua palavra-passe..." class="form-control input-password">
                     </div>
                 </form>
             </div>
@@ -188,8 +188,8 @@
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
 
     <!-- Ficheiros JavaScript pessois -->
-    
-    <!-- jQuery -->  
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
     <!-- Latest compiled Jquery -->
@@ -197,7 +197,7 @@
 
     <!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    
+
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
@@ -213,7 +213,7 @@
                 data:"idIlha="+ ilha,
                 success:function(html){
                     $('#concelho').html(html);
-                    
+
                 }
                 });
             });
@@ -226,7 +226,7 @@
                 data:"idConcelho="+ concelho,
                 success:function(html){
                     $('#freguesia').html(html);
-                    
+
                 }
                 });
             });
