@@ -6,60 +6,60 @@
   if (isset($_SESSION['cliente']) || isset($_SESSION['admin'])) {
 
       header("location:index.php");
- 
+
   }
-  
+
+  $bd=new imobiliaria("data/config.ini");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 /* necessário criar condições de incerção */
-    
-    $bd=new imobiliaria("data/config.ini");
-    
+
+
 }
 
-// MENSAGENS DE VERIFICAÇÃO 
+// MENSAGENS DE VERIFICAÇÃO
 $message = "";
 
-// PROCESSO DE REGISTO     
+// PROCESSO DE REGISTO
 if(isset($_POST['registar'])) {
-    
+
     $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
     $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
     $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
     $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
     $password_rewrite = !empty($_POST['password_rewrite']) ? trim($_POST['password_rewrite']) : null;
 
-    // Verificar se existem campos vazios 
+    // Verificar se existem campos vazios
     if(empty($firstname) || empty($lastname) || empty($username) || empty($password) || empty($password_rewrite)) {
-        
+
         $message = "<p class='alert alert-danger'>Não podem existir campos por preencher!</p>";
 
     }
 
     // Verificação dos tamanhos das palavras-passe
     if(strlen($password) < 8) {
-        
+
         $message = "<p class='alert alert-danger'>A palavra-passe necessita ter oito ou mais caracteres!</p>";
 
     } elseif(strlen($password) < 3) {
-        
+
         $message = "<p class='alert alert-danger'>A palavra-passe necessita ter mais que três caracteres!</p>";
     }
 
-    // Verificar se as palavras-passe digitadas correspondem 
+    // Verificar se as palavras-passe digitadas correspondem
     if($password !== $password_rewrite) {
-        
-        $message = "<p class='alert alert-danger'>As palavras-passe digitadas necessitam ser iguais!</p>";    
+
+        $message = "<p class='alert alert-danger'>As palavras-passe digitadas necessitam ser iguais!</p>";
     } else {
 
         $password = $password_rewrite;
 
     }
 
-    // Criar a classe utilizador 
+    // Criar a classe utilizador
     class User extends Database {
-        
-        // $this->firstname = $firstname; 
+
+        // $this->firstname = $firstname;
         // $this->lastname = $lastname;
         // $this->username = $username;
         // $this->password = $password;
@@ -67,9 +67,9 @@ if(isset($_POST['registar'])) {
 
 
     }
-           
+
 }
-        
+
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +87,7 @@ if(isset($_POST['registar'])) {
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
-    <link rel="stylesheet" href="css/register.css" type="text/css">   
+    <link rel="stylesheet" href="css/register.css" type="text/css">
 
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
@@ -103,7 +103,7 @@ if(isset($_POST['registar'])) {
 
   <body>
 
-  <!-- HEADER/NAVBAR --> 
+  <!-- HEADER/NAVBAR -->
   <div class="container-header">
   <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="index.php"><img id="icon" src="images/logo.png"/></a>
@@ -121,7 +121,7 @@ if(isset($_POST['registar'])) {
         </ul>
 
     </div>
-    
+
         <!-- Contacto Telefónico -->
         <div class="phone">
             <img id="phoneIcon" src="images/call-answer.svg" alt="Contacto Telefónico"/>
@@ -134,45 +134,45 @@ if(isset($_POST['registar'])) {
 
     <!-- ÁREA DE REGISTO DA IMOBILIÁRIA -->
     <div class="register-wrapper">
-    
-        <form action="">   
+
+        <form action="">
 
             <div id="top-form">
-    
+
                 <!-- Nome próprio do utilizador -->
                 <div class="form-group">
                     <label for="firstname">Nome Próprio</label>
                     <input type="text" name="firstname" id="firstname" class="form-control">
                 </div>
-                
+
                 <!-- Apelido do utilizador -->
                 <div class="form-group">
                     <label for="firstname">Apelido</label>
                     <input type="text" name="lastname" id="lastname" class="form-control">
                 </div>
-                
+
                 <!-- Username do utilizador -->
                 <div class="form-group">
                     <label for="username">Nome de utilizador</label>
                     <input type="text" name="username" id="username" class="form-control">
                 </div>
-            
+
             </div>
 
             <div id="pass-form">
-                    
+
                 <!-- Palavra-passe do utilizador -->
                 <div class="form-group">
                     <label for="password">Palavra-passe</label>
                     <input type="password" name="password" id="password" class="form-control">
                 </div>
-                
+
                 <!-- Rewrite da palavra-passe do utilizador -->
                 <div class="form-group">
                     <label for="password_rewrite">Reescreva a palavra-passe</label>
                     <input type="password" name="password_rewrite" id="password_rewrite" class="form-control">
                 </div>
-            
+
             </div>
 
             <div id="contact-form">
@@ -190,16 +190,16 @@ if(isset($_POST['registar'])) {
                 </div>
 
             </div>
-            
+
             <div id="location-form">
-                
+
                 <!-- Localização do utilizador -->
-                
+
                 <!-- Ilha do utilizador -->
                 <div class="form-group">
                     <label for="island">Ilha de residência</label>
                     <select name="ilha" id="ilha" class="custom-select">
-                        
+                        <?php $bd->selectIlha(); ?>
                     </select>
                 </div>
 
@@ -218,19 +218,19 @@ if(isset($_POST['registar'])) {
                         <option value="">Selecione uma freguesia</option>
                     </select>
                 </div>
-            
-            </div>    
-            
-            
-            
+
+            </div>
+
+
+
             <!-- Botão de submissão -->
             <button type="submit" class="btn-user">Criar conta</button>
-            
-            
+
+
         </form>
-        
+
     </div>
-    
+
     <!-- FINAL DA ÁREA DE REGISTO DA IMOBILIÁRIA -->
 
     <!-- FOOTER DA PÁGINA DE REGISTO -->
@@ -250,13 +250,13 @@ if(isset($_POST['registar'])) {
   </body>
 
     <!-- Ficheiros JavaScript pessois -->
-    
-    <!-- jQuery -->  
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
     <!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    
+
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
@@ -293,6 +293,6 @@ if(isset($_POST['registar'])) {
         });
     </script>
 
-    
+
 
 </html>
