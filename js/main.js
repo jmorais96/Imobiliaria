@@ -1,31 +1,5 @@
 $(document).ready(function(){
 
-    $("#ilha").change(function(){
-        let ilha = $("#ilha").val();
-        $.ajax({
-        type:'POST',
-        url:'data/concelho.php',
-        data:"idIlha="+ ilha,
-        success:function(html){
-            $('#concelho').html(html);
-
-        }
-        });
-    });
-
-    $("#concelho").change(function(){
-        let concelho = $("#concelho").val();
-        $.ajax({
-        type:'POST',
-        url:'data/freguesia.php',
-        data:"idConcelho="+ concelho,
-        success:function(html){
-            $('#freguesia').html(html);
-
-        }
-        });
-    });
-
     let map;
     let geocoder;
     function initMap() {
