@@ -142,19 +142,19 @@ if(isset($_POST['registar'])) {
                 <!-- Nome próprio do utilizador -->
                 <div class="form-group">
                     <label for="firstname">Nome Próprio</label>
-                    <input type="text" name="firstname" id="firstname" class="form-control">
+                    <input type="text" name="firstname" id="firstname" placeholder="Escreva aqui o seu primeiro nome" class="form-control">
                 </div>
 
                 <!-- Apelido do utilizador -->
                 <div class="form-group">
                     <label for="firstname">Apelido</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control">
+                    <input type="text" name="lastname" id="lastname" placeholder="Escreva aqui o apelido" class="form-control">
                 </div>
 
                 <!-- Username do utilizador -->
                 <div class="form-group">
                     <label for="username">Nome de utilizador</label>
-                    <input type="text" name="username" id="username" class="form-control">
+                    <input type="text" name="username" id="username" placeholder="Escolha um nome de utilizador" class="form-control">
                 </div>
 
             </div>
@@ -164,13 +164,13 @@ if(isset($_POST['registar'])) {
                 <!-- Palavra-passe do utilizador -->
                 <div class="form-group">
                     <label for="password">Palavra-passe</label>
-                    <input type="password" name="password" id="password" class="form-control">
+                    <input type="password" name="password" id="password" placeholder="Escolha uma palavra-passe" class="form-control">
                 </div>
 
                 <!-- Rewrite da palavra-passe do utilizador -->
                 <div class="form-group">
                     <label for="password_rewrite">Reescreva a palavra-passe</label>
-                    <input type="password" name="password_rewrite" id="password_rewrite" class="form-control">
+                    <input type="password" name="password_rewrite" id="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" class="form-control">
                 </div>
 
             </div>
@@ -180,13 +180,13 @@ if(isset($_POST['registar'])) {
                 <!-- Email do utilizador -->
                 <div class="form-group">
                     <label for="email">Email de preferência</label>
-                    <input type="email" name="email" id="email" class="form-control">
+                    <input type="email" name="email" id="email" placeholder="utilizador@exemplo.com" class="form-control">
                 </div>
 
                 <!-- Contacto do utilizador -->
                 <div class="form-group">
                     <label for="contact">Contacto de preferência</label>
-                    <input type="text" name="contact" id="contact" class="form-control">
+                    <input type="text" name="contact" id="contact" placeholder="Escolha o seu contacto preferencial" class="form-control">
                 </div>
 
             </div>
