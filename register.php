@@ -186,19 +186,49 @@ if(isset($_POST['registar'])) {
                 <!-- Contacto do utilizador -->
                 <div class="form-group">
                     <label for="contact">Contacto de preferência</label>
-                    <input type="email" name="contact" id="contact" class="form-control">
+                    <input type="text" name="contact" id="contact" class="form-control">
                 </div>
-                
+
             </div>
-
+            
+            <div id="location-form">
+                
                 <!-- Localização do utilizador -->
+                
+                <!-- Ilha do utilizador -->
+                <div class="form-group">
+                    <label for="island">Ilha de residência</label>
+                    <select name="ilha" id="ilha" class="custom-select">
+                        
+                    </select>
+                </div>
 
-                <!-- Botão de submissão -->
-                <button type="submit" class="btn-user">Criar conta</button>
-                    
-        
+                <!-- Cidade do utilizador -->
+                <div class="form-group">
+                    <label for="concelho">Cidade de residência</label>
+                    <select name="concelho" id="concelho" class="custom-select">
+                        <option value="">Selecione um concelho</option>
+                    </select>
+                </div>
+
+                <!-- Freguesia do utilizador -->
+                <div class="form-group">
+                    <label for="freguesia">Freguesia de residência</label>
+                    <select name="freguesia" id="freguesia" class="custom-select">
+                        <option value="">Selecione uma freguesia</option>
+                    </select>
+                </div>
+            
+            </div>    
+            
+            
+            
+            <!-- Botão de submissão -->
+            <button type="submit" class="btn-user">Criar conta</button>
+            
+            
         </form>
-    
+        
     </div>
     
     <!-- FINAL DA ÁREA DE REGISTO DA IMOBILIÁRIA -->
@@ -229,5 +259,40 @@ if(isset($_POST['registar'])) {
     
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <!-- Script para a localização do utilizador -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#ilha").change(function(){
+                let ilha = $("#ilha").val();
+                $.ajax({
+                type:'POST',
+                url:'data/concelho.php',
+                data:"idIlha="+ ilha,
+                success:function(html){
+                    $('#concelho').html(html);
+
+                }
+                });
+            });
+
+            $("#concelho").change(function(){
+                let concelho = $("#concelho").val();
+                $.ajax({
+                type:'POST',
+                url:'data/freguesia.php',
+                data:"idConcelho="+ concelho,
+                success:function(html){
+                    $('#freguesia').html(html);
+
+                }
+                });
+            });
+
+
+        });
+    </script>
+
+    
 
 </html>

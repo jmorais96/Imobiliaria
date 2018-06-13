@@ -16,7 +16,7 @@
 
 /* Formulário de registo */
 .register-wrapper {
-    background-image: url(../images/houseRegister.jpg);
+    background-image: url(../images/register-bg.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -44,23 +44,31 @@
     margin: 20px 6%;
 }
 
+#location-form {
+    margin: 20px 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px;
+}
+
 .register-wrapper label {
     color: #fff;
-    margin-top: 30px;
+    margin: 16px 0;
     font-size: 1.5rem;
 }
 
+.register-wrapper input {margin-top: -10px;}
+
 .register-wrapper form .btn-user {
-    display: block;
-    text-align: center;
     margin: auto;
+    display: grid;
+    text-align: center;
     font-size: 1.2rem;
     padding: 20px;
     background: #ED2B2A;
     color: #fff;
     text-transform: uppercase;
     transition: background 300ms ease-in-out;
-    margin-bottom: 0;
 }
 
 .register-wrapper form .btn-user:hover {
