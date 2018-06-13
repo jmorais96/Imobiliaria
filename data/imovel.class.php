@@ -66,7 +66,7 @@ class imovel extends imobiliaria {
 
   public function addMarker(){
     echo("<script>
-            addMarker(". $this->lat .", ". $this->lng .", '" . $this->descricao ."' );
+            addMarker(". $this->lat .", ". $this->lng .", '" . $this->rua ."', '". $this->tipoImovel ."', '" . $this->area ."', '" . $this->preco ."' );
           </script>");
 
 

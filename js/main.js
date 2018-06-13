@@ -11,14 +11,14 @@
       geocodeAddress(geocoder, map);
 
     }
-    function addMarker(lat, lng, descricao) {
+    function addMarker(lat, lng, rua, tipoImovel, area, preco) {
       //alert('here');
       var marker  = new google.maps.Marker({
         position: { lat: lat, lng: lng }
       });
 
       var infowindow = new google.maps.InfoWindow({
-        content: descricao
+        content: "<h3>"+rua+"</h3> <br> <h4>Tipo de imovel:" + tipoImovel + " </h4> <br><h4>area: "+area+"</h4> <br> <h4>Preco: "+preco+" €</h4>"
       });
 
       marker.setMap(map);
