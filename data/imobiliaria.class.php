@@ -4,17 +4,16 @@ require_once('database.class.php');
 class imobiliaria extends Database {
 
   public function registarUtilizador($email, $nome, $sobrenome, $password, $contacto, $concelho){
-  
-     
+
+
 
   }
 
-  public function pequisa($sql='select * from destaque where estado=1'){
-
+  public function pequisa($sql='select * from imoveisdestcados'){
 
     $pesquisa=$this->query($sql);
 
-    //echo("pesquisa");
+
     //var_dump($pesquisa);
     foreach ($pesquisa as $imovel) {
       $sql='select * from imovel where idImovel = :idImovel';
@@ -26,7 +25,7 @@ class imobiliaria extends Database {
         $extra=$this->query($sql,$id['idImovel']);
 
         $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
-        
+
         $finalidade=$this->query($sql, $id['finalidade']);
 
         $sql='select tipoImovel from tipo_imovel where idTipoImovel = :idTipoImovel';
@@ -56,8 +55,7 @@ class imobiliaria extends Database {
         // $sql='select ilha from freguesia where idFreguesia = :idFreguesia';
         // $freguesia=$this->query($sql, $id['idFreguesia']);
       }
-
-      //echo ($extra);
+      //var_dump($id);
       if ($extra['idImovel']!=NULL) {
         $imoveis[] = new imovel($id['idImovel'], $id['finalidade'], $tipoImovel['tipoImovel'], $id['tamanhoLote'], $id['preco'], $id['descricao'], $id['dataConstrucao'], $id['morada'], $id['destaque'], $id['estado'], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia'], $tipologia[0]['tipologia'], $extra['quartos'], $extra['casasBanho'], $extra['espacoExterior'], $extra['garagem'], $extra['piscina'], $extra['mobilia']);
       }else {
@@ -66,8 +64,10 @@ class imobiliaria extends Database {
 
     }
 
+    //var_dump($imoveis);
+
       //echo sizeof($imoveis);
-      for ($i=0; $i < sizeof($imoveis) ; $i++) {
+      for ($i=0; $i < count($imoveis) ; $i++) {
         //var_dump($imoveis[$i]);
         //echo $i;
         $imoveis[$i]->addMarker();
@@ -111,7 +111,7 @@ class imobiliaria extends Database {
     $sql='select * from ilha';
     $ilha=$this->query($sql);
     foreach ($ilha as $value) {
-      echo("<option value=".$value['idIlha']."   id='index'>". 
+      echo("<option value=".$value['idIlha']."   id='index'>".
       ($value['ilha']) ."</option>");
     }
 
@@ -137,7 +137,24 @@ class imobiliaria extends Database {
       echo("<option value=".$value['idFreguesia']."   id='index'>".($value['freguesia'])."</option>");
     }
   }
-  
+
+  public function login($email,$password){
+    $sql = 'SELECT COUNT(idFuncionario) FROM funcionario WHERE email = :email AND password = :password';
+    $login = array('email' => $email, 'password' => $password);
+    $count=$this->query($sql, $login);
+
+
+ var_dump("<script> console.log(".$count.") </script>");
+
+
+
+
+ /*   if($count == "1"){
+        $_SESSION['email'] = $email;
+        header('location: admin.php');
+    }*/
+  }
+
 }
 
 ?>

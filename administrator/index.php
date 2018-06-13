@@ -1,27 +1,44 @@
 <?php
-include("data/funcionario.class.php");
+include("../data/funcionario.class.php");
 session_start();
 
-//$conn = new PDO('mysql:host=localhost;dbaname=bla', 'root', '');
-$bd = new imobiliaria('data/config.ini');
-
-if (isset($_POST['login'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+try {
+    $bd = new PDO('../data/config.ini');
+    $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $query = $conn->prepare("SELECT COUNT('idFuncionario') FROM 'funcionario' WHERE 'email' = '.$email.' AND 'password' = '.$password.'");
-    $query->execute();
-    
-    $count = $query->fetchColumn();
-    
-    if($count == "1"){
-        $_SESSION['email'] = $email;
-        header('location: admin.php');
-    }
+    if (isset($_POST['login'])){ 
+        //os campos se estiverem vazios aparece msg
+        if(empty($_POST['email']) || empty($_POST['password'])){
+            $message = '<label>Todos os campos devem ser preenchidos</lable>';
+        }
+        //os campos se estiverem preenchidos executa
+        else {
+            $query = 'SELECT * FROM funcionario WHERE email = :email AND password = :password';
+            $sttm = $db->prepare($query);
+            $sttm->execute(
+                array(
+                    'email'=>$_POST['email'],
+                   'password'=>$_POST['password'];
+                )
+            );
+            //verificar se os campos correspondem a algum da base de dados. Se sim reencaminha para login_success.php
+            $count = $sttm->rowCount();
+            if($count > 0){
+                $_SESSION['email'] = $_POST['email'];
+                header('location:login_success.php');
+            }
+            else {
+                $message = '<label>Dados incorretos</label>';
+            }
+        }
+     
+    }  
+}
+catch (PDOException $e) {
+    echo 'Conecção falhou: ' . $e->getMessage();
 }
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -34,6 +51,7 @@ if (isset($_POST['login'])){
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="header">
@@ -47,6 +65,13 @@ if (isset($_POST['login'])){
 
             </div>
     </div>
+    
+    <?php
+      if(isset($message)){
+          echo '<label class="text-danger">'.$message.'</label>';
+      }
+    ?>  
+    
 
     <div class="container_2">
        <div class="box_left_login">
@@ -56,11 +81,11 @@ if (isset($_POST['login'])){
 
                    <form action="" method="POST">
 
-                            <input type="text" name="email" placeholder="e-mail" value="" required>
+                            <input type="text" name="email" placeholder="e-mail" class="form-control" >
 
-                            <input type="password" name="password" placeholder="password" value="" required>
+                            <input type="password" name="password" placeholder="password" class="form-control" >
 
-                            <input type="submit" name="login" value="login">
+                            <input type="submit" name="login" class="btn btn-info" value="login">
                           </form>
 
                 </div>
