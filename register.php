@@ -1,5 +1,5 @@
-<!-- Adicionar a classe imóvel -->
-<?php require_once('data/imovel.class.php'); ?>
+<!-- Adicionar a classe Imobiliária -->
+<?php require_once('data/imobiliaria.class.php'); ?>
 
 <?php
 
@@ -12,9 +12,16 @@
   $bd=new imobiliaria("data/config.ini");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+<<<<<<< HEAD
 /* necessário criar condições de incerção */
 
 
+=======
+/* necessário criar condições de inserção */
+    
+    $bd=new imobiliaria("data/config.ini");
+    
+>>>>>>> dev-paulo
 }
 
 // MENSAGENS DE VERIFICAÇÃO
@@ -28,6 +35,17 @@ if(isset($_POST['registar'])) {
     $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
     $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
     $password_rewrite = !empty($_POST['password_rewrite']) ? trim($_POST['password_rewrite']) : null;
+    $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
+    $contact= !empty($_POST['contact']) ? trim($_POST['contact']) : null;
+    $ilha = !empty($_POST['ilha']) ? trim($_POST['ilha']) : null;
+    $concelho = !empty($_POST['concelho']) ? trim($_POST['concelho']) : null;
+    $freguesia = !empty($_POST['freguesia']) ? trim($_POST['freguesia']) : null;
+
+    $sql = 'INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto
+    VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto)';
+
+
+
 
     // Verificar se existem campos vazios
     if(empty($firstname) || empty($lastname) || empty($username) || empty($password) || empty($password_rewrite)) {
@@ -224,9 +242,15 @@ if(isset($_POST['registar'])) {
 
 
             <!-- Botão de submissão -->
+<<<<<<< HEAD
             <button type="submit" class="btn-user">Criar conta</button>
 
 
+=======
+            <button type="submit" name="registar" class="btn-user">Criar conta</button>
+            
+            
+>>>>>>> dev-paulo
         </form>
 
     </div>
