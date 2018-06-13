@@ -13,66 +13,22 @@
     text-transform: uppercase;
 }
 
-/* Container geral da página de registo */
-.super_container_form_registo {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../images/houseRegister.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/* Container do formulário de registo */
-.container_form2 {
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #282828;
-    width: 60%;
-    position: absolute;
-    opacity: 0.9;
-}
-
-.super_container_form_registo label {
-<<<<<<< HEAD
-    font-size: 19px;
-=======
-    font-size: 17px;
->>>>>>> 915b4c5e42ee3d0b765291d00ec69b762edf5572
-}
 
 /* Formulário de registo */
-#formulario-registo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    color: white;
+.register-wrapper {
+    margin: 20px 5%;
+    display: grid; 
+    grid-template-columns: 1fr;
 }
 
-input.form-control {
-    color: black;
-    font-size: 16px;
+.register-wrapper form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 25px;
 }
 
-<<<<<<< HEAD
-=======
-/* Labels do formulário de registo */
-label {margin: 0 2%;}
-
->>>>>>> 915b4c5e42ee3d0b765291d00ec69b762edf5572
-/* Botão do formulário de registo */
-#formulario-registo button {
-    padding: 25px;
-    font-size: 20px;
-    line-height: 50%;
+.register-wrapper form .form-full-width {
+    
 }
 
-#formulario-registo button:hover {
-    background-color: #fff;
-    color: #DC2D27;
-}
+.register-wrapper label {font-size: 1.3rem;}

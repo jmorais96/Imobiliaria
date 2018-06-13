@@ -133,79 +133,48 @@ if(isset($_POST['registar'])) {
     <!-- FINAL DO HEADER/NAVBAR  -->
 
     <!-- ÁREA DE REGISTO DA IMOBILIÁRIA -->
-    <div class="super_container_form_registo">
+    <div class="register-wrapper">
     
-        <div class="container_form2">
+        <form action="">   
+    
+            <!-- Nome próprio do utilizador -->
+            <div class="form-group">
+                <label for="firstname">Nome Próprio</label>
+                <input type="text" name="firstname" id="firstname" class="form-control">
+            </div>
+            
+            <!-- Apelido do utilizador -->
+            <div class="form-group">
+                <label for="firstname">Apelido</label>
+                <input type="text" name="lastname" id="lastname" class="form-control">
+            </div>
+            
+            <!-- Username do utilizador -->
+            <div class="form-group">
+                <label for="username">Nome de utilizador</label>
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
 
-            <!-- Formulário de registo -->
-
-                <div class="formulario-registo">
-                   
-                    <form id="formulario-registo" action="" method="POST">
-
-<<<<<<< HEAD
-                        <!-- Nome próprio -->
-                        <label for="firstname">Nome próprio</label>
-                        <input type="text" name="firstname" placeholder="Escreva aqui o seu nome próprio" required class="form-control">
-
-                         <!-- Apelido -->
-                        <label for="lastname">Apelido</label>
-                        <input type="text" name="lastname" placeholder="Escreva aqui o seu apelido" required class="form-control">
-=======
-                        <div class="form-group">
-
-                            <div class="form-inline">
-                            
-                            <!-- Nome próprio -->
-                            <label for="firstname">Nome próprio</label>
-                            <input type="text" name="firstname" required class="form-control">
-
-                            <!-- Apelido -->
-                            <label for="lastname">Apelido</label>
-                            <input type="text" name="lastname" required class="form-control">
-                            
-                        </div>
-                        
-                        </div>
->>>>>>> 915b4c5e42ee3d0b765291d00ec69b762edf5572
-
-                        <!-- Username -->
-                        <label for="username">Username</label>
-                        <input type="text" name="username" placeholder="Escolha um nome de utilizador"  required class="form-control">
-
-                        <!-- Palavra-passe escolhida -->
-                        <label for="password">Escolha uma palavra-passe</label>
-                        <input type="password" name="password" placeholder="Digite a palavra-passe pretendida" required class="form-control">
-
-                        <!-- Confirmação da palavra-passe escolhida -->
-                        <label for="password_rewrite">Reescreva a palavra-passe escolhida</label>
-<<<<<<< HEAD
-                        <input type="text" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
-=======
-                        <input type="password" name="password_rewrite" placeholder="Reescreva a palavra-passe escolhida" required class="form-control">
-                        <?php echo $message; ?>
-
-                        <!-- Email -->
-                        <label for="username">Email</label>
-                        <input type="email" name="email" placeholder="Escreva aqui o seu email"  required class="form-control">
-
-                        <!-- Contacto -->
-                        <label for="username">Contacto</label>
-                        <input type="text" name="contact" placeholder="Escolha o seu contacto preferencial"  required class="form-control">
->>>>>>> 915b4c5e42ee3d0b765291d00ec69b762edf5572
-
-                        <!-- Morada -->
-                        <label for="address">Morada</label>
-                        <input type="text" required name="address" placeholder="Escreva aqui qual é a sua morada" class="form-control">
-                        
-                        <!-- Botão de registo do formulário -->
-                        <button id="registar" name="registar">Registar-se</button>
-                    
-                    </form>
+            <div class="form-full-width">
+                
+                <!-- Palavra-passe do utilizador -->
+                <div class="form-group">
+                    <label for="password">Palavra-passe</label>
+                    <input type="text" name="password" id="password" class="form-control">
                 </div>
-            <!-- Final do formulário de pesquisa -->
-        </div>
-   </div>
+                
+                <!-- Rewrite da palavra-passe do utilizador -->
+                <div class="form-group">
+                    <label for="password_rewrite">Reescreva a palavra-passe</label>
+                    <input type="text" name="password_rewrite" id="password_rewrite" class="form-control">
+                </div>
+            
+            </div>
+        
+        </form>
+    
+    </div>
+    
     <!-- FINAL DA ÁREA DE REGISTO DA IMOBILIÁRIA -->
 
     <!-- FOOTER DA PÁGINA DE REGISTO -->
