@@ -2,6 +2,7 @@
 <?php
 
     require_once('data/imovel.class.php');
+    require_once('data/user.class.php');
 
     $bd = new imobiliaria('data/config.ini');
 
@@ -9,6 +10,10 @@
 
     if (isset($_SESSION['cliente'])) {
       var_dump($_SESSION['cliente']);
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $_SESSION['cliente']=$bd->loginCliente($_POST['mail'], $_POST['pass']);
     }
 
 ?>
@@ -118,20 +123,20 @@
 
             <!-- Body do módulo -->
             <div class="modal-body">
-                <form action="" role="form">
+                <form action="" role="form" method="post">
                     <div class="form-inline">
-                        <i class="fas fa-user-alt"></i> <input type="email" placeholder="Escreva aqui o seu email..." class="form-control input-email">
+                        <i class="fas fa-user-alt"></i> <input type="email" placeholder="Escreva aqui o seu email..." class="form-control input-email" name="mail">
                     </div>
                     <div class="form-inline">
-                         <i class="fas fa-unlock"></i> <input type="password"  placeholder="Escreva aqui a sua palavra-passe..." class="form-control input-password">
+                         <i class="fas fa-unlock"></i> <input type="password"  placeholder="Escreva aqui a sua palavra-passe..." class="form-control input-password" name="pass">
+                    </div>
+                    <!-- Footer do módulo -->
+                    <div class="modal-footer">
+                      <button class="btn btn-block">Iniciar Sessão</button>
                     </div>
                 </form>
             </div>
 
-            <!-- Footer do módulo -->
-            <div class="modal-footer">
-                <button class="btn btn-block">Iniciar Sessão</button>
-            </div>
 
         </div>
     </div>

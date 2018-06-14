@@ -69,10 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       /* necessário criar condições de inserção */
 
 
-        if (!$bd->mailExists($email)) {
-          $_SESSION['cliente'] = $bd->registar($email, $firstname, $lastname, $password, $contact, $ilha, $concelho, $freguesia);
-          var_dump($_SESSION['cliente']);
-          //header("location:index.php");
+        if (!$bd->mailClienteExists($email)) {
+          $_SESSION['cliente']= $bd->registarCliente($email, $firstname, $lastname, $password, $contact, $ilha, $concelho, $freguesia);
+          //var_dump($_SESSION['cliente']);
+          header("location:index.php");
         }
 
 

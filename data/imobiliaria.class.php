@@ -116,7 +116,7 @@ class imobiliaria extends Database {
     }
   }
 
-  public function mailExists($mail){
+  public function mailClienteExists($mail){
     $sql='select count(*) from utilizador where email = :email';
     $mail=  array('email' => $mail);
     $mail=$this->query($sql, $mail);
@@ -130,7 +130,7 @@ class imobiliaria extends Database {
     }
   }
 
-  public function registar($mail, $nome, $sobrenome, $pass, $contact, $ilha, $concelho, $freguesia){
+  public function registarCliente($mail, $nome, $sobrenome, $pass, $contact, $ilha, $concelho, $freguesia){
     $sql ='INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto, idFreguesia) VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto, :idFreguesia)';
     $arr = array('email' => $mail , 'nomeProprio' => $nome, 'sobrenome' => $sobrenome, 'password' => $pass, 'contacto' => $contact, 'idFreguesia' => $freguesia);
     $this->query($sql, $arr);
@@ -160,13 +160,39 @@ class imobiliaria extends Database {
 
   }
 
+  public function loginCliente($email,$password){
+    $sql = 'SELECT * FROM utilizador WHERE email = :email AND password = :password';
+    $login = array('email' => $email, 'password' => $password);
+    $info=$this->query($sql, $login);
+    if (isset($info[0]["idUser"])) {
+
+      $sql='select ilha from freguesia where idFreguesia = :idFreguesia';
+      $freguesia=$this->query($sql, $info[0]['idFreguesia']);
+
+      $sql='select concelho from concelho where idConcelho = :idConcelho';
+      $concelho=$this->query($sql, $freguesia[0]['idConcelho']);
+
+      $sql='select ilha from ilha where idIlha = :idIlha';
+      $ilha=$this->query($sql, $concelho[0]['idIlha']);
+
+      $user = new User($info[0]["idUser"], $info[0]["email"], $info[0]["nomeProprio"], $info[0]["sobrenome"], $info[0]["password"], $info[0]["contacto"], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia']);
+
+      return $user;
+
+    }else {
+      echo "<script> alert('Não existe um utilizador com este email e password') </script>";
+    }
+  }
+
+
+
   public function loginFuncionario($email,$password){
     $sql = 'SELECT COUNT(idFuncionario) FROM funcionario WHERE email = :email AND password = :password';
     $login = array('email' => $email, 'password' => $password);
     $count=$this->query($sql, $login);
 
 
- var_dump("<script> console.log(".$count.") </script>");
+    var_dump("<script> console.log(".$count.") </script>");
 
  /*   if($count == "1"){
         $_SESSION['email'] = $email;
