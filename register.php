@@ -12,16 +12,12 @@
   $bd=new imobiliaria("data/config.ini");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-<<<<<<< HEAD
-/* necessário criar condições de incerção */
 
-
-=======
 /* necessário criar condições de inserção */
-    
+
     $bd=new imobiliaria("data/config.ini");
-    
->>>>>>> dev-paulo
+
+
 }
 
 // MENSAGENS DE VERIFICAÇÃO
@@ -248,8 +244,8 @@ if(isset($_POST['registar'])) {
 
 =======
             <button type="submit" name="registar" class="btn-user">Criar conta</button>
-            
-            
+
+
 >>>>>>> dev-paulo
         </form>
 
