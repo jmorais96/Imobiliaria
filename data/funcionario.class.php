@@ -9,6 +9,7 @@ class funcionario extends imobiliaria {
     private $sobrenome;
     private $contacto;
     private $tipoUser;
+    
 
   function __construct($idFuncionario, $email, $password, $nomeProprio, $sobrenome, $contacto, $tipoUser){
     $this->idFuncionario=$idFuncionario;

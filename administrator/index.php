@@ -1,12 +1,28 @@
 <?php
-include("../data/funcionario.class.php");
+require_once('../data/imobiliaria.class.php');
+//include("../data/funcionario.class.php");
 session_start();
 
-try {
-    $bd = new PDO('../data/config.ini');
+
+
+ if (isset($_POST['login'])){
+     if(!empty($_POST['email']) && !empty($_POST['password'])){
+          $object = new imobiliaria("../data/config.ini");
+            echo $object->getAllUsers();
+
+        }
+        //os campos se estiverem preenchidos executa
+        else {
+            $message = '<label>Todos os campos devem ser preenchidos</lable>';
+        }
+ }
+
+
+/*try {
+    $bd = new imobiliaria('../data/config.ini');
     $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    if (isset($_POST['login'])){ 
+
+    if (isset($_POST['login'])){
         //os campos se estiverem vazios aparece msg
         if(empty($_POST['email']) || empty($_POST['password'])){
             $message = '<label>Todos os campos devem ser preenchidos</lable>';
@@ -18,12 +34,12 @@ try {
             $sttm->execute(
                 array(
                     'email'=>$_POST['email'],
-                   'password'=>$_POST['password'];
+                   'password'=>$_POST['password']
                 )
             );
             //verificar se os campos correspondem a algum da base de dados. Se sim reencaminha para login_success.php
             $count = $sttm->rowCount();
-            if($count > 0){
+            if($count == 1){
                 $_SESSION['email'] = $_POST['email'];
                 header('location:login_success.php');
             }
@@ -31,12 +47,12 @@ try {
                 $message = '<label>Dados incorretos</label>';
             }
         }
-     
-    }  
+
+    }
 }
 catch (PDOException $e) {
     echo 'Conecção falhou: ' . $e->getMessage();
-}
+}*/
 
 ?>
 
@@ -50,10 +66,12 @@ catch (PDOException $e) {
     <link rel="stylesheet" href="../css/styleLogin.css"/>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <!--<script src="js/script.js"></script>-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
+
+
     <div class="header">
            <div class="box_header_left_login">
                <div class="subbox_header_left">
@@ -65,13 +83,7 @@ catch (PDOException $e) {
 
             </div>
     </div>
-    
-    <?php
-      if(isset($message)){
-          echo '<label class="text-danger">'.$message.'</label>';
-      }
-    ?>  
-    
+
 
     <div class="container_2">
        <div class="box_left_login">
@@ -88,6 +100,12 @@ catch (PDOException $e) {
                             <input type="submit" name="login" class="btn btn-info" value="login">
                           </form>
 
+                          <?php
+                              if(isset($message)){
+                                  echo '<label class="text-danger">'.$message.'</label>';
+                              }
+                            ?>
+
                 </div>
             </div>
         </div>
@@ -101,6 +119,8 @@ catch (PDOException $e) {
 
         </div>
     </div>
+
+
 </body>
 
 

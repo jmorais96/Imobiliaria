@@ -70,7 +70,7 @@ class imobiliaria extends Database {
 
       //echo sizeof($imoveis);
 
-      
+
       for ($i=0; $i < count($imoveis) ; $i++) {
         //var_dump($imoveis[$i]);
         //echo $i;
@@ -142,7 +142,7 @@ class imobiliaria extends Database {
     }
   }
 
-  public function login($email,$password){
+  public function loginFuncionario($email,$password){
     $sql = 'SELECT COUNT(idFuncionario) FROM funcionario WHERE email = :email AND password = :password';
     $login = array('email' => $email, 'password' => $password);
     $count=$this->query($sql, $login);
@@ -150,15 +150,24 @@ class imobiliaria extends Database {
 
  var_dump("<script> console.log(".$count.") </script>");
 
-
-
-
  /*   if($count == "1"){
         $_SESSION['email'] = $email;
         header('location: admin.php');
     }*/
   }
 
+    public function getAllUsers(){
+        $stmt = $this->query('SELECT * FROM funcionario');
+        //var_dump($stmt);
+        foreach ($stmt as $row) {
+          $uid = $row['idFuncionario'];
+          return $uid;
+        }
+
+    }
+
 }
+
+
 
 ?>
