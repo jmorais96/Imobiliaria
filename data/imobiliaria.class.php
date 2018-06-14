@@ -173,7 +173,7 @@ class imobiliaria extends Database {
 
   public function registarCliente($mail, $nome, $sobrenome, $pass, $contact, $ilha, $concelho, $freguesia){
     $sql ='INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto, idFreguesia) VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto, :idFreguesia)';
-    $arr = array('email' => utf8_encode($mail) , 'nomeProprio' => utf8_encode($nome), 'sobrenome' => utf8_encode($sobrenome), 'password' => utf8_encode(md5($pass)), 'contacto' => utf8_encode($contact), 'idFreguesia' => utf8_encode($freguesia));
+    $arr = array('email' => ($mail) , 'nomeProprio' => ($nome), 'sobrenome' => ($sobrenome), 'password' => (md5($pass)), 'contacto' => ($contact), 'idFreguesia' => ($freguesia));
     $this->query($sql, $arr);
     //echo $mail;
 
