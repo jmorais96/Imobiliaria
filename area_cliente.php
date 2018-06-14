@@ -2,6 +2,10 @@
 require_once ('data/user.class.php');
 session_start();
 
+if (!isset($_SESSION['cliente'])) {
+  header("location:index.php");
+}
+
 /*
 $filenameUser = 'data/users.csv';
 $fileUser = fopen($filenameUser, 'r'); //ler o ficheiro
@@ -124,18 +128,22 @@ fclose($fileUser);*/
                          <img id="icon2" src="images/phone.svg">
                          <h3>Telefone: <?php echo $_SESSION['cliente']->getContact(); ?></h3>
                       </div>
+
+                      <div id="caixa2">
+                        <img id="icon2" src="images/address.svg">
+                        <h3>Ilha: <?php echo $_SESSION['cliente']->getIlha();?></h3>
+                      </div>
+
                       <div id="caixa2">
                          <img id="icon2" src="images/address.svg">
                          <h3>Concelho: <?php echo $_SESSION['cliente']->getConcelho(); ?></h3>
                       </div>
+
                       <div id="caixa2">
                          <img id="icon2" src="images/address.svg">
                          <h3>Freguesia: <?php echo $_SESSION['cliente']->getFreguesia(); ?></h3>
                       </div>
-                      <div id="caixa2">
-                         <img id="icon2" src="images/address.svg">
-                         <h3>Ilha: <?php echo $_SESSION['cliente']->getIlha();?></h3>
-                      </div>
+                      
                 </div>
             </div>
 
