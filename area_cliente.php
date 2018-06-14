@@ -200,16 +200,37 @@ fclose($fileUser);*/
       </div>
     </div>
 
-  <div class="footer2">
-    <div class="icon">
-      <img id="icon" src="images/home-icon-white.svg"/>
-      <p id="name"><b>Imobiliária</b>XPTO</p>
+    <!-- FOOTER -->
+    <div class="container_footer">
+      <div class="footer">
+           <div class="icon">
+              <img id="icon" src="images/logoBranco.png"/>
+              <p id="homeIconName">
+            </div>
+            <div class="copyright">
+				<p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
+            </div>
+      </div>
     </div>
-    <div class="address">
-      <p id="address">Rua da Igreja, 25</p>
-    </div>
-  </div>
+    <!-- FINAL DO FOOTER -->
 
-</body>
+  </body>
+
+
+    <!-- Ficheiros JavaScript pessois -->
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
 
 </html>

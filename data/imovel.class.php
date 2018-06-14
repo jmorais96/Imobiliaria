@@ -63,6 +63,71 @@ class imovel extends imobiliaria {
 
   }
 
+  public function getIdImovel(){
+    return   $this->idImovel;
+  }
+
+  public function getidGestor(){
+    return   $this->idGestor;
+  }
+
+  public function getFinalidade(){
+    return   $this->finalidade;
+  }
+
+  public function getTipoImovel(){
+    return   $this->tipoImovel;
+  }
+
+  public function getArea(){
+    return   $this->area;
+  }
+
+  public function getPreco(){
+    return   $this->preco;
+  }
+
+  public function getDescricao(){
+    return   $this->descricao;
+  }
+
+  public function getRua(){
+    return   $this->rua;
+  }
+
+  public function getCodPostal(){
+    return   $this->codPostal;
+  }
+
+  public function getLat(){
+    return   $this->lat;
+  }
+
+  public function getLng(){
+    return   $this->lng;
+  }
+
+  public function getIlha(){
+    return   $this->ilha;
+  }
+
+  public function getConcelho(){
+    return   $this->concelho;
+  }
+
+  public function getFreguesia(){
+    return   $this->freguesia;
+  }
+
+  public function getSituacao(){
+    return   $this->situacao;
+  }
+
+  public function getEstado(){
+    return   $this->estado;
+  }
+
+
 
   public function addMarker(){
     echo("addMarker(". $this->lat .", ". $this->lng .", '" . $this->rua ."', '". $this->tipoImovel ."', '" . $this->area ."', '" . $this->preco ."' );");

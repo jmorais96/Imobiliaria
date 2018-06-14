@@ -54,6 +54,47 @@ class imobiliaria extends Database {
 
   }
 
+  public function getImovel($id){
+
+    $sql="SELECT * FROM imovel where idImovel= :idImovel";
+    $idImovel= array('idImovel' => $id );
+    $pesquisa=$this->query($sql,$idImovel);
+
+
+      foreach ($pesquisa as $id) {
+
+        $sql='select * from extras where idImovel = :idImovel';
+        $extra=$this->query($sql,$id['idImovel']);
+
+        $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
+
+        $finalidade=$this->query($sql, $id['finalidade']);
+
+        $sql='select tipoImovel from tipo_imovel where idTipoImovel = :idTipoImovel';
+        $tipoImovel=$this->query($sql, $id['tipoImovel']);
+
+        $sql='select ilha from freguesia where idFreguesia = :idFreguesia';
+        $freguesia=$this->query($sql, $id['idFreguesia']);
+
+        $sql='select concelho from concelho where idConcelho = :idConcelho';
+        $concelho=$this->query($sql, $freguesia['idConcelho']);
+
+        $sql='select ilha from ilha where idIlha = :idIlha';
+        $ilha=$this->query($sql, $concelho['idIlha']);
+
+      }
+      //var_dump($id);
+      if ($extra['idImovel']!=NULL) {
+        $imovel = new imovel($id['idImovel'], $id['finalidade'], $tipoImovel['tipoImovel'], $id['tamanhoLote'], $id['preco'], $id['descricao'], $id['dataConstrucao'], $id['morada'], $id['destaque'], $id['estado'], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia'], $tipologia[0]['tipologia'], $extra['quartos'], $extra['casasBanho'], $extra['espacoExterior'], $extra['garagem'], $extra['piscina'], $extra['mobilia']);
+      }else {
+        $imovel = new imovel($id['idImovel'], $id['gestor'], $finalidade[0]['finalidade'], $tipoImovel[0]['tipoImovel'], $id['area'], $id['preco'], $id['descricao'], $id['rua'], $id['codPostal'], $id['lat'], $id['long'], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia'], $id['situacao'], $id['estado']);
+      }
+
+
+    return $imovel;
+
+  }
+
   public function selectFinalidade(){
     echo(" <option value=''>Finalidade pretendida</option>");
     $sql='select * from finalidade';
