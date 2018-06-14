@@ -1,9 +1,13 @@
 <!-- Adicionar a classe Imobiliária -->
-<?php require_once('data/imobiliaria.class.php'); ?>
-
 <?php
+  session_start();
 
-  if (isset($_SESSION['cliente']) || isset($_SESSION['admin'])) {
+  require_once('data/imobiliaria.class.php');
+
+  require_once('data/user.class.php');
+
+
+  if (isset($_SESSION['cliente'])) {
 
       header("location:index.php");
 
@@ -13,74 +17,67 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-/* necessário criar condições de inserção */
+  // MENSAGENS DE VERIFICAÇÃO
+  $message = "";
 
-    $bd=new imobiliaria("data/config.ini");
+  // PROCESSO DE REGISTO
+  if(isset($_POST['registar'])) {
 
+      $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
+      $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
+      $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+      $password_rewrite = !empty($_POST['password_rewrite']) ? trim($_POST['password_rewrite']) : null;
+      $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
+      $contact= !empty($_POST['contact']) ? trim($_POST['contact']) : null;
+      $ilha = !empty($_POST['ilha']) ? trim($_POST['ilha']) : null;
+      $concelho = !empty($_POST['concelho']) ? trim($_POST['concelho']) : null;
+      $freguesia = !empty($_POST['freguesia']) ? trim($_POST['freguesia']) : null;
 
-}
-
-// MENSAGENS DE VERIFICAÇÃO
-$message = "";
-
-// PROCESSO DE REGISTO
-if(isset($_POST['registar'])) {
-
-    $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
-    $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
-    $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
-    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
-    $password_rewrite = !empty($_POST['password_rewrite']) ? trim($_POST['password_rewrite']) : null;
-    $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
-    $contact= !empty($_POST['contact']) ? trim($_POST['contact']) : null;
-    $ilha = !empty($_POST['ilha']) ? trim($_POST['ilha']) : null;
-    $concelho = !empty($_POST['concelho']) ? trim($_POST['concelho']) : null;
-    $freguesia = !empty($_POST['freguesia']) ? trim($_POST['freguesia']) : null;
-
-    $sql = 'INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto
-    VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto)';
+      //$sql = 'INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto)
+      //VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto)';
 
 
 
 
-    // Verificar se existem campos vazios
-    if(empty($firstname) || empty($lastname) || empty($username) || empty($password) || empty($password_rewrite)) {
+      // Verificar se existem campos vazios
+      if(empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($password_rewrite)) {
 
-        $message = "<p class='alert alert-danger'>Não podem existir campos por preencher!</p>";
+          $message = "<p class='alert alert-danger'>Não podem existir campos por preencher!</p>";
 
-    }
+      }
 
-    // Verificação dos tamanhos das palavras-passe
-    if(strlen($password) < 8) {
+      // Verificação dos tamanhos das palavras-passe
+      if(strlen($password) < 8) {
 
-        $message = "<p class='alert alert-danger'>A palavra-passe necessita ter oito ou mais caracteres!</p>";
+          $message = "<p class='alert alert-danger'>A palavra-passe necessita ter oito ou mais caracteres!</p>";
 
-    } elseif(strlen($password) < 3) {
+      } elseif(strlen($password) < 3) {
 
-        $message = "<p class='alert alert-danger'>A palavra-passe necessita ter mais que três caracteres!</p>";
-    }
+          $message = "<p class='alert alert-danger'>A palavra-passe necessita ter mais que três caracteres!</p>";
+      }
 
-    // Verificar se as palavras-passe digitadas correspondem
-    if($password !== $password_rewrite) {
+      // Verificar se as palavras-passe digitadas correspondem
+      if($password !== $password_rewrite) {
 
-        $message = "<p class='alert alert-danger'>As palavras-passe digitadas necessitam ser iguais!</p>";
-    } else {
+          $message = "<p class='alert alert-danger'>As palavras-passe digitadas necessitam ser iguais!</p>";
+      } else {
 
-        $password = $password_rewrite;
+          $password = $password_rewrite;
 
-    }
+      }
 
-    // Criar a classe utilizador
-    class User extends Database {
-
-        // $this->firstname = $firstname;
-        // $this->lastname = $lastname;
-        // $this->username = $username;
-        // $this->password = $password;
-        // $this->address = $address;
+      /* necessário criar condições de inserção */
 
 
-    }
+        if (!$bd->mailExists($email)) {
+          $_SESSION['cliente'] = $bd->registar($email, $firstname, $lastname, $password, $contact, $ilha, $concelho, $freguesia);
+          var_dump($_SESSION['cliente']);
+          //header("location:index.php");
+        }
+
+
+
+  }
 
 }
 
@@ -149,7 +146,7 @@ if(isset($_POST['registar'])) {
     <!-- ÁREA DE REGISTO DA IMOBILIÁRIA -->
     <div class="register-wrapper">
 
-        <form action="">
+        <form action="" method="post">
 
             <div id="top-form">
 
@@ -163,12 +160,6 @@ if(isset($_POST['registar'])) {
                 <div class="form-group">
                     <label for="firstname">Apelido</label>
                     <input type="text" name="lastname" id="lastname" placeholder="Escreva aqui o apelido" class="form-control">
-                </div>
-
-                <!-- Username do utilizador -->
-                <div class="form-group">
-                    <label for="username">Nome de utilizador</label>
-                    <input type="text" name="username" id="username" placeholder="Escolha um nome de utilizador" class="form-control">
                 </div>
 
             </div>
@@ -238,15 +229,8 @@ if(isset($_POST['registar'])) {
 
 
             <!-- Botão de submissão -->
-<<<<<<< HEAD
-            <button type="submit" class="btn-user">Criar conta</button>
-
-
-=======
             <button type="submit" name="registar" class="btn-user">Criar conta</button>
 
-
->>>>>>> dev-paulo
         </form>
 
     </div>
@@ -273,6 +257,9 @@ if(isset($_POST['registar'])) {
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

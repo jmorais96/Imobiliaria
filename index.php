@@ -1,7 +1,15 @@
 <!-- Adicionar a classe imóvel -->
-<?php require_once('data/imovel.class.php');
+<?php
+
+    require_once('data/imovel.class.php');
 
     $bd = new imobiliaria('data/config.ini');
+
+    session_start();
+
+    if (isset($_SESSION['cliente'])) {
+      var_dump($_SESSION['cliente']);
+    }
 
 ?>
 
@@ -56,6 +64,8 @@
             <a class="nav-link" href="index.php">Home</a>
         </li>
 
+        <?php if (!isset($_SESSION['cliente'])) { ?>
+
         <!-- Link de navegação "Registo" -->
         <li class="nav-item">
             <a class="nav-link" href="register.php">Registo</a>
@@ -65,6 +75,20 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#loginWindow">Login</a>
         </li>
+
+        <?php }else{ ?>
+
+        <!-- Link de navegação "Ares Cliente" -->
+        <li class="nav-item">
+            <a class="nav-link" href="area_cliente.php">Area Cliente</a>
+        </li>
+
+        <!-- Link de navegação que faz logout" -->
+        <li class="nav-item">
+            <a class="nav-link" href="?acao=logout">Logout</a>
+        </li>
+
+        <?php } ?>
 
         </ul>
 

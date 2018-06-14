@@ -3,12 +3,6 @@ require_once('database.class.php');
 
 class imobiliaria extends Database {
 
-  public function registarUtilizador($email, $nome, $sobrenome, $password, $contacto, $concelho){
-
-
-
-  }
-
   public function pesquisa($sql='select * from imoveisdestcados', $campos=[]){
     //var_dump($campos);
     //echo "<script> alert('here'); </script>";
@@ -42,20 +36,6 @@ class imobiliaria extends Database {
         $sql='select ilha from ilha where idIlha = :idIlha';
         $ilha=$this->query($sql, $concelho['idIlha']);
 
-
-
-        // //var_dump($id);
-        // $sql='select * from extras where idImovel = :idImovel';
-        // $extra=$this->query($sql,$id['idImovel']);
-        // //echo "string".$id['idImovel'];
-        // $sql='select tipoImovel from tipo_imovel where idTipoImovel = :idTipoImovel';
-        // $tipoImovel=$this->query($sql, $id['tipoImovel']);
-        // $sql='select ilha from ilha where idIlha = :idIlha';
-        // $ilha=$this->query($sql, $id['idIlha']);
-        // $sql='select concelho from concelho where idConcelho = :idConcelho';
-        // $concelho=$this->query($sql, $id['idConcelho']);
-        // $sql='select ilha from freguesia where idFreguesia = :idFreguesia';
-        // $freguesia=$this->query($sql, $id['idFreguesia']);
       }
       //var_dump($id);
       if ($extra['idImovel']!=NULL) {
@@ -66,14 +46,8 @@ class imobiliaria extends Database {
 
     }
 
-    //var_dump($imoveis);
-
-      //echo sizeof($imoveis);
-
 
       for ($i=0; $i < count($imoveis) ; $i++) {
-        //var_dump($imoveis[$i]);
-        //echo $i;
         $imoveis[$i]->addMarker();
       }
 
@@ -142,6 +116,50 @@ class imobiliaria extends Database {
     }
   }
 
+  public function mailExists($mail){
+    $sql='select count(*) from utilizador where email = :email';
+    $mail=  array('email' => $mail);
+    $mail=$this->query($sql, $mail);
+    //var_dump($mail);
+    foreach ($mail[0] as $value) {
+      if ($value==0) {
+        return false;
+      }else {
+        return true;
+      }
+    }
+  }
+
+  public function registar($mail, $nome, $sobrenome, $pass, $contact, $ilha, $concelho, $freguesia){
+    $sql ='INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto, idFreguesia) VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto, :idFreguesia)';
+    $arr = array('email' => $mail , 'nomeProprio' => $nome, 'sobrenome' => $sobrenome, 'password' => $pass, 'contacto' => $contact, 'idFreguesia' => $freguesia);
+    $this->query($sql, $arr);
+    //echo $mail;
+
+    $sql ='SELECT idUser from utilizador order by email desc limit 1';
+    //echo $sql;
+    $idUser=$this->query($sql);
+    //var_dump($idUser);
+    //echo $idUser[0]['idUser'];
+
+    $sql='select ilha from ilha where idIlha = :idIlha';
+    $ilha = array('idIlha' => $ilha);
+    $ilha=$this->query($sql, $ilha);
+
+    $sql='select concelho from concelho where idConcelho = :idConcelho';
+    $concelho = array('idConcelho' => $concelho);
+    $concelho=$this->query($sql, $concelho);
+
+    $sql='select freguesia from freguesia where idFreguesia = :idFreguesia';
+    $freguesia = array('idFreguesia' => $freguesia);
+    $freguesia=$this->query($sql, $freguesia);
+
+    $user = new User($idUser[0]['idUser'], $mail, $nome, $sobrenome, $pass, $contact, $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia']);
+
+    return $user;
+
+  }
+
   public function loginFuncionario($email,$password){
     $sql = 'SELECT COUNT(idFuncionario) FROM funcionario WHERE email = :email AND password = :password';
     $login = array('email' => $email, 'password' => $password);
@@ -167,6 +185,7 @@ class imobiliaria extends Database {
     }
 
 }
+
 
 
 
