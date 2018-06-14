@@ -29,7 +29,7 @@
 
   <!-- Folhas de estilo -->
   <link rel="stylesheet" href="css/homepage.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
+  <link rel="stylesheet" href="css/imovel.css" type="text/css">
 
   <!-- Ícones Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -41,8 +41,11 @@
   <!-- Font-family PT Sans -->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
+  <!-- Ionic Icons -->
+  <script src="https://unpkg.com/ionicons@4.2.0/dist/ionicons.js"></script>
+
   <!-- Título da página -->
-  <title>Mais Imobiliária | Bem-vindo</title>
+  <title>Mais Imobiliária | Página do Imóvel</title>
 
 </head>
 
@@ -67,16 +70,15 @@
         </li>
 
 
-        <!-- Link de navegação "Ares Cliente" -->
+        <!-- Link de navegação "Área de Cliente" -->
         <li class="nav-item">
-            <a class="nav-link" href="area_cliente.php">Area Cliente</a>
+            <a class="nav-link" href="area_cliente.php">Área de Cliente</a>
         </li>
 
         <!-- Link de navegação que faz logout" -->
         <li class="nav-item">
-            <a class="nav-link" href="?acao=logout">Logout</a>
+            <a class="nav-link" href="?acao=logout">Log out</a>
         </li>
-
 
         </ul>
 
@@ -91,19 +93,19 @@
     </nav>
   </div>
 
+  <div id="container_imovel">
 
-
-
-  <div class="container_index">
-    <h3>Resultado da Pesquisa</h3>
+    <h3>Os resultados da sua pesquisa</h3>
+    
     <div id="caixas_pesquisa">
             <div class="pesquisa_grande">
-                <img id="image" src="images/imoveis/foto">
-                <h4>concelho</h4>
-                <h6>tipologia</h6>
+                <img id="image" src="images/imoveis/1.jpg">
+                <h4>Concelho</h4>
+                <h6>Tipologia</h6>
             </div>
     </div>
 
+    <!-- Página do imóvel -->
     <div id="sub_container">
       <div id="sobre">
             <!--preço-->
@@ -130,7 +132,7 @@
                    Contacto: <input id="field" type="number" name="phone" placeholder="Contacto Telefónico"><br>
                    <label> err_phone</label>
 
-                    *Dia: <input id="field" type="date" name="dia" placeholder="ex:18/09/2018"><br>
+                      *Dia: <input id="field" type="date" name="dia" placeholder="ex:18/09/2018"><br>
                     <label> err_dia  </label>
 
                     *Hora: <input id="field" type="time" name="hora" placeholder="EX: 19:53"><br>
@@ -139,7 +141,7 @@
                     <input id="button_send" type="submit" value="Enviar" name="visita">
                     </form>
 
-                    <h5>* Envie-nos a sua sugestão para avaliarmos disponilidade. Entraremos em contacto consigo o mais breve possível.</h5>
+                    <h5>*  Envie-nos a sua sugestão para avaliarmos disponilidade. Entraremos em contacto consigo o mais breve possível.</h5>
               </form>
             </div>
       </div>
