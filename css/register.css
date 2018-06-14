@@ -8,7 +8,7 @@
     font-size: 25px;
     color: #231F20;
     border-bottom: 2px solid #ED2B2A;
-    margin: 0 20px;    
+    margin: 0 20px;
     padding: 5px 50px;
     text-transform: uppercase;
 }
@@ -23,21 +23,7 @@
     height: 100%;
 }
 
-#top-form {
-    margin: 20px 25px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 25px;
-}
-
-#pass-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 30px;
-    margin: 20px 6%;
-}
-
-#contact-form {
+#pass-form, #top-form ,#contact-form  {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 30px;

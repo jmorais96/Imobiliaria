@@ -3,17 +3,15 @@
 
     require_once('data/imovel.class.php');
     require_once('data/user.class.php');
+    require_once('assets/logout.php');
+    session_start();
 
     $bd = new imobiliaria('data/config.ini');
 
-    session_start();
-
-    if (isset($_SESSION['cliente'])) {
-      var_dump($_SESSION['cliente']);
-    }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['cliente']=$bd->loginCliente($_POST['mail'], $_POST['pass']);
+      //var_dump($_SESSION['cliente']);
     }
 
 ?>
@@ -237,7 +235,7 @@
                 let ilha = $("#ilha").val();
                 $.ajax({
                 type:'POST',
-                url:'data/concelho.php',
+                url:'assets/concelho.php',
                 data:"idIlha="+ ilha,
                 success:function(html){
                     $('#concelho').html(html);
@@ -249,7 +247,7 @@
                 let concelho = $("#concelho").val();
                 $.ajax({
                 type:'POST',
-                url:'data/freguesia.php',
+                url:'assets/freguesia.php',
                 data:"idConcelho="+ concelho,
                 success:function(html){
                     $('#freguesia').html(html);
@@ -320,12 +318,12 @@
 
               $.ajax({
               type:'POST',
-              url:'data/pesquisa.php',
+              url:'assets/pesquisa.php',
               async: false,
               data:{sql: sql, valores: arr},
               success:function(html){
                 clearOverlays();
-                $("script").html($("script").html() + html)
+                //$("script").html($("script").html() + html)
                 //alert(html);
               }
               });

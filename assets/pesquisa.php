@@ -1,6 +1,6 @@
 <?php
 
-  require_once('imovel.class.php');
+  require_once('../data/imovel.class.php');
 
 
 
@@ -13,7 +13,7 @@
     $arr[$value[0]]=$value[1];
   }
 
-  $bd = new imobiliaria('config.ini');
+  $bd = new imobiliaria('../data/config.ini');
   $bd->pesquisa($sql, $arr);
 
 ?>

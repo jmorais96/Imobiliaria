@@ -4,15 +4,6 @@
 outro vermelho mais escuro: #8C1919
  texto: pt sans */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-p {
-    padding: 10px;
-}
-
 #caixa2> h2{
     font-size: 15px;
     padding-top: 13px;

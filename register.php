@@ -274,7 +274,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 let ilha = $("#ilha").val();
                 $.ajax({
                 type:'POST',
-                url:'data/concelho.php',
+                url:'assets/concelho.php',
                 data:"idIlha="+ ilha,
                 success:function(html){
                     $('#concelho').html(html);
@@ -287,7 +287,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 let concelho = $("#concelho").val();
                 $.ajax({
                 type:'POST',
-                url:'data/freguesia.php',
+                url:'assets/freguesia.php',
                 data:"idConcelho="+ concelho,
                 success:function(html){
                     $('#freguesia').html(html);

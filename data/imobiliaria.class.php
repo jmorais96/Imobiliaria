@@ -166,16 +166,20 @@ class imobiliaria extends Database {
     $info=$this->query($sql, $login);
     if (isset($info[0]["idUser"])) {
 
-      $sql='select ilha from freguesia where idFreguesia = :idFreguesia';
-      $freguesia=$this->query($sql, $info[0]['idFreguesia']);
 
-      $sql='select concelho from concelho where idConcelho = :idConcelho';
-      $concelho=$this->query($sql, $freguesia[0]['idConcelho']);
+      $sql='select * from freguesia where idFreguesia = :idFreguesia';
+      $freguesia=$this->query($sql, array('idFreguesia' => utf8_encode($info[0]['idFreguesia'])));
+      //var_dump($freguesia);
 
-      $sql='select ilha from ilha where idIlha = :idIlha';
-      $ilha=$this->query($sql, $concelho[0]['idIlha']);
+      $sql='select * from concelho where idConcelho = :idConcelho';
+      $concelho=$this->query($sql, array('idConcelho' => utf8_encode($freguesia[0]['idConcelho'])));
 
-      $user = new User(utf8_decode($info[0]["idUser"]), utf8_decode($info[0]["email"]), utf8_decode($info[0]["nomeProprio"]), utf8_decode($info[0]["sobrenome"]), utf8_decode($info[0]["password"]), utf8_decode($info[0]["contacto"]), utf8_decode($ilha[0]['ilha']), utf8_decode($concelho[0]['concelho']), utf8_decode($freguesia[0]['freguesia']));
+      $sql='select * from ilha where idIlha = :idIlha';
+      $ilha=$this->query($sql, array('idIlha' => utf8_encode($concelho[0]['idIlha'])));
+
+
+      $user = new User(utf8_decode($info[0]["idUser"]), utf8_decode($info[0]["email"]), utf8_decode($info[0]["nomeProprio"]), utf8_decode($info[0]["sobrenome"]), utf8_decode($info[0]["password"]), utf8_decode($info[0]["contacto"]),
+       utf8_decode($ilha[0]['ilha']), utf8_decode($concelho[0]['concelho']), utf8_decode($freguesia[0]['freguesia']));
 
       return $user;
 
