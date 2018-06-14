@@ -56,7 +56,7 @@ class imobiliaria extends Database {
 
   public function getImovel($id){
 
-    $sql="SELECT * FROM imovel where idImovel= :idImovel";
+    $sql="SELECT * FROM todosimoveis where idImovel= :idImovel";
     $idImovel= array('idImovel' => $id );
     $pesquisa=$this->query($sql,$idImovel);
 
@@ -130,8 +130,8 @@ class imobiliaria extends Database {
     $sql='select * from ilha';
     $ilha=$this->query($sql);
     foreach ($ilha as $value) {
-      echo("<option value=".utf8_decode($value['idIlha'])."   id='index'>".
-      utf8_decode($value['ilha']) ."</option>");
+      echo("<option value=".($value['idIlha'])."   id='index'>".
+      ($value['ilha']) ."</option>");
     }
 
   }
@@ -142,7 +142,7 @@ class imobiliaria extends Database {
     $concelho=$this->query($sql, $ilha);
     echo("<option >Selecione um concelho</option>");
     foreach ($concelho as $value) {
-      echo("<option value=".utf8_decode($value['idConcelho'])."   id='index'>".utf8_decode($value['concelho'])."</option>");
+      echo("<option value=".($value['idConcelho'])."   id='index'>".($value['concelho'])."</option>");
 
     }
   }
@@ -153,7 +153,7 @@ class imobiliaria extends Database {
     $freguesia=$this->query($sql, $concelho);
     echo("<option >Selecione uma freguesia</option>");
     foreach ($freguesia as $value) {
-      echo("<option value=".utf8_decode($value['idFreguesia'])."   id='index'>".utf8_decode($value['freguesia'])."</option>");
+      echo("<option value=".($value['idFreguesia'])."   id='index'>".($value['freguesia'])."</option>");
     }
   }
 
@@ -195,7 +195,7 @@ class imobiliaria extends Database {
     $freguesia = array('idFreguesia' => $freguesia);
     $freguesia=$this->query($sql, $freguesia);
 
-    $user = new User(utf8_decode($idUser[0]['idUser']), $mail, $nome, $sobrenome, $pass, $contact, utf8_decode($ilha[0]['ilha']), utf8_decode($concelho[0]['concelho']), utf8_decode($freguesia[0]['freguesia']));
+    $user = new User($idUser[0]['idUser'], $mail, $nome, $sobrenome, $pass, $contact, $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia']);
 
     return $user;
 
@@ -219,8 +219,8 @@ class imobiliaria extends Database {
       $ilha=$this->query($sql, array('idIlha' => utf8_encode($concelho[0]['idIlha'])));
 
 
-      $user = new User(utf8_decode($info[0]["idUser"]), utf8_decode($info[0]["email"]), utf8_decode($info[0]["nomeProprio"]), utf8_decode($info[0]["sobrenome"]), utf8_decode($info[0]["password"]), utf8_decode($info[0]["contacto"]),
-       utf8_decode($ilha[0]['ilha']), utf8_decode($concelho[0]['concelho']), utf8_decode($freguesia[0]['freguesia']));
+      $user = new User($info[0]["idUser"], $info[0]["email"], $info[0]["nomeProprio"], $info[0]["sobrenome"], $info[0]["password"], $info[0]["contacto"],
+       $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia']);
 
       return $user;
 

@@ -2,8 +2,9 @@
 
   require_once('data/imovel.class.php');
   require_once('data/user.class.php');
-  require_once('assets/logout.php');
   session_start();
+  
+  require_once('assets/logout.php');
 
   $bd = new imobiliaria('data/config.ini');
 
