@@ -12,15 +12,14 @@
       geocodeAddress(geocoder, map);
 
     }
-    
-    function addMarker(lat, lng, rua, tipoImovel, area, preco) {
-      //alert('here');
+
+    function addMarker(id, lat, lng, rua, tipoImovel, area, preco) {
       marker.push( new google.maps.Marker({
         position: { lat: lat, lng: lng }
       }));
 
       var infowindow = new google.maps.InfoWindow({
-        content: "<h3>"+rua+"</h3> <br> <h4>Tipo de imovel:" + tipoImovel + " </h4> <br><h4>area: "+area+"</h4> <br> <h4>Preco: "+preco+" €</h4>"
+        content: "<h3>"+rua+"</h3> <br> <h4>Tipo de imovel:" + tipoImovel + " </h4> <br><h4>area: "+area+"</h4> <br> <h4>Preco: "+preco+" €</h4> <br> <br> <a href='imovel.php?id="+id+"'>Mais Informações do imovel</a>"
       });
 
       marker[marker.length-1].setMap(map);

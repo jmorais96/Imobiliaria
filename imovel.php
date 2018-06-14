@@ -7,11 +7,11 @@
 
   $bd = new imobiliaria('data/config.ini');
 
-  if (!isset($_GET['imovel'])) {
+  if (!isset($_GET['id'])) {
     header("location:index.php");
   }
 
-  $imovel=$bd->getImovel($_GET['imovel']);
+  $imovel=$bd->getImovel($_GET['id']);
   //var_dump($imovel);
 ?>
 
