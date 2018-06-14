@@ -9,9 +9,11 @@ class imobiliaria extends Database {
 
   }
 
-  public function pequisa($sql='select * from imoveisdestcados'){
-
-    $pesquisa=$this->query($sql);
+  public function pesquisa($sql='select * from imoveisdestcados', $campos=[]){
+    //var_dump($campos);
+    //echo "<script> alert('here'); </script>";
+    $pesquisa=$this->query($sql,$campos);
+    //echo " clearOverlays(); ";
 
 
     //var_dump($pesquisa);
@@ -67,6 +69,8 @@ class imobiliaria extends Database {
     //var_dump($imoveis);
 
       //echo sizeof($imoveis);
+
+      
       for ($i=0; $i < count($imoveis) ; $i++) {
         //var_dump($imoveis[$i]);
         //echo $i;

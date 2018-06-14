@@ -128,7 +128,7 @@
 
         <!-- Formulário de pesquisa -->
         <div class="searchForm">
-            <form id="searchForm" action="resultado_pesquisa.php" method="POST">
+            <div id="searchForm">
 
                 <select id="index" name="finalidade">
                     <?php $bd->selectFinalidade(); ?>
@@ -162,7 +162,7 @@
                 <input id="index" type="text" name="preco" placeholder="Preço máximo do imóvel"/>
 
                 <button id="encontrar">Encontrar Imóvel</button>
-            </form>
+            </div>
         </div>
         <!-- Final do formulário de pesquisa -->
     </div>
@@ -202,7 +202,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 
-    <?php $bd->pequisa(); ?>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#ilha").change(function(){
@@ -213,7 +212,6 @@
                 data:"idIlha="+ ilha,
                 success:function(html){
                     $('#concelho').html(html);
-
                 }
                 });
             });
@@ -231,6 +229,79 @@
                 });
             });
 
+            <?php $bd->pesquisa(); ?>
+
+            $("#encontrar").click(function() {
+              let sql="select * from todosimoveis";
+              //alert("here");
+              let condicoes=[];
+              let valores=[];
+
+              if ($("[name= finalidade ]").val()){
+                condicoes.push("finalidade = :finalidade");
+                valores['finalidade']=$("[name= finalidade ]").val();
+                //alert("here");
+              }
+
+
+              if ($("[name= tipoImovel ]").val()) {
+                condicoes.push("tipoImovel = :tipoImovel");
+                valores['tipoImovel']=$("[name= tipoImovel ]").val();
+                //alert(valores);
+              }
+
+              if ($("[name= tipologia ]").val()) {
+                condicoes.push("tipologia = :tipologia");
+                valores['tipologia']=$("[name= tipologia ]").val();
+              }
+
+              if ($("[name= ilha ]").val()) {
+                condicoes.push("ilha = :ilha");
+                valores['ilha']=$("[name= ilha ]").val();
+              }
+
+              if ($("[name= concelho ]").val()) {
+                condicoes.push("concelho = :concelho");
+                valores['concelho']=$("[name= concelho ]").val();
+              }
+
+              if ($("[name= freguesia ]").val()) {
+                condicoes.push("freguesia = :freguesia");
+                valores['freguesia']=$("[name= freguesia ]").val();
+              }
+              if ($("[name= preco ]").val()) {
+                condicoes.push("preco = :preco");
+                valores['freguesia']=$("[name= preco ]").val();
+              }
+
+              if (condicoes.length) {
+                sql += " where ";
+                for (var i = 0; i < condicoes.length; i++) {
+                  sql += condicoes[i] + " and ";
+
+                }
+                sql=sql.substring(0, sql.length-4);
+              }
+
+              arr = [];
+              for (var i in valores) {
+                arr+= i + ': ' + valores[i] + "|";
+              }
+              arr=arr.substring(0, arr.length-1);
+
+              $.ajax({
+              type:'POST',
+              url:'data/pesquisa.php',
+              async: false,
+              data:{sql: sql, valores: arr},
+              success:function(html){
+                clearOverlays();
+                $("script").html($("script").html() + html)
+                //alert(html);
+              }
+              });
+
+            });
 
         });
     </script>
