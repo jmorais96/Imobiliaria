@@ -89,36 +89,36 @@ class imobiliaria extends Database {
     $sql='select * from ilha';
     $ilha=$this->query($sql);
     foreach ($ilha as $value) {
-      echo("<option value=".$value['idIlha']."   id='index'>".
-      ($value['ilha']) ."</option>");
+      echo("<option value=".utf8_decode($value['idIlha'])."   id='index'>".
+      utf8_decode($value['ilha']) ."</option>");
     }
 
   }
 
   public function selectConcelho($ilha){
     $sql='select * from concelho where idIlha = :idIlha';
-    $ilha=  array('idIlha' => $ilha);
+    $ilha=  array('idIlha' => utf8_encode($ilha));
     $concelho=$this->query($sql, $ilha);
     echo("<option >Selecione um concelho</option>");
     foreach ($concelho as $value) {
-      echo("<option value=".$value['idConcelho']."   id='index'>".($value['concelho'])."</option>");
+      echo("<option value=".utf8_decode($value['idConcelho'])."   id='index'>".utf8_decode($value['concelho'])."</option>");
 
     }
   }
 
   public function selectFreguesia($concelho){
     $sql='select * from freguesia where idconcelho = :idConcelho';
-    $concelho=  array('idConcelho' => $concelho);
+    $concelho=  array('idConcelho' => utf8_encode($concelho));
     $freguesia=$this->query($sql, $concelho);
     echo("<option >Selecione uma freguesia</option>");
     foreach ($freguesia as $value) {
-      echo("<option value=".$value['idFreguesia']."   id='index'>".($value['freguesia'])."</option>");
+      echo("<option value=".utf8_decode($value['idFreguesia'])."   id='index'>".utf8_decode($value['freguesia'])."</option>");
     }
   }
 
   public function mailClienteExists($mail){
     $sql='select count(*) from utilizador where email = :email';
-    $mail=  array('email' => $mail);
+    $mail=  array('email' => utf8_encode($mail));
     $mail=$this->query($sql, $mail);
     //var_dump($mail);
     foreach ($mail[0] as $value) {
@@ -132,7 +132,7 @@ class imobiliaria extends Database {
 
   public function registarCliente($mail, $nome, $sobrenome, $pass, $contact, $ilha, $concelho, $freguesia){
     $sql ='INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto, idFreguesia) VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto, :idFreguesia)';
-    $arr = array('email' => $mail , 'nomeProprio' => $nome, 'sobrenome' => $sobrenome, 'password' => $pass, 'contacto' => $contact, 'idFreguesia' => $freguesia);
+    $arr = array('email' => utf8_encode($mail) , 'nomeProprio' => utf8_encode($nome), 'sobrenome' => utf8_encode($sobrenome), 'password' => utf8_encode(md5($pass)), 'contacto' => utf8_encode($contact), 'idFreguesia' => utf8_encode($freguesia));
     $this->query($sql, $arr);
     //echo $mail;
 
@@ -154,7 +154,7 @@ class imobiliaria extends Database {
     $freguesia = array('idFreguesia' => $freguesia);
     $freguesia=$this->query($sql, $freguesia);
 
-    $user = new User($idUser[0]['idUser'], $mail, $nome, $sobrenome, $pass, $contact, $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia']);
+    $user = new User(utf8_decode($idUser[0]['idUser']), $mail, $nome, $sobrenome, $pass, $contact, utf8_decode($ilha[0]['ilha']), utf8_decode($concelho[0]['concelho']), utf8_decode($freguesia[0]['freguesia']));
 
     return $user;
 
@@ -162,7 +162,7 @@ class imobiliaria extends Database {
 
   public function loginCliente($email,$password){
     $sql = 'SELECT * FROM utilizador WHERE email = :email AND password = :password';
-    $login = array('email' => $email, 'password' => $password);
+    $login = array('email' => utf8_encode($email), 'password' => utf8_encode(md5($password)));
     $info=$this->query($sql, $login);
     if (isset($info[0]["idUser"])) {
 
@@ -175,7 +175,7 @@ class imobiliaria extends Database {
       $sql='select ilha from ilha where idIlha = :idIlha';
       $ilha=$this->query($sql, $concelho[0]['idIlha']);
 
-      $user = new User($info[0]["idUser"], $info[0]["email"], $info[0]["nomeProprio"], $info[0]["sobrenome"], $info[0]["password"], $info[0]["contacto"], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia']);
+      $user = new User(utf8_decode($info[0]["idUser"]), utf8_decode($info[0]["email"]), utf8_decode($info[0]["nomeProprio"]), utf8_decode($info[0]["sobrenome"]), utf8_decode($info[0]["password"]), utf8_decode($info[0]["contacto"]), utf8_decode($ilha[0]['ilha']), utf8_decode($concelho[0]['concelho']), utf8_decode($freguesia[0]['freguesia']));
 
       return $user;
 
@@ -188,7 +188,7 @@ class imobiliaria extends Database {
 
   public function loginFuncionario($email,$password){
     $sql = 'SELECT COUNT(idFuncionario) FROM funcionario WHERE email = :email AND password = :password';
-    $login = array('email' => $email, 'password' => $password);
+    $login = array('email' => utf8_encode($email), 'password' => utf8_encode(md5($password)));
     $count=$this->query($sql, $login);
 
 
