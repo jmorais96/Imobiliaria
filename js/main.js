@@ -60,3 +60,10 @@
         }
       });
     }
+
+    $("button").click(function(){
+      $("#caixa1a").html("<h3>Mude os seus dados pessoais</h3>");
+      $(".caixa2").hide();
+      $("#mudarDados").hide();
+      $("#formDados").show();
+    });

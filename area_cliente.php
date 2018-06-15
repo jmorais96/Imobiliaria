@@ -1,32 +1,41 @@
 <?php
 
-require_once ('data/user.class.php');
-session_start();
+  require_once('data/user.class.php');
+  require_once('data/imobiliaria.class.php');
+  session_start();
 
-require_once('assets/logout.php');
+  require_once('assets/logout.php');
 
-if (!isset($_SESSION['cliente'])) {
-  header("location:index.php");
-}
+  if (!isset($_SESSION['cliente'])) {
+    header("location:index.php");
+  }
 
-/*
-$filenameUser = 'data/users.csv';
-$fileUser = fopen($filenameUser, 'r'); //ler o ficheiro
-while (!feof($fileUser)){
-    $users = fgetcsv($fileUser,0,';'); //ir buscar dados ao csv
+  $bd=new imobiliaria("data/config.ini");
 
-    if($users[0] == $_SESSION['user']){
-        $name = $users[1];
-        $apelido = $users[2];
-        $email = $users[3];
-        $password = $users[4];
-        $telefone = $users[5];
-        $ilha = $users[6];
-        $concelho = $users[7];
-        $freguesia = $users[8];
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_POST['firstname']!="") {
+      $_SESSION['cliente']->setName($_POST['firstname']);
     }
-}
-fclose($fileUser);*/
+
+    if ($_POST['lastname']!="") {
+      $_SESSION['cliente']->setLastName($_POST['lastname']);
+    }
+
+    if ($_POST['email']!="") {
+      $_SESSION['cliente']->setMail($_POST['email']);
+    }
+
+    if ($_POST['password']!="") {
+      $_SESSION['cliente']->setPassword($_POST['password']);
+    }
+
+    if ($_POST['contact']!="") {
+      $_SESSION['cliente']->setContact($_POST['contact']);
+    }
+
+    $bd->updateCliente($_SESSION['cliente']->update());
+  }
+
 ?>
 
 <html>
@@ -48,9 +57,7 @@ fclose($fileUser);*/
   <!-- Ícones Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-  <!-- Ficheiros JavaScript -->
-  <script src="js/jquery.js"></script>
-  <script src="js/main.js"></script>
+
 
   <!-- Font-family PT Sans -->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -119,23 +126,88 @@ fclose($fileUser);*/
                  <h3>Bem-Vindo(a), <?php echo $_SESSION['cliente']->getFullName(); ?></h3>
               </div>
               <div id="caixa1b">
-                      <div id="caixa2">
+                      <div id="caixa2" class="caixa2">
                           <img id="icon2" src="images/email.svg">
                           <h3>E-mail: <?php  echo $_SESSION['cliente']->getMail(); ?></h3>
                       </div>
-                      <!-- <div id="caixa2">
+                      <!-- <div id="caixa2" "caixa2">
                          <img id="icon2" src="images/key.svg">
                          <h3>Password: </h3>
                       </div> -->
-                      <div id="caixa2">
+                      <div id="caixa2" class="caixa2">
                          <img id="icon2" src="images/phone.svg">
                          <h3>Telefone: <?php echo $_SESSION['cliente']->getContact(); ?></h3>
                       </div>
 
-                      <div id="caixa2">
+                      <div id="caixa2" class="caixa2">
                         <img id="icon2" src="images/local.svg">
                         <h3> Habitação: <?php echo $_SESSION['cliente']->getIlha() . ", " . $_SESSION['cliente']->getConcelho() . ", " . $_SESSION['cliente']->getFreguesia();?></h3>
                       </div>
+
+                      <button id="mudarDados">Mudar os dados</button>
+
+                      <table id="formDados">
+
+                        <form class="" action="" method="post" >
+
+                          <tr>
+                            <td> <label for="firstname">Nome Próprio:</label> </td>
+                            <td> <input type="text" name="firstname" value=""> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="lastname">Apelido:</label> </td>
+                            <td> <input type="text" name="lastname" value=""> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="password">Palavra-passe:</label> </td>
+                            <td> <input type="password" name="password" value=""> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="password_rewrite">Reescreva a palavra-passe:</label> </td>
+                            <td> <input type="password" name="password_rewrite" value=""> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="email">Email de preferência:</label> </td>
+                            <td> <input type="email" name="email" value=""> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="contact">Contacto de preferência:</label> </td>
+                            <td> <input type="number" name="contact" value=""> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="island">Ilha de residência:</label> </td>
+                            <td> <select name="ilha" id="ilha">
+                                <?php $bd->selectIlha(); ?>
+                            </select> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="concelho">Cidade de residência:</label> </td>
+                            <td> <select name="concelho" id="concelho">
+                                <option value="">Selecione um concelho</option>
+                            </select> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="freguesia">Freguesia de residência:</label> </td>
+                            <td> <select name="freguesia" id="freguesia">
+                                <option value="">Selecione uma freguesia</option>
+                            </select> </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2"> <input type="submit" value="registar" name="registar"> </td>
+                          </tr>
+
+                        </form>
+
+                      </table>
 
                 </div>
             </div>
@@ -147,6 +219,8 @@ fclose($fileUser);*/
       </div>
       <div class=contain>
       <table class="table table-bordered table-hover">
+
+
 
         <?php
 /*
@@ -232,6 +306,42 @@ fclose($fileUser);*/
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
+    <!-- Ficheiros JavaScript -->
+    <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script>
 
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+        $("#ilha").change(function(){
+            let ilha = $("#ilha").val();
+            $.ajax({
+            type:'POST',
+            url:'assets/concelho.php',
+            data:"idIlha="+ ilha,
+            success:function(html){
+                $('#concelho').html(html);
+
+            }
+            });
+        });
+
+        $("#concelho").change(function(){
+            let concelho = $("#concelho").val();
+            $.ajax({
+            type:'POST',
+            url:'assets/freguesia.php',
+            data:"idConcelho="+ concelho,
+            success:function(html){
+                $('#freguesia').html(html);
+
+            }
+            });
+        });
+
+
+    });
+
+    </script>
 
 </html>

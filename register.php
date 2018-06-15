@@ -1,11 +1,11 @@
 <!-- Adicionar a classe Imobiliária -->
 <?php
-  session_start();
 
   require_once('data/imobiliaria.class.php');
 
   require_once('data/user.class.php');
 
+  session_start();
 
   if (isset($_SESSION['cliente'])) {
 

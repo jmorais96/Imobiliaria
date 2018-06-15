@@ -9,19 +9,9 @@ class imobiliaria extends Database {
     $pesquisa=$this->query($sql,$campos);
     //echo " clearOverlays(); ";
 
-
-    //var_dump($pesquisa);
-    foreach ($pesquisa as $imovel) {
-      $sql='select * from imovel where idImovel = :idImovel';
-      $idImovel= array('idImovel' => $imovel['idImovel'] );
-      $pesquisa=$this->query($sql,$idImovel);
-      //var_dump($pesquisa);
       foreach ($pesquisa as $id) {
-        $sql='select * from extras where idImovel = :idImovel';
-        $extra=$this->query($sql,$id['idImovel']);
 
         $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
-
         $finalidade=$this->query($sql, $id['finalidade']);
 
         $sql='select tipoImovel from tipo_imovel where idTipoImovel = :idTipoImovel';
@@ -36,15 +26,42 @@ class imobiliaria extends Database {
         $sql='select ilha from ilha where idIlha = :idIlha';
         $ilha=$this->query($sql, $concelho['idIlha']);
 
-      }
-      //var_dump($id);
-      if ($extra['idImovel']!=NULL) {
-        $imoveis[] = new imovel($id['idImovel'], $id['finalidade'], $tipoImovel['tipoImovel'], $id['tamanhoLote'], $id['preco'], $id['descricao'], $id['dataConstrucao'], $id['morada'], $id['destaque'], $id['estado'], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia'], $tipologia[0]['tipologia'], $extra['quartos'], $extra['casasBanho'], $extra['espacoExterior'], $extra['garagem'], $extra['piscina'], $extra['mobilia']);
-      }else {
-        $imoveis[] = new imovel($id['idImovel'], $id['gestor'], $finalidade[0]['finalidade'], $tipoImovel[0]['tipoImovel'], $id['area'], $id['preco'], $id['descricao'], $id['rua'], $id['codPostal'], $id['lat'], $id['long'], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia'], $id['situacao'], $id['estado']);
+        if ($pesquisa[0]['tipologia']!=NULL) {
+          $sql='select tipologia from tipologia where idTipologia = :idTipologia';
+          $tipologia=$this->query($sql, array('idTipologia' =>$pesquisa[0]['tipologia']));
+        }else {
+          $tipologia[0]['tipologia']=NULL;
+        }
+
+        $imoveis[] = new imovel($id['idImovel'],
+        $id['gestor'],
+        $id['finalidade'],
+        $id['tipoImovel'],
+        $id['area'],
+        $id['preco'],
+        $id['descricao'],
+        $id['rua'],
+        $id['codPostal'],
+        $id['lat'],
+        $id['long'],
+        $ilha[0]['ilha'],
+        $concelho[0]['concelho'],
+        $freguesia[0]['freguesia'],
+        $id['situacao'],
+        $id['estado'],
+        $tipologia[0]['tipologia'],
+        $id['quartos'],
+        $id['casasBanho'],
+        $id['garagem'],
+        $id['piscina'],
+        $id['mobilia'],
+        $id['dataConstrucao'],
+        $id['informacao'],
+        $id['destacado'] );
+
       }
 
-    }
+      //var_dump($id);
 
 
       for ($i=0; $i < count($imoveis) ; $i++) {
@@ -178,6 +195,20 @@ class imobiliaria extends Database {
     }
   }
 
+  // public function id_freguesia($freguesia){
+  //   $sql='select idFreguesia from freguesia where freguesia = :freguesia';
+  //   $freguesia=  array('freguesia' => utf8_encode($freguesia));
+  //   $freguesia=$this->query($sql, $freguesia);
+  //   return $freguesia[0]['idFreguesia'];
+  // }
+  //
+  // public function freguesia_id($freguesia){
+  //   $sql='select freguesia from freguesia where idFreguesia = :idFreguesia';
+  //   $freguesia=  array('idFreguesia' => utf8_encode($freguesia));
+  //   $freguesia=$this->query($sql, $freguesia);
+  //   return $freguesia[0]['freguesia'];
+  // }
+
   public function mailClienteExists($mail){
     $sql='select count(*) from utilizador where email = :email';
     $mail=  array('email' => utf8_encode($mail));
@@ -264,6 +295,11 @@ class imobiliaria extends Database {
         $_SESSION['email'] = $email;
         header('location: admin.php');
     }*/
+  }
+
+  public function updateCliente($campos){
+    $sql="UPDATE utilizador SET email = :email, nomeProprio = :nomeProprio, sobrenome = :sobrenome, password = :password, contacto = :contacto, idFreguesia = :idFreguesia  WHERE idUser = :idUser";
+    $this->query($sql,$campos);
   }
 
     public function getAllUsers(){

@@ -1,5 +1,6 @@
 <?php
 
+  require_once('imobiliaria.class.php');
   class User{
 
     private $idUser;
@@ -61,6 +62,38 @@
     public function getFullName(){
       return $this->firstname . " ". $this->lastname;
     }
+
+
+    public function setName($name){
+      $this->firstname=$name;
+    }
+
+    public function setLastName($lastname){
+      $this->lastname=$lastname;
+    }
+
+    public function setMail($mail){
+      $this->mail=$mail;
+    }
+
+    public function setPassword($password){
+      $this->$password=md5($password);
+    }
+
+    public function setContact($contact){
+      $this->contact=$contact;
+    }
+
+    public function setFreguesia($freguesia){
+      $bd=new imobiliaria('config.ini');
+      $this->freguesia=$bd->freguesia_id($freguesia);
+    }
+
+    public function update(){
+      $bd=new imobiliaria('config.ini');
+      return $arr = array(':idUser' => utf8_encode($this->getIdUser()), ':email' => utf8_encode($this->getMail()), ':nomeProprio' => utf8_encode($this->getName()) , ':sobrenome' => utf8_encode($this->getLastName()) , ':password' => utf8_encode($this->password) , ':contacto' => utf8_encode($this->getContact()) , ':idFreguesia' => utf8_encode($this->getFreguesia()));
+    }
+
 
 
 

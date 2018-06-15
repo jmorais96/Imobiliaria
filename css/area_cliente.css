@@ -334,3 +334,15 @@ button {
 .contain {
     height: 100%;
 }
+
+  #formDados{
+    display: none;
+    background-color: lightgrey;
+    width: 100%;
+  }
+  
+
+  #formDados input[type=submit]{
+    width: 80%;
+
+  }
