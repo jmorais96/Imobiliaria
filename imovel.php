@@ -3,7 +3,7 @@
   require_once('data/imovel.class.php');
   require_once('data/user.class.php');
   session_start();
-  
+
   require_once('assets/logout.php');
 
   $bd = new imobiliaria('data/config.ini');
@@ -96,7 +96,7 @@
   <div id="container_imovel">
 
     <h3>Os resultados da sua pesquisa</h3>
-    
+
     <div id="caixas_pesquisa">
             <div class="pesquisa_grande">
                 <img id="image" src="images/imoveis/1.jpg">
@@ -115,10 +115,10 @@
             <h5>
             Finalidade: <?php echo $imovel->getFinalidade(); ?><br>
             Tipo de imóvel: <?php echo $imovel->getTipoImovel(); ?><br>
-            Distrito: Ilha de <?php echo $imovel->getIlha(); ?><br>
+            Ilha: <?php echo $imovel->getIlha(); ?><br>
             Concelho: <?php echo $imovel->getConcelho(); ?><br>
             Freguesia: <?php echo $imovel->getFreguesia(); ?><br>
-            Vendedor: <?php echo $imovel->getidGestor(); ?><br>
+            Vendedor: <?php echo $imovel->getGestor(); ?><br>
             <br>
             </h5>
       </div>

@@ -59,37 +59,58 @@ class imobiliaria extends Database {
     $sql="SELECT * FROM todosimoveis where idImovel= :idImovel";
     $idImovel= array('idImovel' => $id );
     $pesquisa=$this->query($sql,$idImovel);
+    //var_dump($pesquisa);
+
+    $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
+    $finalidade=$this->query($sql, array('idFinalidade' => $pesquisa[0]['finalidade']));
+
+    $sql='select tipoImovel from tipo_imovel where idTipoImovel = :idTipoImovel';
+    $tipoImovel=$this->query($sql, array('idTipoImovel' => $pesquisa[0]['tipoImovel']));
+
+    $sql='select * from freguesia where idFreguesia = :idFreguesia';
+    $freguesia=$this->query($sql, array('idFreguesia' => $pesquisa[0]['idFreguesia']));
+    $sql='select * from concelho where idConcelho = :idConcelho';
+    $concelho=$this->query($sql, array('idConcelho' => $freguesia[0]['idConcelho']));
+
+    $sql='select * from ilha where idIlha = :idIlha';
+    $ilha=$this->query($sql, array('idIlha' => $concelho[0]['idIlha']));
+
+    if ($pesquisa[0]['tipologia']!=NULL) {
+      $sql='select tipologia from tipologia where idTipologia = :idTipologia';
+      $tipologia=$this->query($sql, array('idTipologia' =>$pesquisa[0]['tipologia']));
+    }else {
+      $tipologia[0]['tipologia']=NULL;
+    }
 
 
-      foreach ($pesquisa as $id) {
+    $sql='select destacado from destaque where idImovel = :idImovel';
+    $destaque=$this->query($sql, array('idImovel' => $id));
 
-        $sql='select * from extras where idImovel = :idImovel';
-        $extra=$this->query($sql,$id['idImovel']);
-
-        $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
-
-        $finalidade=$this->query($sql, $id['finalidade']);
-
-        $sql='select tipoImovel from tipo_imovel where idTipoImovel = :idTipoImovel';
-        $tipoImovel=$this->query($sql, $id['tipoImovel']);
-
-        $sql='select ilha from freguesia where idFreguesia = :idFreguesia';
-        $freguesia=$this->query($sql, $id['idFreguesia']);
-
-        $sql='select concelho from concelho where idConcelho = :idConcelho';
-        $concelho=$this->query($sql, $freguesia['idConcelho']);
-
-        $sql='select ilha from ilha where idIlha = :idIlha';
-        $ilha=$this->query($sql, $concelho['idIlha']);
-
-      }
-      //var_dump($id);
-      if ($extra['idImovel']!=NULL) {
-        $imovel = new imovel($id['idImovel'], $id['finalidade'], $tipoImovel['tipoImovel'], $id['tamanhoLote'], $id['preco'], $id['descricao'], $id['dataConstrucao'], $id['morada'], $id['destaque'], $id['estado'], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia'], $tipologia[0]['tipologia'], $extra['quartos'], $extra['casasBanho'], $extra['espacoExterior'], $extra['garagem'], $extra['piscina'], $extra['mobilia']);
-      }else {
-        $imovel = new imovel($id['idImovel'], $id['gestor'], $finalidade[0]['finalidade'], $tipoImovel[0]['tipoImovel'], $id['area'], $id['preco'], $id['descricao'], $id['rua'], $id['codPostal'], $id['lat'], $id['long'], $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia'], $id['situacao'], $id['estado']);
-      }
-
+    $imovel = new imovel($pesquisa[0]['idImovel'],
+    $pesquisa[0]['gestor'],
+    $finalidade[0]['finalidade'],
+    $tipoImovel[0]['tipoImovel'],
+    $pesquisa[0]['area'],
+    $pesquisa[0]['preco'],
+    $pesquisa[0]['descricao'],
+    $pesquisa[0]['rua'],
+    $pesquisa[0]['codPostal'],
+    $pesquisa[0]['lat'],
+    $pesquisa[0]['long'],
+    $ilha[0]['ilha'],
+    $concelho[0]['concelho'],
+    $freguesia[0]['freguesia'],
+    $pesquisa[0]['situacao'],
+    $pesquisa[0]['estado'],
+    $tipologia[0]['tipologia'],
+    $pesquisa[0]['quartos'],
+    $pesquisa[0]['casasBanho'],
+    $pesquisa[0]['garagem'],
+    $pesquisa[0]['piscina'],
+    $pesquisa[0]['mobilia'],
+    $pesquisa[0]['dataConstrucao'],
+    $pesquisa[0]['informacao'],
+    $destaque[0]['destacado'] );
 
     return $imovel;
 
