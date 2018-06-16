@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Jun-2018 às 20:56
+-- Generation Time: 17-Jun-2018 às 00:03
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -310,8 +310,8 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`idFuncionario`, `email`, `password`, `nomeProprio`, `sobrenome`, `contacto`, `tipoUser`) VALUES
-(1, 'admin@admin.pt', 'admin123', 'Admin', 'Admin', 919999999, 1),
-(2, 'jose@jose.pt', '12345678', 'JosÃ©', 'Morais', 919999999, 2);
+(1, 'admin@admin.pt', '0192023a7bbd73250516f069df18b500', 'Admin', 'Admin', 919999999, 1),
+(2, 'jose@jose.pt', '25d55ad283aa400af464c76d713c07ad', 'JosÃ©', 'Morais', 919999999, 2);
 
 -- --------------------------------------------------------
 
@@ -546,8 +546,15 @@ CREATE TABLE `visita` (
   `user` int(11) UNSIGNED NOT NULL,
   `idImovel` int(11) UNSIGNED NOT NULL,
   `dataVisita` datetime NOT NULL,
-  `estadoVisita` enum('Aceite','Não aceite','Em apreciação') COLLATE utf8_unicode_ci NOT NULL
+  `estadoVisita` enum('Aceite','NÃ£o Aceite','Em apreciaÃ§Ã£o','') COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `visita`
+--
+
+INSERT INTO `visita` (`idVisita`, `user`, `idImovel`, `dataVisita`, `estadoVisita`) VALUES
+(1, 3, 1, '2018-06-21 10:29:00', 'Em apreciaÃ§Ã£o');
 
 -- --------------------------------------------------------
 
@@ -750,7 +757,7 @@ ALTER TABLE `utilizador`
 -- AUTO_INCREMENT for table `visita`
 --
 ALTER TABLE `visita`
-  MODIFY `idVisita` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idVisita` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
