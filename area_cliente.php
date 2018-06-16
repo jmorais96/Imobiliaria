@@ -2,6 +2,8 @@
 
   require_once('data/user.class.php');
   require_once('data/imobiliaria.class.php');
+  require_once('data/imovel.class.php');
+  require_once('data/visita.class.php');
   session_start();
 
   require_once('assets/logout.php');
@@ -103,7 +105,7 @@
 
     </div>
 
-    
+
 
         <!-- Contacto Telefónico -->
         <div class="phone">
@@ -204,7 +206,7 @@
                           </tr>
 
                           <tr>
-                            <td colspan="2"> <input type="submit" value="registar" name="registar"> </td>
+                            <td colspan="2"> <input type="submit" value="Alterar os Dados" name="registar"> </td>
                           </tr>
 
                         </form>
@@ -224,52 +226,31 @@
 
 
 
-        <?php
-/*
-        $filenameVisita = 'data/visitas.csv';
-        $fileVisita = fopen($filenameVisita, 'r');
-        while (($visitas = fgetcsv($fileVisita, 0, ';')) !== false) {
 
-          if($visitas[3] == $_SESSION['user']){
+          <thead>
+            <tr>
+              <th>Rua</th>
+              <th>Data</th>
+              <th>Hora</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
 
-            $idVisita = $visitas[0];
-            $idImovel = $visitas[1];
-            $idGestor = $visitas[2];
-            $idUser = $visitas[3];
-            $titulo = $visitas[4];
-            $data = $visitas[9];
-            $hora = $visitas[10];
-            $estado = $visitas[11];
+            foreach ($bd->getVisitas($_SESSION['cliente']) as $value) {
+          ?>
 
-            echo '
-
-                    <thead>
-                       <tr>
-                           <th>IdVisita</th>
-                           <th>IdImovel</th>
-                           <th>Título</th>
-                           <th>Data</th>
-                           <th>Hora</th>
-                           <th>Estado</th>
-                       </tr>
-                    </thead>
-                    <tbody>
-                        <tr>';
-                echo "<td> $idVisita </td>";
-                echo "<td> $idImovel </td>";
-                echo "<td> $titulo </td>";
-                echo "<td> $data </td>";
-                echo "<td> $hora </td>";
-                echo "<td> $estado </td>";
-                echo '</tbody>
-
-                                 ';
-
+            <tr>
+              <td> <?php echo $value->getRua() ?></td>
+              <td> <?php echo $value->getData() ?> </td>
+              <td> <?php echo $value->getHora() ?> </td>
+              <td> <?php echo $value->getEstado() ?> </td>
+            <tr>
+         <?php
           }
-
-        }
-*/
-        ?>
+         ?>
+          </tbody>
 
       </table>
         </div>
