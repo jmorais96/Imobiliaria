@@ -14,6 +14,18 @@
 
   $imovel=$bd->getImovel($_GET['id']);
   //var_dump($imovel);
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['pass'])) {
+      $_SESSION['cliente']=$bd->loginCliente($_POST['mail'], $_POST['pass']);
+      //var_dump($_SESSION['cliente']);
+    }
+
+    if (isset($_SESSION['cliente']) && isset($_POST['dia']) && isset($_POST['hora'])) {
+      $bd->registarVisita($_SESSION['cliente']->getIdUser(), $_POST['dia'], $_POST['hora'], $imovel);
+    }
+
+  }
 ?>
 
 <html>
@@ -60,29 +72,77 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span></button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav mx-auto">
+      <ul class="navbar-nav mx-auto">
 
-        <!-- Link de navegação "Home" -->
-        <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-        </li>
+      <!-- Link de navegação "Home" -->
+      <li class="nav-item">
+          <a class="nav-link" href="index.php">Home</a>
+      </li>
+
+      <?php if (!isset($_SESSION['cliente'])) { ?>
+
+      <!-- Link de navegação "Registo" -->
+      <li class="nav-item">
+          <a class="nav-link" href="register.php">Registo</a>
+      </li>
+
+      <!-- Link de navegação que abre o módulo de "Login" -->
+      <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#loginWindow">Login</a>
+      </li>
+
+      <?php }else{ ?>
+
+      <!-- Link de navegação "Ares Cliente" -->
+      <li class="nav-item">
+          <a class="nav-link" href="area_cliente.php">Area Cliente</a>
+      </li>
+
+      <!-- Link de navegação que faz logout" -->
+      <li class="nav-item">
+          <a class="nav-link" href="?acao=logout">Logout</a>
+      </li>
+
+      <?php } ?>
+
+      </ul>
+
+  </div>
+
+  <!-- MÓDULO DE LOGIN -->
+  <div class="modal fade" id="loginWindow">
+      <div class="modal-dialog">
+          <div class="modal-content">
+
+              <!-- Header do módulo -->
+              <div class="modal-header">
+                  <h3 class="modal-title">Efetue o seu log in</h3>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Body do módulo -->
+              <div class="modal-body">
+                  <form action="" role="form" method="post">
+                      <div class="form-inline">
+                          <i class="fas fa-user-alt"></i> <input type="email" placeholder="Escreva aqui o seu email..." class="form-control input-email" name="mail">
+                      </div>
+                      <div class="form-inline">
+                           <i class="fas fa-unlock"></i> <input type="password"  placeholder="Escreva aqui a sua palavra-passe..." class="form-control input-password" name="pass">
+                      </div>
+                      <!-- Footer do módulo -->
+                      <div class="modal-footer">
+                        <button class="btn btn-block">Iniciar Sessão</button>
+                      </div>
+                  </form>
+              </div>
 
 
-        <!-- Link de navegação "Área de Cliente" -->
-        <li class="nav-item">
-            <a class="nav-link" href="area_cliente.php">Área de Cliente</a>
-        </li>
-
-        <!-- Link de navegação que faz logout" -->
-        <li class="nav-item">
-            <a class="nav-link" href="?acao=logout">Log out</a>
-        </li>
-
-        </ul>
-
-    </div>
+          </div>
+      </div>
+  </div>
+  <!-- FINAL DO MÓDULO DE LOGIN -->
 
         <!-- Contacto Telefónico -->
         <div class="phone">
@@ -122,15 +182,12 @@
             <br>
             </h5>
       </div>
-
+      <?php if (isset($_SESSION['cliente'])) { ?>
       <div id="caixa_formulario">
           <div id="formulario">
               <form action="" method="POST">
                   <!--formulario-->
                    <h3>Marque a sua visita!<br></h3>
-
-                   Contacto: <input id="field" type="number" name="phone" placeholder="Contacto Telefónico"><br>
-                   <label> err_phone</label>
 
                       *Dia: <input id="field" type="date" name="dia" placeholder="ex:18/09/2018"><br>
                     <label> err_dia  </label>
@@ -145,6 +202,7 @@
               </form>
             </div>
       </div>
+    <?php } ?>
     </div>
     </div>
 
