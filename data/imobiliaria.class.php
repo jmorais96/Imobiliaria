@@ -331,6 +331,34 @@
         return $visitas;
       }
 
+      public function registarGestor($mail, $pass, $nome, $sobrenome, $contact){
+        
+        $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
+        $tipo = $this->query($sql, array(":tipo" => "Gestor"));
+
+        $sql ='INSERT INTO funcionario (email, password, nomeProprio, sobrenome, contacto, tipoUser) VALUES(:email, :password, :nomeProprio, :sobrenome, :contacto, :tipoUser)';
+        
+      $arr = array('email' => ($mail) , 'password' => md5($pass), 'nomeProprio' => ($nome), 'sobrenome' => ($sobrenome), 'contacto' => ($contact), 'tipoUser' => $tipo[0]['idTipoUser']);
+      $this->query($sql, $arr);
+
+      return true;
+
+    }
+
+    public function mailGestorExists($mail){
+      $sql='select count(*) from funcionario where email = :email';
+      $mail=  array('email' => utf8_encode($mail));
+      $mail=$this->query($sql, $mail);
+      //var_dump($mail);
+      foreach ($mail[0] as $value) {
+        if ($value==0) {
+          return false;
+        }else {
+          return true;
+        }
+      }
+    }
+
   }
 
 
