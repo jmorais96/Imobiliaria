@@ -285,18 +285,15 @@
 
 
     public function loginFuncionario($email,$password){
-      $sql = 'SELECT count(idFuncionario) FROM funcionario WHERE email = :email AND password = :password';
+      $sql = 'SELECT * FROM funcionario WHERE email = :email AND password = :password';
       $login = array('email' => utf8_encode($email), 'password' => utf8_encode(md5($password)));
-      $count=$this->query($sql, $login);
-      // if ($_SESSION['funcionario']->get==1) {
-      //   // code...
-      // }
-
-      //var_dump("<script> console.log(".$count.") </script>");
-
-      if($count == "1"){
-          $_SESSION['email'] = $email;
-          header('location: admin.php');
+      $info=$this->query($sql, $login);
+      if(isset($info[0]["idFuncionario"])){
+        $sql='select * from tipo_user where idTipoUser = :idTipoUser';
+        $tipoFuncionario=$this->query($sql, array('idTipoUser' => utf8_encode($info[0]['tipoUser'])));
+        //var_dump($tipoFuncionario);
+        return new funcionario(utf8_decode($info[0]["idFuncionario"]), utf8_decode($info[0]["email"]), utf8_decode($info[0]["password"]), utf8_decode($info[0]["nomeProprio"]), utf8_decode($info[0]["sobrenome"]),
+         utf8_decode($info[0]["contacto"]), utf8_decode($tipoFuncionario[0]['tipo']));
       }
     }
 

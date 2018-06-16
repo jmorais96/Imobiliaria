@@ -1,12 +1,13 @@
 
 <?php
 //include("assets/constantes.php");
+require_once('../data/imobiliaria.class.php');
+require_once("../data/funcionario.class.php");
 session_start();
 
 //se o login for feito com sucesso
-if(isset($_SESSION['email'])){
-    echo '<h3>Login efetuado com sucesso. Bem-vindo '.$_SESSION['email'].'</h3>';
-    echo '</br></br><a href>"logout.php"</a>';
+if(isset($_SESSION['funcionario'])){
+    echo '<h3>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h3>';
 }
 //caso contrario reencaminha de volta ao index.php
 else{
@@ -16,10 +17,9 @@ else{
 
 
 if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
-   session_start();
    session_destroy();
-    
-   header('location: index.php');    
+
+   header('location: index.php');
 }
 
 ?>
@@ -65,20 +65,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
       <form class="" action="pdf_gestor.php" method="post">
         Vendas por gestor:
         <select class="" name="id">
-          <!-- <?php
-          //criar select para criar pdf de gestor
-            $file=fopen("../data/$filegestor", "r");
-            while (!feof($file)) {
-              $gestor=fgetcsv($file,0,";");
-              if(!empty($gestor[0])){
-                if ($gestor[0]!=1) {
-                  echo "<option value='$gestor[0]'> $gestor[3] </option>";
-                }
 
-              }
-            }
-            fclose($file);
-          ?> -->
         </select>
         <input type="submit"  value=" Gerar pdf ">
       </form>
@@ -99,23 +86,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
           <select name="ilha" id="ilha" onchange="functionConcelho(this.id,'concelho') ">
             <option value="">Ilha em que procura:</option>
 
-            <!-- <?php
 
-            $file = fopen("../data/pesquisa/ilha.csv", "r");
-
-            while (!feof($file)) {
-
-              $ilha = fgetcsv($file, 0, ";");
-
-                if($ilha[0]=="")
-                break;
-
-                echo '<option value="'.$ilha[1].'">'.$ilha[0].'</option>';
-            }
-
-            fclose($file);
-
-            ?> -->
 
           </select>
 
@@ -135,37 +106,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
         <button id="num_notifications">pendente</button>
         <button id="num_notifications1">$pendente</button>
         <div id="notifications_box">
-          <!-- <?php
 
-            //imprimir imoveis pendentes para destaque
-            for ($i=0; $i <count($pendente) ; $i++) {
-              //verificação de value da localidade para os seus nomes corretos nos ficheiros css
-              $file_ilha_pendente=fopen("../data/pesquisa/ilha.csv","r");
-              while (!feof($file_ilha_pendente)) {
-                $data_ilha_pendente=fgetcsv($file_ilha_pendente,0,";");
-                if ($data_ilha_pendente[1]==$pendente[$i][3]) {
-                  break;
-                }
-              }
-              fclose($file_ilha_pendente);
-              $file_concelho_pendente=fopen("../data/pesquisa/concelho/".trim($data_ilha_pendente[1]).".csv","r");
-              while (!feof($file_concelho_pendente)) {
-                $data_concelho_pendente=fgetcsv($file_concelho_pendente,0,";");
-                if (trim($data_concelho_pendente[1])==trim($pendente[$i][4])) {
-                  break;
-                }
-              }
-              fclose($file_concelho_pendente);
-              $file_freguesia_pendente=fopen("../data/pesquisa/freguesia/".trim($data_concelho_pendente[1]).".csv","r");
-              while (!feof($file_freguesia_pendente)) {
-                $data_freguesia_pendente=fgetcsv($file_freguesia_pendente,0,";");
-                if (trim($data_freguesia_pendente[1])==trim($pendente[$i][5])) {
-                  break;
-                }
-              }
-              fclose($file_freguesia_pendente);
-
-          ?> -->
           <div class="notification">
           <a href="../p_imovel.php/id=pendente"><div class="thumbnail_notification">
             <div class="thumb_img_notification">
@@ -185,51 +126,11 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
           </div>
           </div>
 
-        <?php
-          }
-        ?>
 
         </div>
       </div>
       <div class="management1">
-<!--
-        <?php
 
-        if(isset($id_destaque)){
-          //imprimir imoveis em destaque
-          for ($i=0; $i <count($id_destaque) ; $i++) {
-
-            $file=fopen("../imoveis/".$id_destaque[$i]."/".$id_destaque[$i]."imovel.csv", "r");
-            $destaque=fgetcsv($file,0,";");
-            fclose($file);
-            //verificação de value da localidade para os seus nomes corretos nos ficheiros css
-            $file_ilha=fopen("../data/pesquisa/ilha.csv","r");
-            while (!feof($file_ilha)) {
-              $data_ilha=fgetcsv($file_ilha,0,";");
-              if ($data_ilha[1]==$destaque[3]) {
-                break;
-              }
-            }
-            fclose($file_ilha);
-            $file_concelho=fopen("../data/pesquisa/concelho/".trim($data_ilha[1]).".csv","r");
-            while (!feof($file_concelho)) {
-              $data_concelho=fgetcsv($file_concelho,0,";");
-              if (trim($data_concelho[1])==trim($destaque[4])) {
-                break;
-              }
-            }
-            fclose($file_concelho);
-            $file_freguesia=fopen("../data/pesquisa/freguesia/".trim($data_concelho[1]).".csv","r");
-            while (!feof($file_freguesia)) {
-              $data_freguesia=fgetcsv($file_freguesia,0,";");
-              if (trim($data_freguesia[1])==trim($destaque[5])) {
-                break;
-              }
-            }
-            fclose($file_freguesia);
-
-
-        ?> -->
         <a href="../p_imovel.php?id=<?php echo $destaque[0]; ?>">
           <div class="thumbnail_management">
             <div class="thumb_img_management">
@@ -246,12 +147,6 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
         </a>
 
 
-        <?php
-
-        }
-      }
-
-        ?>
       </div>
     </div>
     <div id="Tokyo" class="tabcontent">
@@ -272,26 +167,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
       <div class="admin_container">
 
                 <h1>LISTA DE GESTORES</h1>
-                <!-- <?php
-                //listar gestor
-                  $file=fopen("../data/$filegestor", "r");
-                  while (!feof($file)) {
-                    $gestor=fgetcsv($file,0,";");
-                    if(!empty($gestor[0])){
-                      echo ("Nome:$gestor[3]<br>
-                      Username:$gestor[1] <br>
-                      Password: $gestor[2] ");
-                      //verificar se o gestor é administrador para nao o poder eliminar
-                      if($gestor[0]!=1){
-                        echo "<a href='eliminar_gestor.php?id=$gestor[0]'> ELIMINAR </a>";
-                      } ?>
-                         <?php echo "<a href='editar_gestor.php?id=$gestor[0]'> EDITAR </a> <br>";
-                    }
-                  }
-                  fclose($file);
 
-
-                ?> -->
 
       </div>
     </div>
@@ -315,43 +191,6 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     num_notifications1.style.display = "none";
     notifications_box.style.display = "none";
 }
-
-
-function functionConcelho(s1,s2){
-	var s1 = document.getElementById(s1);
-	var s2 = document.getElementById(s2);
-  s2.options.length = 0;
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if(this.readyState == XMLHttpRequest.DONE){
-        console.log(this.responseText);
-        var lines = this.responseText.split("\n");
-        for (var i = -1; i < lines.length; i++) {
-          var newOption = document.createElement("option");
-          if (i==-1) {
-              newOption.value = "Concelho";
-              newOption.innerHTML = "Concelho";
-              s2.options.add(newOption);
-            }else{
-              if (lines[i]!="") {
-                var elem = lines[i].split(";");
-                newOption.value = elem[1];
-                newOption.innerHTML = elem[0];
-                s2.options.add(newOption);
-              }
-            }
-          }
-        }
-
-    };
-    xmlhttp.open("GET", "../data/pesquisa/concelho/"+s1.value+".csv", true);
-    xmlhttp.send();
-
-
-	}
-
-
-
 
   </script>
   <?php

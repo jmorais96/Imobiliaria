@@ -1,4 +1,10 @@
+<?php
 
+  require_once('../../assets/logout.php');
+  if (!isset($_POST['funcionario'])) {
+    header("location:../index.php");
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -31,48 +37,7 @@
     </div>
     <div id="London" class="tabcontent">
         <div class="management">
-        <?php
 
-
-        //se o gestor tem imoveis em seu nome
-        if(isset($imoveis)){
-          //ordenaos acendentemente
-          arsort($imoveis);
-          //imprime os imoveis
-         foreach ($imoveis as $key => $value) {
-
-            $file=fopen("../../imoveis/".$value."/".$value."imovel.csv", "r");
-            $data=fgetcsv($file,0,";");
-            fclose($file);
-
-            //verificação de value da localidade para os seus nomes corretos nos ficheiros css
-            $file_ilha=fopen("../../data/pesquisa/ilha.csv","r");
-            while (!feof($file_ilha)) {
-              $data_ilha=fgetcsv($file_ilha,0,";");
-              if ($data_ilha[1]==$data[3]) {
-                break;
-              }
-            }
-            fclose($file_ilha);
-            $file_concelho=fopen("../../data/pesquisa/concelho/".trim($data_ilha[1]).".csv","r");
-            while (!feof($file_concelho)) {
-              $data_concelho=fgetcsv($file_concelho,0,";");
-              if (trim($data_concelho[1])==trim($data[4])) {
-                break;
-              }
-            }
-            fclose($file_concelho);
-            $file_freguesia=fopen("../../data/pesquisa/freguesia/".trim($data_concelho[1]).".csv","r");
-            while (!feof($file_freguesia)) {
-              $data_freguesia=fgetcsv($file_freguesia,0,";");
-              if (trim($data_freguesia[1])==trim($data[5])) {
-                break;
-              }
-            }
-            fclose($file_freguesia);
-
-
-        ?>
           <div class="thumbnail_management">
             <div class="thumb_img_management">
               <a href="../../p_imovel.php?id=<?php echo $data[0]; ?>"><img src="../../imoveis/<?php echo $data[0] ?>/<?php echo $data[0] ?>_0.jpg" class="img_pesquisa_m" alt=""></a>
@@ -88,68 +53,16 @@
               <a href="propor.php?id=<?php echo $data[0]; ?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
               <a href="../../edicao_imovel.php?id=<?php echo $data[0]; ?>"><button class="edit" type="button" name="button">Editar</button></a>
               <a href="../../eliminar_imovel.php?id=<?php echo $data[0]; ?>"><button class="delete" type="button" name="button">Eliminar</button></a>
-              <?php
-              $visitas= array();
 
-                //verificar se existe visitas para este imovel
-                $file_visitas=fopen("../../data/$filevisitas", "r");
-                while (!feof($file_visitas)) {
-                  $data_visita=fgetcsv($file_visitas, 0 ,";");
-                  if($data_visita[6] == '$pendente') {
-
-
-                  if ($data_visita[2]==$data[0]) {
-                    $visitas[]=$data_visita;
-                  }
-                }
-                }
-                fclose($file_visitas);
-
-
-               ?>
               <button class="visits_noti">visitas(<?php echo count($visitas); ?>)</button>
               <div class="notifications_box1">
-                <?php
-
-                if (isset($visitas)) {
-                  foreach ($visitas as $value1){
-                    $file_cli=fopen("../../data/$filecliente", "r");
-                    while (!feof($file_cli)) {
-                      $data_cli=fgetcsv($file_cli, 0,";");
-                      if ($data_cli[0]==$value1[1]) {
-                        break;
-                      }
-                    }
-
-
-                ?>
-
-
-
                 <div class="notification1">
                   <p><?php echo $data_cli[1]." ".$data_cli[2] ; ?>, quer visitar este imóvel dia <?php echo "$value1[4]"; ?> às <?php echo "$value1[5]";  ?></p>
                   <div id="visit_aprovation">
                     <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=<?php echo $value1[0]; ?>">v</a></button>
                     <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=<?php echo $value1[0]; ?>">x</a></button>
                   </div>
-
-
                 </div>
-                <?php
-              fclose($file_cli);
-                  }
-                    }
-
-                ?>
-              </div>
-            </div>
-          </div>
-          <?php
-          unset($visitas);
-        }
-      }
-
-          ?>
           </div>
       </div>
     <div id="Paris" class="tabcontent">
@@ -188,24 +101,6 @@
           <div><label>Ilha</label></div>
             <select  name="ilha" id="ilha" onchange="functionConcelho(this.id,'concelho')">
               <option value="">Ilha</option>
-
-              <?php
-
-              $file = fopen("../../data/pesquisa/ilha.csv", "r");
-
-              while (!feof($file)) {
-
-                $ilha = fgetcsv($file, 0, ";");
-
-                  if($ilha[0]=="")
-                  break;
-
-                  echo '<option value="'.$ilha[1].'">'.$ilha[0].'</option>';
-              }
-
-              fclose($file);
-
-              ?>
             </select>
           </div>
         <div class="add_prop_box">
@@ -242,41 +137,6 @@
     </div>
     <div id="Tokio" class="tabcontent">
 
-      <?php
-      //verificar visitas aceites pelo administrador
-        $file_lista_visitas=fopen("../../data/$filevisitas","r");
-        while (!feof($file_lista_visitas)) {
-          $data_lista_visitas=fgetcsv($file_lista_visitas,0,";");
-          if ($data_lista_visitas[3]==$_SESSION['admin']) {
-            if ($data_lista_visitas[6]=="aceite") {
-              $visitas_aceites[]=$data_lista_visitas;
-            }
-          }
-        }
-        if (isset($visitas_aceites)) {
-          fclose($file_lista_visitas);
-          foreach ($visitas_aceites as $row) {
-            $file_lista_cliente=fopen("../../data/$filecliente","r");
-            while (!feof($file_lista_cliente)) {
-              $data_lista_cliente=fgetcsv($file_lista_cliente,0,";");
-              if ($data_lista_cliente[0]==$row[1]) {
-                break;
-              }
-            }
-            fclose($file_lista_cliente);
-            $file_lista_imovel=fopen("../../imoveis/$row[2]/$row[2]imovel.csv", "r");
-            $data_lista_imovel=fgetcsv($file_lista_imovel,0,";");
-            fclose($file_lista_imovel);
-            echo "<strong>Visita ao imóvel ($data_lista_imovel[9])</strong> <br><br>";
-            echo "Dia da visita: " . $row[4] . "<br>";
-            echo "Hora da visita: " . $row[5] . "<br>";
-            echo "Nome do cliente: " . $data_lista_cliente[1]." ".$data_lista_cliente[2] . "<br>";
-            echo "Numero do cliente: " . $data_lista_cliente[5] . "<br>";
-          }
-        }
-
-
-       ?>
     </div>
     </div>
 
@@ -289,106 +149,7 @@
         event.preventDefault();
         $(this).next('.notifications_box1').toggle();
     });
-    function functionConcelho(s1,s2){
-    	var s1 = document.getElementById(s1);
-    	var s2 = document.getElementById(s2);
-      s2.options.length = 0;
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-          if(this.readyState == XMLHttpRequest.DONE){
-            console.log(this.responseText);
-            var lines = this.responseText.split("\n");
-            for (var i = -1; i < lines.length; i++) {
-              var newOption = document.createElement("option");
-              if (i==-1) {
-                  newOption.value = "Concelho";
-                  newOption.innerHTML = "Concelho";
-                  s2.options.add(newOption);
-                }else{
-                  if (lines[i]!="") {
-                    var elem = lines[i].split(";");
-                    newOption.value = elem[1];
-                    newOption.innerHTML = elem[0];
-                    s2.options.add(newOption);
-                  }
-                }
-              }
-            }
 
-        };
-        xmlhttp.open("GET", "../../data/pesquisa/concelho/"+s1.value+".csv", true);
-        xmlhttp.send();
-
-
-    	}
-
-      function functionFreguesia(s2,s3){
-      	var s2 = document.getElementById(s2);
-      	var s3 = document.getElementById(s3);
-        s3.options.length = 0;
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.onreadystatechange = function() {
-            if(this.readyState == XMLHttpRequest.DONE){
-              console.log(this.responseText);
-              var lines = this.responseText.split("\n");
-              for (var i = -1; i < lines.length; i++) {
-                var newOption = document.createElement("option");
-                if (i==-1) {
-                    newOption.value = "Freguesia";
-                    newOption.innerHTML = "Freguesia";
-                    s3.options.add(newOption);
-                  }else{
-                    if (lines[i]!="") {
-                      var elem = lines[i].split(";");
-                      newOption.value = elem[1];
-                      newOption.innerHTML = elem[0];
-                      s3.options.add(newOption);
-                    }
-                  }
-              }
-            }
-
-          };
-          xmlhttp.open("GET", "../../data/pesquisa/freguesia/"+s2.value+".csv", true);
-          xmlhttp.send();
-
-      	}
-        function functionTipologia(s1,s2){
-          var s1 = document.getElementById(s1);
-          var s2 = document.getElementById(s2);
-          s2.options.length = 0;
-          if (s1.value=="Terreno") {
-            var newOption = document.createElement("option");
-            newOption.value = "T0";
-            newOption.innerHTML = "T0";
-            s2.options.add(newOption);
-          }else{
-            var newOptiont0 = document.createElement("option");
-            newOptiont0.value = "T0";
-            newOptiont0.innerHTML = "T0";
-            s2.options.add(newOptiont0);
-            var newOptiont1 = document.createElement("option");
-            newOptiont1.value = "T1";
-            newOptiont1.innerHTML = "T1";
-            s2.options.add(newOptiont1);
-            var newOptiont2 = document.createElement("option");
-            newOptiont2.value = "T2";
-            newOptiont2.innerHTML = "T2";
-            s2.options.add(newOptiont2);
-            var newOptiont3 = document.createElement("option");
-            newOptiont3.value = "T3";
-            newOptiont3.innerHTML = "T3";
-            s2.options.add(newOptiont3);
-            var newOptiont4 = document.createElement("option");
-            newOptiont4.value = "T4";
-            newOptiont4.innerHTML = "T4";
-            s2.options.add(newOptiont4);
-            var newOptiont5 = document.createElement("option");
-            newOptiont5.value = "T5+";
-            newOptiont5.innerHTML = "T5+";
-            s2.options.add(newOptiont5);
-          }
-        }
     </script>
   </body>
 </html>

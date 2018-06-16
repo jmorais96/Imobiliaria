@@ -1,15 +1,27 @@
 <?php
 require_once('../data/imobiliaria.class.php');
-//include("../data/funcionario.class.php");
+require_once("../data/funcionario.class.php");
 session_start();
 
-
-
+//var_dump($_SESSION['funcionario']);
  if (isset($_POST['login'])){
      if(!empty($_POST['email']) && !empty($_POST['password'])){
-          $object = new imobiliaria("../data/config.ini");
-            echo $object->getAllUsers();
 
+          $db = new imobiliaria("../data/config.ini");
+          //var_dump($db);
+          $_SESSION['funcionario']=$db->loginFuncionario($_POST['email'], $_POST['password']);
+          if (!isset($_SESSION['funcionario'])) {
+            $message = '<label>Não existe um funcionario com estes email e password</lable>';
+          }else{
+            var_dump($_SESSION['funcionario']);
+            if ($_SESSION['funcionario']->getTipoUser()=="Administrador") {
+              header("location:login_success.php");
+            }elseif ($_SESSION['funcionario']->getTipoUser()=="Gestor") {
+              header("location:management/manager.php");
+            }else {
+              echo "<script>alert('here');</script>";
+            }
+          }
         }
         //os campos se estiverem preenchidos executa
         else {
@@ -98,13 +110,13 @@ catch (PDOException $e) {
                             <input type="password" name="password" placeholder="password" class="form-control" >
 
                             <input type="submit" name="login" class="btn btn-info" value="login">
-                          </form>
+                    </form>
 
-                          <?php
-                              if(isset($message)){
-                                  echo '<label class="text-danger">'.$message.'</label>';
-                              }
-                            ?>
+                    <?php
+                      if(isset($message)){
+                        echo '<label class="text-danger">'.$message.'</label>';
+                      }
+                    ?>
 
                 </div>
             </div>
