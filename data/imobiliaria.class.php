@@ -34,6 +34,8 @@
             $tipologia[0]['tipologia']=NULL;
           }
 
+          $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+
           $imoveis[] = new imovel($id['idImovel'],
           $id['gestor'],
           $id['finalidade'],
@@ -58,6 +60,7 @@
           $id['mobilia'],
           $id['dataConstrucao'],
           $id['informacao'],
+          $imagem,
           $id['destacado'] );
 
         }
@@ -104,6 +107,8 @@
       $sql='select destacado from destaque where idImovel = :idImovel';
       $destaque=$this->query($sql, array('idImovel' => $id));
 
+      $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+
       $imovel = new imovel($pesquisa[0]['idImovel'],
       $pesquisa[0]['gestor'],
       $finalidade[0]['finalidade'],
@@ -128,9 +133,24 @@
       $pesquisa[0]['mobilia'],
       $pesquisa[0]['dataConstrucao'],
       $pesquisa[0]['informacao'],
+      $imagens,
       $destaque[0]['destacado'] );
 
+      //var_dump($imovel);
       return $imovel;
+
+    }
+
+
+    public function getImagens($id){
+      $sql='select * from galeria WHERE idImovel = :idImovel';
+      $imagens=$this->query($sql, array('idImovel' => $id ));
+      foreach ($imagens as $imagem) {
+        // var_dump($imagem);
+        $img[]=new imagem($imagem['idImagem'], $imagem['idImovel'], $imagem['nomeImagem'], $imagem['descricao']);
+      }
+
+      return $img;
 
     }
 
@@ -294,7 +314,10 @@
         //var_dump($tipoFuncionario);
         return new funcionario(utf8_decode($info[0]["idFuncionario"]), utf8_decode($info[0]["email"]), utf8_decode($info[0]["password"]), utf8_decode($info[0]["nomeProprio"]), utf8_decode($info[0]["sobrenome"]),
          utf8_decode($info[0]["contacto"]), utf8_decode($tipoFuncionario[0]['tipo']));
+      }else {
+        echo "<script> alert('Não existe um funcionario com estes crisidenciais') </script>";
       }
+
     }
 
     public function updateCliente($campos){
@@ -326,7 +349,7 @@
         $arr = array('idUser' => utf8_decode($user->getIdUser()));
         foreach ($this->query($sql, $arr) as $value) {
           $imovel=$this->getImovel($value['idImovel']);
-          $visitas[] = new Visita($value['idVisita'], $_SESSION['cliente'], $imovel, $value['dataVisita'], $value['estadoVisita']);
+          $visitas[] = new visita($value['idVisita'], $_SESSION['cliente'], $imovel, $value['dataVisita'], $value['estadoVisita']);
         }
         return $visitas;
       }

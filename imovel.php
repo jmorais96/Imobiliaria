@@ -14,7 +14,7 @@
 
   $imovel=$bd->getImovel($_GET['id']);
   //var_dump($imovel);
-
+  //$todasImagens=$imovel->getNomeImagems();
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['pass'])) {
       $_SESSION['cliente']=$bd->loginCliente($_POST['mail'], $_POST['pass']);
@@ -159,7 +159,7 @@
 
     <div id="caixas_pesquisa">
             <div class="pesquisa_grande">
-                <img id="image" src="images/imoveis/1.jpg">
+                <img id="image" src=<?php echo ('imoveis/'. $imovel->getIdImovel().'/'.$imovel->getNomeImagemPrincipal() );?>>
                 <h4>Concelho</h4>
                 <h6>Tipologia</h6>
             </div>

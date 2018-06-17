@@ -3,16 +3,13 @@ require_once('../data/imobiliaria.class.php');
 require_once("../data/funcionario.class.php");
 session_start();
 
-//var_dump($_SESSION['funcionario']);
  if (isset($_POST['login'])){
      if(!empty($_POST['email']) && !empty($_POST['password'])){
 
           $db = new imobiliaria("../data/config.ini");
           //var_dump($db);
           $_SESSION['funcionario']=$db->loginFuncionario($_POST['email'], $_POST['password']);
-          if (!isset($_SESSION['funcionario'])) {
-            $message = '<label>Não existe um funcionario com estes email e password</lable>';
-          }else{
+            var_dump($_POST);
             var_dump($_SESSION['funcionario']);
             if ($_SESSION['funcionario']->getTipoUser()=="Administrador") {
               header("location:login_success.php");
@@ -22,49 +19,12 @@ session_start();
               echo "<script>alert('here');</script>";
             }
           }
-        }
         //os campos se estiverem preenchidos executa
         else {
             $message = '<label>Todos os campos devem ser preenchidos</lable>';
         }
  }
 
-
-/*try {
-    $bd = new imobiliaria('../data/config.ini');
-    $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    if (isset($_POST['login'])){
-        //os campos se estiverem vazios aparece msg
-        if(empty($_POST['email']) || empty($_POST['password'])){
-            $message = '<label>Todos os campos devem ser preenchidos</lable>';
-        }
-        //os campos se estiverem preenchidos executa
-        else {
-            $query = 'SELECT * FROM funcionario WHERE email = :email AND password = :password';
-            $sttm = $db->prepare($query);
-            $sttm->execute(
-                array(
-                    'email'=>$_POST['email'],
-                   'password'=>$_POST['password']
-                )
-            );
-            //verificar se os campos correspondem a algum da base de dados. Se sim reencaminha para login_success.php
-            $count = $sttm->rowCount();
-            if($count == 1){
-                $_SESSION['email'] = $_POST['email'];
-                header('location:login_success.php');
-            }
-            else {
-                $message = '<label>Dados incorretos</label>';
-            }
-        }
-
-    }
-}
-catch (PDOException $e) {
-    echo 'Conecção falhou: ' . $e->getMessage();
-}*/
 
 ?>
 

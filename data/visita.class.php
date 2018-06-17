@@ -1,6 +1,6 @@
 <?php
 
-  class Visita{
+  class visita{
 
       private $idVisita;
       private $user;

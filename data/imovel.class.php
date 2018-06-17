@@ -1,6 +1,6 @@
 <?php
-require_once('imobiliaria.class.php');
-class imovel extends imobiliaria {
+require_once('imagem.class.php');
+class imovel{
 
   // array(1) { [0]=> array(22) {
   //   ["idImovel"]=> string(1) "1"
@@ -51,11 +51,13 @@ class imovel extends imobiliaria {
    private $mobilia;
    private $dataConstrucao;
    private $informacao;
+   private $imagem;
    private $destaque;
 
 
 
-  function __construct($idImovel, $gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $ilha, $concelho, $freguesia, $situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $destaque){
+
+  function __construct($idImovel, $gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $ilha, $concelho, $freguesia, $situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $imagem, $destaque){
 
     $this->idImovel=$idImovel;
     $this->gestor=$gestor;
@@ -81,8 +83,9 @@ class imovel extends imobiliaria {
     $this->mobilia=$mobilia;
     $this->dataConstrucao=$dataConstrucao;
     $this->informacao=$informacao;
+    $this->imagem=$imagem;
     $this->destaque=$destaque;
-
+    //var_dump$this->imagem
   }
 
   public function getIdImovel(){
@@ -162,6 +165,7 @@ class imovel extends imobiliaria {
   }
 
   public function getGaragem(){
+
     return   $this->garagem;
   }
 
@@ -179,6 +183,14 @@ class imovel extends imobiliaria {
 
   public function getInformacao(){
     return   $this->informacao;
+  }
+
+  public function getNomeImagemPrincipal(){
+
+    // foreach ($this->imagem as $value) {
+    //   $nome[]=$value->getNomeImagem();
+    // }
+    return  $this->imagem[0]->getNomeImagem();
   }
 
   public function getDestaque(){

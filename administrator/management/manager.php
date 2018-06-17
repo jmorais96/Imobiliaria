@@ -1,5 +1,5 @@
 <?php
-
+  
   require_once('../../assets/logout.php');
   if (!isset($_POST['funcionario'])) {
     header("location:../index.php");
