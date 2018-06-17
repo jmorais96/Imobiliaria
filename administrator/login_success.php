@@ -1,4 +1,3 @@
-
 <?php
 //include("assets/constantes.php");
 require_once('../data/imobiliaria.class.php');
@@ -21,6 +20,18 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
    header('location: index.php');
 }
+  
+  $bd = new imobiliaria('../data/config.ini');
+  
+  if(isset($_POST['submit_manager'])) {
+
+      if(!$bd->mailGestorExists($_POST['email'])) {
+
+          $bd->registarGestor($_POST['email'], $_POST['nome'], $_POST['sobrenome'], $_POST['password'], $_POST['contacto']);
+
+      }
+
+  }
 
 ?>
 
@@ -154,12 +165,17 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
         <!-- Form para criar gestor -->
         <h1>Adicionar gestor</h1>
         <form class="add_manager" action="" method="post">
-          <label>Nome:<input type="text" name="nome" placeholder="Nome completo" value="<?php echo"$nome" ?>"/></label>
-          <label>Username:<input type="text" name="username" placeholder="Nome de utilizador" value="<?php echo"$username" ?>"/></label>
-          <label>Password:<input type="password" name="password" placeholder="Palavra passe" value="<?php echo"$password" ?>"/></label>
-          <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value="<?php echo"$retype" ?>"/></label>
+          <label>Email:<input type="email" name="email" placeholder="exemplo@exemplo.pt" value=""/></label>
+          <label>Nome próprio:<input type="text" name="nome" placeholder="Primeiro Nome" value=""/></label>
+          <label>Apelido:<input type="text" name="sobrenome" placeholder="Apelido" value=""/></label>
+          <label>Password:<input type="password" name="password" placeholder="Palavra passe" value=""/></label>
+          <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value=""/></label>
+          <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
+
+          
           <input type="submit" name="submit_manager" value="criar">
-        </form>
+
+        </form> AQUI 
       </div>
     </div>
 
@@ -172,6 +188,8 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../js/admin_container.js"></script>
   <script src="../js/pesquisa.js"></script>
   <script src="../js/filter.js"></script>
@@ -191,6 +209,40 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     num_notifications1.style.display = "none";
     notifications_box.style.display = "none";
 }
+
+    
+
+        // Localizacao
+        $(document).ready(function(){
+            $("#ilha").change(function(){
+                let ilha = $("#ilha").val();
+                $.ajax({
+                type:'POST',
+                url:'../assets/concelho.php',
+                data:"idIlha="+ ilha,
+                success:function(html){
+                    $('#concelho').html(html);
+
+                }
+                });
+            });
+
+            $("#concelho").change(function(){
+                let concelho = $("#concelho").val();
+                $.ajax({
+                type:'POST',
+                url:'../assets/freguesia.php',
+                data:"idConcelho="+ concelho,
+                success:function(html){
+                    $('#freguesia').html(html);
+
+                }
+                });
+            });
+
+
+        });
+
 
   </script>
   <?php
