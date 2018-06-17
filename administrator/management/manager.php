@@ -1,7 +1,10 @@
 <?php
-  
+require_once('../../data/imobiliaria.class.php');
+require_once("../../data/funcionario.class.php");
+session_start();
+//var_dump($_SESSION['funcionario']);
   require_once('../../assets/logout.php');
-  if (!isset($_POST['funcionario'])) {
+  if (!isset($_SESSION['funcionario'])) {
     header("location:../index.php");
   }
 ?>
