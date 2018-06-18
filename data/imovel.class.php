@@ -238,6 +238,10 @@ class imovel{
     , '" . $this->getIconMarcador() ."' );");
   }
 
+  public function toMarker(){
+    return array( $this->getIdImovel() ,$this->getLat(), $this->getLng(), $this->getRua(), $this->getTipoImovel(), $this->getArea(), $this->getPreco(),$this->getIconMarcador());
+  }
+
 
 }
 

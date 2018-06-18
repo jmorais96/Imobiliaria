@@ -86,7 +86,7 @@ session_start();
   </div>
 
     <div id="adicionarImovel" class="tabcontent">
-        <form class="add_property" action="" method="get" enctype="multipart/form-data" >
+        <form class="add_property" action="" method="post" enctype="multipart/form-data" >
           <div class="add_prop_box">
           <div><label>Finalidade</label></div>
               <select  name="finalidade">

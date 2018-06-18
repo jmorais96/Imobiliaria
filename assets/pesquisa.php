@@ -1,7 +1,8 @@
 <?php
 
-  require_once('../data/imovel.class.php');
-
+  require_once('../data/imobiliaria.class.php');
+    require_once('../data/imovel.class.php');
+  require_once('../data/imagem.class.php');
 
 
   $sql=$_POST['sql'];
