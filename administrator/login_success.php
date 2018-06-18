@@ -243,23 +243,61 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     <div id="Madrid" class="tabcontent">
       <div class="admin_container">
 
-                <h2>Lista de Gestores</h2>
+        <h2>Lista de Gestores</h2>
+        <div class="t_workers">
+            <div class="titul_workers"><h5>Email</h5></div>
+            <div class="titul_workers"><h5>Nome Próprio</h5></div>
+            <div class="titul_workers"><h5>Apelido</h5></div>
+            <div class="titul_workers"><h5>Contacto</h5></div>
+            <div class="titul_workers"><h5>Editar</h5></div>
+        </div>
+        <div class="r_workers">
                <?php
                   foreach ($bd->getWorkers() as $value) {
                   ?>
-                    <tr>
-                      <td> <?php echo $value->getEmail(); ?></td>
-                      <td> <?php echo $value->getFullName(); ?></td>
-                    <tr>
+                    <div class="result_workers"> 
+                        <?php echo $value->getEmail(); ?>
+                    </div>
+                    <div class="result_workers">
+                        <?php echo $value->getNomeProprio(); ?>
+                    </div>
+                    <div class="result_workers">
+                        <?php echo $value->getSobrenome(); ?>
+                    </div>
+                    <div class="result_workers"> 
+                        <?php echo $value->getContacto(); ?>
+                    </div>
+                    <div class="result_workers"> 
+                        <button class="edit" onclick="openCity(event, 'Portugal')" >editar</button>
+                    </div>
                  <?php
                   }
              ?>
-
-
-
       </div>
     </div>
   </div>
+  
+  <div id="Portugal" class="tabcontent">
+      <div class="admin_container">
+        <!-- Form para criar gestor -->
+        <div class="boxh2">
+            <h2>Editar gestor</h2>
+        </div>
+        <form class="add_manager" action="" method="post">
+          <label>Email:<input type="email" name="email" placeholder="exemplo@exemplo.pt" value=""/></label>
+          <label>Nome próprio:<input type="text" name="nome" placeholder="Primeiro Nome" value=""/></label>
+          <label>Apelido:<input type="text" name="sobrenome" placeholder="Apelido" value=""/></label>
+          <label>Password:<input type="password" name="password" placeholder="Palavra passe" value=""/></label>
+          <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value=""/></label>
+          <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
+
+
+          <input type="submit" name="submit_manager" value="criar">
+
+        </form>
+      </div>
+    </div>
+  
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../js/admin_container.js"></script>
