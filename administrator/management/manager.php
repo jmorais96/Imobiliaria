@@ -24,10 +24,9 @@
 
  if(isset($_POST['add_imovel'])) {
 
-      
+          $bd->adicionarImovel($_POST['gestor'], $_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['morada'], $_POST['codPostal'], $_POST['lat'], $_POST['long'], $_POST['freguesia'], $_POST['situacao'], $_POST['estado']);
 
-          $bd->registarGestor($_POST['email'], $_POST['nome'], $_POST['sobrenome'], $_POST['password'], $_POST['contacto']);
-
+          // Código aqui 
 
   }
 
@@ -35,7 +34,10 @@
 
 <!DOCTYPE html>
 <html>
+
   <head>
+
+    <!-- MetaTags -->
     <meta charset="utf-8">Azores Property | Gestão de conteúdos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -183,7 +185,7 @@
       <!-- Ilha do imóvel -->
       <div class="add_prop_box">
       <div><label>Ilha</label></div>
-        <select  name="ilha" id="ilha" >
+        <select name="ilha" id="ilha" >
           <?php $bd->selectIlha(); ?>
         </select>
       </div>

@@ -95,12 +95,12 @@
 
         <?php }else{ ?>
 
-        <!-- Link de navegação "Ares Cliente" -->
+        <!-- Link de navegação "Área de Cliente" -->
         <li class="nav-item">
             <a class="nav-link" href="area_cliente.php">Area Cliente</a>
         </li>
 
-        <!-- Link de navegação que faz logout" -->
+        <!-- Link de navegação que faz log out" -->
         <li class="nav-item">
             <a class="nav-link" href="?acao=logout">Logout</a>
         </li>
