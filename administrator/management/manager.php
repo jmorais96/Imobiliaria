@@ -30,7 +30,9 @@ session_start();
     <!-- Ficheiros JavaScript -->
     <script src="../../js/jquery.js"></script>
     <script src="../../js/main.js"></script>
+  
   </head>
+  
   <body>
     <div class="nav_box">
       <div class="logo_box">
@@ -85,74 +87,134 @@ session_start();
     </div>
   </div>
 
+    <!-- - - - - - - - - - - - - - - - - -->
+    <!-- FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
+    <!-- - - - - - - - - - - - - - - - - -->
     <div id="adicionarImovel" class="tabcontent">
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
           <div class="add_prop_box">
-          <div><label>Finalidade</label></div>
-              <select  name="finalidade">
-                <?php $bd->selectFinalidade() ?>
-              </select>
-            </div>
-          <div class="add_prop_box">
-          <div><label>Tipo de imóvel</label></div>
-            <select  name="tipo_imovel" id="tipo_de_imovel">
-              <?php $bd->selectTipoImovel() ?>
-            </select>
-          </div>
+          
+        <!-- Finalidade do imóvel -->
+        <div><label>Finalidade</label></div>
+          <select  name="finalidade">
+            <?php $bd->selectFinalidade() ?>
+          </select>
+        </div>
+
+        <!-- Tipo do imóvel -->
+        <div class="add_prop_box">
+        <div><label>Tipo de imóvel</label></div>
+          <select  name="tipo_imovel" id="tipo_de_imovel">
+            <?php $bd->selectTipoImovel() ?>
+          </select>
+        </div>
+
+        <!-- Tipologia do imóvel -->
         <div class="add_prop_box">
           <div><label>Tipologia</label></div>
-            <select  name="tipologia" id="tipologia">
-              <?php $bd->selectTipologia() ?>
-            </select>
-          </div>
-        <div class="add_prop_box">
-          <div><label>Ilha</label></div>
-            <select  name="ilha" id="ilha" >
-              <?php $bd->selectIlha(); ?>
-            </select>
-          </div>
-        <div class="add_prop_box">
-          <div><label>Concelho</label></div>
-            <select  name="concelho" id="concelho" >
-              <option value="">Selecione um concelho</option>
-            </select>
-          </div>
+          <select  name="tipologia" id="tipologia">
+            <?php $bd->selectTipologia() ?>
+          </select>
+      </div>
+
+      <!-- Área do imóvel -->
+      <div class="add_prop_box">
+      <div><label for="area">Área do imóvel</label></div>
+        <input type="text" name="area" id="area" placeholder="150Km2">
+      </div>
+
+      <!-- Preço do imóvel -->
+      <div class="add_prop_box">
+      <div><label for="preco">Preço do imóvel</label></div>
+        <input type="text" name="preco" id="preco" placeholder="5000€">
+      </div>
+
+      <!-- Situação do imóvel -->
+      <div class="add_prop_box">
+      <div><label for="situacao">Situação atual do imóvel</label></div>
+      <select  name="situacao" id="situacao">
+          <option value="">Selecione um estado</option>
+          <option value="ativo">Ativo</option>
+          <option value="concluido">Concluído</option>
+      </select>
+      </div>
+
+      <!-- Estado do imóvel -->
+      <div class="add_prop_box">
+      <div><label for="estado">Estado do imóvel</label></div>
+      <select  name="estado" id="estado">
+          <option value="">Selecione um estado</option>
+          <option value="obras">Em obras</option>
+          <option value="pronto">Pronto a habitar</option>
+      </select>
+      </div>
+
+      <!-- Ilha do imóvel -->
+      <div class="add_prop_box">
+      <div><label>Ilha</label></div>
+        <select  name="ilha" id="ilha" >
+          <?php $bd->selectIlha(); ?>
+        </select>
+      </div>
+      
+      <!-- Concelho do imóvel -->
+      <div class="add_prop_box">
+        <div><label>Concelho</label></div>
+          <select  name="concelho" id="concelho" >
+            <option value="">Selecione um concelho</option>
+          </select>
+        </div>
+
+        <!-- Freguesia do imóvel -->
         <div class="add_prop_box">
           <div><label>Freguesia</label></div>
             <select  name="freguesia" id="freguesia">
               <option value="">Selecione uma freguesia</option>
             </select>
           </div>
+
+        <!-- Morada do imóvel -->
         <div class="add_prop_box">
           <div><label>Morada</label></div><input type="text" name="morada" value="morada"/>
         </div>
-      <div class="add_prop_box">
-          <div><label>Valor</label></div><input type="number" name="valor" value="valor"/>
+
+        <!-- Código postal do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Código postal</label></div><input type="text" name="codPostal" placeholder="9500-503"/>
         </div>
-      <div class="add_prop_box">
+
+        <!-- Descrição do imóvel -->
+        <div class="add_prop_box">
           <div><label>Descrição do imovel</label></div><textarea name="descricao" value="descrição"/></textarea>
         </div>
+
+      <!-- Opção para destaque na homepage -->
       <div class="add_prop_box">
           <div><label>Destaque na homepage</label></div><input type="checkbox" name="featured" value="featured"/>
         </div>
+
+      <!-- Imagem(s) do imóvel -->
       <div class="add_prop_box">
-          <div><label>Imagem(s)</label></div><br><input type="file" name="img[]" accept="image/*" multiple>
-        </div>
-        <div class="add_prop_box">
-            <input type="hidden" name="lat" value="">
-            <input type="hidden" name="lng" value="">
-          </div>
-        <!-- MAPA -->
+        <div><label>Imagem(s)</label></div><br><input type="file" name="img[]" accept="image/*" multiple>
+      </div>
+
+      <!-- Latitude e longitude do imóvel -->
+      <div class="add_prop_box">
+        <input type="hidden" name="lat" value="">
+        <input type="hidden" name="lng" value="">
+      </div>
+
+      <!-- MAPA -->
       <div class="map" style="height:500px;"></div>
       <div class="add_prop_box">
           <input type="submit" value="criar"/>
         </div>
         </form>
     </div>
+
     <div id="visitas" class="tabcontent">
 
     </div>
-
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
