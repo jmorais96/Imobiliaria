@@ -1,6 +1,8 @@
 <?php
 require_once('../../data/imobiliaria.class.php');
+require_once("../../data/imagem.class.php");
 require_once("../../data/funcionario.class.php");
+require_once("../../data/imovel.class.php");
 session_start();
 //var_dump($_SESSION['funcionario']);
   require_once('../../assets/logout.php');
@@ -9,6 +11,10 @@ session_start();
   }
 
   $bd=new imobiliaria("../../data/config.ini");
+
+  $imoveis=$bd->imoveisGestor($_SESSION['funcionario']->getIdFuncionario());
+
+  //var_dump($imoveis);
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,9 +36,9 @@ session_start();
     <!-- Ficheiros JavaScript -->
     <script src="../../js/jquery.js"></script>
     <script src="../../js/main.js"></script>
-  
+
   </head>
-  
+
   <body>
     <div class="nav_box">
       <div class="logo_box">
@@ -55,10 +61,11 @@ session_start();
     </div>
     <div id="imoveis" class="tabcontent">
         <div class="management">
+          <?php foreach ($imoveis as $imovel) { ?>
 
           <div class="thumbnail_management">
             <div class="thumb_img_management">
-              <a href="../../p_imovel.php?id="><img src="../../imoveis/_0.jpg" class="img_pesquisa_m" alt=""></a>
+              <a href="../../imovel.php?id=<?php echo $imovel->getIdImovel();?>"><img src="../../imoveis/<?php echo $imovel->getIdImovel();?>/<?php echo $imovel->getNomeImagemPrincipal();?>" class="img_pesquisa_m" alt=""></a>
                         </div>
             <div class="thumbnail_info_management">
               <p></p>
@@ -81,9 +88,10 @@ session_start();
                     <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=">x</a></button>
                   </div>
                 </div>
+              </div>
           </div>
-      </div>
-    </div>
+        </div>
+      <?php } ?>
     </div>
   </div>
 
@@ -93,7 +101,7 @@ session_start();
     <div id="adicionarImovel" class="tabcontent">
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
           <div class="add_prop_box">
-          
+
         <!-- Finalidade do imóvel -->
         <div><label>Finalidade</label></div>
           <select  name="finalidade">
@@ -156,7 +164,7 @@ session_start();
           <?php $bd->selectIlha(); ?>
         </select>
       </div>
-      
+
       <!-- Concelho do imóvel -->
       <div class="add_prop_box">
         <div><label>Concelho</label></div>
