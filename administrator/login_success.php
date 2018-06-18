@@ -10,9 +10,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
    header('location: index.php');
 }
-  
+
   $bd = new imobiliaria('../data/config.ini');
-  
+
   if(isset($_POST['submit_manager'])) {
 
       if(!$bd->mailGestorExists($_POST['email'])) {
@@ -59,9 +59,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     <title>Mais Imobiliária | Bem-vindo</title>
 
   </head>
-  
+
   <body>
-   
+
     <!-- HEADER/NAVBAR -->
   <div class="container-header">
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -96,9 +96,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     </nav>
 </div>
 <!-- FINAL DO HEADER/NAVBAR  -->
-   
+
 <div class="container_admin">
-     
+
     <!--<div class="nav_box">
       <div class="user_box">
         <a href="?acao=logout"><button id="modalBtn1" class="user_status">Logout</button></a>
@@ -108,7 +108,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     </div>
     <div class="backend_admin">
         <h1>Administração</h1>
-    </div>   
+    </div>
     <div class="res_admin">
          <?php //se o login for feito com sucesso
             if(isset($_SESSION['funcionario'])){
@@ -117,9 +117,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
             //caso contrario reencaminha de volta ao index.php
             else{
                 header('location:index.php');
-            } 
+            }
         ?>
-     
+
     </div>
     <div class="admin_container">
     <div class="tab">
@@ -233,10 +233,10 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
           <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value=""/></label>
           <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
 
-          
+
           <input type="submit" name="submit_manager" value="criar">
 
-        </form>  
+        </form>
       </div>
     </div>
 
@@ -254,18 +254,16 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
                  <?php
                   }
              ?>
-             
-             
-             
+
+
+
       </div>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../js/admin_container.js"></script>
-  <script src="../js/p
-      
-  esquisa.js"></script>
+  <script src="../js/pesquisa.js"></script>
   <script src="../js/filter.js"></script>
   <script src="../js/popup.js"></script><!-- Script para login -->
   <script type="text/javascript">
@@ -284,7 +282,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     notifications_box.style.display = "none";
 }
 
-    
+
 
         // Localizacao
         $(document).ready(function(){
@@ -328,6 +326,6 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     echo "<script> window.alert('Já existe 6 imoveis em destaque') </script>";
   }
   ?>
-</div> 
+</div>
 </body>
 </html>

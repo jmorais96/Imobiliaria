@@ -540,30 +540,37 @@
         }
       }
     }
-    
-    # Método que permite adicionar imóveis 
+
+    # Método que permite adicionar imóveis
     public function adicionarImovel($gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $morada, $codPostal, $lat, $long, $freguesia, $situacao, $estado){
-      
+
       $sql = 'INSERT INTO imovel(gestor, finalidade, tipoImovel, area, preco, descricao, rua, codPostal, lat, long, idFreguesia, situacao, estado) VALUES(:gestor, :finalidade, :tipoImovel, :area, :preco, :descricao, :morada, :codPostal, :lat, :long, :freguesia, :situacao, :estado)';
-            
+
       $this->query($sql);
-      
+
       return true;
-      
+
     }
-      
-      
-       public function getWorkers($tipoUser){
+
+
+       public function getWorkers(){
+        $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
+        $tipoUser = $this->query($sql, array(":tipo" => "Gestor"));
+
         $sql="SELECT * FROM funcionario WHERE tipoUser = :tipoUser";
-        $workers=$this->query($sql, array(":tipoUser" => $tipoUser["Gestor"]));
-      
+        $workers=$this->query($sql, array(":tipoUser" => $tipoUser[0]["idTipoUser"]));
+
+
         foreach ($workers as $worker) {
-          $wkr[]=new funcionario($worker['idFuncionario'], $worker['email'], $worker['nomeProprio'], $worker['sobrenome']);
+          $sql = 'SELECT tipo FROM tipo_user WHERE idTipoUser = :idTipoUser';
+          $tipoUser = $this->query($sql, array(":idTipoUser" => $worker['tipoUser']));
+
+          $wkr[]=new funcionario($worker['idFuncionario'], $worker['email'],  $worker['password'], $worker['nomeProprio'], $worker['sobrenome'],  $worker['contacto'],  $tipoUser[0]['tipo']);
         }
         return $wkr;
-      
+
       }
-    
+
   }
 
 ?>
