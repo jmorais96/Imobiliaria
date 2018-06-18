@@ -46,12 +46,16 @@ button.tablinks {
 input {
     width: 100%;
         background-color: lightgrey;
+    height: 35px;
+    padding-left: 5px;
 }
 
 input[type="submit"] {
     width: 200px;
     background-color: #ED2B2A;
     color: white;
+    border-radius: 7px;
+    padding: 5px;
 }
 
 .boxh2{

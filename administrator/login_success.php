@@ -123,7 +123,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     </div>
     <div class="admin_container">
     <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Estatisticas</button>
+      <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Estatísticas</button>
       <button class="tablinks" onclick="openCity(event, 'Paris')">Imóveis em destaque</button>
       <button class="tablinks" onclick="openCity(event, 'Tokyo')" >Adicionar gestor</button>
       <button class="tablinks" onclick="openCity(event, 'Madrid')" >Edição de Gestores</button>
@@ -292,7 +292,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
           <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
 
 
-          <input type="submit" name="submit_manager" value="criar">
+          <input type="submit" name="submit_manager" value="editar">
 
         </form>
       </div>
