@@ -315,7 +315,7 @@
         return new funcionario(utf8_decode($info[0]["idFuncionario"]), utf8_decode($info[0]["email"]), utf8_decode($info[0]["password"]), utf8_decode($info[0]["nomeProprio"]), utf8_decode($info[0]["sobrenome"]),
          utf8_decode($info[0]["contacto"]), utf8_decode($tipoFuncionario[0]['tipo']));
       }else {
-        echo "<script> alert('Não existe um funcionario com estes crisidenciais') </script>";
+        echo "<script> alert('Não existe um funcionário com estes dados') </script>";
       }
 
     }

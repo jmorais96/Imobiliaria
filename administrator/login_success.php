@@ -4,16 +4,6 @@ require_once('../data/imobiliaria.class.php');
 require_once("../data/funcionario.class.php");
 session_start();
 
-//se o login for feito com sucesso
-if(isset($_SESSION['funcionario'])){
-    echo '<h3>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h3>';
-}
-//caso contrario reencaminha de volta ao index.php
-else{
-    header('location:index.php');
-}
-
-
 
 if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
    session_destroy();
@@ -39,28 +29,95 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
 <!DOCTYPE html>
 <html>
-  <head>
+ <head>
+
+    <!-- MetaTags -->
     <meta charset="utf-8">
-    <title>Azores Property | Administração</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media='screen and (min-width: 260px) and (max-width: 767px)' href="../css/mobile.css"/>
-    <link rel="stylesheet" media='screen and (min-width: 768px) and (max-width: 1100px)' href="../css/tablet.css"/>
-    <link rel="stylesheet" media='screen and (min-width: 1101px)' href="../css/admin_desktop-property.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <!-- Folhas de estilo -->
+    <link rel="stylesheet" href="../css/homepage.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/gerirImovelTable.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin.css">
+
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!-- Ficheiros JavaScript -->
+    <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Font-family PT Sans -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+    <!-- Título da página -->
+    <title>Mais Imobiliária | Bem-vindo</title>
+
   </head>
+  
   <body>
-    <div class="nav_box">
-      <div class="logo_box">
-        <a href="../index.php"><img src="../images/logo.png" alt=""></a>
-      </div>
-      <div class="backend_admin">
-        <h1>Administração</h1>
-      </div>
+   
+    <!-- HEADER/NAVBAR -->
+  <div class="container-header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.php"><img id="icon" src="../images/logo.png"/></a>
+
+  <!-- Toogler que aparecerá nos menores ecrãs -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span></button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mx-auto">
+
+        <!-- Link de navegação "Home" -->
+        <li class="nav-item">
+            <a class="nav-link" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="?acao=logout">Logout</a>
+        </li>
+
+        </ul>
+
+    </div>
+
+        <!-- Contacto Telefónico -->
+        <div class="phone">
+            <img id="phoneIcon" src="../images/call-answer.svg" alt="Contacto Telefónico"/>
+            <p id="phone-number">296 012 345</p>
+        </div>
+
+    </nav>
+</div>
+<!-- FINAL DO HEADER/NAVBAR  -->
+   
+<div class="container_admin">
+     
+    <!--<div class="nav_box">
       <div class="user_box">
         <a href="?acao=logout"><button id="modalBtn1" class="user_status">Logout</button></a>
       </div>
-    </div>
+    </div>-->
     <div class="nav_holder">
+    </div>
+    <div class="backend_admin">
+        <h1>Administração</h1>
+    </div>   
+    <div class="res_admin">
+         <?php //se o login for feito com sucesso
+            if(isset($_SESSION['funcionario'])){
+                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h4>';
+            }
+            //caso contrario reencaminha de volta ao index.php
+            else{
+                header('location:index.php');
+            } 
+        ?>
+     
     </div>
     <div class="admin_container">
     <div class="tab">
@@ -163,7 +220,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     <div id="Tokyo" class="tabcontent">
       <div class="admin_container">
         <!-- Form para criar gestor -->
-        <h1>Adicionar gestor</h1>
+        <div class="boxh2">
+            <h2>Adicionar gestor</h2>
+        </div>
         <form class="add_manager" action="" method="post">
           <label>Email:<input type="email" name="email" placeholder="exemplo@exemplo.pt" value=""/></label>
           <label>Nome próprio:<input type="text" name="nome" placeholder="Primeiro Nome" value=""/></label>
@@ -175,14 +234,14 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
           
           <input type="submit" name="submit_manager" value="criar">
 
-        </form> AQUI 
+        </form>  
       </div>
     </div>
 
     <div id="Madrid" class="tabcontent">
       <div class="admin_container">
 
-                <h1>LISTA DE GESTORES</h1>
+                <h2>Lista de Gestores</h2>
 
 
       </div>
@@ -254,5 +313,6 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     echo "<script> window.alert('Já existe 6 imoveis em destaque') </script>";
   }
   ?>
+</div> 
 </body>
 </html>
