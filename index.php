@@ -9,7 +9,7 @@
     require_once('assets/logout.php');
     $bd = new imobiliaria('data/config.ini');
 
- 
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['cliente']=$bd->loginCliente($_POST['mail'], $_POST['pass']);
       //var_dump($_SESSION['cliente']);
@@ -336,6 +336,7 @@
               success:function(pesquisa){
                 clearOverlays();
                 pesquisa=JSON.parse(pesquisa)
+                console.log(pesquisa);
                 for (imovel of pesquisa) {
                   addMarker(imovel[0], parseFloat(imovel[1]), parseFloat(imovel[2]), imovel[3], imovel[4], imovel[5], imovel[6], imovel[7]);
                 }

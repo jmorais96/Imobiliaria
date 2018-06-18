@@ -36,6 +36,7 @@
     }
 
     function addMarker(id, lat, lng, rua, tipoImovel, area, preco, icon) {
+      icon="images/pins/"+icon;
       console.log(icon);
       marker.push( new google.maps.Marker({
         position: { lat: lat, lng: lng },

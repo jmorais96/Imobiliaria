@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Jun-2018 às 07:47
+-- Generation Time: 18-Jun-2018 às 20:40
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -75,7 +75,7 @@ CREATE TABLE `destaque` (
 --
 
 INSERT INTO `destaque` (`idImovel`, `destacado`) VALUES
-(1, 1),
+(1, 0),
 (2, 1);
 
 -- --------------------------------------------------------
@@ -471,13 +471,13 @@ CREATE TABLE `tipo_imovel` (
 --
 
 INSERT INTO `tipo_imovel` (`idTipoImovel`, `tipoImovel`, `iconMarcador`) VALUES
-(1, 'Apartamento', 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'),
-(2, 'Moradia', 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'),
-(3, 'Terreno', 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'),
-(4, 'Quinta', 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'),
-(5, 'Garagem', 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'),
-(6, 'Edificio de HabitaÃ§Ã£o', ''),
-(7, 'Duplex', '');
+(1, 'Apartamento', 'pin1.png'),
+(2, 'Moradia', 'pin2.png'),
+(3, 'Terreno', 'pin3.png'),
+(4, 'Quinta', 'pin4.png'),
+(5, 'Garagem', 'pin5.png'),
+(6, 'Edificio de HabitaÃ§Ã£o', 'pin6.png'),
+(7, 'Duplex', 'pin7.png');
 
 -- --------------------------------------------------------
 

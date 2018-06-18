@@ -86,7 +86,14 @@ class imovel{
     $this->informacao=$informacao;
     $this->imagem=$imagem;
     $this->destaque=$destaque;
-    $this->iconMarcador=$iconMarcador;
+    if ($this->destaque>0) {
+      $iconMarcador=explode(".", $iconMarcador);
+      $this->iconMarcador=$iconMarcador[0]."_destaque.".$iconMarcador[1];
+
+    }else {
+        $this->iconMarcador=$iconMarcador;
+
+    }
     //var_dump$this->imagem
   }
 
