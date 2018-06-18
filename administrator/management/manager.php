@@ -147,6 +147,7 @@
       <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
 
       <!-- Finalidade do imóvel -->
+      <div class="add_prop_box">
       <div><label>Finalidade</label></div>
         <select name="finalidade">
           <?php $bd->selectFinalidade() ?>
