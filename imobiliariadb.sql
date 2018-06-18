@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17-Jun-2018 às 00:03
+-- Generation Time: 18-Jun-2018 às 07:47
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -95,6 +95,13 @@ CREATE TABLE `extras` (
   `dataConstrucao` date NOT NULL,
   `informacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `extras`
+--
+
+INSERT INTO `extras` (`idImovel`, `tipologia`, `quartos`, `casasBanho`, `garagem`, `piscina`, `mobilia`, `dataConstrucao`, `informacao`) VALUES
+(1, 3, 5, 2, 1, 1, 0, '2018-06-19', '');
 
 -- --------------------------------------------------------
 
@@ -326,6 +333,15 @@ CREATE TABLE `galeria` (
   `descricao` varchar(500) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Extraindo dados da tabela `galeria`
+--
+
+INSERT INTO `galeria` (`idImagem`, `idImovel`, `nomeImagem`, `descricao`) VALUES
+(1, 2, 'transferir(1).jpg', 'imagem 2-1'),
+(2, 1, 'Como-Investir-em-Imoveis-3-min.jpg', 'imagem 1-1'),
+(3, 1, 'Como-Investir-em-Imoveis-3-min.jpg', 'imagem 1-2');
+
 -- --------------------------------------------------------
 
 --
@@ -446,21 +462,22 @@ INSERT INTO `tipologia` (`idTipologia`, `tipologia`) VALUES
 
 CREATE TABLE `tipo_imovel` (
   `idTipoImovel` int(11) UNSIGNED NOT NULL,
-  `tipoImovel` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+  `tipoImovel` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `iconMarcador` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `tipo_imovel`
 --
 
-INSERT INTO `tipo_imovel` (`idTipoImovel`, `tipoImovel`) VALUES
-(1, 'Apartamento'),
-(2, 'Moradia'),
-(3, 'Terreno'),
-(4, 'Quinta'),
-(5, 'Garagem'),
-(6, 'Edificio de HabitaÃ§Ã£o'),
-(7, 'Duplex');
+INSERT INTO `tipo_imovel` (`idTipoImovel`, `tipoImovel`, `iconMarcador`) VALUES
+(1, 'Apartamento', 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'),
+(2, 'Moradia', 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'),
+(3, 'Terreno', 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'),
+(4, 'Quinta', 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'),
+(5, 'Garagem', 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'),
+(6, 'Edificio de HabitaÃ§Ã£o', ''),
+(7, 'Duplex', '');
 
 -- --------------------------------------------------------
 
@@ -533,7 +550,7 @@ CREATE TABLE `utilizador` (
 --
 
 INSERT INTO `utilizador` (`idUser`, `email`, `nomeProprio`, `sobrenome`, `password`, `contacto`, `idFreguesia`) VALUES
-(3, 'jose.morais.96@hotmail.com', 'JosÃ©', 'Morais', '25d55ad283aa400af464c76d713c07ad', 919999999, 38);
+(3, 'jose.morais.96@hotmail.com', 'JosÃ©', 'Morais', '25d55ad283aa400af464c76d713c07ad', 919999999, 1);
 
 -- --------------------------------------------------------
 
@@ -691,7 +708,7 @@ ALTER TABLE `concelho`
 -- AUTO_INCREMENT for table `extras`
 --
 ALTER TABLE `extras`
-  MODIFY `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `finalidade`
@@ -715,7 +732,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT for table `galeria`
 --
 ALTER TABLE `galeria`
-  MODIFY `idImagem` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idImagem` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ilha`

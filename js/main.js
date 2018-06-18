@@ -1,21 +1,45 @@
-
+    let address = "Açores";
+    let zoom = 9;
     let map;
     let geocoder;
     let marker=[];
     function initMap() {
       map = new google.maps.Map($('.map').get(0), {
         /* se login zoom 13 else 9 ?*/
-        zoom: 9
+        zoom: zoom
       });
       geocoder = new google.maps.Geocoder();
 
-      geocodeAddress(geocoder, map);
+      geocodeAddress(geocoder, map, address);
 
     }
 
-    function addMarker(id, lat, lng, rua, tipoImovel, area, preco) {
+
+
+    function clearOverlays() {
+
+      for (var i = 0; i < marker.length; i++ ) {
+        marker[i].setMap(null);
+      }
+      marker.length = 0;
+    }
+
+
+    function geocodeAddress(geocoder, resultsMap, address) {
+      /*  select localização */
+      var address = address;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+        }
+      });
+    }
+
+    function addMarker(id, lat, lng, rua, tipoImovel, area, preco, icon) {
+      console.log(icon);
       marker.push( new google.maps.Marker({
-        position: { lat: lat, lng: lng }
+        position: { lat: lat, lng: lng },
+        icon:icon
       }));
 
       var infowindow = new google.maps.InfoWindow({
@@ -40,25 +64,6 @@
 
       });
 
-    }
-
-    function clearOverlays() {
-
-      for (var i = 0; i < marker.length; i++ ) {
-        marker[i].setMap(null);
-      }
-      marker.length = 0;
-    }
-
-
-    function geocodeAddress(geocoder, resultsMap) {
-      /*  select localização */
-      var address = 'Açores';
-      geocoder.geocode({'address': address}, function(results, status) {
-        if (status === 'OK') {
-          resultsMap.setCenter(results[0].geometry.location);
-        }
-      });
     }
 
     $("button").click(function(){

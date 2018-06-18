@@ -49,6 +49,10 @@
   <!-- Ficheiros JavaScript -->
   <script src="js/jquery.js"></script>
   <script src="js/main.js"></script>
+  <script>
+  address = "<?php echo $imovel->getFreguesia(); ?>";
+  zoom=13;
+  </script>
 
   <!-- Font-family PT Sans -->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -175,10 +179,37 @@
             <h5>
             Finalidade: <?php echo $imovel->getFinalidade(); ?><br>
             Tipo de imóvel: <?php echo $imovel->getTipoImovel(); ?><br>
+            Area: <?php echo $imovel->getArea(); ?><br>
+            Rua: <?php echo $imovel->getRua(); ?><br>
+            Código Postal: <?php echo $imovel->getCodPostal(); ?><br>
             Ilha: <?php echo $imovel->getIlha(); ?><br>
             Concelho: <?php echo $imovel->getConcelho(); ?><br>
             Freguesia: <?php echo $imovel->getFreguesia(); ?><br>
-            Vendedor: <?php echo $imovel->getGestor(); ?><br>
+            Estado: <?php echo $imovel->getEstado(); ?><br>
+            <?php if ($imovel->getTipologia()!=NULL) { ?>
+              Tipologia: <?php echo $imovel->getTipologia(); ?><br>
+            <?php } ?>
+            <?php if ($imovel->getQuartos()!=NULL) { ?>
+              Numero de Quartos: <?php echo $imovel->getQuartos(); ?><br>
+            <?php } ?>
+            <?php if ($imovel->getCasasBanho()!=NULL) { ?>
+              Numero de Casas de banho: <?php echo $imovel->getCasasBanho(); ?><br>
+            <?php } ?>
+            <?php if ($imovel->getGaragem()!=NULL) { ?>
+              Garagem: <?php echo $imovel->getGaragem(); ?><br>
+            <?php } ?>
+            <?php if ($imovel->getPiscina()!=NULL) { ?>
+              Piscina: <?php echo $imovel->getPiscina(); ?><br>
+            <?php } ?>
+            <?php if ($imovel->getMobilia()!=NULL) { ?>
+              Mobilada: <?php echo $imovel->getMobilia(); ?><br>
+            <?php } ?>
+            <?php if ($imovel->getDataConstrucao()!=NULL) { ?>
+              Data de construção: <?php echo $imovel->getDataConstrucao(); ?><br>
+            <?php } ?>
+            <?php if ($imovel->getInformacao()!=NULL) { ?>
+              informacao: <?php echo $imovel->getInformacao(); ?><br>
+            <?php } ?>
             <br>
             </h5>
       </div>
@@ -204,6 +235,11 @@
       </div>
     <?php } ?>
     </div>
+
+    <!-- MAPA -->
+    <div class="map" style="margin-left:15%;"></div>
+
+
     </div>
 
     <!-- FOOTER -->
@@ -223,6 +259,9 @@
   </body>
 
 
+    <!-- API Google Maps -->
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
+
     <!-- Ficheiros JavaScript pessois -->
 
     <!-- jQuery -->
@@ -237,6 +276,9 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
+    <script>
+    <?php $imovel->addMarker() ?>
+    </script>
 
 
 </html>

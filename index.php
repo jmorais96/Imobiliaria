@@ -3,6 +3,7 @@
 
     require_once('data/imovel.class.php');
     require_once('data/user.class.php');
+    require_once('data/imagem.class.php');
     session_start();
 
     require_once('assets/logout.php');
@@ -38,6 +39,13 @@
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
+    <script>
+    <?php
+    if (isset($_SESSION['cliente'])) { ?>
+       address = "<?php echo $_SESSION['cliente']->getFreguesia(); ?>";
+       zoom=13;
+      <?php } ?>
+    </script>
 
     <!-- Font-family PT Sans -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -230,7 +238,11 @@
 
 
     <script type="text/javascript">
+
         $(document).ready(function(){
+
+
+
             $("#ilha").change(function(){
                 let ilha = $("#ilha").val();
                 $.ajax({
@@ -256,7 +268,7 @@
                 });
             });
 
-            <?php $bd->pesquisa(); ?>
+            <?php $bd->destaque(); ?>
 
             $("#encontrar").click(function() {
               let sql="select * from todosimoveis";
@@ -319,17 +331,23 @@
               $.ajax({
               type:'POST',
               url:'assets/pesquisa.php',
-              async: false,
+              async: true,
               data:{sql: sql, valores: arr},
-              success:function(html){
+              success:function(pesquisa){
                 clearOverlays();
-                //$("script").html($("script").html() + html)
-                //alert(html);
+                pesquisa=JSON.parse(pesquisa)
+                for (imovel of pesquisa) {
+                  addMarker(imovel[0], parseFloat(imovel[1]), parseFloat(imovel[2]), imovel[3], imovel[4], imovel[5], imovel[6], imovel[7]);
+                }
               }
               });
 
             });
 
         });
+    </script>
+
+    <script type="text/javascript" id="resposta">
+
     </script>
 </html>
