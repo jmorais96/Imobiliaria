@@ -469,7 +469,6 @@
         }
       }
     }
-
     
     # Método que permite adicionar imóveis 
     public function adicionarImovel($gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $morada, $codPostal, $lat, $long, $freguesia, $situacao, $estado){
