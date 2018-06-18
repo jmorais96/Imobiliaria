@@ -1,15 +1,29 @@
 <?php
-require_once('../../data/imobiliaria.class.php');
-require_once("../../data/funcionario.class.php");
-session_start();
-//var_dump($_SESSION['funcionario']);
+  
+  // Incluir a classe Imobiliária 
+  require_once('../../data/imobiliaria.class.php');
+
+  // Incluir a classe Funcionario 
+  require_once('../../data/funcionario.class.php');
+  
+  // Iniciar a sessão 
+  session_start();
+
+  // var_dump($_SESSION['funcionario']);
+
+  // Incluir a funcionalidade de log out
   require_once('../../assets/logout.php');
+  
+  // Reencaminhar o utilizar para o índex caso este não seja um funcionário 
   if (!isset($_SESSION['funcionario'])) {
     header("location:../index.php");
   }
 
-  $bd=new imobiliaria("../../data/config.ini");
+  // Criar a ligação à base de dados 
+  $bd = new imobiliaria("../../data/config.ini");
+
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -94,27 +108,30 @@ session_start();
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
           <div class="add_prop_box">
           
-        <!-- Finalidade do imóvel -->
-        <div><label>Finalidade</label></div>
-          <select  name="finalidade">
-            <?php $bd->selectFinalidade() ?>
-          </select>
-        </div>
+      <!-- Finalidade do imóvel -->
+      <div><label>Finalidade</label></div>
+        <select  name="finalidade">
+          <?php $bd->selectFinalidade() ?>
+        </select>
+      </div>
 
-        <!-- Tipo do imóvel -->
-        <div class="add_prop_box">
-        <div><label>Tipo de imóvel</label></div>
-          <select  name="tipo_imovel" id="tipo_de_imovel">
-            <?php $bd->selectTipoImovel() ?>
-          </select>
-        </div>
+      <!-- Tipo do imóvel -->
+      <div class="add_prop_box">
+      <div><label>Tipo de imóvel</label></div>
+        <select  name="tipo_imovel" id="tipo_de_imovel">
+          <?php $bd->selectTipoImovel() ?>
+        </select>
+      </div>
 
-        <!-- Tipologia do imóvel -->
-        <div class="add_prop_box">
-          <div><label>Tipologia</label></div>
-          <select  name="tipologia" id="tipologia">
-            <?php $bd->selectTipologia() ?>
-          </select>
+      <!-- Gestor do imóvel -->
+      <input type="hidden" name="" value="">
+
+      <!-- Tipologia do imóvel -->
+      <div class="add_prop_box">
+        <div><label>Tipologia</label></div>
+        <select  name="tipologia" id="tipologia">
+          <?php $bd->selectTipologia() ?>
+        </select>
       </div>
 
       <!-- Área do imóvel -->
@@ -165,28 +182,28 @@ session_start();
           </select>
         </div>
 
-        <!-- Freguesia do imóvel -->
-        <div class="add_prop_box">
-          <div><label>Freguesia</label></div>
-            <select  name="freguesia" id="freguesia">
-              <option value="">Selecione uma freguesia</option>
-            </select>
-          </div>
-
-        <!-- Morada do imóvel -->
-        <div class="add_prop_box">
-          <div><label>Morada</label></div><input type="text" name="morada" value="morada"/>
+      <!-- Freguesia do imóvel -->
+      <div class="add_prop_box">
+        <div><label>Freguesia</label></div>
+          <select  name="freguesia" id="freguesia">
+            <option value="">Selecione uma freguesia</option>
+          </select>
         </div>
 
-        <!-- Código postal do imóvel -->
-        <div class="add_prop_box">
-          <div><label>Código postal</label></div><input type="text" name="codPostal" placeholder="9500-503"/>
-        </div>
+      <!-- Morada do imóvel -->
+      <div class="add_prop_box">
+        <div><label>Morada</label></div><input type="text" name="morada" value="morada"/>
+      </div>
 
-        <!-- Descrição do imóvel -->
-        <div class="add_prop_box">
-          <div><label>Descrição do imovel</label></div><textarea name="descricao" value="descrição"/></textarea>
-        </div>
+      <!-- Código postal do imóvel -->
+      <div class="add_prop_box">
+        <div><label>Código postal</label></div><input type="text" name="codPostal" placeholder="9500-503"/>
+      </div>
+
+      <!-- Descrição do imóvel -->
+      <div class="add_prop_box">
+        <div><label>Descrição do imovel</label></div><textarea name="descricao" value="descrição"/></textarea>
+      </div>
 
       <!-- Opção para destaque na homepage -->
       <div class="add_prop_box">
@@ -204,13 +221,19 @@ session_start();
         <input type="hidden" name="lng" value="">
       </div>
 
-      <!-- MAPA -->
+      <!-- Mapa-->
       <div class="map" style="height:500px;"></div>
+      
       <div class="add_prop_box">
           <input type="submit" value="criar"/>
-        </div>
-        </form>
+      </div>
+    
+    </form>
+    
     </div>
+    <!-- - - - - - - - - - - - - - - - - - - -  -->
+    <!-- FIM DO FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
+    <!-- - - - - - - - - - - - - - - - - - - -  -->
 
     <div id="visitas" class="tabcontent">
 
