@@ -53,11 +53,12 @@ class imovel{
    private $informacao;
    private $imagem;
    private $destaque;
+   private $iconMarcador;
 
 
 
 
-  function __construct($idImovel, $gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $ilha, $concelho, $freguesia, $situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $imagem, $destaque){
+  function __construct($idImovel, $gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $ilha, $concelho, $freguesia, $situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $imagem, $destaque, $iconMarcador){
 
     $this->idImovel=$idImovel;
     $this->gestor=$gestor;
@@ -85,6 +86,7 @@ class imovel{
     $this->informacao=$informacao;
     $this->imagem=$imagem;
     $this->destaque=$destaque;
+    $this->iconMarcador=$iconMarcador;
     //var_dump$this->imagem
   }
 
@@ -103,6 +105,11 @@ class imovel{
   public function getTipoImovel(){
     return   $this->tipoImovel;
   }
+
+  public function getIconMarcador(){
+    return   $this->iconMarcador;
+  }
+
 
   public function getArea(){
     return   $this->area;
@@ -165,16 +172,40 @@ class imovel{
   }
 
   public function getGaragem(){
-
-    return   $this->garagem;
+    if ($this->garagem!=null) {
+      if ($this->garagem!=0) {
+        return "Sim";
+      }else {
+        return "Não";
+      }
+    }else {
+      return   $this->garagem;
+    }
   }
 
   public function getPiscina(){
-    return   $this->piscina;
+    if ($this->piscina!=null) {
+      if ($this->piscina!=0) {
+        return "Sim";
+      }else {
+        return "Não";
+      }
+    }else {
+      return   $this->piscina;
+    }
   }
 
   public function getMobilia(){
-    return   $this->mobilia;
+    if ($this->mobilia!=null) {
+      if ($this->mobilia!=0) {
+        return "Sim";
+      }else {
+        return "Não";
+      }
+    }else {
+      return   $this->mobilia;
+    }
+
   }
 
   public function getDataConstrucao(){
@@ -202,7 +233,9 @@ class imovel{
 
 
   public function addMarker(){
-    echo("addMarker(". $this->idImovel .", ". $this->lat .", ". $this->lng .", '" . $this->rua ."', '". $this->tipoImovel ."', '" . $this->area ."', '" . $this->preco ."' );");
+
+    echo("addMarker(". $this->getIdImovel() .", ". $this->getLat() .", ". $this->getLng() .", '" . $this->getRua() ."', '". $this->getTipoImovel() ."', '" . $this->getArea() ."', '" . $this->getPreco() ."'
+    , '" . $this->getIconMarcador() ."' );");
   }
 
 

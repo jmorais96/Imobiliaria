@@ -38,6 +38,13 @@
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
+    <script>
+    <?php
+    if (isset($_SESSION['cliente'])) { ?>
+       address = "<?php echo $_SESSION['cliente']->getFreguesia(); ?>";
+       zoom=13;
+      <?php } ?>
+    </script>
 
     <!-- Font-family PT Sans -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -230,7 +237,11 @@
 
 
     <script type="text/javascript">
+
         $(document).ready(function(){
+
+
+
             $("#ilha").change(function(){
                 let ilha = $("#ilha").val();
                 $.ajax({
