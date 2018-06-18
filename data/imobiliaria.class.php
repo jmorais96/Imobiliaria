@@ -480,6 +480,18 @@
       return true;
       
     }
+      
+      
+       public function getWorkers($tipoUser){
+        $sql="SELECT * FROM funcionario WHERE tipoUser = :tipoUser";
+        $workers=$this->query($sql, array(":tipoUser" => $tipoUser["Gestor"]));
+      
+        foreach ($workers as $worker) {
+          $wkr[]=new funcionario($worker['idFuncionario'], $worker['email'], $worker['nomeProprio'], $worker['sobrenome']);
+        }
+        return $wkr;
+      
+      }
     
   }
 

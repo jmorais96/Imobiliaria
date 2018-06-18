@@ -23,6 +23,8 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
   }
 
+
+
 ?>
 
 
@@ -242,15 +244,28 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
       <div class="admin_container">
 
                 <h2>Lista de Gestores</h2>
-
-
+               <?php
+                  foreach ($bd->getWorkers() as $value) {
+                  ?>
+                    <tr>
+                      <td> <?php echo $value->getEmail(); ?></td>
+                      <td> <?php echo $value->getFullName(); ?></td>
+                    <tr>
+                 <?php
+                  }
+             ?>
+             
+             
+             
       </div>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../js/admin_container.js"></script>
-  <script src="../js/pesquisa.js"></script>
+  <script src="../js/p
+      
+  esquisa.js"></script>
   <script src="../js/filter.js"></script>
   <script src="../js/popup.js"></script><!-- Script para login -->
   <script type="text/javascript">
