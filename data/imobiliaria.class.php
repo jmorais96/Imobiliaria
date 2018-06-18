@@ -449,10 +449,10 @@
 
         $sql ='INSERT INTO funcionario (email, password, nomeProprio, sobrenome, contacto, tipoUser) VALUES(:email, :password, :nomeProprio, :sobrenome, :contacto, :tipoUser)';
 
-      $arr = array('email' => ($mail) , 'password' => md5($pass), 'nomeProprio' => ($nome), 'sobrenome' => ($sobrenome), 'contacto' => ($contact), 'tipoUser' => $tipo[0]['idTipoUser']);
-      $this->query($sql, $arr);
+        $arr = array('email' => ($mail) , 'password' => md5($pass), 'nomeProprio' => ($nome), 'sobrenome' => ($sobrenome), 'contacto' => ($contact), 'tipoUser' => $tipo[0]['idTipoUser']);
+        $this->query($sql, $arr);
 
-      return true;
+        return true;
 
     }
 
@@ -470,9 +470,18 @@
       }
     }
 
+    
+    # Método que permite adicionar imóveis 
+    public function adicionarImovel($gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $morada, $codPostal, $lat, $long, $freguesia, $situacao, $estado){
+      
+      $sql = 'INSERT INTO imovel(gestor, finalidade, tipoImovel, area, preco, descricao, rua, codPostal, lat, long, idFreguesia, situacao, estado) VALUES(:gestor, :finalidade, :tipoImovel, :area, :preco, :descricao, :morada, :codPostal, :lat, :long, :freguesia, :situacao, :estado)';
+            
+      $this->query($sql);
+      
+      return true;
+      
+    }
+    
   }
-
-
-
 
 ?>

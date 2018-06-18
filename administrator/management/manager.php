@@ -22,6 +22,15 @@
   // Criar a ligação à base de dados 
   $bd = new imobiliaria("../../data/config.ini");
 
+ if(isset($_POST['add_imovel'])) {
+
+      
+
+          $bd->registarGestor($_POST['email'], $_POST['nome'], $_POST['sobrenome'], $_POST['password'], $_POST['contacto']);
+
+
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -107,29 +116,29 @@
     <div id="adicionarImovel" class="tabcontent">
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
           <div class="add_prop_box">
-          
+
+        <!-- Gestor do imóvel -->
+      <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
+
       <!-- Finalidade do imóvel -->
       <div><label>Finalidade</label></div>
-        <select  name="finalidade">
+        <select name="finalidade">
           <?php $bd->selectFinalidade() ?>
         </select>
       </div>
 
       <!-- Tipo do imóvel -->
       <div class="add_prop_box">
-      <div><label>Tipo de imóvel</label></div>
-        <select  name="tipo_imovel" id="tipo_de_imovel">
+      <div><label for="tipoImovel">Tipo de imóvel</label></div>
+        <select name="tipoImovel" id="tipoImovel">
           <?php $bd->selectTipoImovel() ?>
         </select>
       </div>
 
-      <!-- Gestor do imóvel -->
-      <input type="hidden" name="" value="">
-
       <!-- Tipologia do imóvel -->
       <div class="add_prop_box">
         <div><label>Tipologia</label></div>
-        <select  name="tipologia" id="tipologia">
+        <select name="tipologia" id="tipologia">
           <?php $bd->selectTipologia() ?>
         </select>
       </div>
@@ -144,6 +153,11 @@
       <div class="add_prop_box">
       <div><label for="preco">Preço do imóvel</label></div>
         <input type="text" name="preco" id="preco" placeholder="5000€">
+      </div>
+
+      <!-- Descrição do imóvel -->
+      <div class="add_prop_box">
+        <div><label>Descrição do imovel</label></div><textarea name="descricao" value="descrição"/></textarea>
       </div>
 
       <!-- Situação do imóvel -->
@@ -192,17 +206,12 @@
 
       <!-- Morada do imóvel -->
       <div class="add_prop_box">
-        <div><label>Morada</label></div><input type="text" name="morada" value="morada"/>
+        <div><label for="morada">Morada</label></div><input type="text" name="morada" value="morada"/>
       </div>
 
       <!-- Código postal do imóvel -->
       <div class="add_prop_box">
         <div><label>Código postal</label></div><input type="text" name="codPostal" placeholder="9500-503"/>
-      </div>
-
-      <!-- Descrição do imóvel -->
-      <div class="add_prop_box">
-        <div><label>Descrição do imovel</label></div><textarea name="descricao" value="descrição"/></textarea>
       </div>
 
       <!-- Opção para destaque na homepage -->
@@ -218,14 +227,14 @@
       <!-- Latitude e longitude do imóvel -->
       <div class="add_prop_box">
         <input type="hidden" name="lat" value="">
-        <input type="hidden" name="lng" value="">
+        <input type="hidden" name="long" value="">
       </div>
 
       <!-- Mapa-->
       <div class="map" style="height:500px;"></div>
       
       <div class="add_prop_box">
-          <input type="submit" value="criar"/>
+          <input type="submit" name="add_imovel" value="Adicionar imóvel"/>
       </div>
     
     </form>
