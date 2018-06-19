@@ -485,7 +485,7 @@
 
       public function getUsers(){
           $stmt = $this->query('SELECT * FROM utilizador where idUser= :idUser');
-          
+
 
       }
 
@@ -531,18 +531,10 @@
         return true;
 
     }
-      
-    public function editarGestor($mail, $pass, $nome, $sobrenome, $contact){
 
-        $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
-        $tipo = $this->query($sql, array(":tipo" => "Gestor"));
+    public function editarGestor($sql, $campos){
 
-        $sql ='UPDATE utilizador SET email = :email, nomeProprio = :nomeProprio, sobrenome = :sobrenome, password = :password, contacto = :contacto';
-
-        $arr = array('email' => ($mail) , 'password' => md5($pass), 'nomeProprio' => ($nome), 'sobrenome' => ($sobrenome), 'contacto' => ($contact), 'tipoUser' => $tipo[0]['idTipoUser']);
-        $this->query($sql, $arr);
-
-       // return true;
+        $this->query($sql, $campos);
 
     }
 
@@ -571,7 +563,7 @@
 
     }
 
- 
+
        public function getWorkers(){
         $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
         $tipoUser = $this->query($sql, array(":tipo" => "Gestor"));

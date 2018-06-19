@@ -25,7 +25,47 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
 if(isset($_POST['edit_manager'])) {
 //codigo do botao de editar gestor
-   $bd->editarGestor($_POST['email'], $_POST['nome'], $_POST['sobrenome'], $_POST['password'], $_POST['contacto']);
+
+  $sql="UPDATE funcionario SET ";
+
+  $campos=[];
+  if ($_POST['email']) {
+    $campos['email']=$_POST['email'];
+    $sql .= "email = :email, ";
+  }
+  if ($_POST['nome']) {
+    $campos['nomeProprio']=$_POST['nome'];
+    $sql .= "nomeProprio = :nomeProprio, ";
+  }
+
+  if ($_POST['sobrenome']) {
+    $campos['sobrenome']=$_POST['sobrenome'];
+    $sql .= "sobrenome = :sobrenome, ";
+  }
+
+  if ($_POST['password']) {
+
+    $campos['password']=$_POST['password'];
+    $sql .= "password = :password, ";
+  }
+
+  if ($_POST['contacto']) {
+    $campos['contacto']=$_POST['contacto'];
+    $sql .= "contacto = :contacto, ";
+  }
+
+  if ($_POST['id']) {
+    $sql=substr($sql, 0, -2);
+    $campos['idFuncionario']=$_POST['id'];
+    $sql .= " where idFuncionario = :idFuncionario";
+  }
+
+   if ((isset($_POST['password'])) && (isset($_POST['retype'])) ) {
+     if ($_POST['password']==$_POST['retype']) {
+       $bd->editarGestor($sql, $campos);
+     }
+   }
+
 }
 
 
@@ -288,10 +328,10 @@ if(isset($_POST['edit_manager'])) {
           <label>Email:<input type="email" name="email" value="<?php echo $value->getEmail(); ?>" placeholder=""/></label>
           <label>Nome próprio:<input type="text" name="nome" value="<?php echo $value->getNomeProprio(); ?>" placeholder=""/></label>
           <label>Apelido:<input type="text" name="sobrenome" value="<?php echo $value->getSobrenome(); ?>" placeholder=""/></label>
-          <label>Password:<input type="text" name="password" value="<?php echo $value->getPassword(); ?>" placeholder=""/></label>
-          <label>Comfirmar password:<input type="text" name="retype" value="Confirme a palavra pass" placeholder=""/></label>
+          <label>Password:<input type="password" name="password" value="" placeholder=""/></label>
+          <label>Comfirmar password:<input type="password" name="retype" value="Confirme a palavra pass" placeholder=""/></label>
           <label>Contacto:<input type="contacto" name="contacto" value="<?php echo $value->getContacto(); ?>" placeholder=""/></label>
-
+          <input type="hidden" name="id" value="<?php echo $value->getIdFuncionario(); ?>">
 
           <input type="submit" name="edit_manager" value="editar">
 
