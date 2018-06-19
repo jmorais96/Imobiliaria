@@ -245,30 +245,24 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
         <h2>Lista de Gestores</h2>
         <div class="t_workers">
-            <div class="titul_workers"><h5>Email</h5></div>
-            <div class="titul_workers"><h5>Nome Próprio</h5></div>
-            <div class="titul_workers"><h5>Apelido</h5></div>
-            <div class="titul_workers"><h5>Contacto</h5></div>
-            <div class="titul_workers"><h5>Editar</h5></div>
+            <div class="titul_workers">
+                <h5>Email</h5>
+                <h5>Nome Próprio</h5>
+                <h5>Apelido</h5>
+                <h5>Contacto</h5>
+                <h5>Editar</h5>
+            </div>
         </div>
         <div class="r_workers">
                <?php
                   foreach ($bd->getWorkers() as $value) {
                   ?>
                     <div class="result_workers"> 
-                        <?php echo $value->getEmail(); ?>
-                    </div>
-                    <div class="result_workers">
-                        <?php echo $value->getNomeProprio(); ?>
-                    </div>
-                    <div class="result_workers">
-                        <?php echo $value->getSobrenome(); ?>
-                    </div>
-                    <div class="result_workers"> 
-                        <?php echo $value->getContacto(); ?>
-                    </div>
-                    <div class="result_workers"> 
-                        <button class="edit" onclick="openCity(event, 'Portugal')" >editar</button>
+                       <h7><?php echo $value->getEmail(); ?></h7>      
+                        <h7><?php echo $value->getNomeProprio(); ?></h7>       
+                        <h7><?php echo $value->getSobrenome(); ?></h7>
+                        <h7><?php echo $value->getContacto(); ?></h7>
+                        <button class="edit" onclick="openCity(event, 'Portugal')" >editar</button><br>
                     </div>
                  <?php
                   }
@@ -284,7 +278,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
             <h2>Editar gestor</h2>
         </div>
         <form class="add_manager" action="" method="post">
-          <label>Email:<input type="email" name="email" placeholder="exemplo@exemplo.pt" value=""/></label>
+          <label>Email:<input type="email" name="email" placeholder="<?php echo $value->getEmail(); ?>" value=""/></label>
           <label>Nome próprio:<input type="text" name="nome" placeholder="Primeiro Nome" value=""/></label>
           <label>Apelido:<input type="text" name="sobrenome" placeholder="Apelido" value=""/></label>
           <label>Password:<input type="password" name="password" placeholder="Palavra passe" value=""/></label>
@@ -292,7 +286,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
           <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
 
 
-          <input type="submit" name="submit_manager" value="editar">
+          <input type="submit" name="edit_manager" value="editar">
 
         </form>
       </div>
