@@ -33,12 +33,9 @@
 
  if(isset($_POST['add_imovel'])) {
 
-          $bd->adicionarImovel($_POST['gestor'], $_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['morada'], $_POST['codPostal'], $_POST['lat'], $_POST['long'], $_POST['freguesia'], $_POST['situacao'], $_POST['estado']);
-
-          // Código aqui
-
+          $bd->adicionarImovel($_POST['gestor'], $_POST['finalidade'], $_POST['tipoImovel'], $_POST['tipologia'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['morada'], $_POST['codPostal'], $_POST['lat'], $_POST['long'], $_POST['freguesia'], $_POST['situacao'], $_POST['estado']);
+  
   }
-
 
   $imoveis=$bd->imoveisGestor($_SESSION['funcionario']->getIdFuncionario());
 
