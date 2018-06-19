@@ -23,6 +23,10 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
   }
 
+if(isset($_POST['edit_manager'])) {
+//codigo do botao de editar gestor
+   $bd->editarGestor($_POST['email'], $_POST['nome'], $_POST['sobrenome'], $_POST['password'], $_POST['contacto']);
+}
 
 
 ?>
@@ -246,9 +250,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
         <h2>Lista de Gestores</h2>
         <div class="t_workers">
             <div class="titul_workers">
-                <h5>Email</h5>
                 <h5>Nome Próprio</h5>
                 <h5>Apelido</h5>
+                <h5>Email</h5>
                 <h5>Contacto</h5>
                 <h5>Editar</h5>
             </div>
@@ -258,9 +262,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
                   foreach ($bd->getWorkers() as $value) {
                   ?>
                     <div class="result_workers">
-                       <h7><?php echo $value->getEmail(); ?></h7>
                         <h7><?php echo $value->getNomeProprio(); ?></h7>
                         <h7><?php echo $value->getSobrenome(); ?></h7>
+                        <h7><?php echo $value->getEmail(); ?></h7>
                         <h7><?php echo $value->getContacto(); ?></h7>
                         <button class="edit" onclick="openCity(event, '<?php echo $value->getEmail(); ?>')" >editar</button><br>
                     </div>
@@ -281,12 +285,12 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
             <h2>Editar gestor</h2>
         </div>
         <form class="add_manager" action="" method="post">
-          <label>Email:<input type="email" name="email" placeholder="<?php echo $value->getEmail(); ?>" value=""/></label>
-          <label>Nome próprio:<input type="text" name="nome" placeholder="Primeiro Nome" value=""/></label>
-          <label>Apelido:<input type="text" name="sobrenome" placeholder="Apelido" value=""/></label>
-          <label>Password:<input type="password" name="password" placeholder="Palavra passe" value=""/></label>
-          <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value=""/></label>
-          <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
+          <label>Email:<input type="email" name="email" value="<?php echo $value->getEmail(); ?>" placeholder=""/></label>
+          <label>Nome próprio:<input type="text" name="nome" value="<?php echo $value->getNomeProprio(); ?>" placeholder=""/></label>
+          <label>Apelido:<input type="text" name="sobrenome" value="<?php echo $value->getSobrenome(); ?>" placeholder=""/></label>
+          <label>Password:<input type="text" name="password" value="<?php echo $value->getPassword(); ?>" placeholder=""/></label>
+          <label>Comfirmar password:<input type="text" name="retype" value="Confirme a palavra pass" placeholder=""/></label>
+          <label>Contacto:<input type="contacto" name="contacto" value="<?php echo $value->getContacto(); ?>" placeholder=""/></label>
 
 
           <input type="submit" name="edit_manager" value="editar">

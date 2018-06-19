@@ -20,7 +20,7 @@ class funcionario {
     $this->contacto=$contacto;
     $this->tipoUser=$tipoUser;
   }
-
+ 
   public function getIdFuncionario(){
     return $this->idFuncionario;
   }
