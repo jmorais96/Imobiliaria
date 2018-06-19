@@ -257,21 +257,24 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
                <?php
                   foreach ($bd->getWorkers() as $value) {
                   ?>
-                    <div class="result_workers"> 
-                       <h7><?php echo $value->getEmail(); ?></h7>      
-                        <h7><?php echo $value->getNomeProprio(); ?></h7>       
+                    <div class="result_workers">
+                       <h7><?php echo $value->getEmail(); ?></h7>
+                        <h7><?php echo $value->getNomeProprio(); ?></h7>
                         <h7><?php echo $value->getSobrenome(); ?></h7>
                         <h7><?php echo $value->getContacto(); ?></h7>
-                        <button class="edit" onclick="openCity(event, 'Portugal')" >editar</button><br>
+                        <button class="edit" onclick="openCity(event, '<?php echo $value->getEmail(); ?>')" >editar</button><br>
                     </div>
-                 <?php
+                    <?php
                   }
-             ?>
+                  ?>
       </div>
     </div>
   </div>
-  
-  <div id="Portugal" class="tabcontent">
+
+    <?php
+     foreach ($bd->getWorkers() as $value) {
+    ?>
+  <div id="<?php echo $value->getEmail(); ?>" class="tabcontent">
       <div class="admin_container">
         <!-- Form para criar gestor -->
         <div class="boxh2">
@@ -291,7 +294,11 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
         </form>
       </div>
     </div>
-  
+
+    <?php
+  }
+  ?>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../js/admin_container.js"></script>
