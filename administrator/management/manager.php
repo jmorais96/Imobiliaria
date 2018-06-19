@@ -38,43 +38,56 @@
   <head>
 
     <!-- MetaTags -->
-    <meta charset="utf-8">Azores Property | Gestão de conteúdos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="../../css/homepage.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../../css/gerirImovelTable.css">
+    <link rel="stylesheet" href="../../css/gestor.css" type="text/css">
 
     <!-- Ícones Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
+    <!-- Font-family PT Sans -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
     <!-- Ficheiros JavaScript -->
     <script src="../../js/jquery.js"></script>
     <script src="../../js/main.js"></script>
-  
+
+    <!-- Título da página -->
+    <title>Mais Imobiliária | Gestão de Conteúdos</title>
+
   </head>
   
   <body>
-    <div class="nav_box">
-      <div class="logo_box">
-        <a href="../../index.php"><img src="../../images/logo.png" alt=""></a>
-      </div>
-      <div class="backend_admin">
-        <h1>Gestão de conteúdos</h1>
-      </div>
+
+    <!-- HEADER DA ÁREA DE GESTÃO DE CONTEÚDOS -->
+    <div class="container-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="../../index.php"><img id="icon" src="../../images/logo.png" alt="Logótipo da imobiliária"/></a>
+
+    <!-- Título da página -->
+    <div class="navbar-nav mx-auto header-gestao">
+        <h3>Gestão de conteúdos</h3> 
+    </div>
+
+    <!-- Botão de logout -->
+    <a href="?acao=logout"><button class="logout_gestor">Encerrar sessão</button></a>
+  
+  </div>
+ </div>
+
       <div class="user_box">
-        <a href="?acao=logout"><button class="user_status">Logout</button></a>
       </div>
     </div>
-    <div class="nav_holder">
-    </div>
+    
     <div class="admin_container">
     <div class="tab">
-      <button class="tablinks"  id="btnImoveis">Imóveis</button>
+      <button class="tablinks" id="btnImoveis">Imóveis</button>
       <button class="tablinks" id="btnAdicionarImovel" >Adicionar imóveis</button>
       <button class="tablinks" id="btnAdicionarVisita">Visitas</button>
     </div>
