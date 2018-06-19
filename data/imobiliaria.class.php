@@ -483,6 +483,12 @@
 
       }
 
+      public function getUsers(){
+          $stmt = $this->query('SELECT * FROM utilizador where idUser= :idUser');
+          
+
+      }
+
       public function registarVisita($idUser, $dia, $hora, $imovel){
         $sql ='INSERT INTO visita (user, idImovel, dataVisita, estadoVisita) VALUES(:user, :idImovel, :dataVisita, :estadoVisita)';
         $dia = $dia . " " . $hora;
@@ -492,11 +498,21 @@
       }
 
 
-      public function getVisitas($user){
+      public function getVisitasUser($user){
         $sql="SELECT * FROM visita WHERE user = :idUser";
         $arr = array('idUser' => utf8_decode($user->getIdUser()));
         foreach ($this->query($sql, $arr) as $value) {
           $imovel=$this->getImovel($value['idImovel']);
+          $visitas[] = new visita($value['idVisita'], $_SESSION['cliente'], $imovel, $value['dataVisita'], $value['estadoVisita']);
+        }
+        return $visitas;
+      }
+
+      public function getVisitasImovel($imovel){
+        $sql="SELECT * FROM visita WHERE idImovel = :idImovel";
+        $arr = array('idImovel' => utf8_decode($imovel->getIdImovel()));
+        foreach ($this->query($sql, $arr) as $value) {
+          $user=$this->getImovel($value['idImovel']);
           $visitas[] = new visita($value['idVisita'], $_SESSION['cliente'], $imovel, $value['dataVisita'], $value['estadoVisita']);
         }
         return $visitas;

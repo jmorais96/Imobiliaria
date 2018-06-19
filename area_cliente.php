@@ -238,7 +238,7 @@
           <tbody>
           <?php
 
-            foreach ($bd->getVisitas($_SESSION['cliente']) as $value) {
+            foreach ($bd->getVisitasUser($_SESSION['cliente']) as $value) {
           ?>
 
             <tr>

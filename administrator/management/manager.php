@@ -112,11 +112,11 @@
               <a href="../../imovel.php?id=<?php echo $imovel->getIdImovel();?>"><img src="../../imoveis/<?php echo $imovel->getIdImovel();?>/<?php echo $imovel->getNomeImagemPrincipal();?>" class="img_pesquisa_m" alt=""></a>
                         </div>
             <div class="thumbnail_info_management">
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
+              <p><?php echo $imovel->getRua();?></p>
+              <p><?php echo $imovel->getIlha();?></p>
+              <p><?php echo $imovel->getConcelho();?></p>
+              <p><?php echo $imovel->getFreguesia();?></p>
+              <p><?php echo $imovel->getTipoImovel();?></p>
             </div>
             <div class="buttons_management">
               <a href="propor.php?id="> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
@@ -335,10 +335,6 @@
           }
           });
       });
-
-      $("#imoveis").show();
-      $("#visita").hide();
-      $("#adicionarImovel").hide();
 
 
       $("#btnAdicionarImovel").click(function(){
