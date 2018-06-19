@@ -25,37 +25,28 @@ session_start();
         }
  }
 
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
   <head>
-  	<title>Integrated Managment System</title>
+
+    <!-- MetaTags -->
   	<meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Folhas de estilo -->
     <link rel="stylesheet" href="../css/styleLogin.css"/>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!--<script src="js/script.js"></script>-->
+    
+    <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<title>Mais Imobiliária | Log in administrativo</title>
   </head>
   <body>
-
-
-    <div class="header">
-           <div class="box_header_left_login">
-               <div class="subbox_header_left">
-
-
-               </div>
-           </div>
-           <div class="box_header_right_login">
-
-            </div>
-    </div>
-
 
     <div class="container_2">
        <div class="box_left_login">
@@ -65,11 +56,12 @@ session_start();
 
                    <form action="" method="POST">
 
-                            <input type="text" name="email" placeholder="e-mail" class="form-control" >
+                            <input type="text" name="email" placeholder="E-mail" class="form-control" >
 
-                            <input type="password" name="password" placeholder="password" class="form-control" >
+                            <input type="password" name="password" placeholder="Password" class="form-control" >
 
-                            <input type="submit" name="login" class="btn btn-info" value="login">
+                            <button type="submit" name="login" class="btn">Iniciar Sessão</button>
+                    ´
                     </form>
 
                     <?php
@@ -81,19 +73,9 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="box_right_login">
-            <div class="subbox_right">
-                <div class="subbox_row">
-
-
-                </div>
-            </div>
 
         </div>
     </div>
 
-
 </body>
-
-
 </html>

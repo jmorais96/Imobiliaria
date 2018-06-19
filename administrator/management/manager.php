@@ -143,15 +143,6 @@
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
           <div class="add_prop_box">
 
-
-        <!-- Finalidade do imóvel -->
-        <div><label>Finalidade</label></div>
-          <select  name="finalidade">
-            <?php $bd->selectFinalidade() ?>
-          </select>
-        </div>
-
-
         <!-- Gestor do imóvel -->
       <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
 
