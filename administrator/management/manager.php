@@ -85,19 +85,19 @@
 
     <!-- Título da página -->
     <div class="navbar-nav mx-auto header-gestao">
-        <h3>Gestão de conteúdos</h3> 
+        <h3>Gestão de conteúdos</h3>
     </div>
 
     <!-- Botão de logout -->
     <a href="?acao=logout"><button class="logout_gestor">Encerrar sessão</button></a>
-  
+
   </div>
  </div>
 
       <div class="user_box">
       </div>
     </div>
-    
+
     <div class="admin_container">
     <div class="tab">
       <button class="tablinks" id="btnImoveis">Imóveis</button>
@@ -106,7 +106,6 @@
     </div>
     <div id="imoveis" class="tabcontent">
       <?php foreach ($imoveis as $imovel) {?>
-<?php //var_dump($imovel->getImagens());?>
         <div class="management">
           <div class="thumbnail_management">
             <div class="thumb_img_management">

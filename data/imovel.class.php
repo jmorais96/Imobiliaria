@@ -233,9 +233,11 @@ class imovel{
   }
 
   public function getNomeImagemPrincipal(){
-      var_dump($this->imagem);
+    if (!is_array($this->getImagens())) {
+      return $this->imagem->getNomeImagem();
+    }else {
       return  $this->imagem[0]->getNomeImagem();
-
+    }
   }
 
 

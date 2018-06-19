@@ -310,7 +310,7 @@
         }
         return $img;
       }else {
-        return $imagens;
+        return $imagens = new imagem($imagens[0]['idImagem'], $imagens[0]['idImovel'], $imagens[0]['nomeImagem'], $imagens[0]['descricao']);
       }
 
     }
