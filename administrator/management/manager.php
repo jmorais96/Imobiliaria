@@ -92,9 +92,9 @@
       <button class="tablinks" id="btnAdicionarVisita">Visitas</button>
     </div>
     <div id="imoveis" class="tabcontent">
+      <?php foreach ($imoveis as $imovel) {?>
+<?php //var_dump($imovel->getImagens());?>
         <div class="management">
-          <?php foreach ($imoveis as $imovel) { ?>
-
           <div class="thumbnail_management">
             <div class="thumb_img_management">
               <a href="../../imovel.php?id=<?php echo $imovel->getIdImovel();?>"><img src="../../imoveis/<?php echo $imovel->getIdImovel();?>/<?php echo $imovel->getNomeImagemPrincipal();?>" class="img_pesquisa_m" alt=""></a>
@@ -123,8 +123,8 @@
               </div>
           </div>
         </div>
-      <?php } ?>
     </div>
+  <?php } ?>
   </div>
 
     <!-- - - - - - - - - - - - - - - - - -->
