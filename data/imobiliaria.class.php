@@ -534,6 +534,31 @@
         return $visitas;
       }
 
+      public function getVisitasAceites($gestor){
+        $sql="SELECT * FROM visita WHERE estadoVisita = 'Aceite'";
+        $visitas=[];
+        foreach ($this->query($sql) as $value) {
+          $imovel=$this->getImovel($value['idImovel']);
+          if ($imovel->getGestor()==$_SESSION['funcionario']->getIdFuncionario()) {
+            $user=$this->getUsers($value['user']);
+            $visitas[] = new visita($value['idVisita'], $user, $imovel, $value['dataVisita'], $value['estadoVisita']);
+          }
+
+        }
+        return $visitas;
+      }
+
+      public function aceitarVisita($id){
+        $sql="UPDATE visita SET estadoVisita = :estadoVisita  WHERE idVisita = :idVisita";
+        $this->query($sql, array('estadoVisita' => "Aceite", 'idVisita' => $id ));
+      }
+
+      public function negarVisita($id){
+        $sql="UPDATE visita SET estadoVisita = :estadoVisita  WHERE idVisita = :idVisita";
+        $this->query($sql, array('estadoVisita' => "Não aceite", 'idVisita' => $id ));
+      }
+
+
       public function registarGestor($mail, $pass, $nome, $sobrenome, $contact){
 
         $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
@@ -575,12 +600,12 @@
 
       $arr_tabela_imovel = array('gestor' => $gestor , 'finalidade' => $finalidade, 'tipoImovel' => $tipoImovel, 'area' => $area, 'preco' => $preco, 'descricao' => $descricao, 'morada' => $morada, 'codPostal' => $codPostal, 'lat' => $lat, 'long' => $long, 'freguesia' => $freguesia, 'situacao' => $situacao, 'estado' => $estado);
       $this->query($sql_tabela_imovel, $arr_tabela_imovel);
-      
+
       $sql_tabela_extras = 'INSERT INTO extras(tipologia) VALUES(:tipologia)';
       $arr_tabela_extras = array('tipologia' => $tipologia);
 
       $this->query($sql_tabela_extras, $arr_tabela_extras);
-      
+
       return true;
 
     }
