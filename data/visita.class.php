@@ -38,6 +38,10 @@
         return $this->estado;
       }
 
+      public function getFullName(){
+        return $this->user->getFullName();
+      }
+
   }
 
  ?>

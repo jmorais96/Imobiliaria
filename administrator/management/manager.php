@@ -13,6 +13,12 @@
   // Incluir a classe imagem
   require_once('../../data/imagem.class.php');
 
+  // Incluir a classe user
+  require_once('../../data/user.class.php');
+
+  // Incluir a classe visita
+  require_once('../../data/visita.class.php');
+
   // Iniciar a sessão
   session_start();
 
@@ -122,17 +128,21 @@
               <a href="propor.php?id="> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
               <a href="../../edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>
               <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
-
-              <button class="visits_noti">visitas()</button>
+              <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>
+              <button class="visits_noti">visitas(<?php if(isset($visitas)){ echo (count($visitas)); }else {echo "0"; } ?>)</button>
+              <?php if (isset($visitas)) {
+                foreach ($visitas as $value) {
+              ?>
               <div class="notifications_box1">
                 <div class="notification1">
-                  <p>, quer visitar este imóvel dia às </p>
+                  <p><?php echo $value->getFullName(); ?>, quer visitar este imóvel dia <?php echo $value->getData(); ?> às <?php echo $value->getHora(); ?> </p>
                   <div id="visit_aprovation">
-                    <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=">v</a></button>
-                    <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=">x</a></button>
+                    <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=<?php echo $imovel->getIdImovel();?>">v</a></button>
+                    <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=<?php echo $imovel->getIdImovel();?>">x</a></button>
                   </div>
                 </div>
               </div>
+            <?php }} ?>
           </div>
         </div>
     </div>

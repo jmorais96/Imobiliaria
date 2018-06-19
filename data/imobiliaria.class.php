@@ -483,9 +483,23 @@
 
       }
 
-      public function getUsers(){
-          $stmt = $this->query('SELECT * FROM utilizador where idUser= :idUser');
+      public function getUsers($idUser){
+          $sql = 'SELECT * FROM utilizador where idUser= :idUser';
+          $info=$this->query($sql, array('idUser' =>$idUser ));
 
+          $sql='select * from freguesia where idFreguesia = :idFreguesia';
+          $freguesia=$this->query($sql, array('idFreguesia' => utf8_encode($info[0]['idFreguesia'])));
+          //var_dump($freguesia);
+
+          $sql='select * from concelho where idConcelho = :idConcelho';
+          $concelho=$this->query($sql, array('idConcelho' => utf8_encode($freguesia[0]['idConcelho'])));
+
+          $sql='select * from ilha where idIlha = :idIlha';
+          $ilha=$this->query($sql, array('idIlha' => utf8_encode($concelho[0]['idIlha'])));
+
+
+          return new User($info[0]["idUser"], $info[0]["email"], $info[0]["nomeProprio"], $info[0]["sobrenome"], $info[0]["password"], $info[0]["contacto"],
+           $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia']);
 
       }
 
@@ -508,12 +522,14 @@
         return $visitas;
       }
 
-      public function getVisitasImovel($imovel){
-        $sql="SELECT * FROM visita WHERE idImovel = :idImovel";
+      public function getVisitasPendenteImovel($imovel){
+        $sql="SELECT * FROM visita WHERE idImovel = :idImovel AND estadoVisita = 'Em apreciação'";
         $arr = array('idImovel' => utf8_decode($imovel->getIdImovel()));
+        $visitas=[];
         foreach ($this->query($sql, $arr) as $value) {
-          $user=$this->getImovel($value['idImovel']);
-          $visitas[] = new visita($value['idVisita'], $_SESSION['cliente'], $imovel, $value['dataVisita'], $value['estadoVisita']);
+          $imovel=$this->getImovel($value['idImovel']);
+          $user=$this->getUsers($value['user']);
+          $visitas[] = new visita($value['idVisita'], $user, $imovel, $value['dataVisita'], $value['estadoVisita']);
         }
         return $visitas;
       }
