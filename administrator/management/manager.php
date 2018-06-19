@@ -1,35 +1,48 @@
 <?php
-  
-  // Incluir a classe Imobiliária 
+
+
+  // Incluir a classe Imobiliária
   require_once('../../data/imobiliaria.class.php');
 
-  // Incluir a classe Funcionario 
+  // Incluir a classe Funcionario
   require_once('../../data/funcionario.class.php');
-  
-  // Iniciar a sessão 
+
+  // Incluir a classe Imovel
+  require_once('../../data/imovel.class.php');
+
+  // Incluir a classe imagem
+  require_once('../../data/imagem.class.php');
+
+  // Iniciar a sessão
   session_start();
 
   // var_dump($_SESSION['funcionario']);
 
   // Incluir a funcionalidade de log out
+
   require_once('../../assets/logout.php');
-  
-  // Reencaminhar o utilizar para o índex caso este não seja um funcionário 
+
+  // Reencaminhar o utilizar para o índex caso este não seja um funcionário
   if (!isset($_SESSION['funcionario'])) {
     header("location:../index.php");
   }
 
-  // Criar a ligação à base de dados 
+
+  // Criar a ligação à base de dados
   $bd = new imobiliaria("../../data/config.ini");
 
  if(isset($_POST['add_imovel'])) {
 
           $bd->adicionarImovel($_POST['gestor'], $_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['morada'], $_POST['codPostal'], $_POST['lat'], $_POST['long'], $_POST['freguesia'], $_POST['situacao'], $_POST['estado']);
 
-          // Código aqui 
+          // Código aqui
 
   }
 
+
+  $imoveis=$bd->imoveisGestor($_SESSION['funcionario']->getIdFuncionario());
+
+  //var_dump($imoveis);
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +75,7 @@
     <title>Mais Imobiliária | Gestão de Conteúdos</title>
 
   </head>
-  
+
   <body>
 
     <!-- HEADER DA ÁREA DE GESTÃO DE CONTEÚDOS -->
@@ -93,10 +106,11 @@
     </div>
     <div id="imoveis" class="tabcontent">
         <div class="management">
+          <?php foreach ($imoveis as $imovel) { ?>
 
           <div class="thumbnail_management">
             <div class="thumb_img_management">
-              <a href="../../p_imovel.php?id="><img src="../../imoveis/_0.jpg" class="img_pesquisa_m" alt=""></a>
+              <a href="../../imovel.php?id=<?php echo $imovel->getIdImovel();?>"><img src="../../imoveis/<?php echo $imovel->getIdImovel();?>/<?php echo $imovel->getNomeImagemPrincipal();?>" class="img_pesquisa_m" alt=""></a>
                         </div>
             <div class="thumbnail_info_management">
               <p></p>
@@ -119,9 +133,10 @@
                     <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=">x</a></button>
                   </div>
                 </div>
+              </div>
           </div>
-      </div>
-    </div>
+        </div>
+      <?php } ?>
     </div>
   </div>
 
@@ -132,10 +147,20 @@
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
           <div class="add_prop_box">
 
+
+        <!-- Finalidade do imóvel -->
+        <div><label>Finalidade</label></div>
+          <select  name="finalidade">
+            <?php $bd->selectFinalidade() ?>
+          </select>
+        </div>
+
+
         <!-- Gestor do imóvel -->
       <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
 
       <!-- Finalidade do imóvel -->
+      <div class="add_prop_box">
       <div><label>Finalidade</label></div>
         <select name="finalidade">
           <?php $bd->selectFinalidade() ?>
@@ -202,7 +227,7 @@
           <?php $bd->selectIlha(); ?>
         </select>
       </div>
-      
+
       <!-- Concelho do imóvel -->
       <div class="add_prop_box">
         <div><label>Concelho</label></div>
@@ -247,13 +272,13 @@
 
       <!-- Mapa-->
       <div class="map" style="height:500px;"></div>
-      
+
       <div class="add_prop_box">
           <input type="submit" name="add_imovel" value="Adicionar imóvel"/>
       </div>
-    
+
     </form>
-    
+
     </div>
     <!-- - - - - - - - - - - - - - - - - - - -  -->
     <!-- FIM DO FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->

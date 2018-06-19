@@ -156,6 +156,77 @@
 
     }
 
+
+    public function imoveisGestor($id){
+
+      $sql='select * from todosimoveis where gestor = :idGestor ';
+      $pesquisa=$this->query($sql, array('idGestor' => $id));
+
+        foreach ($pesquisa as $id) {
+
+          $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
+          $finalidade=$this->query($sql, array('idFinalidade' =>$id['finalidade'] ));
+
+          $sql='select * from tipo_imovel where idTipoImovel = :tipoImovel';
+          $tipoImovel=$this->query($sql, array('tipoImovel' =>$id['tipoImovel'] ));
+
+          // var_dump($tipoImovel);
+
+          $sql='select * from freguesia where idFreguesia = :idFreguesia';
+          $freguesia=$this->query($sql, array('idFreguesia' => $id['idFreguesia']));
+
+          $sql='select * from concelho where idConcelho = :idConcelho';
+          $concelho=$this->query($sql, array('idConcelho' => $freguesia[0]['idConcelho']));
+
+          $sql='select * from ilha where idIlha = :idIlha';
+          $ilha=$this->query($sql, array('idIlha' => $concelho[0]['idIlha']));
+
+          if ($pesquisa[0]['tipologia']!=NULL) {
+            $sql='select tipologia from tipologia where idTipologia = :idTipologia';
+            $tipologia=$this->query($sql, array('idTipologia' =>$pesquisa[0]['tipologia']));
+          }else {
+            $tipologia[0]['tipologia']=NULL;
+          }
+
+          $sql='select destacado from destaque where idImovel = :idImovel';
+          $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
+
+          $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+          //var_dump($imagens);
+          $imoveis[] = new imovel($id['idImovel'],
+          $id['gestor'],
+          $id['finalidade'],
+          $tipoImovel[0]['tipoImovel'],
+          $id['area'],
+          $id['preco'],
+          $id['descricao'],
+          $id['rua'],
+          $id['codPostal'],
+          $id['lat'],
+          $id['long'],
+          $ilha[0]['ilha'],
+          $concelho[0]['concelho'],
+          $freguesia[0]['freguesia'],
+          $id['situacao'],
+          $id['estado'],
+          $tipologia[0]['tipologia'],
+          $id['quartos'],
+          $id['casasBanho'],
+          $id['garagem'],
+          $id['piscina'],
+          $id['mobilia'],
+          $id['dataConstrucao'],
+          $id['informacao'],
+          $imagens,
+          $destaque[0]['destacado'],
+          $tipoImovel[0]['iconMarcador'] );
+
+        }
+
+        return $imoveis;
+
+    }
+
     public function getImovel($id){
 
       $sql="SELECT * FROM todosimoveis where idImovel= :idImovel";
@@ -469,18 +540,37 @@
         }
       }
     }
-    
-    # Método que permite adicionar imóveis 
+
+    # Método que permite adicionar imóveis
     public function adicionarImovel($gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $morada, $codPostal, $lat, $long, $freguesia, $situacao, $estado){
-      
+
       $sql = 'INSERT INTO imovel(gestor, finalidade, tipoImovel, area, preco, descricao, rua, codPostal, lat, long, idFreguesia, situacao, estado) VALUES(:gestor, :finalidade, :tipoImovel, :area, :preco, :descricao, :morada, :codPostal, :lat, :long, :freguesia, :situacao, :estado)';
-            
+
       $this->query($sql);
-      
+
       return true;
-      
+
     }
-    
+
+
+       public function getWorkers(){
+        $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
+        $tipoUser = $this->query($sql, array(":tipo" => "Gestor"));
+
+        $sql="SELECT * FROM funcionario WHERE tipoUser = :tipoUser";
+        $workers=$this->query($sql, array(":tipoUser" => $tipoUser[0]["idTipoUser"]));
+
+
+        foreach ($workers as $worker) {
+          $sql = 'SELECT tipo FROM tipo_user WHERE idTipoUser = :idTipoUser';
+          $tipoUser = $this->query($sql, array(":idTipoUser" => $worker['tipoUser']));
+
+          $wkr[]=new funcionario($worker['idFuncionario'], $worker['email'],  $worker['password'], $worker['nomeProprio'], $worker['sobrenome'],  $worker['contacto'],  $tipoUser[0]['tipo']);
+        }
+        return $wkr;
+
+      }
+
   }
 
 ?>

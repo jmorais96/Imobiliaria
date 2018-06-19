@@ -10,9 +10,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
    header('location: index.php');
 }
-  
+
   $bd = new imobiliaria('../data/config.ini');
-  
+
   if(isset($_POST['submit_manager'])) {
 
       if(!$bd->mailGestorExists($_POST['email'])) {
@@ -22,6 +22,8 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
       }
 
   }
+
+
 
 ?>
 
@@ -57,9 +59,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     <title>Mais Imobiliária | Bem-vindo</title>
 
   </head>
-  
+
   <body>
-   
+
     <!-- HEADER/NAVBAR -->
   <div class="container-header">
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -94,9 +96,9 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     </nav>
 </div>
 <!-- FINAL DO HEADER/NAVBAR  -->
-   
+
 <div class="container_admin">
-     
+
     <!--<div class="nav_box">
       <div class="user_box">
         <a href="?acao=logout"><button id="modalBtn1" class="user_status">Logout</button></a>
@@ -106,7 +108,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     </div>
     <div class="backend_admin">
         <h1>Administração</h1>
-    </div>   
+    </div>
     <div class="res_admin">
          <?php //se o login for feito com sucesso
             if(isset($_SESSION['funcionario'])){
@@ -115,13 +117,13 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
             //caso contrario reencaminha de volta ao index.php
             else{
                 header('location:index.php');
-            } 
+            }
         ?>
-     
+
     </div>
     <div class="admin_container">
     <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Estatisticas</button>
+      <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Estatísticas</button>
       <button class="tablinks" onclick="openCity(event, 'Paris')">Imóveis em destaque</button>
       <button class="tablinks" onclick="openCity(event, 'Tokyo')" >Adicionar gestor</button>
       <button class="tablinks" onclick="openCity(event, 'Madrid')" >Edição de Gestores</button>
@@ -231,22 +233,72 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
           <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value=""/></label>
           <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
 
-          
+
           <input type="submit" name="submit_manager" value="criar">
 
-        </form>  
+        </form>
       </div>
     </div>
 
     <div id="Madrid" class="tabcontent">
       <div class="admin_container">
 
-                <h2>Lista de Gestores</h2>
-
-
+        <h2>Lista de Gestores</h2>
+        <div class="t_workers">
+            <div class="titul_workers">
+                <h5>Email</h5>
+                <h5>Nome Próprio</h5>
+                <h5>Apelido</h5>
+                <h5>Contacto</h5>
+                <h5>Editar</h5>
+            </div>
+        </div>
+        <div class="r_workers">
+               <?php
+                  foreach ($bd->getWorkers() as $value) {
+                  ?>
+                    <div class="result_workers">
+                       <h7><?php echo $value->getEmail(); ?></h7>
+                        <h7><?php echo $value->getNomeProprio(); ?></h7>
+                        <h7><?php echo $value->getSobrenome(); ?></h7>
+                        <h7><?php echo $value->getContacto(); ?></h7>
+                        <button class="edit" onclick="openCity(event, '<?php echo $value->getEmail(); ?>')" >editar</button><br>
+                    </div>
+                    <?php
+                  }
+                  ?>
       </div>
     </div>
   </div>
+
+    <?php
+     foreach ($bd->getWorkers() as $value) {
+    ?>
+  <div id="<?php echo $value->getEmail(); ?>" class="tabcontent">
+      <div class="admin_container">
+        <!-- Form para criar gestor -->
+        <div class="boxh2">
+            <h2>Editar gestor</h2>
+        </div>
+        <form class="add_manager" action="" method="post">
+          <label>Email:<input type="email" name="email" placeholder="<?php echo $value->getEmail(); ?>" value=""/></label>
+          <label>Nome próprio:<input type="text" name="nome" placeholder="Primeiro Nome" value=""/></label>
+          <label>Apelido:<input type="text" name="sobrenome" placeholder="Apelido" value=""/></label>
+          <label>Password:<input type="password" name="password" placeholder="Palavra passe" value=""/></label>
+          <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value=""/></label>
+          <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
+
+
+          <input type="submit" name="edit_manager" value="editar">
+
+        </form>
+      </div>
+    </div>
+
+    <?php
+  }
+  ?>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../js/admin_container.js"></script>
@@ -269,7 +321,7 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     notifications_box.style.display = "none";
 }
 
-    
+
 
         // Localizacao
         $(document).ready(function(){
@@ -313,6 +365,6 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
     echo "<script> window.alert('Já existe 6 imoveis em destaque') </script>";
   }
   ?>
-</div> 
+</div>
 </body>
 </html>
