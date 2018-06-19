@@ -569,16 +569,21 @@
     }
 
     # Método que permite adicionar imóveis
-    public function adicionarImovel($gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $morada, $codPostal, $lat, $long, $freguesia, $situacao, $estado){
+    public function adicionarImovel($gestor, $finalidade, $tipoImovel, $tipologia, $area, $preco, $descricao, $morada, $codPostal, $lat, $long, $freguesia, $situacao, $estado) {
 
-      $sql = 'INSERT INTO imovel(gestor, finalidade, tipoImovel, area, preco, descricao, rua, codPostal, lat, long, idFreguesia, situacao, estado) VALUES(:gestor, :finalidade, :tipoImovel, :area, :preco, :descricao, :morada, :codPostal, :lat, :long, :freguesia, :situacao, :estado)';
+      $sql_tabela_imovel = 'INSERT INTO imovel(gestor, finalidade, tipoImovel, area, preco, descricao, rua, codPostal, lat, long, idFreguesia, situacao, estado) VALUES(:gestor, :finalidade, :tipoImovel, :area, :preco, :descricao, :morada, :codPostal, :lat, :long, :freguesia, :situacao, :estado)';
 
-      $this->query($sql);
+      $arr_tabela_imovel = array('gestor' => $gestor , 'finalidade' => $finalidade, 'tipoImovel' => $tipoImovel, 'area' => $area, 'preco' => $preco, 'descricao' => $descricao, 'morada' => $morada, 'codPostal' => $codPostal, 'lat' => $lat, 'long' => $long, 'freguesia' => $freguesia, 'situacao' => $situacao, 'estado' => $estado);
+      $this->query($sql_tabela_imovel, $arr_tabela_imovel);
+      
+      $sql_tabela_extras = 'INSERT INTO extras(tipologia) VALUES(:tipologia)';
+      $arr_tabela_extras = array('tipologia' => $tipologia);
 
+      $this->query($sql_tabela_extras, $arr_tabela_extras);
+      
       return true;
 
     }
-
 
        public function getWorkers(){
         $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
