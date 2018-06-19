@@ -162,6 +162,8 @@
       $sql='select * from todosimoveis where gestor = :idGestor ';
       $pesquisa=$this->query($sql, array('idGestor' => $id));
 
+      //var_dump($pesquisa);
+
         foreach ($pesquisa as $id) {
 
           $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
@@ -191,7 +193,7 @@
           $sql='select destacado from destaque where idImovel = :idImovel';
           $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
 
-          $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+          $imagens=$this->getImagens($id['idImovel']);
           //var_dump($imagens);
           $imoveis[] = new imovel($id['idImovel'],
           $id['gestor'],
@@ -297,6 +299,7 @@
 
     public function getImagens($id){
       $sql='select * from galeria WHERE idImovel = :idImovel';
+      //var_dump($id);
       $imagens=$this->query($sql, array('idImovel' => $id ));
       //var_dump($imagens);
       if (count($imagens)>1) {
@@ -307,7 +310,7 @@
         }
         return $img;
       }else {
-        return $imagens;
+        return $imagens = new imagem($imagens[0]['idImagem'], $imagens[0]['idImovel'], $imagens[0]['nomeImagem'], $imagens[0]['descricao']);
       }
 
     }
@@ -374,20 +377,6 @@
         echo("<option value=".($value['idFreguesia'])."   id='index'>".($value['freguesia'])."</option>");
       }
     }
-
-    // public function id_freguesia($freguesia){
-    //   $sql='select idFreguesia from freguesia where freguesia = :freguesia';
-    //   $freguesia=  array('freguesia' => utf8_encode($freguesia));
-    //   $freguesia=$this->query($sql, $freguesia);
-    //   return $freguesia[0]['idFreguesia'];
-    // }
-    //
-    // public function freguesia_id($freguesia){
-    //   $sql='select freguesia from freguesia where idFreguesia = :idFreguesia';
-    //   $freguesia=  array('idFreguesia' => utf8_encode($freguesia));
-    //   $freguesia=$this->query($sql, $freguesia);
-    //   return $freguesia[0]['freguesia'];
-    // }
 
     public function mailClienteExists($mail){
       $sql='select count(*) from utilizador where email = :email';

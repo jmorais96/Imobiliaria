@@ -223,18 +223,22 @@ class imovel{
     return   $this->informacao;
   }
 
-  public function getNomeImagemPrincipal(){
-
-    // foreach ($this->imagem as $value) {
-    //   $nome[]=$value->getNomeImagem();
-    // }
-    return  $this->imagem[0]->getNomeImagem();
-  }
-
   public function getDestaque(){
-    return   $this->destaque;
+    return  $this->destaque;
   }
 
+
+  public function getImagens(){
+    return   $this->imagem;
+  }
+
+  public function getNomeImagemPrincipal(){
+    if (!is_array($this->getImagens())) {
+      return $this->imagem->getNomeImagem();
+    }else {
+      return  $this->imagem[0]->getNomeImagem();
+    }
+  }
 
 
 

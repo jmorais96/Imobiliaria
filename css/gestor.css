@@ -1,0 +1,22 @@
+.header-gestao h3 {
+  font-size: 25px;
+  color: #231F20;
+  border-bottom: 2px solid #ED2B2A;
+  margin: 0 20px;
+  padding: 5px 50px;
+  text-transform: uppercase;
+}
+
+.logout_gestor {
+  padding: 18px;
+  color: #fff;
+  font-size: 17px;
+  text-transform: uppercase;
+  background-color: #DE2C26;
+  cursor: pointer;
+  transition: background 300ms ease-in-out;
+}
+
+.logout_gestor:hover {
+  background-color: rgb(192, 21, 15);
+}
