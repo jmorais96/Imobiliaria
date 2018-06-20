@@ -426,11 +426,11 @@ option {
     border-radius: 4px;
     border: none;
     width: 100%;
-    height: 8%;
+    height: 40px;
 }
 
 /* Mapa */
-.map {height: 70%; width: 75%; display: flex;}
+.map {height: 70%; width: 100%; display: flex;}
 
 .super_container_form {
     height: 70%;
@@ -640,4 +640,21 @@ figure img{
   object-fit: cover;
   width: 100%;
   height: 200px;
+}
+
+select {
+       text-transform: none;
+    width: 100%;
+    background-color: lightgrey;
+    height: 40px;
+}
+
+textarea {
+    width: 100%;
+    background-color: lightgrey;
+}
+
+.add_prop_box{
+    margin-top:10px;
+    margin-bottom: 20px;
 }
