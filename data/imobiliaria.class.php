@@ -4,7 +4,7 @@
 
   class imobiliaria extends Database {
 
-    public function destaque($sql='select * from imoveisdestcados', $campos=[]){
+    public function destaque($sql='select * from imoveisdestacados', $campos=[]){
       //var_dump($campos);
       //echo "<script> alert('here'); </script>";
       $pesquisa=$this->query($sql,$campos);
@@ -43,7 +43,7 @@
           //var_dump($imagens);
           $imoveis[] = new imovel($id['idImovel'],
           $id['gestor'],
-          $id['finalidade'],
+          $finalidade[0]['finalidade'],
           $tipoImovel[0]['tipoImovel'],
           $id['area'],
           $id['preco'],
@@ -81,7 +81,7 @@
 
     }
 
-    public function pesquisa($sql='select * from imoveisdestcados', $campos=[]){
+    public function pesquisa($sql='SELECT * FROM todosimoveis', $campos=[]){
       //var_dump($campos);
       //echo "<script> alert('here'); </script>";
       $pesquisa=$this->query($sql,$campos);
@@ -115,6 +115,11 @@
 
           $sql='select destacado from destaque where idImovel = :idImovel';
           $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
+          if (isset($destaque[0])) {
+            $destacado=1;
+          }else {
+            $destacado=0;
+          }
 
           $imagens=$this->getImagens($pesquisa[0]['idImovel']);
           //var_dump($imagens);
@@ -143,7 +148,7 @@
           $id['dataConstrucao'],
           $id['informacao'],
           $imagens,
-          $destaque[0]['destacado'],
+          $destacado,
           $tipoImovel[0]['iconMarcador'] );
 
         }
@@ -192,6 +197,11 @@
 
           $sql='select destacado from destaque where idImovel = :idImovel';
           $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
+          if (isset($destaque[0])) {
+            $destacado=0;
+          }else {
+            $destacado=1;
+          }
 
           $imagens=$this->getImagens($id['idImovel']);
           //var_dump($imagens);
@@ -220,7 +230,7 @@
           $id['dataConstrucao'],
           $id['informacao'],
           $imagens,
-          $destaque[0]['destacado'],
+          $destaque,
           $tipoImovel[0]['iconMarcador'] );
 
         }
@@ -260,6 +270,11 @@
 
       $sql='select destacado from destaque where idImovel = :idImovel';
       $destaque=$this->query($sql, array('idImovel' => $id));
+      if (isset($destaque[0])) {
+        $destacado=0;
+      }else {
+        $destacado=1;
+      }
 
       $imagens=$this->getImagens($pesquisa[0]['idImovel']);
 
@@ -268,7 +283,7 @@
       $finalidade[0]['finalidade'],
       $tipoImovel[0]['tipoImovel'],
       $pesquisa[0]['area'],
-      $pesquisa[0]['preco'],
+      $pesquisa[0]['prgetvisieco'],
       $pesquisa[0]['descricao'],
       $pesquisa[0]['rua'],
       $pesquisa[0]['codPostal'],
@@ -288,7 +303,7 @@
       $pesquisa[0]['dataConstrucao'],
       $pesquisa[0]['informacao'],
       $imagens,
-      $destaque[0]['destacado'],
+      $destaque,
       $tipoImovel[0]['iconMarcador'] );
 
       //var_dump($imovel);
@@ -312,6 +327,166 @@
       }else {
         return $imagens = new imagem($imagens[0]['idImagem'], $imagens[0]['idImovel'], $imagens[0]['nomeImagem'], $imagens[0]['descricao']);
       }
+
+    }
+
+    public function proporDestaque($id){
+        $sql ='INSERT INTO destaque (idImovel, destacado) VALUES(:idImovel, 0 )';
+        $this->query($sql, array('idImovel' => $id ));
+    }
+
+    public function aceitarDestaque($id){
+        $sql ='UPDATE destaque set destacado = 1 where idImovel = :idImovel';
+        $this->query($sql, array('idImovel' => $id ));
+    }
+
+    public function negarDestaque($id){
+        $sql ='DELETE FROM destaque WHERE idImovel = :idImovel';
+        $this->query($sql, array('idImovel' => $id ));
+    }
+
+    public function imoveisPropostos(){
+      $sql='select * from imoveispropostos';
+      $pesquisa=$this->query($sql);
+      //echo " clearOverlays(); ";
+
+        foreach ($pesquisa as $id) {
+
+          $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
+          $finalidade=$this->query($sql, array('idFinalidade' =>$id['finalidade'] ));
+
+          $sql='select * from tipo_imovel where idTipoImovel = :tipoImovel';
+          $tipoImovel=$this->query($sql, array('tipoImovel' =>$id['tipoImovel'] ));
+
+          // var_dump($tipoImovel);
+
+          $sql='select * from freguesia where idFreguesia = :idFreguesia';
+          $freguesia=$this->query($sql, array('idFreguesia' => $id['idFreguesia']));
+
+          $sql='select * from concelho where idConcelho = :idConcelho';
+          $concelho=$this->query($sql, array('idConcelho' => $freguesia[0]['idConcelho']));
+
+          $sql='select * from ilha where idIlha = :idIlha';
+          $ilha=$this->query($sql, array('idIlha' => $concelho[0]['idIlha']));
+
+          if ($pesquisa[0]['tipologia']!=NULL) {
+            $sql='select tipologia from tipologia where idTipologia = :idTipologia';
+            $tipologia=$this->query($sql, array('idTipologia' =>$pesquisa[0]['tipologia']));
+          }else {
+            $tipologia[0]['tipologia']=NULL;
+          }
+
+          $sql='select destacado from destaque where idImovel = :idImovel';
+          $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
+
+          $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+          //var_dump($imagens);
+          $imoveis[] = new imovel($id['idImovel'],
+          $id['gestor'],
+          $finalidade[0]['finalidade'],
+          $tipoImovel[0]['tipoImovel'],
+          $id['area'],
+          $id['preco'],
+          $id['descricao'],
+          $id['rua'],
+          $id['codPostal'],
+          $id['lat'],
+          $id['long'],
+          $ilha[0]['ilha'],
+          $concelho[0]['concelho'],
+          $freguesia[0]['freguesia'],
+          $id['situacao'],
+          $id['estado'],
+          $tipologia[0]['tipologia'],
+          $id['quartos'],
+          $id['casasBanho'],
+          $id['garagem'],
+          $id['piscina'],
+          $id['mobilia'],
+          $id['dataConstrucao'],
+          $id['informacao'],
+          $imagens,
+          $destaque[0]['destacado'],
+          $tipoImovel[0]['iconMarcador'] );
+
+        }
+        if (isset($imoveis)){
+          return $imoveis;
+        }
+
+
+    }
+
+    public function imoveisDestacados(){
+      $sql='select * from imoveisdestacados';
+      $pesquisa=$this->query($sql);
+      //echo " clearOverlays(); ";
+
+        foreach ($pesquisa as $id) {
+
+          $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
+          $finalidade=$this->query($sql, array('idFinalidade' =>$id['finalidade'] ));
+
+          $sql='select * from tipo_imovel where idTipoImovel = :tipoImovel';
+          $tipoImovel=$this->query($sql, array('tipoImovel' =>$id['tipoImovel'] ));
+
+          // var_dump($tipoImovel);
+
+          $sql='select * from freguesia where idFreguesia = :idFreguesia';
+          $freguesia=$this->query($sql, array('idFreguesia' => $id['idFreguesia']));
+
+          $sql='select * from concelho where idConcelho = :idConcelho';
+          $concelho=$this->query($sql, array('idConcelho' => $freguesia[0]['idConcelho']));
+
+          $sql='select * from ilha where idIlha = :idIlha';
+          $ilha=$this->query($sql, array('idIlha' => $concelho[0]['idIlha']));
+
+          if ($pesquisa[0]['tipologia']!=NULL) {
+            $sql='select tipologia from tipologia where idTipologia = :idTipologia';
+            $tipologia=$this->query($sql, array('idTipologia' =>$pesquisa[0]['tipologia']));
+          }else {
+            $tipologia[0]['tipologia']=NULL;
+          }
+
+          $sql='select destacado from destaque where idImovel = :idImovel';
+          $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
+
+          $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+          //var_dump($imagens);
+          $imoveis[] = new imovel($id['idImovel'],
+          $id['gestor'],
+          $finalidade[0]['finalidade'],
+          $tipoImovel[0]['tipoImovel'],
+          $id['area'],
+          $id['preco'],
+          $id['descricao'],
+          $id['rua'],
+          $id['codPostal'],
+          $id['lat'],
+          $id['long'],
+          $ilha[0]['ilha'],
+          $concelho[0]['concelho'],
+          $freguesia[0]['freguesia'],
+          $id['situacao'],
+          $id['estado'],
+          $tipologia[0]['tipologia'],
+          $id['quartos'],
+          $id['casasBanho'],
+          $id['garagem'],
+          $id['piscina'],
+          $id['mobilia'],
+          $id['dataConstrucao'],
+          $id['informacao'],
+          $imagens,
+          $destaque[0]['destacado'],
+          $tipoImovel[0]['iconMarcador'] );
+
+        }
+
+        if (isset($imoveis)){
+          return $imoveis;
+        }
+
 
     }
 
@@ -483,9 +658,23 @@
 
       }
 
-      public function getUsers(){
-          $stmt = $this->query('SELECT * FROM utilizador where idUser= :idUser');
+      public function getUsers($idUser){
+          $sql = 'SELECT * FROM utilizador where idUser= :idUser';
+          $info=$this->query($sql, array('idUser' =>$idUser ));
 
+          $sql='select * from freguesia where idFreguesia = :idFreguesia';
+          $freguesia=$this->query($sql, array('idFreguesia' => utf8_encode($info[0]['idFreguesia'])));
+          //var_dump($freguesia);
+
+          $sql='select * from concelho where idConcelho = :idConcelho';
+          $concelho=$this->query($sql, array('idConcelho' => utf8_encode($freguesia[0]['idConcelho'])));
+
+          $sql='select * from ilha where idIlha = :idIlha';
+          $ilha=$this->query($sql, array('idIlha' => utf8_encode($concelho[0]['idIlha'])));
+
+
+          return new User($info[0]["idUser"], $info[0]["email"], $info[0]["nomeProprio"], $info[0]["sobrenome"], $info[0]["password"], $info[0]["contacto"],
+           $ilha[0]['ilha'], $concelho[0]['concelho'], $freguesia[0]['freguesia']);
 
       }
 
@@ -508,15 +697,57 @@
         return $visitas;
       }
 
-      public function getVisitasImovel($imovel){
-        $sql="SELECT * FROM visita WHERE idImovel = :idImovel";
+      public function getVisitasPendenteImovel($imovel){
+        $sql="SELECT * FROM visita WHERE idImovel = :idImovel AND estadoVisita = 'Em apreciação'";
         $arr = array('idImovel' => utf8_decode($imovel->getIdImovel()));
+        $visitas=[];
         foreach ($this->query($sql, $arr) as $value) {
-          $user=$this->getImovel($value['idImovel']);
-          $visitas[] = new visita($value['idVisita'], $_SESSION['cliente'], $imovel, $value['dataVisita'], $value['estadoVisita']);
+          $imovel=$this->getImovel($value['idImovel']);
+          $user=$this->getUsers($value['user']);
+          $visitas[] = new visita($value['idVisita'], $user, $imovel, $value['dataVisita'], $value['estadoVisita']);
         }
         return $visitas;
       }
+
+      
+      public function getVisitasPendentes($gestor){
+        $sql="SELECT * FROM visita WHERE estadoVisita = 'Em apreciaÃ'";
+        $visitas=[];
+        foreach ($this->query($sql) as $value) {
+          $imovel=$this->getImovel($value['idImovel']);
+          if ($imovel->getGestor()==$_SESSION['funcionario']->getIdFuncionario()) {
+            $user=$this->getUsers($value['user']);
+            $visitas[] = new visita($value['idVisita'], $user, $imovel, $value['dataVisita'], $value['estadoVisita']);
+          }
+
+        }
+        return $visitas;
+      }
+      
+      public function getVisitasAceites($gestor){
+        $sql="SELECT * FROM visita WHERE estadoVisita = 'Aceite'";
+        $visitas=[];
+        foreach ($this->query($sql) as $value) {
+          $imovel=$this->getImovel($value['idImovel']);
+          if ($imovel->getGestor()==$_SESSION['funcionario']->getIdFuncionario()) {
+            $user=$this->getUsers($value['user']);
+            $visitas[] = new visita($value['idVisita'], $user, $imovel, $value['dataVisita'], $value['estadoVisita']);
+          }
+
+        }
+        return $visitas;
+      }
+
+      public function aceitarVisita($id){
+        $sql="UPDATE visita SET estadoVisita = :estadoVisita  WHERE idVisita = :idVisita";
+        $this->query($sql, array('estadoVisita' => "Aceite", 'idVisita' => $id ));
+      }
+
+      public function negarVisita($id){
+        $sql="UPDATE visita SET estadoVisita = :estadoVisita  WHERE idVisita = :idVisita";
+        $this->query($sql, array('estadoVisita' => "Não aceite", 'idVisita' => $id ));
+      }
+
 
       public function registarGestor($mail, $pass, $nome, $sobrenome, $contact){
 
@@ -559,12 +790,12 @@
 
       $arr_tabela_imovel = array('gestor' => $gestor , 'finalidade' => $finalidade, 'tipoImovel' => $tipoImovel, 'area' => $area, 'preco' => $preco, 'descricao' => $descricao, 'morada' => $morada, 'codPostal' => $codPostal, 'lat' => $lat, 'long' => $long, 'freguesia' => $freguesia, 'situacao' => $situacao, 'estado' => $estado);
       $this->query($sql_tabela_imovel, $arr_tabela_imovel);
-      
+
       $sql_tabela_extras = 'INSERT INTO extras(tipologia) VALUES(:tipologia)';
       $arr_tabela_extras = array('tipologia' => $tipologia);
 
       $this->query($sql_tabela_extras, $arr_tabela_extras);
-      
+
       return true;
 
     }

@@ -2,31 +2,6 @@
 require_once('imagem.class.php');
 class imovel{
 
-  // array(1) { [0]=> array(22) {
-  //   ["idImovel"]=> string(1) "1"
-  //   ["gestor"]=> string(1) "2"
-  //   ["finalidade"]=> string(1) "1"
-  //    ["tipoImovel"]=> string(1) "2"
-  //    ["area"]=> string(9) "500m*500m"
-  //    ["preco"]=> string(10) "1000000.00"
-  //    ["descricao"]=> string(17) "Casa Muito Bonita"
-  //    ["rua"]=> string(18) "Rua do Amorim, 7-G"
-  //    ["codPostal"]=> string(8) "9500-102"
-  //    ["lat"]=> string(10) "37.7484039"
-  //    ["long"]=> string(11) "-25.6668802"
-  //    ["idFreguesia"]=> string(2) "38"
-  //    ["situacao"]=> string(5) "Ativo"
-  //    ["estado"]=> string(8) "Em obras"
-  //    ["tipologia"]=> NULL
-  //    ["quartos"]=> NULL
-  //    ["casasBanho"]=> NULL
-  //    ["garagem"]=> NULL
-  //    ["piscina"]=> NULL
-  //    ["mobilia"]=> NULL
-  //    ["dataConstrucao"]=> NULL
-  //    ["informacao"]=> NULL } }
-
-
    private $idImovel;
    private $gestor;
    private $finalidade;
@@ -86,10 +61,9 @@ class imovel{
     $this->informacao=$informacao;
     $this->imagem=$imagem;
     $this->destaque=$destaque;
-    if ($this->destaque>0) {
+    if ($this->destaque==1) {
       $iconMarcador=explode(".", $iconMarcador);
       $this->iconMarcador=$iconMarcador[0]."_destaque.".$iconMarcador[1];
-
     }else {
         $this->iconMarcador=$iconMarcador;
 

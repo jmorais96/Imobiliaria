@@ -13,6 +13,12 @@
   // Incluir a classe imagem
   require_once('../../data/imagem.class.php');
 
+  // Incluir a classe user
+  require_once('../../data/user.class.php');
+
+  // Incluir a classe visita
+  require_once('../../data/visita.class.php');
+
   // Iniciar a sessão
   session_start();
 
@@ -34,12 +40,17 @@
  if(isset($_POST['add_imovel'])) {
 
           $bd->adicionarImovel($_POST['gestor'], $_POST['finalidade'], $_POST['tipoImovel'], $_POST['tipologia'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['morada'], $_POST['codPostal'], $_POST['lat'], $_POST['long'], $_POST['freguesia'], $_POST['situacao'], $_POST['estado']);
-  
+
   }
 
   $imoveis=$bd->imoveisGestor($_SESSION['funcionario']->getIdFuncionario());
 
   //var_dump($imoveis);
+
+if(isset($_POST['accept'])) {
+    
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +68,7 @@
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="../../css/homepage.css" type="text/css">
     <link rel="stylesheet" href="../../css/gestor.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../css/gerirImovelTable.css">
 
     <!-- Ícones Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -75,61 +87,141 @@
 
   <body>
 
-    <!-- HEADER DA ÁREA DE GESTÃO DE CONTEÚDOS -->
-    <div class="container-header">
-      <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="../../index.php"><img id="icon" src="../../images/logo.png" alt="Logótipo da imobiliária"/></a>
 
-    <!-- Título da página -->
-    <div class="navbar-nav mx-auto header-gestao">
-        <h3>Gestão de conteúdos</h3>
+        <!-- HEADER/NAVBAR -->
+  <div class="container-header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.php"><img id="icon" src="../../images/logo.png"/></a>
+
+  <!-- Toogler que aparecerá nos menores ecrãs -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span></button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mx-auto">
+
+        <!-- Link de navegação "Home" -->
+        <li class="nav-item">
+            <a class="nav-link" href="?acao=logout">Logout</a>
+        </li>
+
+        </ul>
+
     </div>
 
-    <!-- Botão de logout -->
-    <a href="?acao=logout"><button class="logout_gestor">Encerrar sessão</button></a>
+        <!-- Contacto Telefónico -->
+        <div class="phone">
+            <img id="phoneIcon" src="../../images/call-answer.svg" alt="Contacto Telefónico"/>
+            <p id="phone-number">296 012 345</p>
+        </div>
 
-  </div>
- </div>
+    </nav>
+</div>
+<!-- FINAL DO HEADER/NAVBAR  -->
+
+<div class="container_admin">
+ <div class="nav_holder">
+    </div>
+    <div class="backend_admin">
+        <h1>Gestão de conteúdos</h1>
+    </div>
+    <div class="res_admin">
+         <?php //se o login for feito com sucesso
+            if(isset($_SESSION['funcionario'])){
+                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h4>';
+            }
+            //caso contrario reencaminha de volta ao index.php
+            else{
+                header('location:index.php');
+            }
+        ?>
+
+    </div>
+
+
 
       <div class="user_box">
       </div>
-    </div>
 
-    <div class="admin_container">
+
+<div class="admin_container">
     <div class="tab">
       <button class="tablinks" id="btnImoveis">Imóveis</button>
       <button class="tablinks" id="btnAdicionarImovel" >Adicionar imóveis</button>
       <button class="tablinks" id="btnAdicionarVisita">Visitas</button>
     </div>
+
+
     <div id="imoveis" class="tabcontent">
+     
+     <div class="titulo">
+         <h2>Lista de Imóveis</h2>
+         <div class="wrap">
+           <div class="search">
+              <input type="text" class="searchTerm" placeholder="Pesquise aqui">
+              <!--<button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+             </button>-->
+           </div>
+        </div>
+     </div>
+     
       <?php foreach ($imoveis as $imovel) {?>
         <div class="management">
+
+          <div class="t_workers">
+                 <h5><?php echo $imovel->getDescricao();?></h5>
+              </div>
           <div class="thumbnail_management">
+
             <div class="thumb_img_management">
-              <a href="../../imovel.php?id=<?php echo $imovel->getIdImovel();?>"><img src="../../imoveis/<?php echo $imovel->getIdImovel();?>/<?php echo $imovel->getNomeImagemPrincipal();?>" class="img_pesquisa_m" alt=""></a>
-                        </div>
-            <div class="thumbnail_info_management">
-              <p><?php echo $imovel->getRua();?></p>
-              <p><?php echo $imovel->getIlha();?></p>
-              <p><?php echo $imovel->getConcelho();?></p>
-              <p><?php echo $imovel->getFreguesia();?></p>
-              <p><?php echo $imovel->getTipoImovel();?></p>
+              <a href="../../imovel.php?id=<?php echo $imovel->getIdImovel();?>">
+                  <figure>
+                      <img src="../../imoveis/<?php echo $imovel->getIdImovel();?>/<?php echo $imovel->getNomeImagemPrincipal();?>" class="img_pesquisa_m" alt="">
+                  </figure>
+              </a>
             </div>
+              <div class="Titulos_Imoveis">
+                  <b>Rua:</b>
+                  <b>Ilha:</b>
+                  <b>Concelho:</b>
+                  <b>Freguesia:</b>
+                  <b>Tipo:</b>
+              </div>
+              <div class="Resultados_Imoveis">
+                  <p><?php echo $imovel->getRua();?></p>
+                  <p><?php echo $imovel->getIlha();?></p>
+                  <p><?php echo $imovel->getConcelho();?></p>
+                  <p><?php echo $imovel->getFreguesia();?></p>
+                  <p><?php echo $imovel->getTipoImovel();?></p>
+             </div>
+           
             <div class="buttons_management">
-              <a href="propor.php?id="> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
+              <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
               <a href="../../edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>
               <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
-
-              <button class="visits_noti">visitas()</button>
+              <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>
+              <button class="visits_noti">Visitas(<?php if(isset($visitas)){ echo (count($visitas)); }else {echo "0"; } ?>)</button>
+              <?php if (isset($visitas)) {
+                foreach ($visitas as $value) {
+              ?>
               <div class="notifications_box1">
                 <div class="notification1">
-                  <p>, quer visitar este imóvel dia às </p>
+                  <p><b><?php echo $value->getFullName(); ?></b> pretende visitar este imóvel dia <b><?php echo $value->getData(); ?></b> às <b><?php echo $value->getHora(); ?></b>. <br> <h2>Aceitar?</h2></p>
                   <div id="visit_aprovation">
-                    <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=">v</a></button>
-                    <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=">x</a></button>
+                    <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=<?php echo $value->getIdVisita();?>">
+                    <!--icon aceitar-->
+                    <img id="icon" src="../../images/icon_accept.png"/>
+                    </a></button>
+                    <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=<?php echo $value->getIdVisita();?>">
+                    <!--icon recusar-->
+                    <img id="icon" src="../../images/icon_refuse.png"/>
+                    </a></button>
                   </div>
                 </div>
               </div>
+            <?php }} ?>
           </div>
         </div>
     </div>
@@ -139,12 +231,14 @@
     <!-- - - - - - - - - - - - - - - - - -->
     <!-- FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
     <!-- - - - - - - - - - - - - - - - - -->
+   
     <div id="adicionarImovel" class="tabcontent">
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
-          <div class="add_prop_box">
 
         <!-- Gestor do imóvel -->
       <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
+      
+       <h2>Novo Imóvel</h2>
 
       <!-- Finalidade do imóvel -->
       <div class="add_prop_box">
@@ -271,9 +365,46 @@
     <!-- FIM DO FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
     <!-- - - - - - - - - - - - - - - - - - - -  -->
 
-    <div id="visitas" class="tabcontent">
+    <div id="visita" class="tabcontent">
+     <div class="admin_container">
+     
+     
+    
+    <!-- LISTA VISITAS MARCADAS --> 
+    <h2>Lista de Visitas Aceites</h2>    
+     <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Nome do Cliente</th>
+              <th>Contacto</th>
+              <th>Imovel</th>
+              <th>Data</th>
+              <th>Hora</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
 
+            foreach ($bd->getVisitasAceites($_SESSION['funcionario']) as $value) {
+          ?>
+
+            <tr>
+              <td> <?php echo $value->getFullName() ?> </td>
+              <td> <?php echo $value->getContactCliente() ?> </td>
+              <td> <?php echo $value->getRua() ?></td>
+              <td> <?php echo $value->getData() ?> </td>
+              <td> <?php echo $value->getHora() ?> </td>
+              <td> <?php echo $value->getEstado() ?> </td>
+            <tr>
+         <?php
+          }
+         ?>
+          </tbody>
+
+      </table>
     </div>
+     </div>
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
@@ -370,5 +501,6 @@
       }
 
     </script>
+    </div>
   </body>
 </html>
