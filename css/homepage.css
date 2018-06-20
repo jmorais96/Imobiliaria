@@ -28,9 +28,9 @@ label {padding-top: 8px;}
 nav.navbar.navbar-expand-lg.navbar-light {margin: 0 10%;}
 
 /* Items de navegação */
-a.nav-link {
+.navbar-light .navbar-nav .nav-link {
     font-size: 18px;
-    color: #231F20!important;
+    color: #231F20;
     border-bottom: 2px solid #ED2B2A;
     font-weight: bold;
     margin: 0 20px;    
@@ -45,13 +45,16 @@ a.nav-link:hover {background-color: #ED2B2A; color: #fff!important;}
 /* Toogler do menu após "collapse" */
 button.navbar-toggler {background-color: #ED2B2A;}
 
+/* Menu após "collapse" */
+.navbar-collapse.collapse.show {z-index: 10000000; text-align: center; margin-top: 5px;}
+
 /* Logótipo */
 .header img {height: 70px;}
 
 /* Contacto */
 .contact img {height: 30px;}
 .phone {display: flex; align-items: center; justify-content: flex-end;}
-#phoneIcon {align-self: center; width: 12%; height: 70%; margin: 0 5px 10px 0;}
+#phoneIcon {align-self: center; min-width: 25px; min-height: 70%; margin: 0 5px 10px 0;}
 #phone-number {font-size: 17px; font-weight: bold;}
 
 /* MÓDULO DE LOGIN */ 
@@ -265,8 +268,14 @@ img#icon {height: 70px;}
 /* MEDIA QUERIES */
 /*****************/
 
- @media only screen and (max-width: 600px) {
+ @media only screen and (max-width: 1000px) {
     
-    .phone {margin-right: 30%;}    
+    .navbar-light .navbar-nav .nav-link {
+        color: #fff;
+        background-color: #ED2B2A;
+        border-bottom: 2px solid #fff;
+    }
+
+    .phone {display: none;}    
 
 }
