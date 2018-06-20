@@ -165,6 +165,7 @@ object-fit:cover;
 
 .notifications_box1{
   display: none;
+        width: 350px;
 }
 
 /***************************/
@@ -514,7 +515,8 @@ button#encontrar:hover {
 }
 
 img#icon {
-    height: 70px;
+    height: 50px;
+    margin-bottom: 20px;
 }
 
 .container_footer {
@@ -523,6 +525,11 @@ img#icon {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.visit_aprovation {
+    display: flex;
+    justify-content: space-between;
 }
 
 .copyright {
@@ -608,7 +615,7 @@ h7 {
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
-    width: 150px;
+    width: 350px;
 }
 
 .accept {
@@ -624,7 +631,7 @@ h7 {
     color: white;
     padding: 5px;
     border-radius: 7px;
-    width: 150px;
+    width: 350px;
 }
 
 .visits_noti{
@@ -634,7 +641,7 @@ h7 {
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
-    width: 150px;
+    width: 350px;
 }
 
 .ask_for_feature{
@@ -644,7 +651,7 @@ h7 {
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
-    width: 150px;
+    width: 350px;
 }
 
 .delete {
@@ -654,7 +661,7 @@ margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
-    width: 150px;
+    width: 350px;
 }
 
 .buttons_management{

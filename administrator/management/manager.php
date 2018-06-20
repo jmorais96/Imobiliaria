@@ -202,16 +202,22 @@ if(isset($_POST['accept'])) {
               <a href="../../edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>
               <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
               <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>
-              <button class="visits_noti">visitas(<?php if(isset($visitas)){ echo (count($visitas)); }else {echo "0"; } ?>)</button>
+              <button class="visits_noti">Visitas(<?php if(isset($visitas)){ echo (count($visitas)); }else {echo "0"; } ?>)</button>
               <?php if (isset($visitas)) {
                 foreach ($visitas as $value) {
               ?>
               <div class="notifications_box1">
                 <div class="notification1">
-                  <p><?php echo $value->getFullName(); ?>, quer visitar este imóvel dia <?php echo $value->getData(); ?> às <?php echo $value->getHora(); ?> </p>
+                  <p><b><?php echo $value->getFullName(); ?></b> pretende visitar este imóvel dia <b><?php echo $value->getData(); ?></b> às <b><?php echo $value->getHora(); ?></b>. <br> <h2>Aceitar?</h2></p>
                   <div id="visit_aprovation">
-                    <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=<?php echo $value->getIdVisita();?>">v</a></button>
-                    <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=<?php echo $value->getIdVisita();?>">x</a></button>
+                    <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=<?php echo $value->getIdVisita();?>">
+                    <!--icon aceitar-->
+                    <img id="icon" src="../../images/icon_accept.png"/>
+                    </a></button>
+                    <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=<?php echo $value->getIdVisita();?>">
+                    <!--icon recusar-->
+                    <img id="icon" src="../../images/icon_refuse.png"/>
+                    </a></button>
                   </div>
                 </div>
               </div>
