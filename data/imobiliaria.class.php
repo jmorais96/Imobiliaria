@@ -283,7 +283,7 @@
       $finalidade[0]['finalidade'],
       $tipoImovel[0]['tipoImovel'],
       $pesquisa[0]['area'],
-      $pesquisa[0]['preco'],
+      $pesquisa[0]['prgetvisieco'],
       $pesquisa[0]['descricao'],
       $pesquisa[0]['rua'],
       $pesquisa[0]['codPostal'],
@@ -709,6 +709,21 @@
         return $visitas;
       }
 
+      
+      public function getVisitasPendentes($gestor){
+        $sql="SELECT * FROM visita WHERE estadoVisita = 'Em apreciaÃ'";
+        $visitas=[];
+        foreach ($this->query($sql) as $value) {
+          $imovel=$this->getImovel($value['idImovel']);
+          if ($imovel->getGestor()==$_SESSION['funcionario']->getIdFuncionario()) {
+            $user=$this->getUsers($value['user']);
+            $visitas[] = new visita($value['idVisita'], $user, $imovel, $value['dataVisita'], $value['estadoVisita']);
+          }
+
+        }
+        return $visitas;
+      }
+      
       public function getVisitasAceites($gestor){
         $sql="SELECT * FROM visita WHERE estadoVisita = 'Aceite'";
         $visitas=[];

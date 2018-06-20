@@ -611,6 +611,21 @@ h7 {
     width: 150px;
 }
 
+.accept {
+    background-color: #DC2D27;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    width: 150px;
+}
+
+.refuse {
+    background-color: #DC2D27;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    width: 150px;
+}
 
 .visits_noti{
     background-color: #DC2D27;

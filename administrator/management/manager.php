@@ -46,6 +46,11 @@
   $imoveis=$bd->imoveisGestor($_SESSION['funcionario']->getIdFuncionario());
 
   //var_dump($imoveis);
+
+if(isset($_POST['accept'])) {
+    
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -356,9 +361,12 @@
 
     <div id="visita" class="tabcontent">
      <div class="admin_container">
-     <h2>Lista de Visitas</h2>
      
-      <table class="table table-bordered table-hover">
+     
+    
+    <!-- LISTA VISITAS MARCADAS --> 
+    <h2>Lista de Visitas Aceites</h2>    
+     <table class="table table-bordered table-hover">
           <thead>
             <tr>
               <th>Nome do Cliente</th>
@@ -366,6 +374,7 @@
               <th>Imovel</th>
               <th>Data</th>
               <th>Hora</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
@@ -380,6 +389,7 @@
               <td> <?php echo $value->getRua() ?></td>
               <td> <?php echo $value->getData() ?> </td>
               <td> <?php echo $value->getHora() ?> </td>
+              <td> <?php echo $value->getEstado() ?> </td>
             <tr>
          <?php
           }
