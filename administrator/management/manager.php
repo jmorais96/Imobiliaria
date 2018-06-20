@@ -73,47 +73,92 @@
     <!-- Ficheiros JavaScript -->
     <script src="../../js/jquery.js"></script>
     <script src="../../js/main.js"></script>
-
+ 
     <!-- Título da página -->
     <title>Mais Imobiliária | Gestão de Conteúdos</title>
 
   </head>
 
   <body>
+    
+    
+        <!-- HEADER/NAVBAR -->
+  <div class="container-header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="index.php"><img id="icon" src="../../images/logo.png"/></a>
 
-    <!-- HEADER DA ÁREA DE GESTÃO DE CONTEÚDOS -->
-    <div class="container-header">
-      <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="../../index.php"><img id="icon" src="../../images/logo.png" alt="Logótipo da imobiliária"/></a>
+  <!-- Toogler que aparecerá nos menores ecrãs -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span></button>
 
-    <!-- Título da página -->
-    <div class="navbar-nav mx-auto header-gestao">
-        <h3>Gestão de conteúdos</h3>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mx-auto">
+
+        <!-- Link de navegação "Home" -->
+        <li class="nav-item">
+            <a class="nav-link" href="?acao=logout">Logout</a>
+        </li>
+
+        </ul>
+
     </div>
 
-    <!-- Botão de logout -->
-    <a href="?acao=logout"><button class="logout_gestor">Encerrar sessão</button></a>
+        <!-- Contacto Telefónico -->
+        <div class="phone">
+            <img id="phoneIcon" src="../../images/call-answer.svg" alt="Contacto Telefónico"/>
+            <p id="phone-number">296 012 345</p>
+        </div>
 
-  </div>
- </div>
+    </nav>
+</div>
+<!-- FINAL DO HEADER/NAVBAR  -->
+
+<div class="container_admin">
+ <div class="nav_holder">
+    </div>
+    <div class="backend_admin">
+        <h1>Gestão de conteúdos</h1>
+    </div>
+    <div class="res_admin">
+         <?php //se o login for feito com sucesso
+            if(isset($_SESSION['funcionario'])){
+                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h4>';
+            }
+            //caso contrario reencaminha de volta ao index.php
+            else{
+                header('location:index.php');
+            }
+        ?>
+
+    </div>
+
+ 
 
       <div class="user_box">
       </div>
-    </div>
+    
 
-    <div class="admin_container">
+<div class="admin_container">
     <div class="tab">
       <button class="tablinks" id="btnImoveis">Imóveis</button>
       <button class="tablinks" id="btnAdicionarImovel" >Adicionar imóveis</button>
       <button class="tablinks" id="btnAdicionarVisita">Visitas</button>
     </div>
+    
+    <h2>Lista de Imóveis</h2>
     <div id="imoveis" class="tabcontent">
       <?php foreach ($imoveis as $imovel) {?>
         <div class="management">
+         
+          <div class="t_workers">
+                 <h5><?php echo $imovel->getDescricao();?></h5>
+              </div>
           <div class="thumbnail_management">
+              
             <div class="thumb_img_management">
               <a href="../../imovel.php?id=<?php echo $imovel->getIdImovel();?>"><img src="../../imoveis/<?php echo $imovel->getIdImovel();?>/<?php echo $imovel->getNomeImagemPrincipal();?>" class="img_pesquisa_m" alt=""></a>
-                        </div>
+            </div>
             <div class="thumbnail_info_management">
               <p><?php echo $imovel->getRua();?></p>
               <p><?php echo $imovel->getIlha();?></p>
@@ -380,5 +425,6 @@
       }
 
     </script>
+    </div>
   </body>
 </html>

@@ -161,3 +161,476 @@ object-fit:cover;
 .notifications_box1{
   display: none;
 }
+
+/***************************/
+/* ESTILIZAÇÃO DA HOMEPAGE */
+/***************************/
+
+/*********/
+/* GERAL */
+/*********/
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: 'PT Sans';
+    letter-spacing: .5px;
+}
+
+html, body{height: 100vh; width: 100%;}
+
+img {height: 100%;}
+
+label {display: flex;
+    padding-top: 8px;
+    flex-direction: column;
+}
+
+.tab {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+button.tablinks {
+    color: #231F20!important;
+    border-bottom: 2px solid #ED2B2A;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    cursor: pointer;
+        font-size: 18px;
+}
+
+input {
+    width: 100%;
+        background-color: lightgrey;
+    height: 35px;
+    padding-left: 5px;
+}
+
+input[type="submit"] {
+    width: 200px;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+.boxh2{
+    background-color: dimgray;
+    color: white;
+    padding: 10px 10px 1px 10px;
+}
+
+.backend_admin{
+    background-color: darkred;
+    color: white;
+    padding: 10px 10px 1px 10px;
+}
+.res_admin{
+    background-color: darkgrey;
+    color: white;
+    padding: 10px 10px 1px 10px;
+}
+
+h4 {
+    color:white;
+}
+button:focus {outline:0;}
+
+/*****************************/
+/* HEADER/NAVBAR DA HOMEPAGE */
+/*****************************/
+.container-header {width: 100%;    height: 15%;}
+nav.navbar.navbar-expand-lg.navbar-light {
+    margin: 0 10%;
+}
+
+.container_admin{
+      margin: 0 10%;
+}
+
+/* Items de navegação */
+a.nav-link {
+    font-size: 18px;
+    color: #231F20!important;
+    border-bottom: 2px solid #ED2B2A;
+    font-weight: bold;
+    margin: 0 20px;    
+    padding: 5px 50px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    cursor: pointer;
+}
+
+a.nav-link:hover {
+    background-color: #ED2B2A;
+    color: #fff!important;
+}
+
+/* Toogler do menu após "collapse" */
+button.navbar-toggler {background-color: #ED2B2A;}
+
+/* Logótipo */
+.header img {height: 70px;}
+
+/* Contacto */
+.contact img {height: 30px;}
+
+.phone {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#phoneIcon {
+    align-self: center;
+    width: 12%;
+    height: 70%;
+    margin: 0 5px 10px 0;
+}
+
+#phone-number {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* MÓDULO DE LOGIN */ 
+.modal-header {background-color: #ED2B2A; color: #fff; font-weight: bold;}
+.modal-title {text-transform: uppercase;}
+.modal-body {margin-top: 15px;}
+input.form-control.input-email {margin-left: 10px; width: 90%;}
+input.form-control.input-password {margin: 8px 0 0 13px; width: 90%;}
+.close {color: #e9e9e9; transition-duration: 0.5s; transition-timing-function: linear;}
+.close:hover {color: #fff;}
+
+.modal-footer .btn {
+    background-color: #ED2B2A;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+.modal-footer .btn:hover {background-color: red;}
+
+/* Ícones do módulo de login */
+.fa-user-alt, .fa-unlock {font-size: 25px; color: #111;}
+
+/********************/
+/* CENTRO DA PÁGINA */
+/********************/
+
+/* Formulário de pesquisa */
+img#lupaIcon {
+    align-self: center;
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+}
+
+img#locationIcon {
+    align-self: center;
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+}
+
+#icon {align-self: center;}
+
+.formTitle {width: 80%; display: flex; align-self: center; text-align: center;}
+
+.formTitle2 {
+    width: 100%;
+    display: flex;
+    align-self: center;
+    margin-bottom: -5px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.formTitleSecondary {
+    margin: 12px 39px 0 0;
+    width: 80%;
+    display: flex;
+    align-self: center;
+    text-transform: uppercase;
+}
+
+.formTitle > p, .formTitleSecondary > p {color: #fff;font-size: 20px;}
+
+.searchForm {
+    display: flex;
+    align-self: center;
+    width: 80%;
+    height: 70%;
+}
+
+#searchForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.formulario-registo {
+    display: flex;
+    align-self: center;
+    width: 80%;
+    height: 90%;    
+    flex-direction: column;
+    justify-content: center;
+}
+
+option {
+    display: flex;
+    width: 20px;
+    height: 50%;
+}
+
+.pesquisa {
+  height: 10%;
+  background-color: #282828;
+  display: flex;
+  align-items: baseline;
+}
+
+.pesquisa * {
+  margin-top: 5%;
+  height: 70%;
+  border-radius: 25px;
+}
+
+.pesquisa form {
+  margin-left: 20%;
+}
+
+.pesquisa input[type="submit"]{
+  background-color: grey;
+  color: white;
+  font-weight: bold;
+    align-items: center; 
+    align-self: center;
+    justify-content: center;
+    display: flex;
+}
+
+#index, #ilha, #concelho, #freguesia {
+    margin-top: 8px;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+    height: 8%;
+}
+
+/* Mapa */
+.map {height: 70%; width: 75%; display: flex;}
+
+.super_container_form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/houseRegister.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container_form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #282828;
+    align-self: center;
+}
+
+button#encontrar {
+    align-self: center;
+    border-radius: 3px;
+    margin-top: 5%;
+    background-color: #DC2D27;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 10%;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+button#registar {
+    align-self: center;
+    margin-top: 5%;
+    border-radius: 3px;
+    background-color: #DC2D27;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+button#encontrar:hover {
+    background-color: #fff;
+    color: #DC2D27;
+}
+
+/**********/
+/* FOOTER */
+/**********/
+
+.footer {
+    display: flex;
+    width: 80%;
+}
+
+img#icon {
+    height: 70px;
+}
+
+.container_footer {
+    background-color: #DC2D27;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    color:white;
+}
+
+.copyright-simbol {
+    margin-right: 5px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+/*****************/
+/* MEDIA QUERIES */
+/*****************/
+
+ @media only screen and (max-width: 600px) {
+    
+    .phone {margin-right: 30%;}    
+
+}
+
+.add_manager {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.t_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding-top: 2px;
+    background-color: grey;
+    color: white;
+    padding-top: 4px;
+}
+
+.r_workers {
+    display: flex;
+    width: 100%;
+    background-color: lightgrey;
+     flex-direction: column;
+}
+
+.titul_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+        padding-left: 10px;
+}
+
+.result_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+h5 {
+    width: 100%;
+}
+
+h7 {
+    width: 20%;
+}
+
+.edit {
+    background-color: #DC2D27;
+    color: white;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 7px;
+    width: 150px;
+}
+
+.visits_noti{
+    background-color: #DC2D27;
+    color: white;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 7px;
+    width: 150px;
+}
+
+.ask_for_feature{
+    background-color: #DC2D27;
+    color: white;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 7px;
+    width: 150px;
+}
+
+.delete {
+    background-color: #DC2D27;
+    color: white;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 7px;
+    width: 150px;
+}
+
+.buttons_management{
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+}

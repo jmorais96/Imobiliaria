@@ -121,9 +121,6 @@ if(isset($_POST['edit_manager'])) {
 
         <!-- Link de navegação "Home" -->
         <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="?acao=logout">Logout</a>
         </li>
 
@@ -328,8 +325,8 @@ if(isset($_POST['edit_manager'])) {
           <label>Email:<input type="email" name="email" value="<?php echo $value->getEmail(); ?>" placeholder=""/></label>
           <label>Nome próprio:<input type="text" name="nome" value="<?php echo $value->getNomeProprio(); ?>" placeholder=""/></label>
           <label>Apelido:<input type="text" name="sobrenome" value="<?php echo $value->getSobrenome(); ?>" placeholder=""/></label>
-          <label>Password:<input type="password" name="password" value="" placeholder=""/></label>
-          <label>Comfirmar password:<input type="password" name="retype" value="Confirme a palavra pass" placeholder=""/></label>
+          <label>Password:<input type="text" name="password" value="<?php echo $value->getPassword();?>" placeholder=""/></label>
+          <label>Confirmar password:<input type="text" name="retype" value="" placeholder=""/></label>
           <label>Contacto:<input type="contacto" name="contacto" value="<?php echo $value->getContacto(); ?>" placeholder=""/></label>
           <input type="hidden" name="id" value="<?php echo $value->getIdFuncionario(); ?>">
 
