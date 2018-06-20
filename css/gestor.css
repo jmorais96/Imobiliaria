@@ -1,3 +1,9 @@
+b {
+        margin-top: 0;
+    margin-bottom: 1rem;
+    color: darkred;
+}
+
 .header-gestao h3 {
   font-size: 25px;
   color: #231F20;
@@ -138,12 +144,13 @@ flex-direction: row;
   width: 100%;
   display: flex;
   color: black;
+    justify-content: space-between;
 }
+
 
 .thumb_img_management {
   width: 20%;
   display: flex;
-  justify-content: center;
 }
 
 .thumb_img_management > img {
@@ -190,6 +197,7 @@ label {display: flex;
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-top:5px;
 }
 
 button.tablinks {
@@ -210,6 +218,7 @@ input {
         background-color: lightgrey;
     height: 35px;
     padding-left: 5px;
+    border-radius: 5px;
 }
 
 input[type="submit"] {
@@ -595,16 +604,19 @@ h7 {
 .edit {
     background-color: #DC2D27;
     color: white;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
     width: 150px;
 }
 
+
 .visits_noti{
     background-color: #DC2D27;
     color: white;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
     width: 150px;
@@ -613,7 +625,8 @@ h7 {
 .ask_for_feature{
     background-color: #DC2D27;
     color: white;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
     width: 150px;
@@ -622,7 +635,8 @@ h7 {
 .delete {
     background-color: #DC2D27;
     color: white;
-    margin: 10px;
+margin-top: 10px;
+    margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
     width: 150px;
@@ -631,8 +645,8 @@ h7 {
 .buttons_management{
     display: flex;
     justify-content: flex-end;
-    width: 17%;
     flex-direction: column;
+        text-align: right;
 }
 
 
@@ -657,4 +671,24 @@ textarea {
 .add_prop_box{
     margin-top:10px;
     margin-bottom: 20px;
+}
+
+.Titulos_Imoveis{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.Resultados_Imoveis{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    margin-top: 10px;
+}
+
+.titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

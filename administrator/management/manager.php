@@ -63,6 +63,7 @@
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="../../css/homepage.css" type="text/css">
     <link rel="stylesheet" href="../../css/gestor.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../css/gerirImovelTable.css">
 
     <!-- Ícones Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -148,7 +149,19 @@
 
 
     <div id="imoveis" class="tabcontent">
-     <h2>Lista de Imóveis</h2>
+     
+     <div class="titulo">
+         <h2>Lista de Imóveis</h2>
+         <div class="wrap">
+           <div class="search">
+              <input type="text" class="searchTerm" placeholder="Pesquise aqui">
+              <!--<button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+             </button>-->
+           </div>
+        </div>
+     </div>
+     
       <?php foreach ($imoveis as $imovel) {?>
         <div class="management">
 
@@ -164,13 +177,21 @@
                   </figure>
               </a>
             </div>
-            <div class="thumbnail_info_management">
-              <p><?php echo $imovel->getRua();?></p>
-              <p><?php echo $imovel->getIlha();?></p>
-              <p><?php echo $imovel->getConcelho();?></p>
-              <p><?php echo $imovel->getFreguesia();?></p>
-              <p><?php echo $imovel->getTipoImovel();?></p>
-            </div>
+              <div class="Titulos_Imoveis">
+                  <b>Rua:</b>
+                  <b>Ilha:</b>
+                  <b>Concelho:</b>
+                  <b>Freguesia:</b>
+                  <b>Tipo:</b>
+              </div>
+              <div class="Resultados_Imoveis">
+                  <p><?php echo $imovel->getRua();?></p>
+                  <p><?php echo $imovel->getIlha();?></p>
+                  <p><?php echo $imovel->getConcelho();?></p>
+                  <p><?php echo $imovel->getFreguesia();?></p>
+                  <p><?php echo $imovel->getTipoImovel();?></p>
+             </div>
+           
             <div class="buttons_management">
               <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
               <a href="../../edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>
@@ -334,6 +355,9 @@
     <!-- - - - - - - - - - - - - - - - - - - -  -->
 
     <div id="visita" class="tabcontent">
+     <div class="admin_container">
+     <h2>Lista de Visitas</h2>
+     
       <table class="table table-bordered table-hover">
           <thead>
             <tr>
@@ -364,6 +388,7 @@
 
       </table>
     </div>
+     </div>
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>

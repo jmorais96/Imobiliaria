@@ -317,30 +317,37 @@ if(isset($_POST['edit_manager'])) {
       <div class="admin_container">
 
         <h2>Lista de Gestores</h2>
-        <div class="t_workers">
-            <div class="titul_workers">
-                <h5>Nome Próprio</h5>
-                <h5>Apelido</h5>
-                <h5>Email</h5>
-                <h5>Contacto</h5>
-                <h5>Editar</h5>
-            </div>
-        </div>
-        <div class="r_workers">
-               <?php
-                  foreach ($bd->getWorkers() as $value) {
-                  ?>
-                    <div class="result_workers">
-                        <h7><?php echo $value->getNomeProprio(); ?></h7>
-                        <h7><?php echo $value->getSobrenome(); ?></h7>
-                        <h7><?php echo $value->getEmail(); ?></h7>
-                        <h7><?php echo $value->getContacto(); ?></h7>
-                        <button class="edit" onclick="openCity(event, '<?php echo $value->getEmail(); ?>')" >editar</button><br>
-                    </div>
-                    <?php
-                  }
-                  ?>
-      </div>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Nome Próprio</th>
+              <th>Apelido</th>
+              <th>Email</th>
+              <th>Contacto</th>
+              <th>Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+
+                foreach ($bd->getWorkers() as $value) {
+              ?>
+
+            <tr>
+              <td> <?php echo $value->getNomeProprio() ?> </td>
+              <td> <?php echo $value->getSobrenome() ?> </td>
+              <td> <?php echo $value->getEmail() ?></td>
+              <td> <?php echo $value->getContacto() ?> </td>
+             <td><button class="edit" onclick="openCity(event, '<?php echo $value->getEmail(); ?>')" >editar</button></td> 
+            <tr>
+         <?php
+          }
+         ?>
+          </tbody>
+
+      </table>
+        
+
     </div>
   </div>
 

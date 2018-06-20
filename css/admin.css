@@ -28,6 +28,7 @@ label {display: flex;
     display: flex;
     justify-content: space-between;
     width: 100%;
+        margin-top:5px;
 }
 
 button.tablinks {
@@ -432,7 +433,6 @@ h7 {
 .edit {
     background-color: #DC2D27;
     color: white;
-    margin: 10px;
     padding: 5px;
     border-radius: 7px;
     width: 150px;
