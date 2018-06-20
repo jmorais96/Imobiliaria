@@ -168,6 +168,20 @@ object-fit:cover;
         width: 350px;
 }
 
+a.tablinks {
+    text-decoration: none;
+        color: #231F20!important;
+    border-bottom: 2px solid #ED2B2A;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    cursor: pointer;
+    font-size: 18px;
+}
+
 /***************************/
 /* ESTILIZAÇÃO DA HOMEPAGE */
 /***************************/

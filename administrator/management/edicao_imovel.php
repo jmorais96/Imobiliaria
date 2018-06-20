@@ -51,65 +51,6 @@ if(isset($_POST['accept'])) {
     
 }
 
-
-if(isset($_POST['edit_imovel'])) {
-//codigo do botao de editar gestor
-
-  $sql="UPDATE imovel SET ";
-
-  $campos=[];
-  if ($_POST['area']) {
-    $campos['area']=$_POST['area'];
-    $sql .= "area = :area, ";
-  }
-  if ($_POST['preco']) {
-    $campos['preco']=$_POST['preco'];
-    $sql .= "preco = :preco, ";
-  }
-
-  if ($_POST['descricao']) {
-    $campos['descricao']=$_POST['descricao'];
-    $sql .= "descricao = :descricao, ";
-  }
-
-  if ($_POST['rua']) {
-    $campos['rua']=$_POST['rua'];
-    $sql .= "rua = :rua, ";
-  }
-
-  if ($_POST['codigo']) {
-    $campos['codigo']=$_POST['codigo'];
-    $sql .= "codigo = :codigo, ";
-  }
-    
-  if ($_POST['lat']) {
-    $campos['lat']=$_POST['lat'];
-    $sql .= "lat = :lat, ";
-  }
-    
-  if ($_POST['long']) {
-    $campos['long']=$_POST['long'];
-    $sql .= "long = :long, ";
-  }
-
- if ($_POST['situacao']) {
-    $campos['situacao']=$_POST['situacao'];
-    $sql .= "situacao = :situacao, ";
-  }
-    
- if ($_POST['estado']) {
-    $campos['estado']=$_POST['estado'];
-    $sql .= "estado = :estado, ";
-  }
-
-  if ($_POST['id']) {
-    $sql=substr($sql, 0, -2);
-    $campos['idImovel']=$_POST['id'];
-    $sql .= " where idImovel = :idImovel";
-  }
-
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -136,7 +77,6 @@ if(isset($_POST['edit_imovel'])) {
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Ficheiros JavaScript -->
-    <script src="../../js/admin_container.js"></script>
     <script src="../../js/jquery.js"></script>
     <script src="../../js/main.js"></script>
 
@@ -198,16 +138,16 @@ if(isset($_POST['edit_imovel'])) {
         ?>
 
     </div>
-     
+
+
+
       <div class="user_box">
       </div>
 
 
 <div class="admin_container">
     <div class="tab">
-      <button class="tablinks" id="btnImoveis" onclick="openCity(event, 'imoveis')">Imóveis</button>
-      <button class="tablinks" id="btnAdicionarImovel" onclick="openCity(event, 'adicionarImovel')">Adicionar imóveis</button>
-      <button class="tablinks" id="btnAdicionarVisita" onclick="openCity(event, 'visita')">Visitas</button>
+      <a href="manager.php" class="tablinks">< Retroceder</a>
     </div>
 
 
@@ -257,15 +197,10 @@ if(isset($_POST['edit_imovel'])) {
            
             <div class="buttons_management">
               <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
-              
-           <!--   <a href="edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>  --> 
-              <td><button class="edit" onclick="openCity(event, '<?php echo $imovel->getIdImovel(); ?>')" >Editar</button></td> 
-              
+              <a href="../../edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>
               <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
-              
               <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>
               <button class="visits_noti">Visitas(<?php if(isset($visitas)){ echo (count($visitas)); }else {echo "0"; } ?>)</button>
-              
               <?php if (isset($visitas)) {
                 foreach ($visitas as $value) {
               ?>
@@ -290,41 +225,7 @@ if(isset($_POST['edit_imovel'])) {
     </div>
   <?php } ?>
   </div>
-   
-   <!-- AO CLICAR NO BOTAO EDITAR IMOVEL -->  
-    <?php
-     foreach ($imoveis as $value) {
-    ?>
-  <div id="<?php echo $value->getIdImovel(); ?>" class="tabcontent">
-      <div class="admin_container">
-        <!-- Form para criar gestor -->
-        <div class="boxh2">
-            <h2>Editar imóvel</h2>
-        </div>
-        <form class="add_manager" action="" method="post">
-          <label>Descricao:<input type="text" name="descricao" value="<?php echo $value->getDescricao(); ?>" placeholder=""/></label>
-          <label>Rua:<input type="text" name="rua" value="<?php echo $value->getRua(); ?>" placeholder=""/></label>
-          <label>Código-postal:<input type="text" name="codigo" value="<?php echo $value->getCodPostal();?>" placeholder=""/></label>
-          <label>Área:<input type="text" name="area" value="<?php echo $value->getArea();?>" placeholder=""/></label>
-          <label>Preço:<input type="text" name="preco" value="<?php echo $value->getPreco();?>" placeholder=""/></label>
-          <label>Latitute:<input type="text" name="lat" value="<?php echo $value->getLat();?>" placeholder=""/></label>
-          <label>Longitude:<input type="text" name="long" value="<?php echo $value->getLng();?>" placeholder=""/></label>
-          <label>Situação:<input type="text" name="situacao" value="<?php echo $value->getSituacao();?>" placeholder=""/></label>
-          <label>Estado:<input type="text" name="estado" value="<?php echo $value->getEstado();?>" placeholder=""/></label>
-          
-          <input type="hidden" name="id" value="<?php echo $value->getIdImovel(); ?>">
 
-          <input type="submit" name="edit_imovel" value="editar">
-
-        </form>
-      </div>
-    </div>
-
-    <?php
-  }
-  ?>
-  <!-- FIM DO BOTAO EDITAR IMOVEL -->
-   
     <!-- - - - - - - - - - - - - - - - - -->
     <!-- FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
     <!-- - - - - - - - - - - - - - - - - -->
@@ -502,7 +403,6 @@ if(isset($_POST['edit_imovel'])) {
       </table>
     </div>
      </div>
-     
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
@@ -597,9 +497,6 @@ if(isset($_POST['edit_imovel'])) {
         $("[name=lat]").val(coordenadas[0]);
         $("[name=lng]").val(coordenadas[1]);
       }
-        
-
-
 
     </script>
     </div>
