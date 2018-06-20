@@ -73,15 +73,15 @@
     <!-- Ficheiros JavaScript -->
     <script src="../../js/jquery.js"></script>
     <script src="../../js/main.js"></script>
- 
+
     <!-- Título da página -->
     <title>Mais Imobiliária | Gestão de Conteúdos</title>
 
   </head>
 
   <body>
-    
-    
+
+
         <!-- HEADER/NAVBAR -->
   <div class="container-header">
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -133,11 +133,11 @@
 
     </div>
 
- 
+
 
       <div class="user_box">
       </div>
-    
+
 
 <div class="admin_container">
     <div class="tab">
@@ -145,18 +145,18 @@
       <button class="tablinks" id="btnAdicionarImovel" >Adicionar imóveis</button>
       <button class="tablinks" id="btnAdicionarVisita">Visitas</button>
     </div>
-    
-    
+
+
     <div id="imoveis" class="tabcontent">
      <h2>Lista de Imóveis</h2>
       <?php foreach ($imoveis as $imovel) {?>
         <div class="management">
-         
+
           <div class="t_workers">
                  <h5><?php echo $imovel->getDescricao();?></h5>
               </div>
           <div class="thumbnail_management">
-              
+
             <div class="thumb_img_management">
               <a href="../../imovel.php?id=<?php echo $imovel->getIdImovel();?>">
                   <figure>
@@ -172,7 +172,7 @@
               <p><?php echo $imovel->getTipoImovel();?></p>
             </div>
             <div class="buttons_management">
-              <a href="propor.php?id="> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
+              <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
               <a href="../../edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>
               <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
               <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>

@@ -1,9 +1,24 @@
 <?php
-//include("assets/constantes.php");
+// Incluir a classe Imobiliária
 require_once('../data/imobiliaria.class.php');
-require_once("../data/funcionario.class.php");
-session_start();
 
+// Incluir a classe Funcionario
+require_once('../data/funcionario.class.php');
+
+// Incluir a classe Imovel
+require_once('../data/imovel.class.php');
+
+// Incluir a classe imagem
+require_once('../data/imagem.class.php');
+
+// Incluir a classe user
+require_once('../data/user.class.php');
+
+// Incluir a classe visita
+require_once('../data/visita.class.php');
+
+// Iniciar a sessão
+session_start();
 
 if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
    session_destroy();
@@ -214,49 +229,66 @@ if(isset($_POST['edit_manager'])) {
 
     <div id="Paris" class="tabcontent">
       <div id="notifications">
-        <button id="num_notifications">pendente</button>
-        <button id="num_notifications1">$pendente</button>
+        <?php
+        $propostos = $bd->imoveisPropostos();
+        ?>
+        <button id="num_notifications">Pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></button>
+        <button id="num_notifications1">Pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></button>
         <div id="notifications_box">
+          <?php
+
+          if (isset($propostos)) {
+
+           foreach ($bd->imoveisPropostos() as $pendente){
+
+          ?>
 
           <div class="notification">
           <a href="../p_imovel.php/id=pendente"><div class="thumbnail_notification">
             <div class="thumb_img_notification">
-              <img src="../imoveis/idimovel/pendente_0.jpg" alt="">
+              <img src="../imoveis/<?php echo $pendente->getIdImovel(); ?>/<?php echo $pendente->getNomeImagemPrincipal(); ?>" alt="">
             </div>
             <div class="thumbnail_info_notification">
-              <p><?php echo $pendente[$i][1]; ?> - <?php echo $pendente[$i][2]; ?></p>
-              <p><?php echo $data_ilha_pendente[0]; ?>- <?php echo $data_concelho_pendente[0]; ?> - <?php echo $data_freguesia_pendente[0]; ?></p>
-              <p><?php echo $pendente[$i][6]; ?></p>
-              <p><?php echo substr($pendente[$i][9],0,50)."..."; ?></p>
-              <p><?php echo $pendente[$i][7]; ?></p>
+              <p> Finalidade: <?php echo $pendente->getFinalidade(); ?></p>
+              <p><?php echo $pendente->getIlha(); ?> - <?php echo $pendente->getConcelho(); ?> - <?php echo $pendente->getFreguesia(); ?></p>
+              <p><?php echo $pendente->getRua(); ?></p>
+              <p><?php echo $pendente->getPreco(); ?></p>
             </div>
           </div></a>
           <div id="feature_aprovation">
-            <button type="button" class="aprove_feature"> <a href="destaque.php?id=<?php echo $pendente[$i][0]; ?>">v</a></button>
-            <button type="button" class="disaprove_feature"><a href="n_destaque.php?id=<?php echo $pendente[$i][0]; ?>">x</a></button>
+            <a class="aprove_feature" href="destaque.php?id=<?php echo $pendente->getIdImovel(); ?>"><button type="button" >v</button></a>
+            <a class="disaprove_feature" href="n_destaque.php?id=<?php echo $pendente->getIdImovel(); ?>"><button type="button" >x</button></a>
           </div>
           </div>
 
+        <?php } }?>
 
         </div>
       </div>
       <div class="management1">
 
-        <a href="../p_imovel.php?id=<?php echo $destaque[0]; ?>">
-          <div class="thumbnail_management">
-            <div class="thumb_img_management">
-              <img src="../imoveis/<?php echo $destaque[0] ?>/<?php echo $destaque[0] ?>_0.jpg" alt="">
-            </div>
-            <div class="thumbnail_info_management">
-              <p><?php echo $destaque[1]; ?></p>
-              <p><?php echo $data_ilha[0]; ?> - <?php echo $data_ilha[0]; ?> - <?php echo $data_freguesia[0]; ?></p>
-              <p><?php echo $destaque[6]; ?></p>
-              <p><?php echo $destaque[7]; ?></p>
-              <p><?php echo substr($destaque[9],0,100)."..."; ?></p>
-            </div>
-          </div>
-        </a>
+        <?php
+          $destaque = $bd->imoveisDestacados();
 
+          if (isset($destaque)) {
+
+            foreach ($destaque as $destaque){ ?>
+
+          <a href="../p_imovel.php?id=<?php echo $destaque->getIdImovel(); ?>">
+            <div class="thumbnail_management">
+              <div class="thumb_img_management">
+                <img src="../imoveis/<?php echo $destaque->getIdImovel(); ?>/<?php echo $destaque->getNomeImagemPrincipal(); ?>" alt="">
+              </div>
+              <div class="thumbnail_info_management">
+                <p> Finalidade: <?php echo $destaque->getFinalidade(); ?></p>
+                <p><?php echo $destaque->getIlha(); ?> - <?php echo $destaque->getConcelho(); ?> - <?php echo $destaque->getFreguesia(); ?></p>
+                <p><?php echo $destaque->getRua(); ?></p>
+                <p><?php echo $destaque->getPreco(); ?></p>
+              </div>
+            </div>
+          </a>
+
+        <?php }} ?>
 
       </div>
     </div>
