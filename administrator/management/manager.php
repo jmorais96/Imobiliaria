@@ -40,7 +40,7 @@
  if(isset($_POST['add_imovel'])) {
 
           $bd->adicionarImovel($_POST['gestor'], $_POST['finalidade'], $_POST['tipoImovel'], $_POST['tipologia'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['morada'], $_POST['codPostal'], $_POST['lat'], $_POST['long'], $_POST['freguesia'], $_POST['situacao'], $_POST['estado']);
-  
+
   }
 
   $imoveis=$bd->imoveisGestor($_SESSION['funcionario']->getIdFuncionario());
@@ -179,8 +179,8 @@
                 <div class="notification1">
                   <p><?php echo $value->getFullName(); ?>, quer visitar este imóvel dia <?php echo $value->getData(); ?> às <?php echo $value->getHora(); ?> </p>
                   <div id="visit_aprovation">
-                    <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=<?php echo $imovel->getIdImovel();?>">v</a></button>
-                    <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=<?php echo $imovel->getIdImovel();?>">x</a></button>
+                    <button type="button" class="aprove_visit"> <a href="aceitar_visita.php?id=<?php echo $value->getIdVisita();?>">v</a></button>
+                    <button type="button" class="disaprove_visit"><a href="negar_visita.php?id=<?php echo $value->getIdVisita();?>">x</a></button>
                   </div>
                 </div>
               </div>
@@ -196,7 +196,6 @@
     <!-- - - - - - - - - - - - - - - - - -->
     <div id="adicionarImovel" class="tabcontent">
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
-          <div class="add_prop_box">
 
         <!-- Gestor do imóvel -->
       <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
@@ -326,8 +325,36 @@
     <!-- FIM DO FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
     <!-- - - - - - - - - - - - - - - - - - - -  -->
 
-    <div id="visitas" class="tabcontent">
+    <div id="visita" class="tabcontent">
+      <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Nome do Cliente</th>
+              <th>Contacto</th>
+              <th>Imovel</th>
+              <th>Data</th>
+              <th>Hora</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
 
+            foreach ($bd->getVisitasAceites($_SESSION['funcionario']) as $value) {
+          ?>
+
+            <tr>
+              <td> <?php echo $value->getFullName() ?> </td>
+              <td> <?php echo $value->getContactCliente() ?> </td>
+              <td> <?php echo $value->getRua() ?></td>
+              <td> <?php echo $value->getData() ?> </td>
+              <td> <?php echo $value->getHora() ?> </td>
+            <tr>
+         <?php
+          }
+         ?>
+          </tbody>
+
+      </table>
     </div>
 
     <!-- API Google Maps -->

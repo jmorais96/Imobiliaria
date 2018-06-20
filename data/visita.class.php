@@ -16,6 +16,14 @@
         $this->estado=$estado;
       }
 
+      public function getIdVisita(){
+        return $this->idVisita;
+      }
+
+      public function getIdGestor(){
+        return $this->imovel->getGestor();
+      }
+
       public function getRua(){
         return $this->imovel->getRua();
       }
@@ -38,10 +46,17 @@
         return $this->estado;
       }
 
+      public function getContactCliente(){
+        return $this->user->getContact();
+      }
+
       public function getFullName(){
         return $this->user->getFullName();
       }
 
+      public function getContacto(){
+        return $this->user->getContacto();
+      }
   }
 
  ?>
