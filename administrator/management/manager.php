@@ -158,7 +158,7 @@ if(isset($_POST['accept'])) {
         <div class="management">
 
           <div class="t_workers">
-                 <h5><?php echo $imovel->getDescricao();?></h5>
+                 <h5><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> €</h5>
               </div>
           <div class="thumbnail_management">
 

@@ -83,7 +83,7 @@ class imovel{
   public function getTipoImovel(){
     return   $this->tipoImovel;
   }
-
+ 
   public function getIconMarcador(){
     return   $this->iconMarcador;
   }

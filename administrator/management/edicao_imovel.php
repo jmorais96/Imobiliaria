@@ -129,7 +129,7 @@ if(isset($_POST['edit_imovel'])) {
  <div class="nav_holder">
     </div>
     <div class="backend_admin">
-        <h1>Gestão de conteúdos</h1>
+        <h1>Gestão de Conteúdos</h1>
     </div>
     <div class="res_admin">
          <?php //se o login for feito com sucesso
