@@ -51,7 +51,7 @@
           $id['rua'],
           $id['codPostal'],
           $id['lat'],
-          $id['long'],
+          $id['lng'],
           $ilha[0]['ilha'],
           $concelho[0]['concelho'],
           $freguesia[0]['freguesia'],
@@ -133,7 +133,7 @@
           $id['rua'],
           $id['codPostal'],
           $id['lat'],
-          $id['long'],
+          $id['lng'],
           $ilha[0]['ilha'],
           $concelho[0]['concelho'],
           $freguesia[0]['freguesia'],
@@ -215,7 +215,7 @@
           $id['rua'],
           $id['codPostal'],
           $id['lat'],
-          $id['long'],
+          $id['lng'],
           $ilha[0]['ilha'],
           $concelho[0]['concelho'],
           $freguesia[0]['freguesia'],
@@ -283,12 +283,12 @@
       $finalidade[0]['finalidade'],
       $tipoImovel[0]['tipoImovel'],
       $pesquisa[0]['area'],
-      $pesquisa[0]['prgetvisieco'],
+      $pesquisa[0]['preco'],
       $pesquisa[0]['descricao'],
       $pesquisa[0]['rua'],
       $pesquisa[0]['codPostal'],
       $pesquisa[0]['lat'],
-      $pesquisa[0]['long'],
+      $pesquisa[0]['lng'],
       $ilha[0]['ilha'],
       $concelho[0]['concelho'],
       $freguesia[0]['freguesia'],
@@ -391,7 +391,7 @@
           $id['rua'],
           $id['codPostal'],
           $id['lat'],
-          $id['long'],
+          $id['lng'],
           $ilha[0]['ilha'],
           $concelho[0]['concelho'],
           $freguesia[0]['freguesia'],
@@ -463,7 +463,7 @@
           $id['rua'],
           $id['codPostal'],
           $id['lat'],
-          $id['long'],
+          $id['lng'],
           $ilha[0]['ilha'],
           $concelho[0]['concelho'],
           $freguesia[0]['freguesia'],
@@ -709,7 +709,7 @@
         return $visitas;
       }
 
-      
+
       public function getVisitasPendentes($gestor){
         $sql="SELECT * FROM visita WHERE estadoVisita = 'Em apreciaÃ'";
         $visitas=[];
@@ -723,7 +723,7 @@
         }
         return $visitas;
       }
-      
+
       public function getVisitasAceites($gestor){
         $sql="SELECT * FROM visita WHERE estadoVisita = 'Aceite'";
         $visitas=[];
@@ -784,19 +784,147 @@
     }
 
     # Método que permite adicionar imóveis
-    public function adicionarImovel($gestor, $finalidade, $tipoImovel, $tipologia, $area, $preco, $descricao, $morada, $codPostal, $lat, $long, $freguesia, $situacao, $estado) {
+    public function adicionarImovel($campos, $imagens) {
+      unset($campos['add_imovel']);
+      unset($campos['ilha']);
+      unset($campos['concelho']);
+      if (isset($campos['featured'])) {
+        $destaque=0;
+        unset($campos['featured']);
+      }
 
-      $sql_tabela_imovel = 'INSERT INTO imovel(gestor, finalidade, tipoImovel, area, preco, descricao, rua, codPostal, lat, long, idFreguesia, situacao, estado) VALUES(:gestor, :finalidade, :tipoImovel, :area, :preco, :descricao, :morada, :codPostal, :lat, :long, :freguesia, :situacao, :estado)';
+      $sql = 'INSERT INTO imovel (gestor, finalidade, tipoImovel, area, preco, descricao, rua, codPostal, lat, lng, idFreguesia, situacao, estado) VALUES(:gestor, :finalidade, :tipoImovel, :area, :preco, :descricao, :morada, :codPostal, :lat, :lng, :freguesia, "Ativo", :estado)';
 
-      $arr_tabela_imovel = array('gestor' => $gestor , 'finalidade' => $finalidade, 'tipoImovel' => $tipoImovel, 'area' => $area, 'preco' => $preco, 'descricao' => $descricao, 'morada' => $morada, 'codPostal' => $codPostal, 'lat' => $lat, 'long' => $long, 'freguesia' => $freguesia, 'situacao' => $situacao, 'estado' => $estado);
-      $this->query($sql_tabela_imovel, $arr_tabela_imovel);
+      // :gestor, ["gestor"]=> string(1) "2"
+      // :finalidade, ["finalidade"]=> string(1) "2"
+      // :tipoImovel, ["tipoImovel"]=> string(1) "3"
+      // :area,  ["area"]=> string(6) "150*50"
+      // :preco, ["preco"]=> string(2)  "10"
+      // :descricao,  ["descricao"]=> string(9) "asdasdasd"
+      // :morada,  ["morada"]=> string(6) "morada"
+      // :codPostal,  ["codPostal"]=> string(8) "9500-320"
+      // :lat,["lat"]=> string(17) "37.81310545857551"
+      // :lng, ["lng"]=> string(0) ""
+      // :freguesia  ["freguesia"]=> string(3)  "102"
+      // :estado ["estado"]=> string(6) "pronto"
+      // :tipologia, ["tipologia"]=> NULL
+      // :quartos, ["quartos"]=> NULL
+      // :casasBanho, ["casasBanho"]=> NULL
+      // :garagem,  ["garagem"]=> int(1)
+      // :piscina, ["piscina"]=> NULL
+      // :mobilia,  ["mobilia"]=> NULL
+      // :dataConstrucao,  ["dataConstrucao"]=> NULL
+      // :informacao ["informação"]=> string(0) ""
 
-      $sql_tabela_extras = 'INSERT INTO extras(tipologia) VALUES(:tipologia)';
-      $arr_tabela_extras = array('tipologia' => $tipologia);
+      // $campos['gestor'];
+      // $finalidade=$campos['finalidade'];
+      // $tipoImovel=$campos['tipoImovel'];
+      // $area=$campos['area'];
+      // $preco=$campos['preco'];
+      // $descricao=$campos['descricao'];
+      // $morada=$campos['morada'];
+      // $codPostal=$campos['codPostal'];
+      // $lat=$campos['lat'];
+      // $lng=$campos['lng'];
+      // $freguesia=$campos['freguesia'];
+      // $estado=$campos['estado'];
 
-      $this->query($sql_tabela_extras, $arr_tabela_extras);
 
-      return true;
+      if ($campos['tipologia']=="") {
+        $campos['tipologia']=null;
+      }
+
+      if ($campos['quartos']=="") {
+        $campos['quartos']=null;
+      }
+
+      if ($campos['casasBanho']=="") {
+        $campos['casasBanho']=null;
+      }
+
+      if (isset($campos['garagem'])) {
+        if ($campos['garagem']=="") {
+          $campos['garagem']=null;
+        }else {
+          $campos['garagem']=1;
+        }
+      }else {
+        $campos['garagem']=1;
+      }
+
+      if (isset($campos['piscina'])) {
+        if ($campos['piscina']=="") {
+          $campos['piscina']=null;
+        }else {
+          $campos['piscina']=1;
+        }
+      }else {
+        $campos['piscina']=null;
+      }
+
+      if (isset($campos['mobilia'])) {
+        if ($campos['mobilia']=="") {
+        $campos['mobilia']=null;
+        }else {
+          $campos['mobilia']=1;
+        }
+      }else {
+        $campos['mobilia']=null;
+      }
+
+      if ($campos['dataConstrucao']=="") {
+        $campos['dataConstrucao']=null;
+      }
+
+      if (isset($campos['informacao'])) {
+        if ($campos['informacao']=="") {
+          $campos['informacao']=null;
+        }
+      }else {
+        $campos['informacao']=null;
+      }
+      //var_dump($campos);
+
+      $arr = array('gestor' => $campos['gestor'] , 'finalidade' => $campos['finalidade'], 'tipoImovel' => $campos['tipoImovel'], 'area' => $campos['area'], 'preco' => $campos['preco'], 'descricao' => $campos['descricao'],
+       'morada' => $campos['morada'], 'codPostal' => $campos['codPostal'], 'lat' => $campos['lat'], 'lng' => $campos['lng'], 'freguesia' => $campos['freguesia'], 'estado' => $campos['estado']);
+
+      $this->query($sql, $arr);
+
+      $sql='SELECT idImovel from imovel order by idImovel desc limit 1';
+      $idImovel=$this->query($sql);
+
+      if (isset($campos['tipologia'])) {
+        if ($campos['tipologia']!=NULL) {
+          $sql = 'INSERT INTO extras (idImovel, tipologia, quartos, casasBanho, garagem, piscina, mobilia, dataConstrucao, informacao) VALUES(:idImovel, :tipologia, :quartos, :casasBanho, :garagem, :piscina, :mobilia, :dataConstrucao, :informacao)';
+          $arr = array('idImovel' => $idImovel[0]['idImovel'],
+           'tipologia' => $campos['tipologia'],
+           'quartos' =>$campos['quartos'] ,
+           'casasBanho' =>$campos['casasBanho'] ,
+           'garagem' => $campos['garagem'],
+           'piscina' => $campos['piscina'],
+           'mobilia' => $campos['mobilia'],
+           'dataConstrucao' => $campos['dataConstrucao'],
+           'informacao' => $campos['informacao'] );
+           //var_dump($arr);
+           $this->query($sql, $arr);
+        }
+      }
+
+      mkdir("../../imoveis/".$idImovel[0]['idImovel']);
+      foreach ($_FILES['img']['name'] as $f => $name) {
+          if(move_uploaded_file($_FILES["img"]["tmp_name"][$f], "../../imoveis/".$idImovel[0]['idImovel']."/$name" )) {
+            $sql='INSERT into galeria (idImovel, nomeImagem, descricao) VALUES (:idImovel, :nomeImagem, NULL)';
+            $this->query($sql, array('idImovel' => $idImovel[0]['idImovel'], 'nomeImagem' =>trim($name, " ")));
+        }
+      }
+
+      if (isset($destaque)) {
+
+        //echo "1";
+        $sql = 'INSERT INTO destaque(idImovel, destacado) VALUES(:idImovel, :destacado)';
+        $this->query($sql, array('idImovel' => $idImovel[0]['idImovel'] ,'destacado' => $destaque ));
+        //echo "2";
+      }
 
     }
 
