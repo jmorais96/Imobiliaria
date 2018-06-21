@@ -88,7 +88,7 @@ class imovel{
     return   $this->iconMarcador;
   }
 
- 
+
   public function getArea(){
     return   $this->area;
   }
@@ -212,7 +212,7 @@ class imovel{
   }
 
 
- 
+
 
   public function addMarker(){
 
@@ -222,6 +222,11 @@ class imovel{
 
   public function toMarker(){
     return array( $this->getIdImovel() ,$this->getLat(), $this->getLng(), $this->getRua(), $this->getTipoImovel(), $this->getArea(), $this->getPreco(),$this->getIconMarcador());
+  }
+
+  public function latLng(){
+
+    echo("latLng(".$this->getLat().", ".$this->getLng().");");
   }
 
 

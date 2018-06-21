@@ -183,12 +183,15 @@ if(isset($_POST['edit_imovel'])) {
           <label>Código-postal:<input type="text" name="codigo" value="<?php echo $imovel->getCodPostal();?>" placeholder=""/></label>
           <label>Área:<input type="text" name="area" value="<?php echo $imovel->getArea();?>" placeholder=""/></label>
           <label>Preço:<input type="text" name="preco" value="<?php echo $imovel->getPreco();?>" placeholder=""/></label>
-          <label>Latitute:<input type="text" name="lat" value="<?php echo $imovel->getLat();?>" placeholder=""/></label>
-          <label>Longitude:<input type="text" name="lng" value="<?php echo $imovel->getLng();?>" placeholder=""/></label>
           <label>Situação:<input type="text" name="situacao" value="<?php echo $imovel->getSituacao();?>" placeholder=""/></label>
           <label>Estado:<input type="text" name="estado" value="<?php echo $imovel->getEstado();?>" placeholder=""/></label>
-
           <input type="hidden" name="idImovel" value="<?php echo $imovel->getIdImovel(); ?>">
+
+          <!-- PARA LATITUDE E LONGITUDE DO IMOVEL -->
+          <div class="map"style="height:500px; weight:500px;"></div>
+          <input type="hidden" name="lat" value="">
+          <input type="hidden" name="lng" value="">
+
 
           <input type="submit" name="edit_imovel" value="editar">
 
@@ -275,29 +278,46 @@ if(isset($_POST['edit_imovel'])) {
         $("#visita").show();
       });
 
-      marker="";
+
+      var  markerImovel="";
+      var position=""
+      function latLng(lat, lng){
+          markerImovel = new google.maps.Marker({
+          position: { lat: lat, lng: lng }
+        });
+
+        $("[name=lat]").val(lat);
+        $("[name=lng]").val(lng);
+      markerImovel.setMap(map);
+      }
+
+      <?php $imovel->latLng(); ?>
+
+
+
       google.maps.event.addListener(map, 'click', function(event) {
-        if (marker == "") {
+        if (markerImovel == "") {
           placeMarker(event.latLng);
         }else {
-          marker.setMap(null);
-          marker="";
+          markerImovel.setMap(null);
+          markerImovel="";
           placeMarker(event.latLng);
         }
       });
 
       function placeMarker(location) {
-          marker = new google.maps.Marker({
+          markerImovel = new google.maps.Marker({
           position: location,
           map: map
         });
         //console.log(location.toString());
         let coordenadas=location.toString().replace("(", "").replace(")", "").split(' ').join('').split(",");
         //console.log(coordenadas);
-        console.log(coordenadas[0]);
         $("[name=lat]").val(coordenadas[0]);
         $("[name=lng]").val(coordenadas[1]);
       }
+
+
 
     </script>
     </div>
