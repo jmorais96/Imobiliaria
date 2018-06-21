@@ -88,33 +88,21 @@ if(isset($_POST['accept'])) {
   <body>
 
 
-        <!-- HEADER/NAVBAR -->
+  <!-- HEADER/NAVBAR -->
   <div class="container-header">
   <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="index.php"><img id="icon" src="../../images/logo.png"/></a>
+  <a class="navbar-brand" href="manager.php"><img id="icon" src="../../images/logo.png"/></a>
 
-  <!-- Toogler que aparecerá nos menores ecrãs -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span></button>
+        <ul class="nav justify-content-end">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav mx-auto">
-
-        <!-- Link de navegação "Home" -->
+        <!-- Link de navegação "Encerrar sessão" -->
         <li class="nav-item">
-            <a class="nav-link" href="?acao=logout">Logout</a>
+            <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
         </li>
-
+        
         </ul>
 
     </div>
-
-        <!-- Contacto Telefónico -->
-        <div class="phone">
-            <img id="phoneIcon" src="../../images/call-answer.svg" alt="Contacto Telefónico"/>
-            <p id="phone-number">296 012 345</p>
-        </div>
 
     </nav>
 </div>
@@ -145,7 +133,7 @@ if(isset($_POST['accept'])) {
       </div>
 
 
-<div class="admin_container">
+    <div class="admin_container">
     <div class="tab">
       <button class="tablinks" id="btnImoveis">Imóveis</button>
       <button class="tablinks" id="btnAdicionarImovel" >Adicionar imóveis</button>

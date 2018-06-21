@@ -1,5 +1,5 @@
 b {
-        margin-top: 0;
+    margin-top: 0;
     margin-bottom: 1rem;
     color: darkred;
 }
@@ -35,6 +35,19 @@ b {
   display: none;
 }
 
+#btnImoveis,
+#btnAdicionarImovel,
+#btnAdicionarVisita
+{
+    background-color: #fff;
+}
+
+#btnImoveis:hover,
+#btnAdicionarImovel:hover,
+#btnAdicionarVisita:hover {
+    background-color: #ED2B2A;
+    color: #fff!important;
+}
 
 #notifications {
   width: 800px;
@@ -86,9 +99,7 @@ b {
   color: white;
 }
 
-#notifications_box > .notification > a {
-width: 80%;
-}
+#notifications_box > .notification > a {width: 80%;}
 
 .notification {
   margin: 2px;
@@ -97,11 +108,13 @@ width: 80%;
   flex-direction: row;
   width: 100%;
 }
+
 #feature_aprovation {
 width: 20%;
 display: flex;
 flex-direction: row;
 }
+
 #feature_aprovation > .aprove_feature {
   border: 0;
   outline: none;
@@ -165,7 +178,7 @@ object-fit:cover;
 
 .notifications_box1{
   display: none;
-        width: 350px;
+  width: 350px;
 }
 
 /***************************/
@@ -198,25 +211,24 @@ label {display: flex;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top:5px;
+    margin-top: 5px;
 }
 
 button.tablinks {
     color: #231F20!important;
     border-bottom: 2px solid #ED2B2A;
     font-weight: bold;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
+    padding: 5px 50px;
+    margin: -5px 0 20px 0;
     transition-duration: 0.5s;
     transition-timing-function: linear;
     cursor: pointer;
-        font-size: 18px;
+    font-size: 18px;
 }
 
 input {
     width: 100%;
-        background-color: lightgrey;
+    background-color: lightgrey;
     height: 35px;
     padding-left: 5px;
     border-radius: 5px;
@@ -241,27 +253,34 @@ input[type="submit"] {
     color: white;
     padding: 10px 10px 1px 10px;
 }
+
 .res_admin{
     background-color: darkgrey;
-    color: white;
     padding: 10px 10px 1px 10px;
 }
 
-h4 {
-    color:white;
-}
+.res_admin h4 {color:white;}
+
 button:focus {outline:0;}
 
-/*****************************/
-/* HEADER/NAVBAR DA HOMEPAGE */
-/*****************************/
-.container-header {width: 100%;    height: 15%;}
+/***********************************/
+/* HEADER/NAVBAR DA ÁREA DE GESTÃO */
+/***********************************/
+.container-header {
+    width: 100%; 
+    height: 15%;
+}
+
 nav.navbar.navbar-expand-lg.navbar-light {
     margin: 0 10%;
 }
 
-.container_admin{
-      margin: 0 10%;
+.container_admin {
+    margin: 0 10%;
+}
+
+img#icon {
+    height: 70px;
 }
 
 /* Items de navegação */
@@ -275,6 +294,7 @@ a.nav-link {
     transition-duration: 0.5s;
     transition-timing-function: linear;
     cursor: pointer;
+    margin-left: 600px;
 }
 
 a.nav-link:hover {
@@ -287,27 +307,6 @@ button.navbar-toggler {background-color: #ED2B2A;}
 
 /* Logótipo */
 .header img {height: 70px;}
-
-/* Contacto */
-.contact img {height: 30px;}
-
-.phone {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-#phoneIcon {
-    align-self: center;
-    width: 12%;
-    height: 70%;
-    margin: 0 5px 10px 0;
-}
-
-#phone-number {
-    font-size: 17px;
-    font-weight: bold;
-}
 
 /* MÓDULO DE LOGIN */ 
 .modal-header {background-color: #ED2B2A; color: #fff; font-weight: bold;}
@@ -515,7 +514,7 @@ button#encontrar:hover {
 }
 
 img#icon {
-    height: 50px;
+    height: 70px;
     margin-bottom: 20px;
 }
 
@@ -547,16 +546,6 @@ img#icon {
     margin-right: 5px;
     font-size: 25px;
     font-weight: 500;
-}
-
-/*****************/
-/* MEDIA QUERIES */
-/*****************/
-
- @media only screen and (max-width: 600px) {
-    
-    .phone {margin-right: 30%;}    
-
 }
 
 .add_manager {
@@ -709,8 +698,18 @@ textarea {
     margin-top: 10px;
 }
 
-.titulo{
+.titulo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+/*****************/
+
+/* MEDIA QUERIES */
+
+/*****************/
+
+@media only screen and (max-width: 600px) {
+    
 }
