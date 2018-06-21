@@ -332,7 +332,7 @@ if(isset($_POST['edit_manager'])) {
 
                 foreach ($bd->getWorkers() as $value) {
               ?>
-
+ 
             <tr>
               <td> <?php echo $value->getNomeProprio() ?> </td>
               <td> <?php echo $value->getSobrenome() ?> </td>
@@ -350,7 +350,9 @@ if(isset($_POST['edit_manager'])) {
 
     </div>
   </div>
-
+    
+    
+ <!-- AO CLICAR NO BOTAO EDITAR GESTOR -->
     <?php
      foreach ($bd->getWorkers() as $value) {
     ?>
@@ -364,7 +366,7 @@ if(isset($_POST['edit_manager'])) {
           <label>Email:<input type="email" name="email" value="<?php echo $value->getEmail(); ?>" placeholder=""/></label>
           <label>Nome próprio:<input type="text" name="nome" value="<?php echo $value->getNomeProprio(); ?>" placeholder=""/></label>
           <label>Apelido:<input type="text" name="sobrenome" value="<?php echo $value->getSobrenome(); ?>" placeholder=""/></label>
-          <label>Password:<input type="text" name="password" value="<?php echo $value->getPassword();?>" placeholder=""/></label>
+          <label>Password:<input type="text" name="password" value="" placeholder=""/></label>
           <label>Confirmar password:<input type="text" name="retype" value="" placeholder=""/></label>
           <label>Contacto:<input type="contacto" name="contacto" value="<?php echo $value->getContacto(); ?>" placeholder=""/></label>
           <input type="hidden" name="id" value="<?php echo $value->getIdFuncionario(); ?>">
@@ -378,6 +380,7 @@ if(isset($_POST['edit_manager'])) {
     <?php
   }
   ?>
+   <!-- FIM DO BOTAO EDITAR IMOVEL -->
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
