@@ -115,11 +115,11 @@ if(isset($_POST['edit_imovel'])) {
 
     </div>
 
-        <!-- Contacto Telefónico -->
+        <!-- Contacto Telefónico 
         <div class="phone">
             <img id="phoneIcon" src="../../images/call-answer.svg" alt="Contacto Telefónico"/>
             <p id="phone-number">296 012 345</p>
-        </div>
+        </div>-->
 
     </nav>
 </div>
