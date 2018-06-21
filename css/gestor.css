@@ -602,6 +602,7 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .accept {
@@ -610,6 +611,7 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 150px;
+    cursor: pointer;
 }
 
 .refuse {
@@ -618,6 +620,7 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .visits_noti{
@@ -628,6 +631,7 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .ask_for_feature {
