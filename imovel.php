@@ -32,42 +32,44 @@
     }
 
   }
+
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
 
-<head>
+  <head>
 
-  <!-- MetaTags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- MetaTags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-  <!-- Folhas de estilo -->
-  <link rel="stylesheet" href="css/homepage.css" type="text/css">
-  <link rel="stylesheet" href="css/imovel.css" type="text/css">
+    <!-- Folhas de estilo -->
+    <link rel="stylesheet" href="css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="css/imovel.css" type="text/css">
 
-  <!-- Ícones Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-  <!-- Ficheiros JavaScript -->
-  <script src="js/jquery.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-  address = "<?php echo $imovel->getFreguesia(); ?>";
-  zoom=13;
-  </script>
+    <!-- Ficheiros JavaScript -->
+    <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+    address = "<?php echo $imovel->getFreguesia(); ?>";
+    zoom=13;
+    </script>
 
-  <!-- Font-family PT Sans -->
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <!-- Font-family PT Sans -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-  <!-- Ionic Icons -->
-  <script src="https://unpkg.com/ionicons@4.2.0/dist/ionicons.js"></script>
+    <!-- Ionic Icons -->
+<script src="https://unpkg.com/ionicons@4.2.0/dist/ionicons.js"></script>
 
-  <!-- Título da página -->
-  <title>Mais Imobiliária | Perfil do imóvel</title>
+    <!-- Título da página -->
+    <title>Mais Imobiliária | Perfil do Imóvel</title>
 
 </head>
 
@@ -161,18 +163,28 @@
 
     </nav>
   </div>
+  <!-- FINAL DO HEADER/NAVBAR -->
+  
+  <!-- - - - - - - - - - - - -->
 
+  <!-- PERFIL DO IMÓVEL -->
   <div id="container_imovel">
 
-    <div id="caixas_pesquisa">
-            <div class="pesquisa_grande">
-                <img id="image" src=<?php echo ('imoveis/'. $imovel->getIdImovel().'/'.$imovel->getNomeImagemPrincipal() );?>>
-                <h4>Concelho</h4>
-                <h6>Tipologia</h6>
-            </div>
-    </div>
+    <!-- Título da página / nome do imóvel -->
+    <h2 class="text-center"><?php echo $imovel->getTipoImovel() . " - " . $imovel->getRua();?></h2>
 
-    <!-- Página do imóvel -->
+
+    <!-- Imagem principal do imóvel -->
+    <div class="imovel_image text-center">
+      <img class="img-fluid rounded" src=<?php echo ('imoveis/'. $imovel->getIdImovel().'/'.$imovel->getNomeImagemPrincipal() );?>>
+    </div>
+      
+      
+      
+      <h4>Concelho</h4>
+      <h6>Tipologia</h6>
+
+
     <div id="sub_container">
       <div id="sobre">
             <!--preço-->
