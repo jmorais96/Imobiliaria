@@ -9,16 +9,14 @@ session_start();
           $db = new imobiliaria("../data/config.ini");
           //var_dump($db);
           $_SESSION['funcionario']=$db->loginFuncionario($_POST['email'], $_POST['password']);
-            var_dump($_POST);
-            var_dump($_SESSION['funcionario']);
+          if (isset($_SESSION['funcionario'])) {
             if ($_SESSION['funcionario']->getTipoUser()=="Administrador") {
               header("location:login_success.php");
             }elseif ($_SESSION['funcionario']->getTipoUser()=="Gestor") {
               header("location:management/manager.php");
-            }else {
-              echo "<script>alert('here');</script>";
             }
           }
+      }
         //os campos se estiverem preenchidos executa
         else {
             $message = '<label>Todos os campos devem ser preenchidos</lable>';
@@ -34,14 +32,14 @@ session_start();
     <!-- MetaTags -->
   	<meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="../css/styleLogin.css"/>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    
+
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	<title>Mais Imobiliária | Log in administrativo</title>
