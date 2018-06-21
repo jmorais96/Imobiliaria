@@ -1,17 +1,17 @@
 <?php
 
-  // Incluir a classe Imovel 
+  // Incluir a classe Imovel
   require_once('data/imovel.class.php');
 
-  // Incluir a classe User 
+  // Incluir a classe User
   require_once('data/user.class.php');
-  
-  // Iniciar a sessão 
+
+  // Iniciar a sessão
   session_start();
 
-  // Incluir funcionalidade de logout 
+  // Incluir funcionalidade de logout
   require_once('assets/logout.php');
-  
+
   $bd = new imobiliaria('data/config.ini');
 
   if (!isset($_GET['id'])) {
@@ -164,7 +164,7 @@
     </nav>
   </div>
   <!-- FINAL DO HEADER/NAVBAR -->
-  
+
   <!-- - - - - - - - - - - - -->
 
   <!-- PERFIL DO IMÓVEL -->
@@ -178,9 +178,9 @@
     <div class="imovel_image text-center">
       <img class="img-fluid rounded" src=<?php echo ('imoveis/'. $imovel->getIdImovel().'/'.$imovel->getNomeImagemPrincipal() );?>>
     </div>
-      
-      
-      
+
+
+
       <h4>Concelho</h4>
       <h6>Tipologia</h6>
 
@@ -272,7 +272,9 @@
     <!-- FINAL DO FOOTER -->
 
   </body>
-  
+
+  <!-- API Google Maps -->
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 

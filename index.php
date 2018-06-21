@@ -322,11 +322,13 @@
                 sql=sql.substring(0, sql.length-4);
               }
 
-              arr = [];
+              arr = "";
               for (var i in valores) {
                 arr+= i + ': ' + valores[i] + "|";
               }
-              arr=arr.substring(0, arr.length-1);
+              if (arr != "") {
+                arr=arr.substring(0, arr.length-1);
+              }
 
               sql += " and situacao = 'Ativo'";
 
