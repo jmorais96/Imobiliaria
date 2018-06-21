@@ -334,6 +334,63 @@
         $sql ='INSERT INTO destaque (idImovel, destacado) VALUES(:idImovel, 0 )';
         $this->query($sql, array('idImovel' => $id ));
     }
+      
+     public function editarImovel($id){
+        $sql="UPDATE imovel SET ";
+        $this->query($sql, array('idImovel' => $id ));
+         
+          $campos=[];
+          if ($_POST['area']) {
+            $campos['area']=$_POST['area'];
+            $sql .= "area = :area, ";
+          }
+          if ($_POST['preco']) {
+            $campos['preco']=$_POST['preco'];
+            $sql .= "preco = :preco, ";
+          }
+
+          if ($_POST['descricao']) {
+            $campos['descricao']=$_POST['descricao'];
+            $sql .= "descricao = :descricao, ";
+          }
+
+          if ($_POST['rua']) {
+            $campos['rua']=$_POST['rua'];
+            $sql .= "rua = :rua, ";
+          }
+
+          if ($_POST['codigo']) {
+            $campos['codigo']=$_POST['codigo'];
+            $sql .= "codigo = :codigo, ";
+          }
+
+          if ($_POST['lat']) {
+            $campos['lat']=$_POST['lat'];
+            $sql .= "lat = :lat, ";
+          }
+
+          if ($_POST['lng']) {
+            $campos['lng']=$_POST['lng'];
+            $sql .= "lng = :lng, ";
+          }
+
+         if ($_POST['situacao']) {
+            $campos['situacao']=$_POST['situacao'];
+            $sql .= "situacao = :situacao, ";
+          }
+
+         if ($_POST['estado']) {
+            $campos['estado']=$_POST['estado'];
+            $sql .= "estado = :estado, ";
+          }
+
+          if ($_POST['id']) {
+            $sql=substr($sql, 0, -2);
+            $campos['idImovel']=$_POST['id'];
+            $sql .= " where idImovel = :idImovel";
+          }
+
+    }  
 
     public function aceitarDestaque($id){
         $sql ='UPDATE destaque set destacado = 1 where idImovel = :idImovel';
@@ -768,6 +825,8 @@
         $this->query($sql, $campos);
 
     }
+      
+    
 
     public function mailGestorExists($mail){
       $sql='select count(*) from funcionario where email = :email';
