@@ -91,10 +91,16 @@
 
     public function update(){
       $bd=new imobiliaria('config.ini');
-      return $arr = array(':idUser' => utf8_encode($this->getIdUser()), ':email' => utf8_encode($this->getMail()), ':nomeProprio' => utf8_encode($this->getName()) , ':sobrenome' => utf8_encode($this->getLastName()) , ':password' => utf8_encode($this->password) , ':contacto' => utf8_encode($this->getContact()) , ':idFreguesia' => utf8_encode($this->getFreguesia()));
+      return $arr = array(':idUser' => ($this->getIdUser()), ':email' => ($this->getMail()), ':nomeProprio' => ($this->getName()) , ':sobrenome' => ($this->getLastName()) , ':password' => ($this->password) , ':contacto' => ($this->getContact()) , ':idFreguesia' => ($this->getFreguesia()));
     }
 
-
+    public function validarPassword($pass){
+      if ($this->password==$pass) {
+        return true;
+      }else {
+        return false;
+      }
+    }
 
 
   }

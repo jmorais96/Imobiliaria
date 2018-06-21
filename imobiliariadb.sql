@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Jun-2018 às 05:57
+-- Generation Time: 21-Jun-2018 às 02:25
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -75,7 +75,8 @@ CREATE TABLE `destaque` (
 --
 
 INSERT INTO `destaque` (`idImovel`, `destacado`) VALUES
-(1, 1);
+(1, 1),
+(2, 0);
 
 -- --------------------------------------------------------
 
@@ -318,7 +319,7 @@ CREATE TABLE `funcionario` (
 INSERT INTO `funcionario` (`idFuncionario`, `email`, `password`, `nomeProprio`, `sobrenome`, `contacto`, `tipoUser`) VALUES
 (1, 'admin@admin.pt', '0192023a7bbd73250516f069df18b500', 'Admin', 'Admin', 919999999, 1),
 (2, 'jose@jose.pt', '25d55ad283aa400af464c76d713c07ad', 'JosÃ©', 'Morais', 919999999, 2),
-(3, 'teste@teste.pt', '25d55ad283aa400af464c76d713c07ad', 'testea', 'testes', 919999999, 2);
+(3, 'teste@teste.pt', '25d55ad283aa400af464c76d713c07ad', 'testes', 'testes', 919999999, 2);
 
 -- --------------------------------------------------------
 
@@ -330,7 +331,7 @@ CREATE TABLE `galeria` (
   `idImagem` int(10) UNSIGNED NOT NULL,
   `idImovel` int(11) UNSIGNED NOT NULL,
   `nomeImagem` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `descricao` varchar(500) COLLATE utf8_unicode_ci NOT NULL
+  `descricao` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -386,7 +387,7 @@ CREATE TABLE `imoveisdestacados` (
 ,`rua` varchar(100)
 ,`codPostal` varchar(9)
 ,`lat` double
-,`long` double
+,`lng` double
 ,`idFreguesia` int(11) unsigned
 ,`situacao` enum('Ativo','Concluído')
 ,`estado` enum('Em obras','Pronto a habitar')
@@ -418,7 +419,7 @@ CREATE TABLE `imoveispropostos` (
 ,`rua` varchar(100)
 ,`codPostal` varchar(9)
 ,`lat` double
-,`long` double
+,`lng` double
 ,`idFreguesia` int(11) unsigned
 ,`situacao` enum('Ativo','Concluído')
 ,`estado` enum('Em obras','Pronto a habitar')
@@ -449,7 +450,7 @@ CREATE TABLE `imovel` (
   `rua` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `codPostal` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `lat` double NOT NULL,
-  `long` double NOT NULL,
+  `lng` double NOT NULL,
   `idFreguesia` int(11) UNSIGNED NOT NULL,
   `situacao` enum('Ativo','Concluído') COLLATE utf8_unicode_ci NOT NULL,
   `estado` enum('Em obras','Pronto a habitar') COLLATE utf8_unicode_ci NOT NULL
@@ -459,7 +460,7 @@ CREATE TABLE `imovel` (
 -- Extraindo dados da tabela `imovel`
 --
 
-INSERT INTO `imovel` (`idImovel`, `gestor`, `finalidade`, `tipoImovel`, `area`, `preco`, `descricao`, `rua`, `codPostal`, `lat`, `long`, `idFreguesia`, `situacao`, `estado`) VALUES
+INSERT INTO `imovel` (`idImovel`, `gestor`, `finalidade`, `tipoImovel`, `area`, `preco`, `descricao`, `rua`, `codPostal`, `lat`, `lng`, `idFreguesia`, `situacao`, `estado`) VALUES
 (1, 2, 1, 2, '500m*500m', '1000000.00', 'Casa Muito Bonita', 'Rua do Amorim, 7-G', '9500-102', 37.7484039, -25.6668802, 38, 'Ativo', 'Em obras'),
 (2, 2, 2, 3, 'ssdfs', '34234.00', 'sdgdfgd', 'fdgdfg', 'dfgdfg', 37.7724084, -25.7431675, 1, 'Ativo', 'Pronto a habitar');
 
@@ -547,7 +548,7 @@ CREATE TABLE `todosimoveis` (
 ,`rua` varchar(100)
 ,`codPostal` varchar(9)
 ,`lat` double
-,`long` double
+,`lng` double
 ,`idFreguesia` int(11) unsigned
 ,`situacao` enum('Ativo','Concluído')
 ,`estado` enum('Em obras','Pronto a habitar')
@@ -603,7 +604,7 @@ CREATE TABLE `visita` (
 --
 
 INSERT INTO `visita` (`idVisita`, `user`, `idImovel`, `dataVisita`, `estadoVisita`) VALUES
-(1, 3, 1, '2018-06-21 10:29:00', 'Aceite');
+(1, 3, 1, '2018-06-21 10:29:00', 'Em apreciaÃ§Ã£o');
 
 -- --------------------------------------------------------
 
@@ -612,7 +613,7 @@ INSERT INTO `visita` (`idVisita`, `user`, `idImovel`, `dataVisita`, `estadoVisit
 --
 DROP TABLE IF EXISTS `imoveisdestacados`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `imoveisdestacados`  AS  select `destaque`.`idImovel` AS `idImovel`,`destaque`.`destacado` AS `destacado`,`imovel`.`gestor` AS `gestor`,`imovel`.`finalidade` AS `finalidade`,`imovel`.`tipoImovel` AS `tipoImovel`,`imovel`.`area` AS `area`,`imovel`.`preco` AS `preco`,`imovel`.`descricao` AS `descricao`,`imovel`.`rua` AS `rua`,`imovel`.`codPostal` AS `codPostal`,`imovel`.`lat` AS `lat`,`imovel`.`long` AS `long`,`imovel`.`idFreguesia` AS `idFreguesia`,`imovel`.`situacao` AS `situacao`,`imovel`.`estado` AS `estado`,`extras`.`tipologia` AS `tipologia`,`extras`.`quartos` AS `quartos`,`extras`.`casasBanho` AS `casasBanho`,`extras`.`garagem` AS `garagem`,`extras`.`piscina` AS `piscina`,`extras`.`mobilia` AS `mobilia`,`extras`.`dataConstrucao` AS `dataConstrucao`,`extras`.`informacao` AS `informacao` from ((`destaque` join `imovel` on((`destaque`.`idImovel` = `imovel`.`idImovel`))) left join `extras` on((`destaque`.`idImovel` = `extras`.`idImovel`))) where (`destaque`.`destacado` <> 0) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `imoveisdestacados`  AS  select `destaque`.`idImovel` AS `idImovel`,`destaque`.`destacado` AS `destacado`,`imovel`.`gestor` AS `gestor`,`imovel`.`finalidade` AS `finalidade`,`imovel`.`tipoImovel` AS `tipoImovel`,`imovel`.`area` AS `area`,`imovel`.`preco` AS `preco`,`imovel`.`descricao` AS `descricao`,`imovel`.`rua` AS `rua`,`imovel`.`codPostal` AS `codPostal`,`imovel`.`lat` AS `lat`,`imovel`.`lng` AS `lng`,`imovel`.`idFreguesia` AS `idFreguesia`,`imovel`.`situacao` AS `situacao`,`imovel`.`estado` AS `estado`,`extras`.`tipologia` AS `tipologia`,`extras`.`quartos` AS `quartos`,`extras`.`casasBanho` AS `casasBanho`,`extras`.`garagem` AS `garagem`,`extras`.`piscina` AS `piscina`,`extras`.`mobilia` AS `mobilia`,`extras`.`dataConstrucao` AS `dataConstrucao`,`extras`.`informacao` AS `informacao` from ((`destaque` join `imovel` on((`destaque`.`idImovel` = `imovel`.`idImovel`))) left join `extras` on((`destaque`.`idImovel` = `extras`.`idImovel`))) where (`destaque`.`destacado` <> 0) ;
 
 -- --------------------------------------------------------
 
@@ -621,7 +622,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `imoveispropostos`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `imoveispropostos`  AS  select `destaque`.`idImovel` AS `idImovel`,`destaque`.`destacado` AS `destacado`,`imovel`.`gestor` AS `gestor`,`imovel`.`finalidade` AS `finalidade`,`imovel`.`tipoImovel` AS `tipoImovel`,`imovel`.`area` AS `area`,`imovel`.`preco` AS `preco`,`imovel`.`descricao` AS `descricao`,`imovel`.`rua` AS `rua`,`imovel`.`codPostal` AS `codPostal`,`imovel`.`lat` AS `lat`,`imovel`.`long` AS `long`,`imovel`.`idFreguesia` AS `idFreguesia`,`imovel`.`situacao` AS `situacao`,`imovel`.`estado` AS `estado`,`extras`.`tipologia` AS `tipologia`,`extras`.`quartos` AS `quartos`,`extras`.`casasBanho` AS `casasBanho`,`extras`.`garagem` AS `garagem`,`extras`.`piscina` AS `piscina`,`extras`.`mobilia` AS `mobilia`,`extras`.`dataConstrucao` AS `dataConstrucao`,`extras`.`informacao` AS `informacao` from ((`destaque` join `imovel` on((`destaque`.`idImovel` = `imovel`.`idImovel`))) left join `extras` on((`destaque`.`idImovel` = `extras`.`idImovel`))) where (`destaque`.`destacado` <> 1) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `imoveispropostos`  AS  select `destaque`.`idImovel` AS `idImovel`,`destaque`.`destacado` AS `destacado`,`imovel`.`gestor` AS `gestor`,`imovel`.`finalidade` AS `finalidade`,`imovel`.`tipoImovel` AS `tipoImovel`,`imovel`.`area` AS `area`,`imovel`.`preco` AS `preco`,`imovel`.`descricao` AS `descricao`,`imovel`.`rua` AS `rua`,`imovel`.`codPostal` AS `codPostal`,`imovel`.`lat` AS `lat`,`imovel`.`lng` AS `lng`,`imovel`.`idFreguesia` AS `idFreguesia`,`imovel`.`situacao` AS `situacao`,`imovel`.`estado` AS `estado`,`extras`.`tipologia` AS `tipologia`,`extras`.`quartos` AS `quartos`,`extras`.`casasBanho` AS `casasBanho`,`extras`.`garagem` AS `garagem`,`extras`.`piscina` AS `piscina`,`extras`.`mobilia` AS `mobilia`,`extras`.`dataConstrucao` AS `dataConstrucao`,`extras`.`informacao` AS `informacao` from ((`destaque` join `imovel` on((`destaque`.`idImovel` = `imovel`.`idImovel`))) left join `extras` on((`destaque`.`idImovel` = `extras`.`idImovel`))) where (`destaque`.`destacado` <> 1) ;
 
 -- --------------------------------------------------------
 
@@ -630,7 +631,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `todosimoveis`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `todosimoveis`  AS  select `imovel`.`idImovel` AS `idImovel`,`imovel`.`gestor` AS `gestor`,`imovel`.`finalidade` AS `finalidade`,`imovel`.`tipoImovel` AS `tipoImovel`,`imovel`.`area` AS `area`,`imovel`.`preco` AS `preco`,`imovel`.`descricao` AS `descricao`,`imovel`.`rua` AS `rua`,`imovel`.`codPostal` AS `codPostal`,`imovel`.`lat` AS `lat`,`imovel`.`long` AS `long`,`imovel`.`idFreguesia` AS `idFreguesia`,`imovel`.`situacao` AS `situacao`,`imovel`.`estado` AS `estado`,`extras`.`tipologia` AS `tipologia`,`extras`.`quartos` AS `quartos`,`extras`.`casasBanho` AS `casasBanho`,`extras`.`garagem` AS `garagem`,`extras`.`piscina` AS `piscina`,`extras`.`mobilia` AS `mobilia`,`extras`.`dataConstrucao` AS `dataConstrucao`,`extras`.`informacao` AS `informacao` from (`imovel` left join `extras` on((`imovel`.`idImovel` = `extras`.`idImovel`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `todosimoveis`  AS  select `imovel`.`idImovel` AS `idImovel`,`imovel`.`gestor` AS `gestor`,`imovel`.`finalidade` AS `finalidade`,`imovel`.`tipoImovel` AS `tipoImovel`,`imovel`.`area` AS `area`,`imovel`.`preco` AS `preco`,`imovel`.`descricao` AS `descricao`,`imovel`.`rua` AS `rua`,`imovel`.`codPostal` AS `codPostal`,`imovel`.`lat` AS `lat`,`imovel`.`lng` AS `lng`,`imovel`.`idFreguesia` AS `idFreguesia`,`imovel`.`situacao` AS `situacao`,`imovel`.`estado` AS `estado`,`extras`.`tipologia` AS `tipologia`,`extras`.`quartos` AS `quartos`,`extras`.`casasBanho` AS `casasBanho`,`extras`.`garagem` AS `garagem`,`extras`.`piscina` AS `piscina`,`extras`.`mobilia` AS `mobilia`,`extras`.`dataConstrucao` AS `dataConstrucao`,`extras`.`informacao` AS `informacao` from (`imovel` left join `extras` on((`imovel`.`idImovel` = `extras`.`idImovel`))) ;
 
 --
 -- Indexes for dumped tables
@@ -749,7 +750,7 @@ ALTER TABLE `concelho`
 -- AUTO_INCREMENT for table `extras`
 --
 ALTER TABLE `extras`
-  MODIFY `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `finalidade`
@@ -785,7 +786,7 @@ ALTER TABLE `ilha`
 -- AUTO_INCREMENT for table `imovel`
 --
 ALTER TABLE `imovel`
-  MODIFY `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
 
 --
 -- AUTO_INCREMENT for table `tipologia`

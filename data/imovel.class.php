@@ -91,7 +91,7 @@ class imovel{
     return   $this->iconMarcador;
   }
 
-
+ 
   public function getArea(){
     return   $this->area;
   }
@@ -215,7 +215,7 @@ class imovel{
   }
 
 
-
+ 
 
   public function addMarker(){
 

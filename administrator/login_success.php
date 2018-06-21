@@ -32,6 +32,8 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
       if(!$bd->mailGestorExists($_POST['email'])) {
 
+
+
           $bd->registarGestor($_POST['email'], $_POST['nome'], $_POST['sobrenome'], $_POST['password'], $_POST['contacto']);
 
       }
@@ -45,6 +47,7 @@ if(isset($_POST['edit_manager'])) {
 
   $campos=[];
   if ($_POST['email']) {
+
     $campos['email']=$_POST['email'];
     $sql .= "email = :email, ";
   }
@@ -77,6 +80,14 @@ if(isset($_POST['edit_manager'])) {
 
    if ((isset($_POST['password'])) && (isset($_POST['retype'])) ) {
      if ($_POST['password']==$_POST['retype']) {
+
+       if (md5($_POST['passAdmin'])==$_SESSION['funcionario']->getPassword()) {
+         $bd->editarGestor($sql, $campos);
+       }
+
+     }
+   }else {
+     if (md5($_POST['passAdmin'])==$_SESSION['funcionario']->getPassword()) {
        $bd->editarGestor($sql, $campos);
      }
    }
@@ -338,7 +349,7 @@ if(isset($_POST['edit_manager'])) {
               <td> <?php echo $value->getSobrenome() ?> </td>
               <td> <?php echo $value->getEmail() ?></td>
               <td> <?php echo $value->getContacto() ?> </td>
-             <td><button class="edit" onclick="openCity(event, '<?php echo $value->getEmail(); ?>')" >editar</button></td> 
+             <td><button class="edit" onclick="openCity(event, '<?php echo $value->getEmail(); ?>')" >editar</button></td>
             <tr>
          <?php
           }
@@ -346,11 +357,13 @@ if(isset($_POST['edit_manager'])) {
           </tbody>
 
       </table>
-        
+
 
     </div>
   </div>
 
+
+ <!-- AO CLICAR NO BOTAO EDITAR GESTOR -->
     <?php
      foreach ($bd->getWorkers() as $value) {
     ?>
@@ -364,9 +377,10 @@ if(isset($_POST['edit_manager'])) {
           <label>Email:<input type="email" name="email" value="<?php echo $value->getEmail(); ?>" placeholder=""/></label>
           <label>Nome próprio:<input type="text" name="nome" value="<?php echo $value->getNomeProprio(); ?>" placeholder=""/></label>
           <label>Apelido:<input type="text" name="sobrenome" value="<?php echo $value->getSobrenome(); ?>" placeholder=""/></label>
-          <label>Password:<input type="text" name="password" value="<?php echo $value->getPassword();?>" placeholder=""/></label>
-          <label>Confirmar password:<input type="text" name="retype" value="" placeholder=""/></label>
+          <label>Password:<input type="password" name="password" value="" placeholder=""/></label>
+          <label>Confirmar password:<input type="password" name="retype" value="" placeholder=""/></label>
           <label>Contacto:<input type="contacto" name="contacto" value="<?php echo $value->getContacto(); ?>" placeholder=""/></label>
+          <label>Password Administrativa:<input type="password" name="passAdmin" value="" placeholder=""/></label>
           <input type="hidden" name="id" value="<?php echo $value->getIdFuncionario(); ?>">
 
           <input type="submit" name="edit_manager" value="editar">
@@ -378,6 +392,7 @@ if(isset($_POST['edit_manager'])) {
     <?php
   }
   ?>
+   <!-- FIM DO BOTAO EDITAR IMOVEL -->
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

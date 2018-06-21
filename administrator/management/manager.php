@@ -38,8 +38,10 @@
   $bd = new imobiliaria("../../data/config.ini");
 
  if(isset($_POST['add_imovel'])) {
+   //var_dump($_POST);
+   //var_dump($_FILES);
 
-          $bd->adicionarImovel($_POST['gestor'], $_POST['finalidade'], $_POST['tipoImovel'], $_POST['tipologia'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['morada'], $_POST['codPostal'], $_POST['lat'], $_POST['long'], $_POST['freguesia'], $_POST['situacao'], $_POST['estado']);
+   $bd->adicionarImovel($_POST, $_FILES);
 
   }
 
@@ -48,8 +50,11 @@
   //var_dump($imoveis);
 
 if(isset($_POST['accept'])) {
-    
+
 }
+
+
+
 
 ?>
 
@@ -77,6 +82,7 @@ if(isset($_POST['accept'])) {
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Ficheiros JavaScript -->
+    <script src="../../js/admin_container.js"></script>
     <script src="../../js/jquery.js"></script>
     <script src="../../js/main.js"></script>
 
@@ -89,23 +95,18 @@ if(isset($_POST['accept'])) {
 
 
   <!-- HEADER/NAVBAR -->
-  <div class="container-header">
-  <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="manager.php"><img id="icon" src="../../images/logo.png"/></a>
+  <div class="container-header ">
+  <nav class="navbar navbar-expand-lg navbar-light ">
+  
+  <!-- Logótipo da página -->
+  <a class="navbar-brand" href="manager.php"><img id="icon" class="logo" src="../../images/logo.png"/></a>
 
-        <ul class="nav justify-content-end">
-
-          <!-- Link de navegação "Encerrar sessão" -->
-          <li class="nav-item">
-              <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
-          </li>
+  <!-- Link de navegação "Encerrar sessão" -->
+  <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
         
-        </ul>
+  </div>
 
-    </div>
-
-    </nav>
-</div>
+</nav>
 <!-- FINAL DO HEADER/NAVBAR  -->
 
 <div class="container_admin">
@@ -127,22 +128,20 @@ if(isset($_POST['accept'])) {
 
     </div>
 
-
-
       <div class="user_box">
       </div>
 
 
     <div class="admin_container">
     <div class="tab">
-      <button class="tablinks" id="btnImoveis">Imóveis</button>
-      <button class="tablinks" id="btnAdicionarImovel" >Adicionar imóveis</button>
-      <button class="tablinks" id="btnAdicionarVisita">Visitas</button>
+      <button class="tablinks" id="btnImoveis" onclick="openCity(event, 'imoveis')">Imóveis</button>
+      <button class="tablinks" id="btnAdicionarImovel" onclick="openCity(event, 'adicionarImovel')">Adicionar imóveis</button>
+      <button class="tablinks" id="btnAdicionarVisita" onclick="openCity(event, 'visita')">Visitas</button>
     </div>
 
 
     <div id="imoveis" class="tabcontent">
-     
+
      <div class="titulo">
          <h2>Lista de Imóveis</h2>
          <div class="wrap">
@@ -154,7 +153,7 @@ if(isset($_POST['accept'])) {
            </div>
         </div>
      </div>
-     
+
       <?php foreach ($imoveis as $imovel) {?>
         <div class="management">
 
@@ -184,13 +183,26 @@ if(isset($_POST['accept'])) {
                   <p><?php echo $imovel->getFreguesia();?></p>
                   <p><?php echo $imovel->getTipoImovel();?></p>
              </div>
-           
+
             <div class="buttons_management">
-              <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor para destaque</button></a>
-              <a href="../../edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>
+              <?php if ($imovel->getSituacao()=="Ativo") { ?>
+                <a href="comprar.php?id=<?php echo $imovel->getIdImovel();?>"><button class="delete" type="button" name="button">Marcar como Comprado</button></a>
+              <?php }else { ?>
+                <a href="n_comprar.php?id=<?php echo $imovel->getIdImovel();?>"><button class="delete" type="button" name="button">Voltar a ativar o imovel</button></a>
+              <?php } ?>
+
+              <?php if ($imovel->getDestaque()==NULL) { ?>
+                <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
+              <?php } ?>
+             
+             <a href="edicao_imovel.php?id=<?php echo $imovel->getIdImovel();?>"><button class="edit" type="button" name="button">Editar</button></a>  
+             <!--  <td><button class="edit" onclick="openCity(event, '<?php //echo $imovel->getIdImovel(); ?>')" >Editar</button></td>  -->
+
               <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
+
               <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>
               <button class="visits_noti">Visitas(<?php if(isset($visitas)){ echo (count($visitas)); }else {echo "0"; } ?>)</button>
+
               <?php if (isset($visitas)) {
                 foreach ($visitas as $value) {
               ?>
@@ -216,16 +228,26 @@ if(isset($_POST['accept'])) {
   <?php } ?>
   </div>
 
+ 
+    
+    
+    
+    <!--  AO CLICAR EM EDITAR IMOVEL MUDA PARA EDICAO_IMOVEL.PHP -->
+
+   
+   
+   
+   
     <!-- - - - - - - - - - - - - - - - - -->
     <!-- FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
     <!-- - - - - - - - - - - - - - - - - -->
-   
+
     <div id="adicionarImovel" class="tabcontent">
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
 
         <!-- Gestor do imóvel -->
       <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
-      
+
        <h2>Novo Imóvel</h2>
 
       <!-- Finalidade do imóvel -->
@@ -244,12 +266,58 @@ if(isset($_POST['accept'])) {
         </select>
       </div>
 
-      <!-- Tipologia do imóvel -->
-      <div class="add_prop_box">
-        <div><label>Tipologia</label></div>
-        <select name="tipologia" id="tipologia">
-          <?php $bd->selectTipologia() ?>
-        </select>
+
+      <div id="extras">
+
+        <!-- Tipologia do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Tipologia</label></div>
+          <select name="tipologia" id="tipologia">
+            <?php $bd->selectTipologia() ?>
+          </select>
+        </div>
+
+        <!-- Numero de quartos do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Numero de Quartos</label></div>
+          <input type="number" name="quartos" value="">
+        </div>
+
+        <!-- Numero de casas de Banho do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Numero de casas de Banho</label></div>
+          <input type="number" name="casasBanho" value="">
+        </div>
+
+        <!-- Garagem  -->
+        <div class="add_prop_box">
+          <div><label>Garagem</label></div>
+          <input type="checkbox" name="garagem" value="garagem">
+        </div>
+
+        <!-- Piscina  -->
+        <div class="add_prop_box">
+          <div><label>Piscina</label></div>
+          <input type="checkbox" name="piscina" value="piscina">
+        </div>
+
+        <!-- Mobilia  -->
+        <div class="add_prop_box">
+          <div><label>Mobilada</label></div>
+          <input type="checkbox" name="mobilia" value="mobilia">
+        </div>
+
+        <!-- Data de Construção do Imovel  -->
+        <div class="add_prop_box">
+          <div><label>Data de Construção</label></div>
+          <input type="date" name="dataConstrucao" value="">
+        </div>
+
+        <!-- Informação sobre do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Informação do imovel</label></div><textarea name="informacao"/></textarea>
+        </div>
+
       </div>
 
       <!-- Área do imóvel -->
@@ -269,23 +337,14 @@ if(isset($_POST['accept'])) {
         <div><label>Descrição do imovel</label></div><textarea name="descricao" value="descrição"/></textarea>
       </div>
 
-      <!-- Situação do imóvel -->
-      <div class="add_prop_box">
-      <div><label for="situacao">Situação atual do imóvel</label></div>
-      <select  name="situacao" id="situacao">
-          <option value="">Selecione um estado</option>
-          <option value="ativo">Ativo</option>
-          <option value="concluido">Concluído</option>
-      </select>
-      </div>
 
       <!-- Estado do imóvel -->
       <div class="add_prop_box">
       <div><label for="estado">Estado do imóvel</label></div>
       <select  name="estado" id="estado">
           <option value="">Selecione um estado</option>
-          <option value="obras">Em obras</option>
-          <option value="pronto">Pronto a habitar</option>
+          <option value="Em obras">Em obras</option>
+          <option value="Pronto a habitar">Pronto a habitar</option>
       </select>
       </div>
 
@@ -330,13 +389,13 @@ if(isset($_POST['accept'])) {
 
       <!-- Imagem(s) do imóvel -->
       <div class="add_prop_box">
-        <div><label>Imagem(s)</label></div><br><input type="file" name="img[]" accept="image/*" multiple>
+        <div><label>Imagem(s)</label></div><br><input type="file" name="img[]" multiple="multiple">
       </div>
 
       <!-- Latitude e longitude do imóvel -->
       <div class="add_prop_box">
         <input type="hidden" name="lat" value="">
-        <input type="hidden" name="long" value="">
+        <input type="hidden" name="lng" value="">
       </div>
 
       <!-- Mapa-->
@@ -355,11 +414,11 @@ if(isset($_POST['accept'])) {
 
     <div id="visita" class="tabcontent">
      <div class="admin_container">
-     
-     
-    
-    <!-- LISTA VISITAS MARCADAS --> 
-    <h2>Lista de Visitas Aceites</h2>    
+
+
+
+    <!-- LISTA VISITAS MARCADAS -->
+    <h2>Lista de Visitas Aceites</h2>
      <table class="table table-bordered table-hover">
           <thead>
             <tr>
@@ -394,6 +453,7 @@ if(isset($_POST['accept'])) {
     </div>
      </div>
 
+
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
 
@@ -416,6 +476,19 @@ if(isset($_POST['accept'])) {
       $(document).on("click", ".visits_noti", function(event){
           event.preventDefault();
           $(this).next('.notifications_box1').toggle();
+      });
+
+      $("#tipoImovel").change(function(){
+          let tipoImovel = $("#tipoImovel").val();
+          if (tipoImovel==1) {
+            $('#extras').show();
+          } else if (tipoImovel==2) {
+            $('#extras').show();
+          } else if (tipoImovel==7) {
+            $('#extras').show();
+          }else {
+            $('#extras').hide();
+          }
       });
 
       $("#ilha").change(function(){
@@ -487,6 +560,9 @@ if(isset($_POST['accept'])) {
         $("[name=lat]").val(coordenadas[0]);
         $("[name=lng]").val(coordenadas[1]);
       }
+
+
+
 
     </script>
     </div>
