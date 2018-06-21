@@ -259,7 +259,7 @@ input[type="submit"] {
     padding: 10px 10px 1px 10px;
 }
 
-.res_admin h4 {color:white;}
+.res_admin h4 {color:white; font-size: 1.2rem;}
 
 button:focus {outline:0;}
 
@@ -605,6 +605,7 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .accept {
@@ -613,6 +614,7 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 150px;
+    cursor: pointer;
 }
 
 .refuse {
@@ -621,6 +623,7 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .visits_noti{
@@ -631,6 +634,7 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .ask_for_feature{
@@ -641,16 +645,18 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .delete {
     background-color: #DC2D27;
     color: white;
-margin-top: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .buttons_management{

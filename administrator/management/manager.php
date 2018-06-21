@@ -112,7 +112,7 @@ if(isset($_POST['accept'])) {
  <div class="nav_holder">
     </div>
     <div class="backend_admin">
-        <h1>Gestão de conteúdos</h1>
+        <h1>Gestão de Conteúdos</h1>
     </div>
     <div class="res_admin">
          <?php //se o login for feito com sucesso
@@ -186,7 +186,7 @@ if(isset($_POST['accept'])) {
              </div>
            
             <div class="buttons_management">
-              <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
+              <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature" type="button" name="button">Propor para destaque</button></a>
               <a href="../../edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>
               <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
               <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>
