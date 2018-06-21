@@ -174,22 +174,26 @@
     <h2 class="text-center"><?php echo $imovel->getTipoImovel() . " - " . $imovel->getRua();?></h2>
 
 
-    <!-- Imagem principal do imóvel -->
+    <!-- Slider com as imagens associadas ao imóvel -->
     <div class="imovel_image text-center">
       <img class="img-fluid rounded" src=<?php echo ('imoveis/'. $imovel->getIdImovel().'/'.$imovel->getNomeImagemPrincipal() );?>>
     </div>
-
-
-
-      <h4>Concelho</h4>
-      <h6>Tipologia</h6>
-
-
+    
+    <!-- Especificações do imóvel -->
     <div id="sub_container">
+      
+      
+      <!-- Descrição do imóvel -->
+      <p><?php echo $imovel->getDescricao(); ?></p>
+      
+      <h3>Informações em detalhe:</h3>
+
+      <h5>Concelho:</h5>
+      <h5>Tipologia:</h5>
+
       <div id="sobre">
             <!--preço-->
             <h1><br>Preco: <?php echo $imovel->getPreco(); ?><br></h1>
-            <h3>Descrição:<?php echo $imovel->getDescricao(); ?><br></h3>
              <h5><br>descricao<br></h5>
             <h5>
             Finalidade: <?php echo $imovel->getFinalidade(); ?><br>
@@ -249,11 +253,11 @@
             </div>
       </div>
     <?php } ?>
+    
     </div>
 
     <!-- MAPA -->
-    <div class="map" style="margin-left:15%;"></div>
-
+    <div class="map mx-auto"></div>
 
     </div>
 
