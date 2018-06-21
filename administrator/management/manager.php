@@ -104,9 +104,8 @@ if(isset($_POST['accept'])) {
   <!-- Link de navegação "Encerrar sessão" -->
   <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
         
-  </div>
-
 </nav>
+ </div>
 <!-- FINAL DO HEADER/NAVBAR  -->
 
 <div class="container_admin">
