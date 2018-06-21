@@ -1,4 +1,18 @@
-/* VARIÁVEIS DAS CORES */
-:root {
-  --background-color: #ecf0f1;
+/*********************************************/
+/* ESTILIZAÇÃO DA PÁGINA DE PERFIL DO IMÓVEL */
+/*********************************************/
+
+/* Container do imóvel */ 
+#container_imovel {
+  background: #7f8c8d;
+  color: #fff;
+}
+
+/* Título do perfil do imóvel */
+#container_imovel h2 {padding: 30px;font-size: 2.1rem;}
+
+/* Imagem do perfil do imóvel */
+#container_imovel .imovel_image {
+  max-width: 100%;
+  height: auto;
 }
