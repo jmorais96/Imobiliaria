@@ -1,16 +1,4 @@
-#container_imovel {
-  background: #acacac;
-}
-
-#container_imovel h3 {
-  font-size: 25px;
-  padding: 15px;
-  margin: 5px 0 0 10px;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-#caixas_pesquisa {margin: 5px 0 0 20px;}
-pesquisa_grande h4 {
-  color: #fff;
+/* VARIÁVEIS DAS CORES */
+:root {
+  --background-color: #ecf0f1;
 }

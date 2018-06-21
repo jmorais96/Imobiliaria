@@ -94,43 +94,26 @@ if(isset($_POST['accept'])) {
   <body>
 
 
-        <!-- HEADER/NAVBAR -->
-  <div class="container-header">
-  <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="index.php"><img id="icon" src="../../images/logo.png"/></a>
+  <!-- HEADER/NAVBAR -->
+  <div class="container-header ">
+  <nav class="navbar navbar-expand-lg navbar-light ">
+  
+  <!-- Logótipo da página -->
+  <a class="navbar-brand" href="manager.php"><img id="icon" class="logo" src="../../images/logo.png"/></a>
 
-  <!-- Toogler que aparecerá nos menores ecrãs -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span></button>
+  <!-- Link de navegação "Encerrar sessão" -->
+  <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
+        
+  </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav mx-auto">
-
-        <!-- Link de navegação "Home" -->
-        <li class="nav-item">
-            <a class="nav-link" href="?acao=logout">Logout</a>
-        </li>
-
-        </ul>
-
-    </div>
-
-        <!-- Contacto Telefónico -->
-        <div class="phone">
-            <img id="phoneIcon" src="../../images/call-answer.svg" alt="Contacto Telefónico"/>
-            <p id="phone-number">296 012 345</p>
-        </div>
-
-    </nav>
-</div>
+</nav>
 <!-- FINAL DO HEADER/NAVBAR  -->
 
 <div class="container_admin">
  <div class="nav_holder">
     </div>
     <div class="backend_admin">
-        <h1>Gestão de conteúdos</h1>
+        <h1>Gestão de Conteúdos</h1>
     </div>
     <div class="res_admin">
          <?php //se o login for feito com sucesso
@@ -149,7 +132,7 @@ if(isset($_POST['accept'])) {
       </div>
 
 
-<div class="admin_container">
+    <div class="admin_container">
     <div class="tab">
       <button class="tablinks" id="btnImoveis" onclick="openCity(event, 'imoveis')">Imóveis</button>
       <button class="tablinks" id="btnAdicionarImovel" onclick="openCity(event, 'adicionarImovel')">Adicionar imóveis</button>
