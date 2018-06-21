@@ -259,7 +259,7 @@ input[type="submit"] {
     padding: 10px 10px 1px 10px;
 }
 
-.res_admin h4 {color:white;}
+.res_admin h4 {color:white; font-size: 1.2rem;}
 
 button:focus {outline:0;}
 
@@ -269,6 +269,8 @@ button:focus {outline:0;}
 .container-header {
     width: 100%; 
     height: 15%;
+    display: flex;
+    justify-content: space-between;
 }
 
 nav.navbar.navbar-expand-lg.navbar-light {
@@ -277,10 +279,6 @@ nav.navbar.navbar-expand-lg.navbar-light {
 
 .container_admin {
     margin: 0 10%;
-}
-
-img#icon {
-    height: 70px;
 }
 
 /* Items de navegação */
@@ -294,7 +292,6 @@ a.nav-link {
     transition-duration: 0.5s;
     transition-timing-function: linear;
     cursor: pointer;
-    margin-left: 600px;
 }
 
 a.nav-link:hover {
@@ -633,7 +630,7 @@ h7 {
     width: 350px;
 }
 
-.ask_for_feature{
+.ask_for_feature {
     background-color: #DC2D27;
     color: white;
     margin-top: 10px;
@@ -641,25 +638,27 @@ h7 {
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .delete {
     background-color: #DC2D27;
     color: white;
-margin-top: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 7px;
     width: 350px;
+    cursor: pointer;
 }
 
 .buttons_management{
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-        text-align: right;
+    text-align: right;
+    cursor: pointer;
 }
-
 
 figure img{
   object-fit: cover;
@@ -667,8 +666,10 @@ figure img{
   height: 200px;
 }
 
+button.edit, button.visits_noti {cursor: pointer;}
+
 select {
-       text-transform: none;
+    text-transform: none;
     width: 100%;
     background-color: lightgrey;
     height: 40px;
