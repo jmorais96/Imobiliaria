@@ -83,22 +83,22 @@ if(isset($_POST['edit_imovel'])) {
     $campos['codigo']=$_POST['codigo'];
     $sql .= "codigo = :codigo, ";
   }
-    
+
   if ($_POST['lat']) {
     $campos['lat']=$_POST['lat'];
     $sql .= "lat = :lat, ";
   }
-    
-  if ($_POST['long']) {
-    $campos['long']=$_POST['long'];
-    $sql .= "long = :long, ";
+
+  if ($_POST['lng']) {
+    $campos['lng']=$_POST['lng'];
+    $sql .= "lng = :lng, ";
   }
 
  if ($_POST['situacao']) {
     $campos['situacao']=$_POST['situacao'];
     $sql .= "situacao = :situacao, ";
   }
-    
+
  if ($_POST['estado']) {
     $campos['estado']=$_POST['estado'];
     $sql .= "estado = :estado, ";
@@ -200,7 +200,7 @@ if(isset($_POST['edit_imovel'])) {
         ?>
 
     </div>
-     
+
       <div class="user_box">
       </div>
 
@@ -259,15 +259,15 @@ if(isset($_POST['edit_imovel'])) {
 
             <div class="buttons_management">
               <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
-              
-           <!--   <a href="edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>  --> 
-              <td><button class="edit" onclick="openCity(event, '<?php echo $imovel->getIdImovel(); ?>')" >Editar</button></td> 
-              
+
+           <!--   <a href="edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>  -->
+              <td><button class="edit" onclick="openCity(event, '<?php echo $imovel->getIdImovel(); ?>')" >Editar</button></td>
+
               <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
-              
+
               <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>
               <button class="visits_noti">Visitas(<?php if(isset($visitas)){ echo (count($visitas)); }else {echo "0"; } ?>)</button>
-              
+
               <?php if (isset($visitas)) {
                 foreach ($visitas as $value) {
               ?>
@@ -292,8 +292,8 @@ if(isset($_POST['edit_imovel'])) {
     </div>
   <?php } ?>
   </div>
-   
-   <!-- AO CLICAR NO BOTAO EDITAR IMOVEL -->  
+
+   <!-- AO CLICAR NO BOTAO EDITAR IMOVEL -->
     <?php
      foreach ($imoveis as $value) {
     ?>
@@ -310,10 +310,10 @@ if(isset($_POST['edit_imovel'])) {
           <label>Área:<input type="text" name="area" value="<?php echo $value->getArea();?>" placeholder=""/></label>
           <label>Preço:<input type="text" name="preco" value="<?php echo $value->getPreco();?>" placeholder=""/></label>
           <label>Latitute:<input type="text" name="lat" value="<?php echo $value->getLat();?>" placeholder=""/></label>
-          <label>Longitude:<input type="text" name="long" value="<?php echo $value->getLng();?>" placeholder=""/></label>
+          <label>Longitude:<input type="text" name="lng" value="<?php echo $value->getLng();?>" placeholder=""/></label>
           <label>Situação:<input type="text" name="situacao" value="<?php echo $value->getSituacao();?>" placeholder=""/></label>
           <label>Estado:<input type="text" name="estado" value="<?php echo $value->getEstado();?>" placeholder=""/></label>
-          
+
           <input type="hidden" name="id" value="<?php echo $value->getIdImovel(); ?>">
 
           <input type="submit" name="edit_imovel" value="editar">
@@ -326,7 +326,7 @@ if(isset($_POST['edit_imovel'])) {
   }
   ?>
   <!-- FIM DO BOTAO EDITAR IMOVEL -->
-   
+
     <!-- - - - - - - - - - - - - - - - - -->
     <!-- FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
     <!-- - - - - - - - - - - - - - - - - -->
@@ -541,7 +541,7 @@ if(isset($_POST['edit_imovel'])) {
       </table>
     </div>
      </div>
-     
+
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
@@ -649,7 +649,7 @@ if(isset($_POST['edit_imovel'])) {
         $("[name=lat]").val(coordenadas[0]);
         $("[name=lng]").val(coordenadas[1]);
       }
-        
+
 
 
 
