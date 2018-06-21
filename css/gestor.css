@@ -150,13 +150,21 @@ option {
 
 .pesquisa input[type="submit"] {
     background-color: grey;
-    color: white;
     font-weight: bold;
     align-items: center;
     align-self: center;
     justify-content: center;
     display: flex;
 }
+
+input.searchTerm {background-color: #ED2B2A;}
+
+input.searchTerm::placeholder {
+    color: #fff;
+    background-color: #ED2B2A;
+}
+
+input.searchTerm:focus {color: #fff;}
 
 #index,
 #ilha,
@@ -292,7 +300,6 @@ flex-direction: row;
   color: black;
     justify-content: space-between;
 }
-
 
 .thumb_img_management {
   width: 20%;
@@ -508,15 +515,22 @@ h7 {
     border-radius: 7px;
     width: 350px;
     cursor: pointer;
+    transition: background 300ms ease-in-out;
 }
 
-.buttons_management{
+.buttons_management {
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
     text-align: right;
     cursor: pointer;
 }
+
+.buttons_management button {
+    font-size: 1.1rem;
+}
+
+.buttons_management button:hover {background-color: darkred;}
 
 figure img{
   object-fit: cover;
