@@ -15,27 +15,34 @@
   $bd=new imobiliaria("data/config.ini");
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['firstname']!="") {
-      $_SESSION['cliente']->setName($_POST['firstname']);
-    }
+    if ($_SESSION['cliente']->validarPassword(md5($_POST['passwordAtual']))) {
 
-    if ($_POST['lastname']!="") {
-      $_SESSION['cliente']->setLastName($_POST['lastname']);
-    }
+      if ($_POST['firstname']!="") {
+        $_SESSION['cliente']->setName($_POST['firstname']);
+      }
 
-    if ($_POST['email']!="") {
-      $_SESSION['cliente']->setMail($_POST['email']);
-    }
+      if ($_POST['lastname']!="") {
+        $_SESSION['cliente']->setLastName($_POST['lastname']);
+      }
 
-    if ($_POST['password']!="") {
-      $_SESSION['cliente']->setPassword($_POST['password']);
-    }
+      if ($_POST['email']!="") {
+        if (!$bd->mailClienteExists($_POST['email'])) {
+          $_SESSION['cliente']->setMail($_POST['email']);
+        }
 
-    if ($_POST['contact']!="") {
-      $_SESSION['cliente']->setContact($_POST['contact']);
-    }
+      }
 
-    $bd->updateCliente($_SESSION['cliente']->update());
+      if ($_POST['password']!="") {
+        $_SESSION['cliente']->setPassword($_POST['password']);
+      }
+
+      if ($_POST['contact']!="") {
+        $_SESSION['cliente']->setContact($_POST['contact']);
+      }
+
+      $bd->updateCliente($_SESSION['cliente']->update());
+
+    }
   }
 
 ?>
@@ -203,6 +210,11 @@
                             <td> <select name="freguesia" id="freguesia">
                                 <option value="">Selecione uma freguesia</option>
                             </select> </td>
+                          </tr>
+
+                          <tr>
+                            <td> <label for="freguesia">Password Atual</label> </td>
+                            <td> <input type="password" name="passwordAtual" value="" required> </td>
                           </tr>
 
                           <tr>

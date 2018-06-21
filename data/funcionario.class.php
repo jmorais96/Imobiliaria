@@ -20,7 +20,7 @@ class funcionario {
     $this->contacto=$contacto;
     $this->tipoUser=$tipoUser;
   }
- 
+
   public function getIdFuncionario(){
     return $this->idFuncionario;
   }
@@ -49,13 +49,45 @@ class funcionario {
     return $this->tipoUser;
   }
 
+
   public function getFullName(){
     return $this->nomeProprio." ".$this->sobrenome;
   }
 
+  public function setEmail($email){
+    $this->email=$email;
+  }
 
+  public function setPassword($password){
+    $this->password=$password;
+  }
 
+  public function setNomeProprio($nomeProprio){
+    $this->nomeProprio=$nomeProprio;
+  }
 
+  public function setSobrenome($sobrenome){
+    $this->sobrenome=$sobrenome;
+  }
+
+  public function setContacto($contacto){
+    $this->contacto=$contacto;
+  }
+
+  public function setTipoUser($tipoUser){
+    $this->tipoUser=$tipoUser;
+  }
+
+  public function updateFuncionario(){
+    $campos['email']=$this->email;
+    $campos['password']=$this->password;
+    $campos['nomeProprio']=$this->nomeProprio;
+    $campos['sobrenome']=$this->sobrenome;
+    $campos['contacto']=$this->contacto;
+    $campos['tipoUser']=$this->tipoUser;
+
+    return $campos;
+  }
 
 }
 

@@ -258,8 +258,15 @@ if(isset($_POST['edit_imovel'])) {
              </div>
 
             <div class="buttons_management">
-              <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
+              <?php if ($imovel->getSituacao()=="Ativo") { ?>
+                <a href="comprar.php?id=<?php echo $imovel->getIdImovel();?>"><button class="delete" type="button" name="button">Marcar como Comprado</button></a>
+              <?php }else { ?>
+                <a href="n_comprar.php?id=<?php echo $imovel->getIdImovel();?>"><button class="delete" type="button" name="button">Voltar a ativar o imovel</button></a>
+              <?php } ?>
 
+              <?php if ($imovel->getDestaque()==NULL) { ?>
+                <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
+              <?php } ?>
            <!--   <a href="edicao_imovel.php?id="><button class="edit" type="button" name="button">Editar</button></a>  -->
               <td><button class="edit" onclick="openCity(event, '<?php echo $imovel->getIdImovel(); ?>')" >Editar</button></td>
 

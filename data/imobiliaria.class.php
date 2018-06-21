@@ -271,9 +271,9 @@
       $sql='select destacado from destaque where idImovel = :idImovel';
       $destaque=$this->query($sql, array('idImovel' => $id));
       if (isset($destaque[0])) {
-        $destacado=0;
+        $destacado=$destaque[0]['destacado'];
       }else {
-        $destacado=1;
+        $destacado=NULL;
       }
 
       $imagens=$this->getImagens($pesquisa[0]['idImovel']);
@@ -635,8 +635,8 @@
         $sql='select * from tipo_user where idTipoUser = :idTipoUser';
         $tipoFuncionario=$this->query($sql, array('idTipoUser' => utf8_encode($info[0]['tipoUser'])));
         //var_dump($tipoFuncionario);
-        return new funcionario(utf8_decode($info[0]["idFuncionario"]), utf8_decode($info[0]["email"]), utf8_decode($info[0]["password"]), utf8_decode($info[0]["nomeProprio"]), utf8_decode($info[0]["sobrenome"]),
-         utf8_decode($info[0]["contacto"]), utf8_decode($tipoFuncionario[0]['tipo']));
+        return new funcionario(($info[0]["idFuncionario"]), ($info[0]["email"]), ($info[0]["password"]), ($info[0]["nomeProprio"]), ($info[0]["sobrenome"]),
+         ($info[0]["contacto"]), ($tipoFuncionario[0]['tipo']));
       }else {
         echo "<script> alert('Não existe um funcionário com estes dados') </script>";
       }
@@ -928,13 +928,20 @@
 
     }
 
+    public function marcarComprado($id){
+      $sql ='UPDATE imovel set situacao = "Concluído" where idImovel = :idImovel';
+      $this->query($sql, array('idImovel' => $id ));
+    }
+
+    public function marcarAtivo($id){
+      $sql ='UPDATE imovel set situacao = "Ativo" where idImovel = :idImovel';
+      $this->query($sql, array('idImovel' => $id ));
+    }
+
        public function getWorkers(){
-        $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
-        $tipoUser = $this->query($sql, array(":tipo" => "Gestor"));
 
-        $sql="SELECT * FROM funcionario WHERE tipoUser = :tipoUser";
-        $workers=$this->query($sql, array(":tipoUser" => $tipoUser[0]["idTipoUser"]));
-
+        $sql="SELECT * FROM funcionario";
+        $workers=$this->query($sql);
 
         foreach ($workers as $worker) {
           $sql = 'SELECT tipo FROM tipo_user WHERE idTipoUser = :idTipoUser';
