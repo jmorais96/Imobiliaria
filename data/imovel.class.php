@@ -30,9 +30,6 @@ class imovel{
    private $destaque;
    private $iconMarcador;
 
-
-
-
   function __construct($idImovel, $gestor, $finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $ilha, $concelho, $freguesia, $situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $imagem, $destaque, $iconMarcador){
 
     $this->idImovel=$idImovel;
