@@ -4,7 +4,7 @@
 
   class imobiliaria extends Database {
 
-    public function destaque($sql='select * from imoveisdestacados', $campos=[]){
+    public function destaque($sql='select * from imoveisdestacados WHERE situacao = "Ativo"', $campos=[]){
       //var_dump($campos);
       //echo "<script> alert('here'); </script>";
       $pesquisa=$this->query($sql,$campos);
@@ -81,7 +81,7 @@
 
     }
 
-    public function pesquisa($sql='SELECT * FROM todosimoveis', $campos=[]){
+    public function pesquisa($sql='SELECT * FROM todosimoveis where situacao = "Ativo"', $campos=[]){
       //var_dump($campos);
       //echo "<script> alert('here'); </script>";
       $pesquisa=$this->query($sql,$campos);
@@ -116,9 +116,9 @@
           $sql='select destacado from destaque where idImovel = :idImovel';
           $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
           if (isset($destaque[0])) {
-            $destacado=1;
+            $destacado=$destaque[0]['destacado'];
           }else {
-            $destacado=0;
+            $destacado=NULL;
           }
 
           $imagens=$this->getImagens($pesquisa[0]['idImovel']);
@@ -198,9 +198,9 @@
           $sql='select destacado from destaque where idImovel = :idImovel';
           $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
           if (isset($destaque[0])) {
-            $destacado=0;
+            $destacado=$destaque[0]['destacado'];
           }else {
-            $destacado=1;
+            $destacado=NULL;
           }
 
           $imagens=$this->getImagens($id['idImovel']);
@@ -334,11 +334,11 @@
         $sql ='INSERT INTO destaque (idImovel, destacado) VALUES(:idImovel, 0 )';
         $this->query($sql, array('idImovel' => $id ));
     }
-      
+
      public function editarImovel($id){
         $sql="UPDATE imovel SET ";
         $this->query($sql, array('idImovel' => $id ));
-         
+
           $campos=[];
           if ($_POST['area']) {
             $campos['area']=$_POST['area'];
@@ -390,7 +390,7 @@
             $sql .= " where idImovel = :idImovel";
           }
 
-    }  
+    }
 
     public function aceitarDestaque($id){
         $sql ='UPDATE destaque set destacado = 1 where idImovel = :idImovel';
@@ -825,8 +825,8 @@
         $this->query($sql, $campos);
 
     }
-      
-    
+
+
 
     public function mailGestorExists($mail){
       $sql='select count(*) from funcionario where email = :email';

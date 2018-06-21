@@ -328,6 +328,8 @@
               }
               arr=arr.substring(0, arr.length-1);
 
+              sql += " and situacao = 'Ativo'";
+
               $.ajax({
               type:'POST',
               url:'assets/pesquisa.php',
