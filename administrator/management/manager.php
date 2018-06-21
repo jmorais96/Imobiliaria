@@ -71,7 +71,7 @@ if(isset($_POST['accept'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <!-- Folhas de estilo -->
-    <link rel="stylesheet" href="../../css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="../../css/homepageManager.css" type="text/css">
     <link rel="stylesheet" href="../../css/gestor.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="../../css/gerirImovelTable.css">
 
