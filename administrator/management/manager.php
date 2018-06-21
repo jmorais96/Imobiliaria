@@ -186,7 +186,7 @@ if(isset($_POST['accept'])) {
 
             <div class="buttons_management">
               <?php if ($imovel->getSituacao()=="Ativo") { ?>
-                <a href="comprar.php?id=<?php echo $imovel->getIdImovel();?>"><button class="delete" type="button" name="button">Marcar como Comprado</button></a>
+                <a href="comprar.php?id=<?php echo $imovel->getIdImovel();?>"><button class="delete" type="button" name="button">Marcar como comprado</button></a>
               <?php }else { ?>
                 <a href="n_comprar.php?id=<?php echo $imovel->getIdImovel();?>"><button class="delete" type="button" name="button">Voltar a ativar o imovel</button></a>
               <?php } ?>
