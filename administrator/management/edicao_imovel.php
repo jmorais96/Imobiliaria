@@ -38,19 +38,10 @@
   // Criar a ligação à base de dados
   $bd = new imobiliaria("../../data/config.ini");
 
- if(isset($_POST['add_imovel'])) {
+ if (isset($_GET['id'])) {
+   $imovel=$bd->getImovel($_GET['id']);
+ }
 
-          $bd->adicionarImovel($_POST['gestor'], $_POST['finalidade'], $_POST['tipoImovel'], $_POST['tipologia'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['morada'], $_POST['codPostal'], $_POST['lat'], $_POST['long'], $_POST['freguesia'], $_POST['situacao'], $_POST['estado']);
-
-  }
-
-  $imoveis=$bd->imoveisGestor($_SESSION['funcionario']->getIdFuncionario());
-
-  //var_dump($imoveis);
-
-if(isset($_POST['accept'])) {
-    
-}
 
 
   // Criar a ligação à base de dados
@@ -58,8 +49,6 @@ if(isset($_POST['accept'])) {
 
 if(isset($_POST['edit_imovel'])) {
 //codigo do botao de editar gestor
-
- $bd = new imobiliaria("../../data/config.ini");
 
  $bd->editarImovel($_GET['id']);
 
@@ -168,7 +157,7 @@ if(isset($_POST['edit_imovel'])) {
 
 
     <div id="imoveis" class="tabcontent">
-     
+
      <div class="titulo">
          <h2>Lista de Imóveis</h2>
          <div class="wrap">
@@ -180,29 +169,26 @@ if(isset($_POST['edit_imovel'])) {
            </div>
         </div>
      </div>
-     
+
     <!-- AO CLICAR NO BOTAO EDITAR IMOVEL -->
-    <?php
-     foreach ($imoveis as $value) {
-    ?>
-  <div id="<?php echo $value->getIdImovel(); ?>" class="tabcontent">
+  <div id="<?php echo $imovel->getIdImovel(); ?>" class="tabcontent">
       <div class="admin_container">
         <!-- Form para criar gestor -->
         <div class="boxh2">
             <h2>Editar imóvel</h2>
         </div>
         <form class="add_manager" action="" method="post">
-          <label>Descricao:<input type="text" name="descricao" value="<?php echo $value->getDescricao(); ?>" placeholder=""/></label>
-          <label>Rua:<input type="text" name="rua" value="<?php echo $value->getRua(); ?>" placeholder=""/></label>
-          <label>Código-postal:<input type="text" name="codigo" value="<?php echo $value->getCodPostal();?>" placeholder=""/></label>
-          <label>Área:<input type="text" name="area" value="<?php echo $value->getArea();?>" placeholder=""/></label>
-          <label>Preço:<input type="text" name="preco" value="<?php echo $value->getPreco();?>" placeholder=""/></label>
-          <label>Latitute:<input type="text" name="lat" value="<?php echo $value->getLat();?>" placeholder=""/></label>
-          <label>Longitude:<input type="text" name="lng" value="<?php echo $value->getLng();?>" placeholder=""/></label>
-          <label>Situação:<input type="text" name="situacao" value="<?php echo $value->getSituacao();?>" placeholder=""/></label>
-          <label>Estado:<input type="text" name="estado" value="<?php echo $value->getEstado();?>" placeholder=""/></label>
+          <label>Descricao:<input type="text" name="descricao" value="<?php echo $imovel->getDescricao(); ?>" placeholder=""/></label>
+          <label>Rua:<input type="text" name="rua" value="<?php echo $imovel->getRua(); ?>" placeholder=""/></label>
+          <label>Código-postal:<input type="text" name="codigo" value="<?php echo $imovel->getCodPostal();?>" placeholder=""/></label>
+          <label>Área:<input type="text" name="area" value="<?php echo $imovel->getArea();?>" placeholder=""/></label>
+          <label>Preço:<input type="text" name="preco" value="<?php echo $imovel->getPreco();?>" placeholder=""/></label>
+          <label>Latitute:<input type="text" name="lat" value="<?php echo $imovel->getLat();?>" placeholder=""/></label>
+          <label>Longitude:<input type="text" name="lng" value="<?php echo $imovel->getLng();?>" placeholder=""/></label>
+          <label>Situação:<input type="text" name="situacao" value="<?php echo $imovel->getSituacao();?>" placeholder=""/></label>
+          <label>Estado:<input type="text" name="estado" value="<?php echo $imovel->getEstado();?>" placeholder=""/></label>
 
-          <input type="hidden" name="idImovel" value="<?php echo $value->getIdImovel(); ?>">
+          <input type="hidden" name="idImovel" value="<?php echo $imovel->getIdImovel(); ?>">
 
           <input type="submit" name="edit_imovel" value="editar">
 
@@ -210,17 +196,14 @@ if(isset($_POST['edit_imovel'])) {
       </div>
     </div>
 
-    <?php
-  }
-  ?>
   <!-- FIM DO BOTAO EDITAR IMOVEL -->
-  
+
 
   </div>
 
 
 
-   
+
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
