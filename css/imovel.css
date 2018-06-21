@@ -9,10 +9,38 @@
 }
 
 /* Título do perfil do imóvel */
-#container_imovel h2 {padding: 30px;font-size: 2.1rem;}
+#container_imovel h2 {
+  padding: 30px;
+  font-size: 2.1rem;
+}
 
 /* Imagem do perfil do imóvel */
 #container_imovel .imovel_image {
   max-width: 100%;
   height: auto;
 }
+
+/* Especificações do imóvel */
+
+#sub_container {
+  padding: 70px;
+}
+
+#sub_container h3 {
+  padding: 10px 0;
+  font-size: 1.9rem;
+  border-bottom: 2px solid red;
+}
+
+#sub_container p {
+  padding: 20px;
+  font-size: 1.3rem;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Títulos secundários do perfil do imóvel */ 
+#sub_container h5 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
