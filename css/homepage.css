@@ -240,6 +240,7 @@ button#encontrar:hover {
 
 /* Logótipo do footer */
 img#icon {height: 70px;}
+.footer img#icon {margin-top: 10px;}
 
 /* Container do footer */
 .container_footer {
