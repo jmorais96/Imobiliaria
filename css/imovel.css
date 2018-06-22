@@ -40,7 +40,7 @@
 
 /* Títulos secundários do perfil do imóvel */ 
 #sub_container h5 {
-  margin-top: 20px;
+  margin-top: 30px;
   font-size: 1.5rem;
 }
 
@@ -66,7 +66,7 @@
 }
 
 #info_group img {
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 0;
   border: 0;
   margin-top: 5px;
@@ -76,19 +76,23 @@
 i {margin-right: 10px;}
 
 /* Container das opções secundárias */
-.left_info_container {
-  margin-top: 50px;
-}
-
-.left_info_container img {
-  height: 2em;
-  margin: 0 10px 0 0;
-}
-
-div.info-piscina {
-  display: flex;
+.left_info_container {margin-top: 20px;}
+.left_info_container img {height: 2em; margin: 0 10px 0 0;}
+div.info-piscina, div.info-codpostal, div.info-dataconstrucao {
+  display: flex; 
   flex-direction: row;
+  margin-bottom: -10px;
+}
+
+/* Container dos elementos da parte inferior da página (informações secundárias e mapa) */
+#down_container {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Mapa */
-.map {height: 500px;}
+#down_container .map {
+  margin: 30px 0 0 20px;
+  height: 500px;
+  width: 800px;
+}

@@ -182,7 +182,6 @@
     <!-- Especificações do imóvel -->
     <div id="sub_container">
       
-      
       <!-- Descrição do imóvel -->
       <p><?php echo $imovel->getDescricao(); ?></p>
       
@@ -239,13 +238,19 @@
       </span>
 
     </div>
+
+    <div id="down_container">
     
     <div class="left_info_container">
 
       <!-- Rua do imóvel -->
       <span id="info_group">
       <h5>Rua do imóvel:</h5> 
-        <p><i class="fas fa-road fa-1x"></i><?php echo $imovel->getRua(); ?>. Código postal: <?php echo $imovel->getCodPostal(); ?></p>
+        <p><i class="fas fa-road fa-1x"></i><?php echo $imovel->getRua(); ?> 
+        <br>
+      <div class="info-codpostal">
+        <img src="images/icons/codpostal-icon.png" alt=""><p>Código postal: <?php echo $imovel->getCodPostal(); ?></p>
+      </div>
       </span>
 
       <!-- Área do imóvel -->
@@ -314,7 +319,7 @@
       <?php if ($imovel->getDataConstrucao()!=NULL) { ?>
       <span id="info_group">
       <h5>Data de construção:</h5>
-      <div class="info-piscina">
+      <div class="info-dataconstrucao">
         <img src="images/icons/construcao-icon.png" alt="Ícone da data de construção">
           <p><?php echo $imovel->getDataConstrucao(); ?>
           <?php } ?></p>
@@ -354,12 +359,13 @@
       </div>
     <?php } ?>
     
-    </div>
-
+    
     <!-- MAPA -->
     <div class="map mx-auto"></div>
-
+    
     </div>
+  
+  </div>
 
     <!-- FOOTER -->
     <div class="container_footer">
@@ -377,14 +383,15 @@
 
   </body>
 
-  <!-- API Google Maps -->
-  <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
+    <!-- API Google Maps -->
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
+    
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
+    
+    <!-- Script para o marcador do google maps -->
     <script>
     <?php $imovel->addMarker() ?>
     </script>
-
 
 </html>
