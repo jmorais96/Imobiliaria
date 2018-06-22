@@ -67,5 +67,20 @@
 /* Ícones */
 i {margin-right: 10px;}
 
+/* Container das opções secundárias */
+.left_info_container {
+  margin-top: 50px;
+}
+
+.left_info_container img {
+  height: 2em;
+  margin-right: 10px;
+}
+
+div.info-piscina {
+  display: flex;
+  flex-direction: row;
+}
+
 /* Mapa */
 .map {height: 500px;}
