@@ -371,7 +371,7 @@
     <div class="container_footer">
       <div class="footer">
            <div class="icon">
-              <img id="icon" src="images/logoBranco.png"/>
+              <a href="index.php"><img id="icon" src="images/logoBranco.png"/></a>
               <p id="homeIconName">
             </div>
             <div class="copyright">
