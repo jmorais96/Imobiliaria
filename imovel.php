@@ -167,29 +167,16 @@
 
   <!-- - - - - - - - - - - - -->
 
-  <!-- Slider com as imagens associadas ao imóvel -->
-    <div class="container-slider">
-      <div class="main-img">
-        <img src="images/galeria-teste-1.jpg" id="current">
-      </div>
-
-      <div class="imgs">
-        <img src="images/galeria-teste-1.jpg">
-        <img src="images/galeria-teste-2.jpg">
-        <img src="images/galeria-teste-3.jpg">
-        <img src="images/galeria-teste-4.jpg">
-        <img src="images/galeria-teste-5.jpg">
-        <img src="images/galeria-teste-6.jpg">
-      </div>
-    </div>
-    <!-- Final do slider com as imagens associadas ao imóvel -->
-
   <!-- PERFIL DO IMÓVEL -->
   <div id="container_imovel">
 
     <!-- Título da página / nome do imóvel -->
     <h2 class="text-center"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> €</h2>
+
+    <!-- Slider com as imagens associadas ao imóvel -->
     
+    <!-- Final do slider com as imagens associadas ao imóvel -->
+
     <!-- Especificações do imóvel -->
     <div id="sub_container">
       
@@ -377,8 +364,6 @@
     
     </div>
   
-  </div>
-
   </div>
 
     <!-- FOOTER -->
