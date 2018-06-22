@@ -59,9 +59,17 @@
 }
 
 #info_group p {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   padding: 0;
   border: 0;
+  margin-top: 5px;
+}
+
+#info_group img {
+  font-size: 1.2rem;
+  padding: 0;
+  border: 0;
+  margin-top: 5px;
 }
 
 /* Ícones */
@@ -74,7 +82,7 @@ i {margin-right: 10px;}
 
 .left_info_container img {
   height: 2em;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
 }
 
 div.info-piscina {
