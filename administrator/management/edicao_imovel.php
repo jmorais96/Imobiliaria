@@ -49,9 +49,53 @@
 
 if(isset($_POST['edit_imovel'])) {
 
-//codigo do botao de editar gestor
- if($_POST['finalidade']=="") $_POST['finalidade']=$imovel->getFinalidade();
- if($_POST['tipoImovel']=="") $_POST['tipoImovel']=$imovel->getTipoImovel();
+    if($_POST['finalidade']==""){    
+     if ($imovel->getFinalidade() =="Comprar") {
+        $_POST['finalidade']=1;
+     } else {
+          $_POST['finalidade']=2;
+     }
+ } else {
+      if($_POST['finalidade']=="Comprar") {
+          $_POST['finalidade']=1;
+     } else {
+          $_POST['finalidade']=2;
+     }
+ }
+    
+   if($_POST['tipoImovel']==""){    
+     if ($imovel->getTipoImovel() =="Apartamento") {
+        $_POST['tipoImovel']=1;
+     } else if ($imovel->getTipoImovel() =="Moradia") {
+          $_POST['tipoImovel']=2;
+     } else if ($imovel->getTipoImovel() =="Terreno") {
+          $_POST['tipoImovel']=3;
+     } else if ($imovel->getTipoImovel() =="Quinta") {
+          $_POST['tipoImovel']=4;
+     } else if ($imovel->getTipoImovel() =="Garagem") {
+          $_POST['tipoImovel']=5;
+     } else if ($imovel->getTipoImovel() =="Edifício de Habitação") {
+          $_POST['tipoImovel']=6;
+     } else if ($imovel->getTipoImovel() =="Duplex") {
+          $_POST['tipoImovel']=7;
+     }
+ } else {
+      if ($imovel->getTipoImovel() =="Apartamento") {
+        $_POST['tipoImovel']=1;
+     } else if ($imovel->getTipoImovel() =="Moradia") {
+          $_POST['tipoImovel']=2;
+     } else if ($imovel->getTipoImovel() =="Terreno") {
+          $_POST['tipoImovel']=3;
+     } else if ($imovel->getTipoImovel() =="Quinta") {
+          $_POST['tipoImovel']=4;
+     } else if ($imovel->getTipoImovel() =="Garagem") {
+          $_POST['tipoImovel']=5;
+     } else if ($imovel->getTipoImovel() =="Edifício de Habitação") {
+          $_POST['tipoImovel']=6;
+     } else if ($imovel->getTipoImovel() =="Duplex") {
+          $_POST['tipoImovel']=7;
+     }
+ }
  if($_POST['area']=="")$_POST['area']=$imovel->getArea();
  if($_POST['preco']=="")$_POST['preco']=$imovel->getPreco();
  if($_POST['descricao']=="")$_POST['descricao']=$imovel->getDescricao();
@@ -65,10 +109,51 @@ if(isset($_POST['edit_imovel'])) {
  if($_POST['tipologia']=="")$_POST['tipologia']=$imovel->getTipologia();
  if($_POST['quartos']=="")$_POST['quartos']=$imovel->getQuartos();
  if($_POST['casasBanho']=="")$_POST['casasBanho']=$imovel->getCasasBanho();
- if($_POST['garagem']=="")$_POST['garagem']=$imovel->getGaragem();
- if($_POST['piscina']=="")$_POST['piscina']=$imovel->getPiscina();
- if($_POST['mobilia']=="")$_POST['mobilia']=$imovel->getMobilia();
- if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstrucao();
+  
+//se nada for escrito mantem o valor senao escreve 1 para sim e 0 para nao
+ if($_POST['garagem']==""){    
+     if ($imovel->getGaragem() =="Sim") {
+        $_POST['garagem']=1;
+     } else {
+          $_POST['garagem']=0;
+     }
+ } else {
+      if($_POST['garagem']=="Sim") {
+          $_POST['garagem']=1;
+     } else {
+          $_POST['garagem']=0;
+     }
+ }
+
+if($_POST['piscina']==""){
+     if ($imovel->getPiscina() =="Sim") {
+        $_POST['piscina']=1;
+     } else {
+          $_POST['piscina']=0;
+     }
+ } else {
+     if($_POST['piscina']=="Sim") {
+          $_POST['piscina']=1;
+     } else {
+          $_POST['piscina']=0;
+     }
+ }
+    
+if($_POST['mobilia']==""){ 
+    if ($imovel->getMobilia() =="Sim") {
+            $_POST['mobilia']=1;
+         } else {
+              $_POST['mobilia']=0;
+     }
+} else {
+     if($_POST['mobilia']=="Sim") {
+          $_POST['mobilia']=1;
+     } else {
+          $_POST['mobilia']=0;
+     }
+ }
+
+if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstrucao();
  if($_POST['informacao']=="")$_POST['informacao']=$imovel->getInformacao();
 
 
@@ -209,7 +294,7 @@ if(isset($_POST['edit_imovel'])) {
           <label>Tipologia:<select class="" name="tipologia">
             <?php  $bd->selectTipologia() ?>
           </select></label>
-          <label>Numero de Quartos:<input type="text" name="quartos" value="<?php echo $imovel->getQuartos();?>" placeholder=""/></label>
+          <label>Numero de Quartos:<input type="text" name="quartos" value="<?php echo $imovel->getQuartos();?>" placeholder=""/></label> 
           <label>Numero de casas de banho:<input type="text" name="casasBanho" value="<?php echo $imovel->getCasasBanho();?>" placeholder=""/></label>
           <label>Garagem:<input type="text" name="garagem" value="<?php echo $imovel->getGaragem();?>" placeholder=""/></label>
           <label>Piscina:<input type="text" name="piscina" value="<?php echo $imovel->getPiscina();?>" placeholder=""/></label>

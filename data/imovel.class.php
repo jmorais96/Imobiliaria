@@ -157,7 +157,7 @@ class imovel{
         return "Não";
       }
     }else {
-      return   $this->garagem;
+      return $this->garagem;
     }
   }
 
