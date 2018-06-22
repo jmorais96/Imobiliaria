@@ -948,20 +948,33 @@
       $this->query($sql, array('idImovel' => $id ));
     }
 
-       public function getWorkers(){
+    public function getWorkers(){
 
-        $sql="SELECT * FROM funcionario";
-        $workers=$this->query($sql);
+      $sql="SELECT * FROM funcionario";
+      $workers=$this->query($sql);
 
-        foreach ($workers as $worker) {
-          $sql = 'SELECT tipo FROM tipo_user WHERE idTipoUser = :idTipoUser';
-          $tipoUser = $this->query($sql, array(":idTipoUser" => $worker['tipoUser']));
+      foreach ($workers as $worker) {
+        $sql = 'SELECT tipo FROM tipo_user WHERE idTipoUser = :idTipoUser';
+        $tipoUser = $this->query($sql, array(":idTipoUser" => $worker['tipoUser']));
 
-          $wkr[]=new funcionario($worker['idFuncionario'], $worker['email'],  $worker['password'], $worker['nomeProprio'], $worker['sobrenome'],  $worker['contacto'],  $tipoUser[0]['tipo']);
-        }
-        return $wkr;
-
+        $wkr[]=new funcionario($worker['idFuncionario'], $worker['email'],  $worker['password'], $worker['nomeProprio'], $worker['sobrenome'],  $worker['contacto'],  $tipoUser[0]['tipo']);
       }
+      return $wkr;
+
+    }
+
+    public function eliminarImovel($id){
+
+      $sql ='DELETE from extras where idImovel = :idImovel';
+      $this->query($sql, array('idImovel' => $id ));
+
+      $sql ='DELETE from galeria where idImovel = :idImovel';
+      $this->query($sql, array('idImovel' => $id ));
+
+      $sql ='DELETE from imovel where idImovel = :idImovel';
+      $this->query($sql, array('idImovel' => $id ));
+
+    }
 
   }
 

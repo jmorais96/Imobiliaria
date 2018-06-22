@@ -97,13 +97,13 @@ if(isset($_POST['accept'])) {
   <!-- HEADER/NAVBAR -->
   <div class="container-header ">
   <nav class="navbar navbar-expand-lg navbar-light ">
-  
+
   <!-- Logótipo da página -->
   <a class="navbar-brand" href="manager.php"><img id="icon" class="logo" src="../../images/logo.png"/></a>
 
   <!-- Link de navegação "Encerrar sessão" -->
   <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
-        
+
 </nav>
  </div>
 <!-- FINAL DO HEADER/NAVBAR  -->
@@ -145,7 +145,7 @@ if(isset($_POST['accept'])) {
          <h2>Lista de Imóveis</h2>
          <div class="wrap">
            <div class="search">
-              <input type="text" class="searchTerm" placeholder="Pesquise aqui">
+              <input type="text" id="filter" class="searchTerm" placeholder="Pesquise aqui">
               <!--<button type="submit" class="searchButton">
                 <i class="fa fa-search"></i>
              </button>-->
@@ -193,11 +193,11 @@ if(isset($_POST['accept'])) {
               <?php if ($imovel->getDestaque()==NULL) { ?>
                 <a href="propor.php?id=<?php echo $imovel->getIdImovel();?>"> <button class="ask_for_feature"type="button" name="button">Propor a destaque</button></a>
               <?php } ?>
-             
-             <a href="edicao_imovel.php?id=<?php echo $imovel->getIdImovel();?>"><button class="edit" type="button" name="button">Editar</button></a>  
+
+             <a href="edicao_imovel.php?id=<?php echo $imovel->getIdImovel();?>"><button class="edit" type="button" name="button">Editar</button></a>
              <!--  <td><button class="edit" onclick="openCity(event, '<?php //echo $imovel->getIdImovel(); ?>')" >Editar</button></td>  -->
 
-              <a href="../../eliminar_imovel.php?id="><button class="delete" type="button" name="button">Eliminar</button></a>
+              <a href="eliminar_imovel.php?id=<?php echo $imovel->getIdImovel();?>"><button class="delete" type="button" name="button">Eliminar</button></a>
 
               <?php $visitas=$bd->getVisitasPendenteImovel($imovel); ?>
               <button class="visits_noti">Visitas(<?php if(isset($visitas)){ echo (count($visitas)); }else {echo "0"; } ?>)</button>
@@ -227,16 +227,16 @@ if(isset($_POST['accept'])) {
   <?php } ?>
   </div>
 
- 
-    
-    
-    
+
+
+
+
     <!--  AO CLICAR EM EDITAR IMOVEL MUDA PARA EDICAO_IMOVEL.PHP -->
 
-   
-   
-   
-   
+
+
+
+
     <!-- - - - - - - - - - - - - - - - - -->
     <!-- FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
     <!-- - - - - - - - - - - - - - - - - -->
@@ -560,7 +560,13 @@ if(isset($_POST['accept'])) {
         $("[name=lng]").val(coordenadas[1]);
       }
 
-
+      $("#filter").on("keyup", function() {
+        //alert('here');
+        let value = $(this).val().toLowerCase();
+        $(".management").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
 
 
     </script>
