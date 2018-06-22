@@ -175,7 +175,11 @@
 
 
     <!-- Slider com as imagens associadas ao imóvel -->
-    
+    <div class="container-slider">
+      <div class="main-img">
+        <img src="images/galeria-teste-1.jpg" alt="" id="current">
+      </div>
+    </div>
 
 
     <!-- Final do slider com as imagens associadas ao imóvel -->
@@ -384,6 +388,9 @@
     <!-- FINAL DO FOOTER -->
 
   </body>
+
+    <!-- Ficheiros JavaScript -->
+    <script src="js/gallery-slider.js"></script>    
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
