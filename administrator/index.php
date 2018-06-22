@@ -42,7 +42,7 @@ session_start();
 
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  	<title>Mais Imobiliária | Log in administrativo</title>
+  	<title>Mais Imobiliária | Login administrativo</title>
   </head>
   <body>
 
