@@ -2,6 +2,9 @@
 /* ESTILIZAÇÃO DA PÁGINA DE PERFIL DO IMÓVEL */
 /*********************************************/
 
+/* Slider do perfil do imóvel */
+
+
 /* Container do imóvel */ 
 #container_imovel {
   background: #7f8c8d;
@@ -13,9 +16,6 @@
   padding: 30px;
   font-size: 2.1rem;
 }
-
-/* Slider do perfil do imóvel */
-
 
 /* Especificações do imóvel */
 
