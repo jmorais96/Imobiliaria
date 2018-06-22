@@ -171,13 +171,14 @@
   <div id="container_imovel">
 
     <!-- Título da página / nome do imóvel -->
-    <h2 class="text-center"><?php echo $imovel->getTipoImovel() . " - " . $imovel->getRua();?></h2>
+    <h2 class="text-center"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> €</h2>
 
 
     <!-- Slider com as imagens associadas ao imóvel -->
-    <div class="imovel_image text-center">
-      <img class="img-fluid rounded" src=<?php echo ('imoveis/'. $imovel->getIdImovel().'/'.$imovel->getNomeImagemPrincipal() );?>>
-    </div>
+    
+
+
+    <!-- Final do slider com as imagens associadas ao imóvel -->
     
     <!-- Especificações do imóvel -->
     <div id="sub_container">
@@ -214,7 +215,7 @@
       <div class="row info_second">
       
       <!-- Preço do imóvel -->
-      <span id="info_group">
+      <span id="info_group" class="info_group_down">
         <h5>Preço:</h5> 
         <p><i class="fas fa-money-bill-wave fa-1x"></i><?php echo $imovel->getPreco(); ?> €</p>
       </span>
@@ -336,6 +337,7 @@
       </span>
 
       </div>
+      <!-- Final das especificações do imóvel -->
 
       <?php if (isset($_SESSION['cliente'])) { ?>
       <div id="caixa_formulario">
