@@ -182,7 +182,6 @@
     <!-- Especificações do imóvel -->
     <div id="sub_container">
       
-      
       <!-- Descrição do imóvel -->
       <p><?php echo $imovel->getDescricao(); ?></p>
       
@@ -239,13 +238,19 @@
       </span>
 
     </div>
+
+    <div id="down_container">
     
     <div class="left_info_container">
 
       <!-- Rua do imóvel -->
       <span id="info_group">
       <h5>Rua do imóvel:</h5> 
-        <p><i class="fas fa-road fa-1x"></i><?php echo $imovel->getRua(); ?>. Código postal: <?php echo $imovel->getCodPostal(); ?></p>
+        <p><i class="fas fa-road fa-1x"></i><?php echo $imovel->getRua(); ?> 
+        <br>
+      <div class="info-codpostal">
+        <img src="images/icons/codpostal-icon.png" alt=""><p>Código postal: <?php echo $imovel->getCodPostal(); ?></p>
+      </div>
       </span>
 
       <!-- Área do imóvel -->
@@ -273,51 +278,64 @@
       </span>
 
       <!-- Número de casas de banho do imóvel -->
+      <?php if ($imovel->getCasasBanho()!=NULL) { ?>
       <span id="info_group">
       <h5>Número de casas de banho:</h5> 
         <p><i class="fas fa-bath fa-1x"></i>
-        <?php if ($imovel->getCasasBanho()!=NULL) { ?>
         <?php echo $imovel->getCasasBanho(); ?> casas de banho
-        <?php } ?>
-        
+        <?php } ?></p>
       </span>
 
       <!-- Verificar se o imóvel possui garagem -->
+      <?php if ($imovel->getGaragem()!=NULL) { ?>
       <span id="info_group">
-      <h5>Garagem:</h5> 
+        <h5>Garagem:</h5> 
         <p><i class="fas fa-warehouse fa-1x"></i>
-        <?php if ($imovel->getGaragem()!=NULL) { ?>
         <?php echo $imovel->getGaragem(); ?>
         <?php } ?>
       </span>
 
-       <!-- Verificar se o imóvel possui piscina -->
+      <!-- Verificar se o imóvel possui piscina -->
+      <?php if ($imovel->getPiscina()!=NULL) { ?>
       <span id="info_group">
       <h5>Piscina:</h5>
       <div class="info-piscina">
         <img src="images/icons/piscina-icon.png" alt="Ícone da piscina">
-          <p><?php if ($imovel->getPiscina()!=NULL) { ?>
-          <?php echo $imovel->getPiscina(); ?>
+          <p><?php echo $imovel->getPiscina(); ?>
           <?php } ?></p>
         </div>
       </span>
 
-
-
-   
+      <!-- Verificar se o imóvel possui mobília -->
       <?php if ($imovel->getMobilia()!=NULL) { ?>
-        Mobilada: <?php echo $imovel->getMobilia(); ?><br>
-      <?php } ?>
-      <?php if ($imovel->getDataConstrucao()!=NULL) { ?>
-        Data de construção: <?php echo $imovel->getDataConstrucao(); ?><br>
-      <?php } ?>
-      <?php if ($imovel->getInformacao()!=NULL) { ?>
-        informacao: <?php echo $imovel->getInformacao(); ?><br>
-      <?php } ?>
-      <br>
-      
-      </div>
+      <span id="info_group">
+      <h5>Mobilado:</h5> 
+        <p><i class="fas fa-box fa-1x"></i>
+        <?php echo $imovel->getMobilia(); ?>
+        <?php } ?></p>
+      </span>
 
+      <!-- Data de construção do imóvel -->
+      <?php if ($imovel->getDataConstrucao()!=NULL) { ?>
+      <span id="info_group">
+      <h5>Data de construção:</h5>
+      <div class="info-dataconstrucao">
+        <img src="images/icons/construcao-icon.png" alt="Ícone da data de construção">
+          <p><?php echo $imovel->getDataConstrucao(); ?>
+          <?php } ?></p>
+        </div>
+      </span>
+
+      <!-- Verificar se o imóvel possui informação -->
+      <?php if ($imovel->getInformacao()!=NULL) { ?>
+        <span id="info_group">
+        <h5>Mobilado:</h5> 
+        <p><i class="fas fa-box fa-1x"></i>
+        <?php echo $imovel->getInformacao(); ?>
+        <?php } ?>
+      </span>
+
+      </div>
 
       <?php if (isset($_SESSION['cliente'])) { ?>
       <div id="caixa_formulario">
@@ -341,12 +359,13 @@
       </div>
     <?php } ?>
     
-    </div>
-
+    
     <!-- MAPA -->
     <div class="map mx-auto"></div>
-
+    
     </div>
+  
+  </div>
 
     <!-- FOOTER -->
     <div class="container_footer">
@@ -364,14 +383,15 @@
 
   </body>
 
-  <!-- API Google Maps -->
-  <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
+    <!-- API Google Maps -->
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
+    
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
+    
+    <!-- Script para o marcador do google maps -->
     <script>
     <?php $imovel->addMarker() ?>
     </script>
-
 
 </html>
