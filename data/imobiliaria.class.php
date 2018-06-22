@@ -335,12 +335,12 @@
         $this->query($sql, array('idImovel' => $id ));
     }
 
-     public function editarImovel($finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, /*$idFreguesia, */$situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao){
-         $sql = 'UPDATE todosImoveis SET finalidade=:finalidade, tipoImovel=:tipoImovel, area=:area, preco=:preco, descricao=:descricao, rua=:rua, codPostal=:codPostal, lat=:lat, lng=:lng, situacao=:situacao, estado=:estado, tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao';
-         
-        $print=$this->query($sql, array('finalidade'=>$finalidade, 'tipoImovel'=>$tipoImovel, 'area'=>$area, 'preco'=>$preco, 'descricao'=>$descricao, 'rua'=>$rua, 'codPostal'=>$codPostal, 'lat'=>$lat, 'lng'=>$lng, /*'idFreguesia'=>$idFreguesia,*/ 'situacao'=>$situacao, 'estado'=>$estado, 'tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao));
+     public function editarImovel($finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, /*$idFreguesia, */$situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $idImovel){
+         $sql = 'UPDATE todosImoveis SET finalidade=:finalidade, tipoImovel=:tipoImovel, area=:area, preco=:preco, descricao=:descricao, rua=:rua, codPostal=:codPostal, lat=:lat, lng=:lng, situacao=:situacao, estado=:estado, tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao WHERE idImovel = :idImovel';
+         $print=array('finalidade'=>$finalidade, 'tipoImovel'=>$tipoImovel, 'area'=>$area, 'preco'=>$preco, 'descricao'=>$descricao, 'rua'=>$rua, 'codPostal'=>$codPostal, 'lat'=>$lat, 'lng'=>$lng, /*'idFreguesia'=>$idFreguesia,*/ 'situacao'=>$situacao,
+          'estado'=>$estado, 'tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao, 'idImovel'=>$idImovel);
+         $this->query($sql, $print);
          var_dump($print);
-         echo "teste";
     }
 
     public function aceitarDestaque($id){

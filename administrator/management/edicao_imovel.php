@@ -72,9 +72,9 @@ if(isset($_POST['edit_imovel'])) {
  if($_POST['informacao']=="")$_POST['informacao']=$imovel->getInformacao();
 
 
- $bd->editarImovel($_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['rua'], $_POST['codPostal'], $_POST['lat'], $_POST['lng'], /*$_POST['idFreguesia'],*/ $_POST['situacao'], $_POST['estado'], $_POST['tipologia'], $_POST['quartos'], $_POST['casasBanho'], $_POST['garagem'], $_POST['piscina'], $_POST['mobilia'], $_POST['dataConstrucao'], $_POST['informacao']);
-    
- header("location:manager.php");
+ $bd->editarImovel($_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['rua'], $_POST['codPostal'], $_POST['lat'], $_POST['lng'], /*$_POST['idFreguesia'],*/ $_POST['situacao'], $_POST['estado'], $_POST['tipologia'], $_POST['quartos'], $_POST['casasBanho'], $_POST['garagem'], $_POST['piscina'], $_POST['mobilia'], $_POST['dataConstrucao'], $_POST['informacao'], $_POST['idImovel']);
+
+ //header("location:manager.php");
 
 }
 
@@ -119,17 +119,17 @@ if(isset($_POST['edit_imovel'])) {
   <!-- HEADER/NAVBAR -->
   <div class="container-header ">
   <nav class="navbar navbar-expand-lg navbar-light ">
-  
+
   <!-- Logótipo da página -->
   <a class="navbar-brand" href="manager.php"><img id="icon" class="logo" src="../../images/logo.png"/></a>
-  
+
     <!-- Toogler que aparecerá nos menores ecrãs -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span></button>
 
   <!-- Link de navegação "Encerrar sessão" -->
   <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
-        
+
 </nav>
  </div>
 <!-- FINAL DO HEADER/NAVBAR  -->
@@ -191,6 +191,9 @@ if(isset($_POST['edit_imovel'])) {
             <h2>Editar imóvel</h2>
         </div>
         <form class="add_manager" action="" method="post">
+          <label>Finalidade: <select class="" name="finalidade">
+            <?php  $bd->selectFinalidade(); ?>
+          </select> </label>
           <label>Descricao:<input type="text" name="descricao" value="<?php echo $imovel->getDescricao(); ?>" placeholder=""/></label>
           <label>Rua:<input type="text" name="rua" value="<?php echo $imovel->getRua(); ?>" placeholder=""/></label>
           <label>Código-postal:<input type="text" name="codigo" value="<?php echo $imovel->getCodPostal();?>" placeholder=""/></label>
@@ -199,6 +202,21 @@ if(isset($_POST['edit_imovel'])) {
           <label>Situação:<input type="text" name="situacao" value="<?php echo $imovel->getSituacao();?>" placeholder=""/></label>
           <label>Estado:<input type="text" name="estado" value="<?php echo $imovel->getEstado();?>" placeholder=""/></label>
           <input type="hidden" name="idImovel" value="<?php echo $imovel->getIdImovel(); ?>">
+          <label>Tipo Imovel:<select class="" name="tipoImovel">
+            <?php  $bd->selectTipoImovel(); ?>
+          </select></label>
+          <label>Codigo Postal:<input type="text" name="codPostal" value="<?php echo $imovel->getCodPostal();?>" placeholder=""/></label>
+          <label>Tipologia:<select class="" name="tipologia">
+            <?php  $bd->selectTipologia() ?>
+          </select></label>
+          <label>Numero de Quartos:<input type="text" name="quartos" value="<?php echo $imovel->getQuartos();?>" placeholder=""/></label>
+          <label>Numero de casas de banho:<input type="text" name="casasBanho" value="<?php echo $imovel->getCasasBanho();?>" placeholder=""/></label>
+          <label>Garagem:<input type="text" name="garagem" value="<?php echo $imovel->getGaragem();?>" placeholder=""/></label>
+          <label>Piscina:<input type="text" name="piscina" value="<?php echo $imovel->getPiscina();?>" placeholder=""/></label>
+          <label>Mobilia:<input type="text" name="mobilia" value="<?php echo $imovel->getMobilia();?>" placeholder=""/></label>
+          <label>Data de Construcao:<input type="text" name="dataConstrucao" value="<?php echo $imovel->getDataConstrucao();?>" placeholder=""/></label>
+          <label>Informações:<input type="text" name="informacao" value="<?php echo $imovel->getInformacao();?>" placeholder=""/></label>
+
 
           <!-- PARA LATITUDE E LONGITUDE DO IMOVEL -->
           <div class="map"style="height:500px; weight:500px;"></div>
