@@ -335,61 +335,12 @@
         $this->query($sql, array('idImovel' => $id ));
     }
 
-     public function editarImovel($id){
-        $sql="UPDATE imovel SET ";
-        $this->query($sql, array('idImovel' => $id ));
-
-          $campos=[];
-          if ($_POST['area']) {
-            $campos['area']=$_POST['area'];
-            $sql .= "area = :area, ";
-          }
-          if ($_POST['preco']) {
-            $campos['preco']=$_POST['preco'];
-            $sql .= "preco = :preco, ";
-          }
-
-          if ($_POST['descricao']) {
-            $campos['descricao']=$_POST['descricao'];
-            $sql .= "descricao = :descricao, ";
-          }
-
-          if ($_POST['rua']) {
-            $campos['rua']=$_POST['rua'];
-            $sql .= "rua = :rua, ";
-          }
-
-          if ($_POST['codigo']) {
-            $campos['codigo']=$_POST['codigo'];
-            $sql .= "codigo = :codigo, ";
-          }
-
-          if ($_POST['lat']) {
-            $campos['lat']=$_POST['lat'];
-            $sql .= "lat = :lat, ";
-          }
-
-          if ($_POST['lng']) {
-            $campos['lng']=$_POST['lng'];
-            $sql .= "lng = :lng, ";
-          }
-
-         if ($_POST['situacao']) {
-            $campos['situacao']=$_POST['situacao'];
-            $sql .= "situacao = :situacao, ";
-          }
-
-         if ($_POST['estado']) {
-            $campos['estado']=$_POST['estado'];
-            $sql .= "estado = :estado, ";
-          }
-
-          if ($_POST['id']) {
-            $sql=substr($sql, 0, -2);
-            $campos['idImovel']=$_POST['id'];
-            $sql .= " where idImovel = :idImovel";
-          }
-
+     public function editarImovel($finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, /*$idFreguesia, */$situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao){
+         $sql = 'UPDATE todosImoveis SET finalidade=:finalidade, tipoImovel=:tipoImovel, area=:area, preco=:preco, descricao=:descricao, rua=:rua, codPostal=:codPostal, lat=:lat, lng=:lng, situacao=:situacao, estado=:estado, tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao';
+         
+        $print=$this->query($sql, array('finalidade'=>$finalidade, 'tipoImovel'=>$tipoImovel, 'area'=>$area, 'preco'=>$preco, 'descricao'=>$descricao, 'rua'=>$rua, 'codPostal'=>$codPostal, 'lat'=>$lat, 'lng'=>$lng, /*'idFreguesia'=>$idFreguesia,*/ 'situacao'=>$situacao, 'estado'=>$estado, 'tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao));
+         var_dump($print);
+         echo "teste";
     }
 
     public function aceitarDestaque($id){
