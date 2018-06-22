@@ -130,7 +130,7 @@
 
               <!-- Header do módulo -->
               <div class="modal-header">
-                  <h3 class="modal-title">Efetue o seu log in</h3>
+                  <h3 class="modal-title">Efetue o seu login</h3>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
 
@@ -186,52 +186,96 @@
       <!-- Descrição do imóvel -->
       <p><?php echo $imovel->getDescricao(); ?></p>
       
-      <h3>Informações em detalhe:</h3>
-
-      <h5>Concelho:</h5>
-      <h5>Tipologia:</h5>
-
-      <div id="sobre">
-            <!--preço-->
-            <h1><br>Preco: <?php echo $imovel->getPreco(); ?><br></h1>
-             <h5><br>descricao<br></h5>
-            <h5>
-            Finalidade: <?php echo $imovel->getFinalidade(); ?><br>
-            Tipo de imóvel: <?php echo $imovel->getTipoImovel(); ?><br>
-            Area: <?php echo $imovel->getArea(); ?><br>
-            Rua: <?php echo $imovel->getRua(); ?><br>
-            Código Postal: <?php echo $imovel->getCodPostal(); ?><br>
-            Ilha: <?php echo $imovel->getIlha(); ?><br>
-            Concelho: <?php echo $imovel->getConcelho(); ?><br>
-            Freguesia: <?php echo $imovel->getFreguesia(); ?><br>
-            Estado: <?php echo $imovel->getEstado(); ?><br>
-            <?php if ($imovel->getTipologia()!=NULL) { ?>
-              Tipologia: <?php echo $imovel->getTipologia(); ?><br>
-            <?php } ?>
-            <?php if ($imovel->getQuartos()!=NULL) { ?>
-              Numero de Quartos: <?php echo $imovel->getQuartos(); ?><br>
-            <?php } ?>
-            <?php if ($imovel->getCasasBanho()!=NULL) { ?>
-              Numero de Casas de banho: <?php echo $imovel->getCasasBanho(); ?><br>
-            <?php } ?>
-            <?php if ($imovel->getGaragem()!=NULL) { ?>
-              Garagem: <?php echo $imovel->getGaragem(); ?><br>
-            <?php } ?>
-            <?php if ($imovel->getPiscina()!=NULL) { ?>
-              Piscina: <?php echo $imovel->getPiscina(); ?><br>
-            <?php } ?>
-            <?php if ($imovel->getMobilia()!=NULL) { ?>
-              Mobilada: <?php echo $imovel->getMobilia(); ?><br>
-            <?php } ?>
-            <?php if ($imovel->getDataConstrucao()!=NULL) { ?>
-              Data de construção: <?php echo $imovel->getDataConstrucao(); ?><br>
-            <?php } ?>
-            <?php if ($imovel->getInformacao()!=NULL) { ?>
-              informacao: <?php echo $imovel->getInformacao(); ?><br>
-            <?php } ?>
-            <br>
-            </h5>
+      <!-- Informações do imóvel em detalhe -->
+      <h3><i class="fas fa-info-circle fa-1x"></i>Informações em detalhe:</h3>
+      
+      <!-- Localização do imóvel -->
+      <div class="row location">
+      
+      <!-- Ilha do imóvel -->
+      <span id="info_group">
+        <h5><i class="far fa-map fa-1x"></i>Ilha:</h5>
+        <p><?php echo $imovel->getIlha(); ?></p>
+      </span>
+      
+      <!-- Concelho do imóvel -->
+      <span id="info_group">
+        <h5><i class="far fa-compass fa-1x"></i>Concelho:</h5>
+        <p><?php echo $imovel->getConcelho(); ?></p>
+      </span>
+      
+      <!-- Freguesia do imóvel -->
+      <span id="info_group">
+        <h5><i class="fas fa-location-arrow fa-1x"></i>Freguesia:</h5>
+        <p><?php echo $imovel->getFreguesia(); ?></p>
+      </span>
+      
       </div>
+
+      <div class="row info_second">
+      
+      <!-- Preço do imóvel -->
+      <span id="info_group">
+        <h5>Preço:</h5> 
+        <p><i class="fas fa-money-bill-wave fa-1x"></i><?php echo $imovel->getPreco(); ?> €</p>
+      </span>
+
+      <!-- Finalidade do imóvel -->
+      <span id="info_group">
+        <h5>Finalidade:</h5> 
+        <p><i class="fas fa-piggy-bank fa-1x"></i><?php echo $imovel->getFinalidade(); ?></p>
+      </span>
+
+      <!-- Tipo do imóvel -->
+      <span id="info_group">
+        <h5>Tipo:</h5> 
+        <p><i class="fas fa-home fa-1x"></i><?php echo $imovel->getTipoImovel(); ?></p>
+      </span>
+
+      <!-- Estado do imóvel -->
+      <span id="info_group">
+        <h5>Estado:</h5> 
+        <p><i class="fas fa-truck-loading fa-1x"></i><?php echo $imovel->getEstado(); ?></p>
+      </span>
+
+    </div>
+    
+    <!-- Rua do imóvel -->
+    <span id="info_group">
+    <h5>Rua:</h5> 
+      <p><i class="fas fa-road fa-1x"></i><?php echo $imovel->getRua(); ?>. Código postal: <?php echo $imovel->getCodPostal(); ?></p>
+    </span>
+
+
+      Area: <?php echo $imovel->getArea(); ?><br>
+      <?php if ($imovel->getTipologia()!=NULL) { ?>
+        Tipologia: <?php echo $imovel->getTipologia(); ?><br>
+      <?php } ?>
+      <?php if ($imovel->getQuartos()!=NULL) { ?>
+        Numero de Quartos: <?php echo $imovel->getQuartos(); ?><br>
+      <?php } ?>
+      <?php if ($imovel->getCasasBanho()!=NULL) { ?>
+        Numero de Casas de banho: <?php echo $imovel->getCasasBanho(); ?><br>
+      <?php } ?>
+      <?php if ($imovel->getGaragem()!=NULL) { ?>
+        Garagem: <?php echo $imovel->getGaragem(); ?><br>
+      <?php } ?>
+      <?php if ($imovel->getPiscina()!=NULL) { ?>
+        Piscina: <?php echo $imovel->getPiscina(); ?><br>
+      <?php } ?>
+      <?php if ($imovel->getMobilia()!=NULL) { ?>
+        Mobilada: <?php echo $imovel->getMobilia(); ?><br>
+      <?php } ?>
+      <?php if ($imovel->getDataConstrucao()!=NULL) { ?>
+        Data de construção: <?php echo $imovel->getDataConstrucao(); ?><br>
+      <?php } ?>
+      <?php if ($imovel->getInformacao()!=NULL) { ?>
+        informacao: <?php echo $imovel->getInformacao(); ?><br>
+      <?php } ?>
+      <br>
+      </h5>
+
+
       <?php if (isset($_SESSION['cliente'])) { ?>
       <div id="caixa_formulario">
           <div id="formulario">

@@ -29,7 +29,7 @@
 #sub_container h3 {
   padding: 10px 0;
   font-size: 1.9rem;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 #sub_container p {
@@ -44,6 +44,28 @@
   font-size: 1.5rem;
 }
 
-.map {
-  height: 500px;
+.location {
+  margin: 30px 15%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
 }
+
+.info_second {
+  margin: 30px 5%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+#info_group p {
+  font-size: 1.3rem;
+  padding: 0;
+  border: 0;
+}
+
+/* Ícones */
+i {margin-right: 10px;}
+
+/* Mapa */
+.map {height: 500px;}
