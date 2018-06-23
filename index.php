@@ -158,7 +158,7 @@
         <!-- Título do formulário de pesquisa -->
         <div class="formTitle">
             <img id="lupaIcon" src="images/lupa.png"/>
-            <p>O que procuras?</p>
+            <p>O QUE PROCURAS?</p>
         </div>
 
         <!-- Formulário de pesquisa -->
