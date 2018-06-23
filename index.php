@@ -150,11 +150,18 @@
 <!-- FINAL DO MÓDULO DE LOGIN -->
 
    <!-- ÁREA CENTRAL DA PÁGINA -->
+   
+   <!-- Mapa do índex -->
    <div class="map" style="float:left;"></div>
+
+   <!-- Toogler do menu de pesquisa -->
+   <div id="toogler">
+    <i class="fas fa-arrow-circle-left btn_toogler"></i>
+   </div>
 
     <!-- PESQUISA DO ÍNDEX -->
     <div class="container_form">
-
+       
         <!-- Título do formulário de pesquisa -->
         <div class="formTitle">
             <img id="lupaIcon" src="images/lupa.png"/>
@@ -197,10 +204,13 @@
                 <input id="index" type="text" name="preco" placeholder="Preço máximo do imóvel"/>
 
                 <button id="encontrar">Encontrar Imóvel</button>
+
             </div>
         </div>
         <!-- Final do formulário de pesquisa -->
+        
     </div>
+
     <!-- FINAL DA PESQUISA DO ÍNDEX -->
 
     <!-- FOOTER -->
@@ -223,6 +233,7 @@
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
 
     <!-- Ficheiros JavaScript pessois -->
+    <script src="js/homepage.js"></script>        
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
