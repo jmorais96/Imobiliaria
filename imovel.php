@@ -66,7 +66,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Ionic Icons -->
-<script src="https://unpkg.com/ionicons@4.2.0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/ionicons@4.2.0/dist/ionicons.js"></script>
 
     <!-- Título da página -->
     <title>Mais Imobiliária | Perfil do Imóvel</title>
@@ -177,15 +177,18 @@
     <div class="slider-wrapper">
         
         <div class="slider-container">
-          <img src="images/galeria-teste-1.jpg" alt="">
+          <img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imovel->getNomeImagemPrincipal(); ?>" alt="Imagem principal do imóvel">
         </div>
         
-        <div class="img-container">
+        <div class="img-container" id="img_container">
           <ul>
-            <li><img src="images/galeria-teste-2.jpg" alt=""></li>
-            <li><img src="images/galeria-teste-3.jpg" alt=""></li>
-            <li><img src="images/galeria-teste-4.jpg" alt=""></li>
-            <li><img src="images/galeria-teste-5.jpg" alt=""></li>
+            <?php foreach($imovel->getImagens() as $imagem) {
+            ?>
+
+              <li><img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imagem->getNomeImagem(); ?>" alt="Imagem principal do imóvel"></li>
+          
+            <?php } ?>
+            
           </ul>
         </div>
 
@@ -410,6 +413,35 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     
+    <!-- Script para dar corrigir o layout da página de acordo com o número de imagens do slider -->
+    <script>
+      
+      var element = document.getElementById("img_container");
+      var numberOfChildren = element.getElementsByTagName('li').length;
+
+      if(numberOfChildren > 4) {
+          $('.img-container').css("height", "74px");
+      }
+      
+      if(numberOfChildren > 8) {
+          $('.img-container').css("height", "174px");
+      }
+
+      if(numberOfChildren > 12) {
+          $('.img-container').css("height", "274px");
+      }
+
+      if(numberOfChildren > 16) {
+          $('.img-container').css("height", "374px");
+      }
+
+      if(numberOfChildren > 20) {
+          $('.img-container').css("height", "474px");
+      }
+    
+    </script>
+
+
     <!-- Script para o marcador do google maps -->
     <script>
     <?php $imovel->addMarker() ?>

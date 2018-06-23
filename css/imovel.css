@@ -22,7 +22,7 @@
 
 .img-container ul {
   list-style: none;
-  width: 800px;
+  width: 600px;
 }
 
 .img-container ul li {
@@ -30,7 +30,7 @@
   height: 100px;
   float: left;
   cursor: pointer;
-  margin: 0 5px;
+  margin: 3px 5px;
   border: 2px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
@@ -158,8 +158,30 @@ div.info-piscina, div.info-codpostal, div.info-dataconstrucao {
 }
 
 /* MEDIA QUERIES */
- @media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1024px) {
+
+    .container-header {
+      height: 100px;
+    }
+
+    .phone {
+      display: none;
+    }
+
+    .slider-container,
+    .img-container {
+      margin-left: -10%;
+    }
+
+}
+
+
+@media only screen and (max-width: 800px) {
     
+    .slider-container {
+      width: 500px;
+    }
+
     #down_container {
       display: flex;
       flex-direction: column;
@@ -175,4 +197,32 @@ div.info-piscina, div.info-codpostal, div.info-dataconstrucao {
       width: 500px;
     }
 
+    #container_imovel h2 {
+      font-size: 1.5rem;
+    }
+
+    #container_imovel .sub_container {
+      font-size: 1.2rem;
+    }
+
  }
+
+ @media only screen and (max-width: 360px) {
+   
+   .slider-container {
+     height: 200px;
+     width: 300px;
+     margin-left: -25%;
+   }
+
+   .img-container ul li {
+     height: 100px;
+     width: 150px;
+     margin-left: -5%;
+   }
+
+   #down_container .map {
+     width: 250px;      
+   }
+
+   }

@@ -76,7 +76,7 @@ input.form-control.input-password {margin: 8px 0 0 13px; width: 90%;}
     transition-timing-function: linear;
 }
 
-.modal-footer .btn:hover {background-color: red;}
+.modal-footer .btn:hover {background-color: darkred;}
 
 /* Ícones do módulo de login */
 .fa-user-alt, .fa-unlock {font-size: 25px; color: #111;}
