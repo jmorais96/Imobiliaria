@@ -66,7 +66,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Ionic Icons -->
-<script src="https://unpkg.com/ionicons@4.2.0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/ionicons@4.2.0/dist/ionicons.js"></script>
 
     <!-- Título da página -->
     <title>Mais Imobiliária | Perfil do Imóvel</title>
@@ -171,14 +171,30 @@
   <div id="container_imovel">
 
     <!-- Título da página / nome do imóvel -->
-    <h2 class="text-center"><?php echo $imovel->getTipoImovel() . " - " . $imovel->getRua();?></h2>
-
+    <h2 class="text-center"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> €</h2>
 
     <!-- Slider com as imagens associadas ao imóvel -->
-    <div class="imovel_image text-center">
-      <img class="img-fluid rounded" src=<?php echo ('imoveis/'. $imovel->getIdImovel().'/'.$imovel->getNomeImagemPrincipal() );?>>
-    </div>
-    
+    <div class="slider-wrapper">
+        
+        <div class="slider-container">
+          <img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imovel->getNomeImagemPrincipal(); ?>" alt="Imagem principal do imóvel">
+        </div>
+        
+        <div class="img-container" id="img_container">
+          <ul>
+            <?php foreach($imovel->getImagens() as $imagem) {
+            ?>
+
+              <li><img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imagem->getNomeImagem(); ?>" alt="Imagem principal do imóvel"></li>
+          
+            <?php } ?>
+            
+          </ul>
+        </div>
+
+    </div>  
+    <!-- Final do slider com as imagens associadas ao imóvel -->
+
     <!-- Especificações do imóvel -->
     <div id="sub_container">
       
@@ -214,7 +230,7 @@
       <div class="row info_second">
       
       <!-- Preço do imóvel -->
-      <span id="info_group">
+      <span id="info_group" class="info_group_down">
         <h5>Preço:</h5> 
         <p><i class="fas fa-money-bill-wave fa-1x"></i><?php echo $imovel->getPreco(); ?> €</p>
       </span>
@@ -336,6 +352,7 @@
       </span>
 
       </div>
+      <!-- Final das especificações do imóvel -->
 
       <?php if (isset($_SESSION['cliente'])) { ?>
       <div id="caixa_formulario">
@@ -366,6 +383,7 @@
     </div>
   
   </div>
+  </div>
 
     <!-- FOOTER -->
     <div class="container_footer">
@@ -383,12 +401,47 @@
 
   </body>
 
+    <!-- Ficheiros JavaScript -->
+    <script src="js/gallery-slider.js"></script>  
+    
+    <!-- jQuery CDN da Google -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
     
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     
+    <!-- Script para dar corrigir o layout da página de acordo com o número de imagens do slider -->
+    <script>
+      
+      var element = document.getElementById("img_container");
+      var numberOfChildren = element.getElementsByTagName('li').length;
+
+      if(numberOfChildren > 4) {
+          $('.img-container').css("height", "74px");
+      }
+      
+      if(numberOfChildren > 8) {
+          $('.img-container').css("height", "174px");
+      }
+
+      if(numberOfChildren > 12) {
+          $('.img-container').css("height", "274px");
+      }
+
+      if(numberOfChildren > 16) {
+          $('.img-container').css("height", "374px");
+      }
+
+      if(numberOfChildren > 20) {
+          $('.img-container').css("height", "474px");
+      }
+    
+    </script>
+
+
     <!-- Script para o marcador do google maps -->
     <script>
     <?php $imovel->addMarker() ?>
