@@ -3,7 +3,64 @@
 /*********************************************/
 
 /* Slider do perfil do imóvel */
+.slider-wrapper {
+  margin: 0 0 100px 28%;
+}
 
+.slider-container {
+  width: 600px;
+  height: 400px;
+  margin-bottom: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.slider-container img {
+  height: 100%;
+  width: 100%;
+}
+
+.img-container ul {
+  list-style: none;
+  width: 800px;
+}
+
+.img-container ul li {
+  width: 140px;
+  height: 100px;
+  float: left;
+  cursor: pointer;
+  margin: 0 5px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.img-container ul li img {
+  height: 100%;
+  width: 100%;
+}
+
+.img-container ul li.active {
+  animation: bouncing 1s ease-in-out;
+}
+
+@keyframes bouncing {
+    0% {
+      transform: translateY(0px);
+    }
+    25% {
+      transform: translateY(-25px);
+    }
+    50% {
+      transform: translateY(0px);
+    }
+    75% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+}
 
 /* Container do imóvel */ 
 #container_imovel {

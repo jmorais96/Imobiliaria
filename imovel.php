@@ -174,7 +174,22 @@
     <h2 class="text-center"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> €</h2>
 
     <!-- Slider com as imagens associadas ao imóvel -->
-    
+    <div class="slider-wrapper">
+        
+        <div class="slider-container">
+          <img src="images/galeria-teste-1.jpg" alt="">
+        </div>
+        
+        <div class="img-container">
+          <ul>
+            <li><img src="images/galeria-teste-2.jpg" alt=""></li>
+            <li><img src="images/galeria-teste-3.jpg" alt=""></li>
+            <li><img src="images/galeria-teste-4.jpg" alt=""></li>
+            <li><img src="images/galeria-teste-5.jpg" alt=""></li>
+          </ul>
+        </div>
+
+    </div>  
     <!-- Final do slider com as imagens associadas ao imóvel -->
 
     <!-- Especificações do imóvel -->
@@ -365,6 +380,7 @@
     </div>
   
   </div>
+  </div>
 
     <!-- FOOTER -->
     <div class="container_footer">
@@ -383,7 +399,10 @@
   </body>
 
     <!-- Ficheiros JavaScript -->
-    <script src="js/gallery-slider.js"></script>    
+    <script src="js/gallery-slider.js"></script>  
+    
+    <!-- jQuery CDN da Google -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
