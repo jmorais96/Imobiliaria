@@ -5,5 +5,8 @@ $(document).ready(function(){
         $(".slider-container img").attr("src", CurrentImageURL);
     });
 
+    $("ul li").click(function(){
+        $(this).addClass("active");
+    });
 
 });
