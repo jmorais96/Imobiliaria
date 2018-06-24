@@ -32,14 +32,9 @@ nav.navbar.navbar-expand-lg.navbar-light {margin: 0 10%;justify-content: space-b
     font-size: 18px;
     color: #231F20;
     border-bottom: 2px solid #ED2B2A;
-<<<<<<< HEAD
-    font-weight: bold;
-    margin: 0 20px;
-=======
     margin: 0 20px;
     text-transform: uppercase;
     font-weight: 800;
->>>>>>> 8bb70c998da6e086a8ed37240a48a82f7d86630b
     padding: 5px 50px;
     transition-duration: 0.5s;
     transition-timing-function: linear;
