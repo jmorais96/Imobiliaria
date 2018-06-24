@@ -46,6 +46,7 @@ foreach ($gestores as $value) {
         if (isset($imoveis)) {
           $total=0;
           foreach ($imoveis as $imovel) {
+            
             if ($imovel->getSituacao()=="Concluído") {
                 ++$total;
             }
