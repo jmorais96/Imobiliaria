@@ -33,7 +33,7 @@ nav.navbar.navbar-expand-lg.navbar-light {margin: 0 10%;justify-content: space-b
     color: #231F20;
     border-bottom: 2px solid #ED2B2A;
     font-weight: bold;
-    margin: 0 20px;    
+    margin: 0 20px;
     padding: 5px 50px;
     transition-duration: 0.5s;
     transition-timing-function: linear;
@@ -57,7 +57,7 @@ button.navbar-toggler {background-color: #ED2B2A;}
 #phoneIcon {align-self: center; min-width: 25px; min-height: 70%; margin: 0 5px 10px 0;}
 #phone-number {font-size: 17px; font-weight: bold;}
 
-/* MÓDULO DE LOGIN */ 
+/* MÓDULO DE LOGIN */
 .modal-header {background-color: #ED2B2A; color: #fff; font-weight: bold;}
 .modal-title {text-transform: uppercase;}
 .modal-body {margin-top: 15px;}
@@ -92,7 +92,7 @@ img#lupaIcon {align-self: center; margin-right: 10px; height: 25px; width: 25px;
 img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 25px;}
 #icon {align-self: center;}
 
-/* Toogler do formulário de pesquisa */ 
+/* Toogler do formulário de pesquisa */
 .btn_toogler {
     margin: 175px 5px;
     float: left;
@@ -110,9 +110,9 @@ img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 2
 
 /* Formulário de pesquisa */
 .formTitle {
-    width: 80%; 
-    display: flex; 
-    align-self: center; 
+    width: 80%;
+    display: flex;
+    align-self: center;
     text-align: center;
 }
 
@@ -142,7 +142,7 @@ img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 2
     display: flex;
     align-self: center;
     width: 80%;
-    height: 90%;    
+    height: 90%;
     flex-direction: column;
     justify-content: center;
 }
@@ -175,6 +175,8 @@ option {
   color: white;
   font-weight: bold;
 }
+
+
 
 #index, #ilha, #concelho, #freguesia {
     margin-top: 8px;
@@ -247,6 +249,10 @@ button#encontrar:hover {
     color: #DC2D27;
 }
 
+.checkbox{
+  color: white;
+}
+
 /**********/
 /* FOOTER */
 /**********/
@@ -285,13 +291,13 @@ img#icon {height: 70px;}
 /*****************/
 
  @media only screen and (max-width: 1000px) {
-    
+
     .navbar-light .navbar-nav .nav-link {
         color: #fff;
         background-color: #ED2B2A;
         border-bottom: 2px solid #fff;
     }
 
-    .phone {display: none;}    
+    .phone {display: none;}
 
 }
