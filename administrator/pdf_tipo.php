@@ -39,7 +39,7 @@
   //colocar um font
   $pdf->SetFont("Arial","B",16);
   //imrimir celula do titilo
-  $pdf->Cell(0,10, utf8_decode("Nº de Vendas por tipo de Imovel") ,1,1,"C");
+  $pdf->Cell(0,10, utf8_decode("Nº de Imoveis por tipo de Imovel") ,1,1,"C");
 
   $id=$bd->query("select idImovel from todosimoveis");
   foreach ($id as $value) {
@@ -48,7 +48,7 @@
 
   foreach ($bd->query("select tipoImovel from tipo_imovel") as $tipoImovel) {
     $total=0;
-    $pdf->Cell(95,10, $tipoImovel['tipoImovel'],1,0);
+    $pdf->Cell(95,10, utf8_decode($tipoImovel['tipoImovel']),1,0);
     foreach ($imoveis as $imovel) {
       if($imovel->getTipoImovel()==$tipoImovel['tipoImovel']){
         ++$total;

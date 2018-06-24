@@ -89,7 +89,7 @@
   //colocar font
   $pdf->SetFont("Arial","B",16);
   //imprimir tutulo
-  $pdf->Cell(0,10, utf8_decode("Nº de Vendas Preço") ,1,1,"C");
+  $pdf->Cell(0,10, utf8_decode("Nº de Imoveis por Preço") ,1,1,"C");
   //imprimir resultados
   $pdf->Cell(95,10, "menos de 50000 Euros",1,0);
   $pdf->Cell(95,10, "$pm50 imoveis",1,1);

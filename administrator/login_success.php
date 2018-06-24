@@ -200,31 +200,14 @@ if(isset($_POST['edit_manager'])) {
       Vendas por gestor:<a href="pdf_gestor.php"> <button type="button" name="button">Gerar PDF</button> </a>
 
       <br>
-        Vendas por tipo <a href="pdf_tipo.php"><button>Gerar pdf</button></a>
+        Imoveis por tipo <a href="pdf_tipo.php"><button>Gerar pdf</button></a>
       <br>
 
-        Vendas intrevalo de preço <a href="pdf_preco.php"><button>Gerar pdf</button></a>
-        <br>
+      Imoveis por intrevalo de preço <a href="pdf_preco.php"><button>Gerar pdf</button></a>
+      <br>
 
-
-
-
-        <form class="" action="pdf_local.php" method="post">
-          <select name="ilha" id="ilha" onchange="functionConcelho(this.id,'concelho') ">
-            <option value="">Ilha em que procura:</option>
-
-
-
-          </select>
-
-          <!-- Concelho do imóvel procurado -->
-          <select  name="concelho" id="concelho" onchange="functionFreguesia(this.id,'freguesia')">
-            <option value="arrendar">Concelho em que procura:</option>
-          </select>
-
-
-          <input type="submit" name="" value="Gerar pdf">
-        </form>
+      Imoveis por local <a href="pdf_local.php"><button>Gerar pdf</button></a>
+      <br>
 
     </div>
 
