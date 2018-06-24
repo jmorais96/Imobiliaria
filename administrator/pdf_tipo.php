@@ -1,26 +1,34 @@
 <?php
-  $terreno=0;
-  $apartamento=0;
-  $moradia=0;
-  $quinta=0;
-  //verificar no ficheiro vendas e incrementar sempre que encontrar o devido tipo
-  $file=fopen("../data/vendas.csv", "r");
-  while (!feof($file)) {
-    $data=fgetcsv($file,0,";");
-    if ($data[2]=="Terreno") {
-      ++$terreno;
-    }
-    if ($data[2]=="Apartamento") {
-      ++$apartamento;
-    }
-    if ($data[2]=="Moradia") {
-      ++$moradia;
-    }
-    if ($data[2]=="Quinta") {
-      ++$quinta;
-    }
+
+
+
+  // Incluir a classe Imobiliária
+  require_once('../data/imobiliaria.class.php');
+
+  // Incluir a classe Funcionario
+  require_once('../data/funcionario.class.php');
+
+  // Incluir a classe Imovel
+  require_once('../data/imovel.class.php');
+
+  // Incluir a classe imagem
+  require_once('../data/imagem.class.php');
+
+  // Incluir a classe user
+  require_once('../data/user.class.php');
+
+  // Incluir a classe visita
+  require_once('../data/visita.class.php');
+
+  session_start();
+  // Reencaminhar o utilizar para o índex caso este não seja um funcionário
+  if (!isset($_SESSION['funcionario'])) {
+    header("location:../index.php");
   }
-  fclose($file);
+
+
+  // Criar a ligação à base de dados
+  $bd = new imobiliaria("../data/config.ini");
 
   //chamar biblioteca
   require("fpdf/fpdf.php");
@@ -31,17 +39,25 @@
   //colocar um font
   $pdf->SetFont("Arial","B",16);
   //imrimir celula do titilo
-  $pdf->Cell(0,10, utf8_decode("Nº de Vendas por tipo") ,1,1,"C");
-  //imprimir segundo os resultados
-  $pdf->Cell(95,10, "Terrenos",1,0);
-  $pdf->Cell(95,10, "$terreno",1,1);
-  $pdf->Cell(95,10, "Apartamentos",1,0);
-  $pdf->Cell(95,10, "$apartamento",1,1);
-  $pdf->Cell(95,10, "Moradias",1,0);
-  $pdf->Cell(95,10, "$moradia",1,1);
-  $pdf->Cell(95,10, "Quintas",1,0);
-  $pdf->Cell(95,10, "$quinta",1,1);
+  $pdf->Cell(0,10, utf8_decode("Nº de Vendas por tipo de Imovel") ,1,1,"C");
+
+  $id=$bd->query("select idImovel from todosimoveis");
+  foreach ($id as $value) {
+    $imoveis[]=$bd->getImovel($value['idImovel']);
+  }
+
+  foreach ($bd->query("select tipoImovel from tipo_imovel") as $tipoImovel) {
+    $total=0;
+    $pdf->Cell(95,10, $tipoImovel['tipoImovel'],1,0);
+    foreach ($imoveis as $imovel) {
+      if($imovel->getTipoImovel()==$tipoImovel['tipoImovel']){
+        ++$total;
+      }
+    }
+    $pdf->Cell(95,10, "$total",1,1);
+  }
   $pdf->output();
+
 
 
 ?>
