@@ -23,6 +23,17 @@
     height: 100%;
 }
 
+.super_container_form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/houseRegister.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #pass-form, #top-form ,#contact-form  {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
