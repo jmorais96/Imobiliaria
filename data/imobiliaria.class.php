@@ -73,9 +73,10 @@
 
         //var_dump($id);
 
-
-        for ($i=0; $i < count($imoveis) ; $i++) {
-          $imoveis[$i]->addMarker();
+        if (isset($imoveis)) {
+          for ($i=0; $i < count($imoveis) ; $i++) {
+            $imoveis[$i]->addMarker();
+          }
         }
 
 
@@ -152,11 +153,13 @@
           $tipoImovel[0]['iconMarcador'] );
 
         }
-        foreach ($imoveis as $value) {
-          $resultado[]=$value->toMarker();
-        }
+        if (isset($imoveis)) {
+          foreach ($imoveis as $value) {
+            $resultado[]=$value->toMarker();
+          }
 
-        echo json_encode($resultado);
+          echo json_encode($resultado);
+        }
 
 
     }
@@ -517,7 +520,7 @@
       $sql='select * from finalidade';
       $finalidade=$this->query($sql);
       foreach ($finalidade as $value) {
-        echo("<option value=".$value['idFinalidade']."   id='index'>".utf8_decode($value['finalidade'])."</option>");
+        echo("<option value=".$value['idFinalidade']."   id='index'>".($value['finalidade'])."</option>");
       }
 
     }
@@ -527,7 +530,7 @@
       $sql='select * from tipo_imovel';
       $tipoImovel=$this->query($sql);
       foreach ($tipoImovel as $value) {
-        echo("<option value=".$value['idTipoImovel']."   id='index'>".utf8_decode($value['tipoImovel'])."</option>");
+        echo("<option value=".$value['idTipoImovel']."   id='index'>".($value['tipoImovel'])."</option>");
       }
 
     }
@@ -537,7 +540,7 @@
       $sql='select * from tipologia';
       $tipologia=$this->query($sql);
       foreach ($tipologia as $value) {
-        echo("<option value=".$value['idTipologia']."   id='index'>".utf8_decode($value['tipologia'])."</option>");
+        echo("<option value=".$value['idTipologia']."   id='index'>".($value['tipologia'])."</option>");
       }
 
     }

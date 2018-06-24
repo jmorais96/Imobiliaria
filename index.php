@@ -189,11 +189,11 @@
 
                 <input id="index" type="number" name="casasBanho" placeholder="Numero de casas de banho"/>
 
-                <span class="checkbox">Garagem:</span> <input id="index" type="checkbox" name="garagem" value="garagem"/>
+                <span class="checkbox">Garagem:</span> <input id="index" type="checkbox" name="garagem"/>
 
-                <span class="checkbox">Piscina:</span> <input id="index" type="checkbox" name="piscina" value="piscina"/>
+                <span class="checkbox">Piscina:</span> <input id="index" type="checkbox" name="piscina"/>
 
-                <span class="checkbox">Mobilia:</span> <input id="index" type="checkbox" name="mobilada" value="mobilada"/>
+                <span class="checkbox">Mobilia:</span> <input id="index" type="checkbox" name="mobilada"/>
 
                 <div class="formTitleSecondary">
                 <img id="locationIcon" src="images/location.png"/>
@@ -333,8 +333,29 @@
                 valores['freguesia']=$("[name= freguesia ]").val();
               }
               if ($("[name= preco ]").val()) {
-                condicoes.push("preco = :preco");
-                valores['freguesia']=$("[name= preco ]").val();
+                condicoes.push("preco <= :preco");
+                valores['preco']=$("[name= preco ]").val();
+              }
+              if ($("[name= quartos ]").val()) {
+                condicoes.push("quartos = :quartos");
+                valores['quartos']=$("[name= preco ]").val();
+              }
+              if ($("[name= casasBanho ]").val()) {
+                condicoes.push("casasBanho = :casasBanho");
+                valores['casasBanho']=$("[name= casasBanho ]").val();
+              }
+
+              if ($("[name= garagem ]").is(':checked')) {
+                condicoes.push("garagem = :garagem");
+                valores['garagem']=1;
+              }
+              if ($("[name= piscina ]").is(':checked')) {
+                condicoes.push("piscina = :piscina");
+                valores['piscina']=1;
+              }
+              if ($("[name= mobilada ]").is(':checked')) {
+                condicoes.push("mobilada = :mobilada");
+                valores['mobilada']=1;
               }
 
               if (condicoes.length) {
@@ -362,11 +383,13 @@
               async: true,
               data:{sql: sql, valores: arr},
               success:function(pesquisa){
-                clearOverlays();
-                pesquisa=JSON.parse(pesquisa)
-                console.log(pesquisa);
-                for (imovel of pesquisa) {
-                  addMarker(imovel[0], parseFloat(imovel[1]), parseFloat(imovel[2]), imovel[3], imovel[4], imovel[5], imovel[6], imovel[7]);
+                if (pesquisa!="") {
+                  clearOverlays();
+                  console.log(pesquisa);
+                  pesquisa=JSON.parse(pesquisa)
+                  for (imovel of pesquisa) {
+                    addMarker(imovel[0], parseFloat(imovel[1]), parseFloat(imovel[2]), imovel[3], imovel[4], imovel[5], imovel[6], imovel[7]);
+                  }
                 }
               }
               });
