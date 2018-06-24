@@ -1,4 +1,39 @@
 <?php
+
+
+
+  // Incluir a classe Imobiliária
+  require_once('../data/imobiliaria.class.php');
+
+  // Incluir a classe Funcionario
+  require_once('../data/funcionario.class.php');
+
+  // Incluir a classe Imovel
+  require_once('../data/imovel.class.php');
+
+  // Incluir a classe imagem
+  require_once('../data/imagem.class.php');
+
+  // Incluir a classe user
+  require_once('../data/user.class.php');
+
+  // Incluir a classe visita
+  require_once('../data/visita.class.php');
+
+  session_start();
+  // Reencaminhar o utilizar para o índex caso este não seja um funcionário
+  if (!isset($_SESSION['funcionario'])) {
+    header("location:../index.php");
+  }
+
+
+  // Criar a ligação à base de dados
+  $bd = new imobiliaria("../data/config.ini");
+
+  $id=$bd->query("select idImovel from todosimoveis");
+  foreach ($id as $value) {
+    $imoveis[]=$bd->getImovel($value['idImovel']);
+  }
   //inicializar os intrevalos de preço
   $pm50=0;
   $p50_100=0;
@@ -17,36 +52,33 @@
 
 
   //verificar em vendas o valor e incrementar segundo o intrevalo
-  $file=fopen("../data/vendas.csv", "r");
-  while (!feof($file)) {
-    $data=fgetcsv($file,0,";");
-    if ($data[6]<50) {
+  foreach ($imoveis as $imovel) {
+    if ($imovel->getPreco()<50000) {
       ++$pm50;
-    }elseif ($data[6]<100) {
+    }elseif ($imovel->getPreco()<100000) {
       ++$p50_100;
-    }elseif ($data[6]<200) {
+    }elseif ($imovel->getPreco()<200000) {
       ++$p100_200;
-    }elseif ($data[6]<300) {
+    }elseif ($imovel->getPreco()<300000) {
       ++$p200_300;
-    }elseif ($data[6]<400) {
+    }elseif ($imovel->getPreco()<400000) {
       ++$p300_400;
-    }elseif ($data[6]<500) {
+    }elseif ($imovel->getPreco()<500000) {
       ++$p400_500;
-    }elseif ($data[6]<600) {
+    }elseif ($imovel->getPreco()<600000) {
       ++$p500_600;
-    }elseif ($data[6]<700) {
+    }elseif ($imovel->getPreco()<700000) {
       ++$p600_700;
-    }elseif ($data[6]<800) {
+    }elseif ($imovel->getPreco()<800000) {
       ++$p700_800;
-    }elseif ($data[6]<900) {
+    }elseif ($imovel->getPreco()<900000) {
       ++$p800_900;
-    }elseif ($data[6]<1000) {
+    }elseif ($imovel->getPreco()<1000000) {
       ++$p900_1000;
     }else{
       ++$pM1000;
     }
   }
-  fclose($file);
 
   //chamar biblioteca
   require("fpdf/fpdf.php");
@@ -81,7 +113,7 @@
   $pdf->Cell(95,10, "$p800_900 imoveis",1,1);
   $pdf->Cell(95,10, "Entre 900000 a 1000000 Euros",1,0);
   $pdf->Cell(95,10, "$p900_1000 imoveis",1,1);
-  $pdf->Cell(95,10, "Acima de 1000000 Euros",1,0);
+  $pdf->Cell(95,10, "Apartir de 1000000 Euros",1,0);
   $pdf->Cell(95,10, "$pM1000 imoveis",1,1);
   $pdf->output();
 

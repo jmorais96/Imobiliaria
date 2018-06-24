@@ -31,9 +31,7 @@ if (!isset($_SESSION['funcionario'])) {
 $bd = new imobiliaria("../data/config.ini");
 
 $gestores = $bd->getWorkers();
-foreach ($gestores as $value) {
 
-}
 
     require("fpdf/fpdf.php");
     $pdf=new FPDF();
@@ -46,7 +44,7 @@ foreach ($gestores as $value) {
         if (isset($imoveis)) {
           $total=0;
           foreach ($imoveis as $imovel) {
-            
+
             if ($imovel->getSituacao()=="Concluído") {
                 ++$total;
             }
