@@ -23,6 +23,18 @@ session_start();
         }
  }
 
+  // Restrições da página 
+
+  // Impedir que um cliente aceda ao login administrativo
+   if (isset($_SESSION['cliente'])) {
+    header("location:../index.php");
+  }
+
+  // Impedir que um funcionário com a sessão já iniciada aceda ao login administrativo
+  if (isset($_SESSION['funcionario'])) {
+    header("location:management/manager.php");
+  }
+
 ?>
 
 <!DOCTYPE html>

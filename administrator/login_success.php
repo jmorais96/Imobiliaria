@@ -162,7 +162,7 @@ if(isset($_POST['edit_manager'])) {
 </div>
 <!-- FINAL DO HEADER/NAVBAR  -->
 
-<div class="container_admin">
+<div class="container_admin" style= " margin: 0 10%;">
 
     <!--<div class="nav_box">
       <div class="user_box">

@@ -89,9 +89,7 @@ nav.navbar.navbar-expand-lg.navbar-light {
     margin: 0 10%;justify-content: space-between;width: 100%;}
 }
 
-.container_admin{
-      margin: 0 10%;
-}
+
 
 /* Items de navegação */
 a.nav-link {
@@ -535,4 +533,8 @@ flex-direction: row;
   width: 60%;
   background-color: white;
   padding: 10px;
+}
+
+.container_admin{
+      margin: 0 10%;
 }
