@@ -185,16 +185,6 @@
                     <?php $bd->selectTipologia(); ?>
                 </select>
 
-                <input id="index" type="number" name="quartos" placeholder="Numero de quartos"/>
-
-                <input id="index" type="number" name="casasBanho" placeholder="Numero de casas de banho"/>
-
-                <span class="checkbox">Garagem:</span> <input id="index" type="checkbox" name="garagem"/>
-
-                <span class="checkbox">Piscina:</span> <input id="index" type="checkbox" name="piscina"/>
-
-                <span class="checkbox">Mobilia:</span> <input id="index" type="checkbox" name="mobilada"/>
-
                 <div class="formTitleSecondary">
                 <img id="locationIcon" src="images/location.png"/>
                 <p>Onde procuras?</p>
@@ -335,27 +325,6 @@
               if ($("[name= preco ]").val()) {
                 condicoes.push("preco <= :preco");
                 valores['preco']=$("[name= preco ]").val();
-              }
-              if ($("[name= quartos ]").val()) {
-                condicoes.push("quartos = :quartos");
-                valores['quartos']=$("[name= preco ]").val();
-              }
-              if ($("[name= casasBanho ]").val()) {
-                condicoes.push("casasBanho = :casasBanho");
-                valores['casasBanho']=$("[name= casasBanho ]").val();
-              }
-
-              if ($("[name= garagem ]").is(':checked')) {
-                condicoes.push("garagem = :garagem");
-                valores['garagem']=1;
-              }
-              if ($("[name= piscina ]").is(':checked')) {
-                condicoes.push("piscina = :piscina");
-                valores['piscina']=1;
-              }
-              if ($("[name= mobilada ]").is(':checked')) {
-                condicoes.push("mobilada = :mobilada");
-                valores['mobilada']=1;
               }
 
               if (condicoes.length) {
