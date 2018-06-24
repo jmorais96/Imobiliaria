@@ -102,7 +102,7 @@ if(isset($_POST['accept'])) {
   <a class="navbar-brand" href="manager.php"><img id="icon" class="logo" src="../../images/logo.png"/></a>
 
   <!-- Link de navegação "Encerrar sessão" -->
-  <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
+  <a class="nav-link" href="?acao=logout">ENCERRAR SESSÃO</a>
 
 </nav>
  </div>
@@ -133,9 +133,9 @@ if(isset($_POST['accept'])) {
 
     <div class="admin_container">
     <div class="tab">
-      <button class="tablinks" id="btnImoveis" onclick="openCity(event, 'imoveis')">Imóveis</button>
-      <button class="tablinks" id="btnAdicionarImovel" onclick="openCity(event, 'adicionarImovel')">Adicionar imóveis</button>
-      <button class="tablinks" id="btnAdicionarVisita" onclick="openCity(event, 'visita')">Visitas</button>
+      <button class="tablinks" id="btnImoveis" onclick="openCity(event, 'imoveis')">IMÓVEIS</button>
+      <button class="tablinks" id="btnAdicionarImovel" onclick="openCity(event, 'adicionarImovel')">ADICIONAR IMÓVEIS</button>
+      <button class="tablinks" id="btnAdicionarVisita" onclick="openCity(event, 'visita')">VISITAS</button>
     </div>
 
 
