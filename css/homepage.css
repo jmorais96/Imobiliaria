@@ -247,6 +247,9 @@ button#encontrar:hover {
     color: #DC2D27;
 }
 
+.container_admin{
+      margin: 0 10%;
+}
 /**********/
 /* FOOTER */
 /**********/
