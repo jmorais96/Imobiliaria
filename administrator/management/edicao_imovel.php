@@ -249,9 +249,9 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
           </select></label>
           <label>Numero de Quartos:<input type="text" name="quartos" value="<?php echo $imovel->getQuartos();?>" placeholder=""/></label>
           <label>Numero de casas de banho:<input type="text" name="casasBanho" value="<?php echo $imovel->getCasasBanho();?>" placeholder=""/></label>
-          <label>Garagem:<input type="text" name="garagem" value="<?php echo $imovel->getGaragem();?>" placeholder=""/></label>
-          <label>Piscina:<input type="text" name="piscina" value="<?php echo $imovel->getPiscina();?>" placeholder=""/></label>
-          <label>Mobilia:<input type="text" name="mobilia" value="<?php echo $imovel->getMobilia();?>" placeholder=""/></label>
+          <label>Garagem:<input type="checkbox" name="garagem" value="garagem" <?php if ($imovel->getGaragem()=="Sim") {echo "checked";} ?>></label>
+          <label>Piscina:<input type="checkbox" name="piscina" value="piscina"<?php if ($imovel->getPiscina()=="Sim") {echo "checked";} ?>></label>
+          <label>Mobilada:<input type="checkbox" name="mobilia" value="mobilia"<?php if ($imovel->getMobilia()=="Sim") {echo "checked";} ?>></label>
           <label>Data de Construcao:<input type="text" name="dataConstrucao" value="<?php echo $imovel->getDataConstrucao();?>" placeholder=""/></label>
           <label>Informações:<input type="text" name="informacao" value="<?php echo $imovel->getInformacao();?>" placeholder=""/></label>
 

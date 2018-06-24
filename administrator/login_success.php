@@ -32,8 +32,6 @@ if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
 
       if(!$bd->mailGestorExists($_POST['email'])) {
 
-
-
           $bd->registarGestor($_POST['email'], $_POST['nome'], $_POST['sobrenome'], $_POST['password'], $_POST['contacto']);
 
       }
@@ -199,15 +197,7 @@ if(isset($_POST['edit_manager'])) {
     <div id="London" class="tabcontent">
       <div class="statistics">
       </div>
-      <form class="" action="pdf_gestor.php" method="post">
-        Vendas por gestor:
-        <select class="" name="id">
-
-        </select>
-        <input type="submit"  value=" Gerar pdf ">
-      </form>
-
-
+      Vendas por gestor:<a href="pdf_gestor.php"> <button type="button" name="button">Gerar PDF</button> </a>
 
       <br>
         Vendas por tipo <a href="pdf_tipo.php"><button>Gerar pdf</button></a>
