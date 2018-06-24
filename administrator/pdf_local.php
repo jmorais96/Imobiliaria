@@ -34,7 +34,6 @@
     $imoveis[]=$bd->getImovel($value['idImovel']);
   }
 
-
   require("fpdf/fpdf.php");
   $pdf=new FPDF();
   $pdf->AddPage();
@@ -51,5 +50,6 @@
     $pdf->Cell(95,10, utf8_decode("$total"),1,1);
   }
   $pdf->output();
+
 
 ?>

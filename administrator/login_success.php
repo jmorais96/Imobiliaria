@@ -197,16 +197,16 @@ if(isset($_POST['edit_manager'])) {
     <div id="London" class="tabcontent">
       <div class="statistics">
       </div>
-      Vendas por gestor:<a href="pdf_gestor.php"> <button type="button" name="button">Gerar PDF</button> </a>
+      Vendas por gestor:<a href="gestor.php" onclick="window.open('pdf_gestor.php');"> <button type="button" name="button">Gerar PDF</button> </a>
 
       <br>
-        Imoveis por tipo <a href="pdf_tipo.php"><button>Gerar pdf</button></a>
+        Imoveis por tipo:<a href="tipo.php" onclick="window.open('pdf_tipo.php');"><button>Gerar pdf</button></a>
       <br>
 
-      Imoveis por intrevalo de preço <a href="pdf_preco.php"><button>Gerar pdf</button></a>
+      Imoveis por intrevalo de preço:<a href="preco.php" onclick="window.open('pdf_preco.php');"><button>Gerar pdf</button></a>
       <br>
 
-      Imoveis por local <a href="pdf_local.php"><button>Gerar pdf</button></a>
+      Imoveis por local:<a href="local.php" onclick="window.open('pdf_local.php');"> <button>Gerar pdf</button></a>
       <br>
 
     </div>
