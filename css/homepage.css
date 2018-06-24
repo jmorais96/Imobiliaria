@@ -92,6 +92,18 @@ img#lupaIcon {align-self: center; margin-right: 10px; height: 25px; width: 25px;
 img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 25px;}
 #icon {align-self: center;}
 
+/* Toogler do formulário de pesquisa */ 
+.btn_toogler {
+    margin: 175px 7px;
+    float: left;
+    padding: 0 10px;
+    font-size: 35px;
+    color: #111;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Formulário de pesquisa */
 .formTitle {
     width: 80%; 
     display: flex; 
@@ -116,7 +128,7 @@ img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 2
     text-transform: uppercase;
 }
 
-.formTitle > p, .formTitleSecondary > p {color: #fff;font-size: 20px;}
+.formTitle > p, .formTitleSecondary > p {color: #fff; font-size: 20px; margin-bottom: 6px;}
 
 .searchForm {display: flex; align-self: center; width: 80%; height: 70%;}
 #searchForm {display: flex; flex-direction: column; justify-content: center; width: 100%;}
@@ -170,24 +182,14 @@ option {
 /* Mapa */
 .map {height: 70%; width: 75%; display: flex;}
 
-.super_container_form {
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../images/houseRegister.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
+/* Container do formulário de pesquisa */
 .container_form {
     height: 70%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: #282828;
-    align-self: center;
 }
 
 button#encontrar {
@@ -236,6 +238,7 @@ button#encontrar:hover {
 /**********/
 /* FOOTER */
 /**********/
+footer {position: fixed; width: 100%;}
 .footer {display: flex; width: 80%;}
 
 /* Logótipo do footer */
