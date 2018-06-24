@@ -206,10 +206,6 @@
 
                 <button id="encontrar">Encontrar Imóvel</button>
 
-        <button class="sidebar_btn">
-            <span></span>
-        </button>
-
             </div>
         </div>
         <!-- Final do formulário de pesquisa -->
