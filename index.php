@@ -150,7 +150,7 @@
 <!-- FINAL DO MÓDULO DE LOGIN -->
 
    <!-- ÁREA CENTRAL DA PÁGINA -->
-   
+    
    <!-- Mapa do índex -->
    <div class="map" style="float:left;"></div>
 
@@ -161,7 +161,7 @@
 
     <!-- PESQUISA DO ÍNDEX -->
     <div class="container_form">
-       
+        
         <!-- Título do formulário de pesquisa -->
         <div class="formTitle">
             <img id="lupaIcon" src="images/lupa.png"/>
@@ -170,6 +170,7 @@
 
         <!-- Formulário de pesquisa -->
         <div class="searchForm">
+            
             <div id="searchForm">
 
                 <select id="index" name="finalidade">
@@ -205,6 +206,10 @@
 
                 <button id="encontrar">Encontrar Imóvel</button>
 
+        <button class="sidebar_btn">
+            <span></span>
+        </button>
+
             </div>
         </div>
         <!-- Final do formulário de pesquisa -->
@@ -214,17 +219,19 @@
     <!-- FINAL DA PESQUISA DO ÍNDEX -->
 
     <!-- FOOTER -->
-    <div class="container_footer">
-      <div class="footer">
-           <div class="icon">
-              <a href="index.php"><img id="icon" src="images/logoBranco.png"/></a>
-              <p id="homeIconName">
+    <footer>
+        <div class="container_footer">
+            <div class="footer">
+                <div class="icon">
+                    <a href="index.php"><img id="icon" src="images/logoBranco.png"/></a>
+                    <p id="homeIconName">
+                </div>
+                <div class="copyright">
+                    <p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
+                </div>
             </div>
-            <div class="copyright">
-				<p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
-            </div>
-      </div>
-    </div>
+        </div>
+    </footer>
     <!-- FINAL DO FOOTER -->
 
   </body>

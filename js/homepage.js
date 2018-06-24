@@ -1,8 +1,9 @@
 $(document).ready(function(){
 
-  $('.btn_toogler').on("click", function() {
+  $('.btn_toogler').on("click", function () {
 
-    $('btn_toogler').toggleClass('');
+    $('.container_form').css("width", "0");
+    $('.map').css("width", "94%");
 
   });
 

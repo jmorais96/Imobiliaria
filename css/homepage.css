@@ -182,21 +182,10 @@ option {
 /* Mapa */
 .map {height: 70%; width: 75%; display: flex;}
 
-.super_container_form {
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../images/houseRegister.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
+/* Container do formulário de pesquisa */
 .container_form {
     height: 70%;
-    width: 267px;
-    margin-left: 2px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -249,6 +238,7 @@ button#encontrar:hover {
 /**********/
 /* FOOTER */
 /**********/
+footer {position: fixed; width: 100%;}
 .footer {display: flex; width: 80%;}
 
 /* Logótipo do footer */
