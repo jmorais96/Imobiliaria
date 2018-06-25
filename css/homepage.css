@@ -104,6 +104,7 @@ img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 2
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ED2B2A;
 }
 
 /* Toogler do formulário de pesquisa */
@@ -112,10 +113,11 @@ img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 2
   color: #ED2B2A;
   cursor: pointer;
   transition: all 300ms ease-in-out;
+  color: white;
 }
 
 .btn_toogler:hover{
-    color: rgb(194, 35, 35);
+    color: #d1d1e0;
 }
 
 /* Formulário de pesquisa */
