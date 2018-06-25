@@ -1,19 +1,32 @@
 <?php
 
+  // Incluir a class User
   require_once('data/user.class.php');
+
+  // Incluir a class Imobiliaria
   require_once('data/imobiliaria.class.php');
+
+  // Incluir a class Imovel
   require_once('data/imovel.class.php');
+
+  // Incluir a class Visita
   require_once('data/visita.class.php');
+
+  // Iniciar a sessão 
   session_start();
 
+  // Incluir a funcionalidade de 'Logout'
   require_once('assets/logout.php');
 
+  // Impedir que um utilizador que não seja cliente tenha acesso à área associada ao mesmo 
   if (!isset($_SESSION['cliente'])) {
     header("location:index.php");
   }
 
-  $bd=new imobiliaria("data/config.ini");
+  // Conexão à base de dados
+  $bd = new imobiliaria("data/config.ini");
 
+  // Funcionalidade de 'Update' nos dados do cliente 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_SESSION['cliente']->validarPassword(md5($_POST['passwordAtual']))) {
 
@@ -49,32 +62,30 @@
 
 <html>
 
-<head>
+  <head>
 
-  <!-- MetaTags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- MetaTags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-  <!-- Folhas de estilo -->
-  <link rel="stylesheet" href="css/homepage.css" type="text/css">
-  <link rel="stylesheet" href="css/area_cliente.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
+    <!-- Folhas de estilo -->
+    <link rel="stylesheet" href="css/homepage.css" type="text/css">
+    <link rel="stylesheet" href="css/area_cliente.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/gerirImovelTable.css">
 
-  <!-- Ícones Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
+    <!-- Font-family PT Sans -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
+    <!-- Título da página -->
+    <title>Mais Imobiliária | Bem-vindo</title>
 
-  <!-- Font-family PT Sans -->
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-
-  <!-- Título da página -->
-  <title>Mais Imobiliária | Bem-vindo</title>
-
-</head>
+  </head>
 
 <body>
 
@@ -129,9 +140,11 @@
 
       <div class="container_info">
             <div id="sub_container_info">
+              
               <div id="caixa1a">
                  <h3>Bem-Vindo(a), <?php echo $_SESSION['cliente']->getFullName(); ?></h3>
               </div>
+
               <div id="caixa1b">
                       <div id="caixa2" class="caixa2">
                           <img id="icon2" src="images/email.svg">
@@ -151,9 +164,9 @@
                         <h3> Habitação: <?php echo $_SESSION['cliente']->getIlha() . ", " . $_SESSION['cliente']->getConcelho() . ", " . $_SESSION['cliente']->getFreguesia();?></h3>
                       </div>
 
-                      <button id="mudarDados">Mudar os dados</button>
+                      <button id="mudarDados">Alterar dados pessoais</button>
 
-                      <table id="formDados">
+                      <table id="formDados" class="table table-bordered table-hover">
 
                         <form class="" action="" method="post" >
 
@@ -214,7 +227,7 @@
                           </tr>
 
                           <tr>
-                            <td colspan="2"> <input type="submit" value="Alterar os Dados" name="registar"> </td>
+                            <td colspan="12"> <input type="submit" value="Proceder com a alteração dos Dados" class="alterarDados" name="registar"> </td>
                           </tr>
 
                         </form>
@@ -223,18 +236,16 @@
 
                 </div>
             </div>
+      </div>
 
           <div id="caixa1a">
-              <h3>Consulte aqui o estado das suas visitas</h3>
+              <h3>Consulte aqui o estado das suas visitas:</h3>
           </div>
 
       </div>
       <div class=contain>
       <table class="table table-bordered table-hover">
-
-
-
-
+        
           <thead>
             <tr>
               <th>Rua</th>
