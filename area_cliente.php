@@ -269,17 +269,19 @@
     </div>
 
     <!-- FOOTER -->
-    <div class="container_footer">
-      <div class="footer">
-           <div class="icon">
-              <img id="icon" src="images/logoBranco.png"/>
-              <p id="homeIconName">
-            </div>
-            <div class="copyright">
-				<p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
-            </div>
+    <footer>
+      <div class="container_footer">
+        <div class="footer">
+            <div class="icon">
+                <img id="icon" src="images/logoBranco.png"/>
+                <p id="homeIconName">
+              </div>
+              <div class="copyright">
+          <p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
+              </div>
+        </div>
       </div>
-    </div>
+    </footer>
     <!-- FINAL DO FOOTER -->
 
   </body>
