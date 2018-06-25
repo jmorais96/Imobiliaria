@@ -203,7 +203,7 @@ if(isset($_POST['edit_manager'])) {
         Imoveis por tipo:<a href="tipo.php" onclick="window.open('pdf_tipo.php');"><button>Gerar pdf</button></a>
       <br>
 
-      Imoveis por intrevalo de preço:<a href="preco.php" onclick="window.open('pdf_preco.php');"><button>Gerar pdf</button></a>
+      Imoveis por intervalo de preço:<a href="preco.php" onclick="window.open('pdf_preco.php');"><button>Gerar pdf</button></a>
       <br>
 
       Imoveis por local:<a href="local.php" onclick="window.open('pdf_local.php');"> <button>Gerar pdf</button></a>
