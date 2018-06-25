@@ -95,7 +95,7 @@ if(isset($_POST['accept'])) {
 
 
   <!-- HEADER/NAVBAR -->
-  <div class="container-header ">
+  <div class="container-header">
   <nav class="navbar navbar-expand-lg navbar-light ">
 
   <!-- Logótipo da página -->
