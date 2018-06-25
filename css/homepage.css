@@ -24,7 +24,7 @@ label {padding-top: 8px;}
 /*****************************/
 /* HEADER/NAVBAR DA HOMEPAGE */
 /*****************************/
-.container-header {width: 100%; height: 15%;}
+.container-header {width: 100%; height: 15%; background-color: white;}
 nav.navbar.navbar-expand-lg.navbar-light {margin: 0 10%;justify-content: space-between;}
 
 /* Items de navegação */
@@ -32,8 +32,9 @@ nav.navbar.navbar-expand-lg.navbar-light {margin: 0 10%;justify-content: space-b
     font-size: 18px;
     color: #231F20;
     border-bottom: 2px solid #ED2B2A;
-    font-weight: bold;
-    margin: 0 20px;    
+    margin: 0 20px;
+    text-transform: uppercase;
+    font-weight: 800;
     padding: 5px 50px;
     transition-duration: 0.5s;
     transition-timing-function: linear;
@@ -57,7 +58,7 @@ button.navbar-toggler {background-color: #ED2B2A;}
 #phoneIcon {align-self: center; min-width: 25px; min-height: 70%; margin: 0 5px 10px 0;}
 #phone-number {font-size: 17px; font-weight: bold;}
 
-/* MÓDULO DE LOGIN */ 
+/* MÓDULO DE LOGIN */
 .modal-header {background-color: #ED2B2A; color: #fff; font-weight: bold;}
 .modal-title {text-transform: uppercase;}
 .modal-body {margin-top: 15px;}
@@ -92,27 +93,38 @@ img#lupaIcon {align-self: center; margin-right: 10px; height: 25px; width: 25px;
 img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 25px;}
 #icon {align-self: center;}
 
-/* Toogler do formulário de pesquisa */ 
+.container_body{
+  display: flex;
+  height: 70%;
+  background-color: #282828;
+}
+
+#toogler{
+  width: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ED2B2A;
+}
+
+/* Toogler do formulário de pesquisa */
 .btn_toogler {
-    margin: 175px 5px;
-    float: left;
-    padding: 0;
-    font-size: 35px;
-    color: #ED2B2A;
-    display: inline-block;
-    cursor: pointer;
-    transition: all 300ms ease-in-out;
+  font-size: 35px;
+  color: #ED2B2A;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  color: white;
 }
 
 .btn_toogler:hover{
-    color: rgb(194, 35, 35);
+    color: #d1d1e0;
 }
 
 /* Formulário de pesquisa */
 .formTitle {
-    width: 80%; 
-    display: flex; 
-    align-self: center; 
+    width: 80%;
+    display: flex;
+    align-self: center;
     text-align: center;
 }
 
@@ -142,7 +154,7 @@ img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 2
     display: flex;
     align-self: center;
     width: 80%;
-    height: 90%;    
+    height: 90%;
     flex-direction: column;
     justify-content: center;
 }
@@ -176,6 +188,8 @@ option {
   font-weight: bold;
 }
 
+
+
 #index, #ilha, #concelho, #freguesia {
     margin-top: 8px;
     border-radius: 4px;
@@ -185,12 +199,12 @@ option {
 }
 
 /* Mapa */
-.map {height: 70%; width: 96%; display: flex;}
+.map {height: 100%; width: 96%; display: flex;}
 .map_extended {width: 75%;}
 
 /* Container do formulário de pesquisa */
 .container_form {
-    height: 70%;
+    height: 100%;
     width: 0;
     overflow: hidden;
     display: flex;
@@ -200,7 +214,7 @@ option {
 }
 
 .container_form_escondido {
-    width: 296px;
+    width: 20%;
     transition: all 500ms ease;
  }
 
@@ -248,13 +262,19 @@ button#encontrar:hover {
     color: #DC2D27;
 }
 
+
+.checkbox{
+  color: white;
+}
+
 .container_admin{
       margin: 0 10%;
 }
+
 /**********/
 /* FOOTER */
 /**********/
-footer {position: fixed; width: 100%;}
+footer {width: 100%;height: 15%;}
 .footer {display: flex; width: 80%;}
 
 /* Logótipo do footer */
@@ -263,8 +283,8 @@ img#icon {height: 70px;}
 
 /* Container do footer */
 .container_footer {
+  height: 100%;
     background-color: #DC2D27;
-    height: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -293,13 +313,13 @@ img#icon {height: 70px;}
 /*****************/
 
  @media only screen and (max-width: 1000px) {
-    
+
     .navbar-light .navbar-nav .nav-link {
         color: #fff;
         background-color: #ED2B2A;
         border-bottom: 2px solid #fff;
     }
 
-    .phone {display: none;}    
+    .phone {display: none;}
 
 }

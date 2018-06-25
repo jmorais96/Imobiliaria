@@ -87,11 +87,11 @@
             <a class="nav-link" data-toggle="modal" data-target="#loginWindow">Login</a>
         </li>
 
-        <?php }else{ ?>
+        <?php } else { ?>
 
         <!-- Link de navegação "Área de Cliente" -->
         <li class="nav-item">
-            <a class="nav-link" href="area_cliente.php">Area Cliente</a>
+            <a class="nav-link" href="area_cliente.php">Área de Cliente</a>
         </li>
 
         <!-- Link de navegação que faz log out" -->
@@ -148,9 +148,10 @@
     </div>
 </div>
 <!-- FINAL DO MÓDULO DE LOGIN -->
+  <div class="container_body">
 
    <!-- ÁREA CENTRAL DA PÁGINA -->
-    
+
    <!-- Mapa do índex -->
    <div class="map" style="float:left;"></div>
 
@@ -161,7 +162,7 @@
 
     <!-- PESQUISA DO ÍNDEX -->
     <div class="container_form">
-        
+
         <!-- Título do formulário de pesquisa -->
         <div class="formTitle">
             <img id="lupaIcon" src="images/lupa.png"/>
@@ -170,7 +171,7 @@
 
         <!-- Formulário de pesquisa -->
         <div class="searchForm">
-            
+
             <div id="searchForm">
 
                 <select id="index" name="finalidade">
@@ -202,18 +203,18 @@
                     <option value="">Selecione uma freguesia</option>
                 </select>
 
-                <input id="index" type="text" name="preco" placeholder="Preço máximo do imóvel"/>
+                <input id="index" type="number" name="preco" placeholder="Preço máximo do imóvel"/>
 
                 <button id="encontrar">Encontrar Imóvel</button>
 
             </div>
         </div>
         <!-- Final do formulário de pesquisa -->
-        
+
     </div>
 
     <!-- FINAL DA PESQUISA DO ÍNDEX -->
-
+  </div>
     <!-- FOOTER -->
     <footer>
         <div class="container_footer">
@@ -236,7 +237,7 @@
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
 
     <!-- Ficheiros JavaScript pessois -->
-    <script src="js/homepage.js"></script>        
+    <script src="js/homepage.js"></script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -308,23 +309,13 @@
                 valores['tipologia']=$("[name= tipologia ]").val();
               }
 
-              if ($("[name= ilha ]").val()) {
-                condicoes.push("ilha = :ilha");
-                valores['ilha']=$("[name= ilha ]").val();
-              }
-
-              if ($("[name= concelho ]").val()) {
-                condicoes.push("concelho = :concelho");
-                valores['concelho']=$("[name= concelho ]").val();
-              }
-
               if ($("[name= freguesia ]").val()) {
                 condicoes.push("freguesia = :freguesia");
                 valores['freguesia']=$("[name= freguesia ]").val();
               }
               if ($("[name= preco ]").val()) {
-                condicoes.push("preco = :preco");
-                valores['freguesia']=$("[name= preco ]").val();
+                condicoes.push("preco <= :preco");
+                valores['preco']=$("[name= preco ]").val();
               }
 
               if (condicoes.length) {
@@ -352,11 +343,13 @@
               async: true,
               data:{sql: sql, valores: arr},
               success:function(pesquisa){
-                clearOverlays();
-                pesquisa=JSON.parse(pesquisa)
-                console.log(pesquisa);
-                for (imovel of pesquisa) {
-                  addMarker(imovel[0], parseFloat(imovel[1]), parseFloat(imovel[2]), imovel[3], imovel[4], imovel[5], imovel[6], imovel[7]);
+                if (pesquisa!="") {
+                  clearOverlays();
+                  console.log(pesquisa);
+                  pesquisa=JSON.parse(pesquisa)
+                  for (imovel of pesquisa) {
+                    addMarker(imovel[0], parseFloat(imovel[1]), parseFloat(imovel[2]), imovel[3], imovel[4], imovel[5], imovel[6], imovel[7], imovel[8], imovel[9], imovel[10], imovel[11]);
+                  }
                 }
               }
               });

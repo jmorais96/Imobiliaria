@@ -19,6 +19,9 @@
   }
 
   $imovel = $bd->getImovel($_GET['id']);
+  if (!isset($imovel)){
+    header("location:index.php");
+  }
   //var_dump($imovel);
   //$todasImagens=$imovel->getNomeImagems();
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -107,9 +110,9 @@
 
       <?php } else { ?>
 
-      <!-- Link de navegação "Ares Cliente" -->
+      <!-- Link de navegação "Área de Cliente" -->
       <li class="nav-item">
-          <a class="nav-link" href="area_cliente.php">Area Cliente</a>
+          <a class="nav-link" href="area_cliente.php">Área de Cliente</a>
       </li>
 
       <!-- Link de navegação que faz logout" -->
@@ -175,94 +178,94 @@
 
     <!-- Slider com as imagens associadas ao imóvel -->
     <div class="slider-wrapper">
-        
+
         <div class="slider-container">
           <img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imovel->getNomeImagemPrincipal(); ?>" alt="Imagem principal do imóvel">
         </div>
-        
+
         <div class="img-container" id="img_container">
           <ul>
             <?php foreach($imovel->getImagens() as $imagem) {
             ?>
 
               <li><img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imagem->getNomeImagem(); ?>" alt="Imagem principal do imóvel"></li>
-          
+
             <?php } ?>
-            
+
           </ul>
         </div>
 
-    </div>  
+    </div>
     <!-- Final do slider com as imagens associadas ao imóvel -->
 
     <!-- Especificações do imóvel -->
     <div id="sub_container">
-      
+
       <!-- Descrição do imóvel -->
       <p><?php echo $imovel->getDescricao(); ?></p>
-      
+
       <!-- Informações do imóvel em detalhe -->
       <h3><i class="fas fa-info-circle fa-1x"></i>Informações em detalhe:</h3>
-      
+
       <!-- Localização do imóvel -->
       <div class="row location">
-      
+
       <!-- Ilha do imóvel -->
       <span id="info_group">
         <h5>Ilha:</h5>
         <p><i class="far fa-map fa-1x"></i><?php echo $imovel->getIlha(); ?></p>
       </span>
-      
+
       <!-- Concelho do imóvel -->
       <span id="info_group">
         <h5>Concelho:</h5>
         <p><i class="far fa-compass fa-1x"></i><?php echo $imovel->getConcelho(); ?></p>
       </span>
-      
+
       <!-- Freguesia do imóvel -->
       <span id="info_group">
         <h5>Freguesia:</h5>
         <p><i class="fas fa-location-arrow fa-1x"></i><?php echo $imovel->getFreguesia(); ?></p>
       </span>
-      
+
       </div>
 
       <div class="row info_second">
-      
+
       <!-- Preço do imóvel -->
       <span id="info_group" class="info_group_down">
-        <h5>Preço:</h5> 
+        <h5>Preço:</h5>
         <p><i class="fas fa-money-bill-wave fa-1x"></i><?php echo $imovel->getPreco(); ?> €</p>
       </span>
 
       <!-- Finalidade do imóvel -->
       <span id="info_group">
-        <h5>Finalidade:</h5> 
+        <h5>Finalidade:</h5>
         <p><i class="fas fa-piggy-bank fa-1x"></i><?php echo $imovel->getFinalidade(); ?></p>
       </span>
 
       <!-- Tipo do imóvel -->
       <span id="info_group">
-        <h5>Tipo:</h5> 
+        <h5>Tipo:</h5>
         <p><i class="fas fa-home fa-1x"></i><?php echo $imovel->getTipoImovel(); ?></p>
       </span>
 
       <!-- Estado do imóvel -->
       <span id="info_group">
-        <h5>Estado:</h5> 
+        <h5>Estado:</h5>
         <p><i class="fas fa-truck-loading fa-1x"></i><?php echo $imovel->getEstado(); ?></p>
       </span>
 
     </div>
 
     <div id="down_container">
-    
+
     <div class="left_info_container">
 
       <!-- Rua do imóvel -->
       <span id="info_group">
-      <h5>Rua do imóvel:</h5> 
-        <p><i class="fas fa-road fa-1x"></i><?php echo $imovel->getRua(); ?> 
+      <h5>Rua do imóvel:</h5>
+        <p><i class="fas fa-road fa-1x"></i><?php echo $imovel->getRua(); ?>
         <br>
       <div class="info-codpostal">
         <img src="images/icons/codpostal-icon.png" alt=""><p>Código postal: <?php echo $imovel->getCodPostal(); ?></p>
@@ -271,13 +274,13 @@
 
       <!-- Área do imóvel -->
       <span id="info_group">
-      <h5>Área total do imóvel:</h5> 
+      <h5>Área total do imóvel:</h5>
         <p><i class="fas fa-chart-area fa-1x"></i><?php echo $imovel->getArea(); ?></p>
       </span>
 
       <!-- Tipologia do imóvel -->
       <span id="info_group">
-      <h5>Tipologia:</h5> 
+      <h5>Tipologia:</h5>
         <p><i class="fas fa-building fa-1x"></i>
         <?php if ($imovel->getTipologia()!=NULL) { ?>
         <?php echo $imovel->getTipologia(); ?><br>
@@ -286,7 +289,7 @@
 
       <!-- Número de quartos do imóvel -->
       <span id="info_group">
-      <h5>Número de quartos:</h5> 
+      <h5>Número de quartos:</h5>
         <p><i class="fas fa-bed fa-1x"></i>
         <?php if ($imovel->getQuartos()!=NULL) { ?>
         <?php echo $imovel->getQuartos(); ?> quartos
@@ -296,7 +299,7 @@
       <!-- Número de casas de banho do imóvel -->
       <?php if ($imovel->getCasasBanho()!=NULL) { ?>
       <span id="info_group">
-      <h5>Número de casas de banho:</h5> 
+      <h5>Número de casas de banho:</h5>
         <p><i class="fas fa-bath fa-1x"></i>
         <?php echo $imovel->getCasasBanho(); ?> casas de banho
         <?php } ?></p>
@@ -305,7 +308,7 @@
       <!-- Verificar se o imóvel possui garagem -->
       <?php if ($imovel->getGaragem()!=NULL) { ?>
       <span id="info_group">
-        <h5>Garagem:</h5> 
+        <h5>Garagem:</h5>
         <p><i class="fas fa-warehouse fa-1x"></i>
         <?php echo $imovel->getGaragem(); ?>
         <?php } ?>
@@ -325,7 +328,7 @@
       <!-- Verificar se o imóvel possui mobília -->
       <?php if ($imovel->getMobilia()!=NULL) { ?>
       <span id="info_group">
-      <h5>Mobilado:</h5> 
+      <h5>Mobilado:</h5>
         <p><i class="fas fa-box fa-1x"></i>
         <?php echo $imovel->getMobilia(); ?>
         <?php } ?></p>
@@ -345,7 +348,7 @@
       <!-- Verificar se o imóvel possui informação -->
       <?php if ($imovel->getInformacao()!=NULL) { ?>
         <span id="info_group">
-        <h5>Mobilado:</h5> 
+        <h5>Mobilado:</h5>
         <p><i class="fas fa-box fa-1x"></i>
         <?php echo $imovel->getInformacao(); ?>
         <?php } ?>
@@ -375,13 +378,13 @@
             </div>
       </div>
     <?php } ?>
-    
-    
+
+
     <!-- MAPA -->
     <div class="map mx-auto"></div>
-    
+
     </div>
-  
+
   </div>
   </div>
 
@@ -402,27 +405,27 @@
   </body>
 
     <!-- Ficheiros JavaScript -->
-    <script src="js/gallery-slider.js"></script>  
-    
+    <script src="js/gallery-slider.js"></script>
+
     <!-- jQuery CDN da Google -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
-    
+
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    
+
     <!-- Script para dar corrigir o layout da página de acordo com o número de imagens do slider -->
     <script>
-      
+
       var element = document.getElementById("img_container");
       var numberOfChildren = element.getElementsByTagName('li').length;
 
       if(numberOfChildren > 4) {
           $('.img-container').css("height", "74px");
       }
-      
+
       if(numberOfChildren > 8) {
           $('.img-container').css("height", "174px");
       }
@@ -438,7 +441,7 @@
       if(numberOfChildren > 20) {
           $('.img-container').css("height", "474px");
       }
-    
+
     </script>
 
 

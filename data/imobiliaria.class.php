@@ -73,9 +73,10 @@
 
         //var_dump($id);
 
-
-        for ($i=0; $i < count($imoveis) ; $i++) {
-          $imoveis[$i]->addMarker();
+        if (isset($imoveis)) {
+          for ($i=0; $i < count($imoveis) ; $i++) {
+            $imoveis[$i]->addMarker();
+          }
         }
 
 
@@ -121,7 +122,7 @@
             $destacado=NULL;
           }
 
-          $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+          $imagens=$this->getImagens($id['idImovel']);
           //var_dump($imagens);
           $imoveis[] = new imovel($id['idImovel'],
           $id['gestor'],
@@ -152,10 +153,13 @@
           $tipoImovel[0]['iconMarcador'] );
 
         }
-        foreach ($imoveis as $value) {
-          $resultado[]=$value->toMarker();
+        if (isset($imoveis)) {
+          foreach ($imoveis as $value) {
+            $resultado[]=$value->toMarker();
+          }
+        }else {
+          $imovel="";
         }
-
         echo json_encode($resultado);
 
 
@@ -248,69 +252,72 @@
       $idImovel= array('idImovel' => $id );
       $pesquisa=$this->query($sql,$idImovel);
       //var_dump($pesquisa);
+      if (isset($pesquisa[0]['idImovel'])) {
 
-      $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
-      $finalidade=$this->query($sql, array('idFinalidade' => $pesquisa[0]['finalidade']));
+        $sql='select finalidade from finalidade where idFinalidade = :idFinalidade';
+        $finalidade=$this->query($sql, array('idFinalidade' => $pesquisa[0]['finalidade']));
 
-      $sql='select * from tipo_imovel where idTipoImovel = :idTipoImovel';
-      $tipoImovel=$this->query($sql, array('idTipoImovel' => $pesquisa[0]['tipoImovel']));
+        $sql='select * from tipo_imovel where idTipoImovel = :idTipoImovel';
+        $tipoImovel=$this->query($sql, array('idTipoImovel' => $pesquisa[0]['tipoImovel']));
 
-      $sql='select * from freguesia where idFreguesia = :idFreguesia';
-      $freguesia=$this->query($sql, array('idFreguesia' => $pesquisa[0]['idFreguesia']));
-      $sql='select * from concelho where idConcelho = :idConcelho';
-      $concelho=$this->query($sql, array('idConcelho' => $freguesia[0]['idConcelho']));
+        $sql='select * from freguesia where idFreguesia = :idFreguesia';
+        $freguesia=$this->query($sql, array('idFreguesia' => $pesquisa[0]['idFreguesia']));
+        $sql='select * from concelho where idConcelho = :idConcelho';
+        $concelho=$this->query($sql, array('idConcelho' => $freguesia[0]['idConcelho']));
 
-      $sql='select * from ilha where idIlha = :idIlha';
-      $ilha=$this->query($sql, array('idIlha' => $concelho[0]['idIlha']));
+        $sql='select * from ilha where idIlha = :idIlha';
+        $ilha=$this->query($sql, array('idIlha' => $concelho[0]['idIlha']));
 
-      if ($pesquisa[0]['tipologia']!=NULL) {
-        $sql='select tipologia from tipologia where idTipologia = :idTipologia';
-        $tipologia=$this->query($sql, array('idTipologia' =>$pesquisa[0]['tipologia']));
-      }else {
-        $tipologia[0]['tipologia']=NULL;
+        if ($pesquisa[0]['tipologia']!=NULL) {
+          $sql='select tipologia from tipologia where idTipologia = :idTipologia';
+          $tipologia=$this->query($sql, array('idTipologia' =>$pesquisa[0]['tipologia']));
+        }else {
+          $tipologia[0]['tipologia']=NULL;
+        }
+
+
+        $sql='select destacado from destaque where idImovel = :idImovel';
+        $destaque=$this->query($sql, array('idImovel' => $id));
+        if (isset($destaque[0])) {
+          $destacado=$destaque[0]['destacado'];
+        }else {
+          $destacado=NULL;
+        }
+
+        $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+
+        $imovel = new imovel($pesquisa[0]['idImovel'],
+        $pesquisa[0]['gestor'],
+        $finalidade[0]['finalidade'],
+        $tipoImovel[0]['tipoImovel'],
+        $pesquisa[0]['area'],
+        $pesquisa[0]['preco'],
+        $pesquisa[0]['descricao'],
+        $pesquisa[0]['rua'],
+        $pesquisa[0]['codPostal'],
+        $pesquisa[0]['lat'],
+        $pesquisa[0]['lng'],
+        $ilha[0]['ilha'],
+        $concelho[0]['concelho'],
+        $freguesia[0]['freguesia'],
+        $pesquisa[0]['situacao'],
+        $pesquisa[0]['estado'],
+        $tipologia[0]['tipologia'],
+        $pesquisa[0]['quartos'],
+        $pesquisa[0]['casasBanho'],
+        $pesquisa[0]['garagem'],
+        $pesquisa[0]['piscina'],
+        $pesquisa[0]['mobilia'],
+        $pesquisa[0]['dataConstrucao'],
+        $pesquisa[0]['informacao'],
+        $imagens,
+        $destaque,
+        $tipoImovel[0]['iconMarcador'] );
+
+        //var_dump($imovel);
+        return $imovel;
+
       }
-
-
-      $sql='select destacado from destaque where idImovel = :idImovel';
-      $destaque=$this->query($sql, array('idImovel' => $id));
-      if (isset($destaque[0])) {
-        $destacado=$destaque[0]['destacado'];
-      }else {
-        $destacado=NULL;
-      }
-
-      $imagens=$this->getImagens($pesquisa[0]['idImovel']);
-
-      $imovel = new imovel($pesquisa[0]['idImovel'],
-      $pesquisa[0]['gestor'],
-      $finalidade[0]['finalidade'],
-      $tipoImovel[0]['tipoImovel'],
-      $pesquisa[0]['area'],
-      $pesquisa[0]['preco'],
-      $pesquisa[0]['descricao'],
-      $pesquisa[0]['rua'],
-      $pesquisa[0]['codPostal'],
-      $pesquisa[0]['lat'],
-      $pesquisa[0]['lng'],
-      $ilha[0]['ilha'],
-      $concelho[0]['concelho'],
-      $freguesia[0]['freguesia'],
-      $pesquisa[0]['situacao'],
-      $pesquisa[0]['estado'],
-      $tipologia[0]['tipologia'],
-      $pesquisa[0]['quartos'],
-      $pesquisa[0]['casasBanho'],
-      $pesquisa[0]['garagem'],
-      $pesquisa[0]['piscina'],
-      $pesquisa[0]['mobilia'],
-      $pesquisa[0]['dataConstrucao'],
-      $pesquisa[0]['informacao'],
-      $imagens,
-      $destaque,
-      $tipoImovel[0]['iconMarcador'] );
-
-      //var_dump($imovel);
-      return $imovel;
 
     }
 
@@ -517,7 +524,7 @@
       $sql='select * from finalidade';
       $finalidade=$this->query($sql);
       foreach ($finalidade as $value) {
-        echo("<option value=".$value['idFinalidade']."   id='index'>".utf8_decode($value['finalidade'])."</option>");
+        echo("<option value=".$value['idFinalidade']."   id='index'>".($value['finalidade'])."</option>");
       }
 
     }
@@ -527,7 +534,7 @@
       $sql='select * from tipo_imovel';
       $tipoImovel=$this->query($sql);
       foreach ($tipoImovel as $value) {
-        echo("<option value=".$value['idTipoImovel']."   id='index'>".utf8_decode($value['tipoImovel'])."</option>");
+        echo("<option value=".$value['idTipoImovel']."   id='index'>".($value['tipoImovel'])."</option>");
       }
 
     }
@@ -537,7 +544,7 @@
       $sql='select * from tipologia';
       $tipologia=$this->query($sql);
       foreach ($tipologia as $value) {
-        echo("<option value=".$value['idTipologia']."   id='index'>".utf8_decode($value['tipologia'])."</option>");
+        echo("<option value=".$value['idTipologia']."   id='index'>".($value['tipologia'])."</option>");
       }
 
     }

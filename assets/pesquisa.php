@@ -17,6 +17,8 @@
       $value=explode(":",$value);
       $arr[$value[0]]=$value[1];
     }
+    //echo "$sql";
+    //var_dump($valores);
     $bd->pesquisa($sql, $arr);
   }else {
     $bd->pesquisa();
