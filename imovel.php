@@ -389,17 +389,19 @@
   </div>
 
     <!-- FOOTER -->
-    <div class="container_footer">
-      <div class="footer">
-           <div class="icon">
-              <a href="index.php"><img id="icon" src="images/logoBranco.png"/></a>
-              <p id="homeIconName">
-            </div>
-            <div class="copyright">
-				      <p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
-            </div>
+    <footer>
+      <div class="container_footer">
+        <div class="footer">
+              <div class="icon">
+                <a href="index.php"><img id="icon" src="images/logoBranco.png"/></a>
+                <p id="homeIconName">
+              </div>
+              <div class="copyright">
+                <p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
+              </div>
+        </div>
       </div>
-    </div>
+    </footer>
     <!-- FINAL DO FOOTER -->
 
   </body>
