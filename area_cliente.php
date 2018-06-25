@@ -96,17 +96,15 @@
             <a class="nav-link" href="index.php">Home</a>
         </li>
 
-
         <!-- Link de navegação "Área de Cliente" -->
         <li class="nav-item">
             <a class="nav-link" href="area_cliente.php">Área de Cliente</a>
         </li>
 
-        <!-- Link de navegação que faz logout" -->
+        <!-- Link de navegação "Logout" -->
         <li class="nav-item">
             <a class="nav-link" href="?acao=logout">Logout</a>
         </li>
-
 
         </ul>
 
