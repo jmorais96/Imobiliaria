@@ -309,16 +309,6 @@
                 valores['tipologia']=$("[name= tipologia ]").val();
               }
 
-              if ($("[name= ilha ]").val()) {
-                condicoes.push("ilha = :ilha");
-                valores['ilha']=$("[name= ilha ]").val();
-              }
-
-              if ($("[name= concelho ]").val()) {
-                condicoes.push("concelho = :concelho");
-                valores['concelho']=$("[name= concelho ]").val();
-              }
-
               if ($("[name= freguesia ]").val()) {
                 condicoes.push("freguesia = :freguesia");
                 valores['freguesia']=$("[name= freguesia ]").val();

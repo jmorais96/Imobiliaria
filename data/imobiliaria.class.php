@@ -157,9 +157,10 @@
           foreach ($imoveis as $value) {
             $resultado[]=$value->toMarker();
           }
-
-          echo json_encode($resultado);
+        }else {
+          $imovel="";
         }
+        echo json_encode($resultado);
 
 
     }
