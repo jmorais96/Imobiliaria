@@ -4,6 +4,10 @@
 outro vermelho mais escuro: #8C1919
  texto: pt sans */
 
+#phoneIcon {
+    height: 25px;
+}
+ 
 #caixa2> h2{
     font-size: 15px;
     padding-top: 13px;
