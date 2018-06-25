@@ -148,6 +148,7 @@
     </div>
 </div>
 <!-- FINAL DO MÓDULO DE LOGIN -->
+  <div class="container_body">
 
    <!-- ÁREA CENTRAL DA PÁGINA -->
 
@@ -213,7 +214,7 @@
     </div>
 
     <!-- FINAL DA PESQUISA DO ÍNDEX -->
-
+  </div>
     <!-- FOOTER -->
     <footer>
         <div class="container_footer">
