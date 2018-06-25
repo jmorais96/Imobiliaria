@@ -46,7 +46,7 @@
       }));
 
       var infowindow = new google.maps.InfoWindow({
-        content: "<img src='imoveis/"+id+"/"+img+"'> <h3>"+rua+"</h3>   <p>Tipo de imovel:" + tipoImovel + " </p>  <p>area: "+area+"</p>   <p>Preco: "+preco+" €</p>   <p>Ilha:"+ilha+"</p> <p>Concelho:"+concelho+"</p> <p>Freguesia:"+freguesia+"</p>     <a href='imovel.php?id="+id+"'>Mais Informações do imovel</a>"
+        content: "<img src='imoveis/" + id + "/" + img + "'> <h3>" + tipoImovel + " | " + rua + " | " + preco + "€ </h3> <p>Ilha: " + ilha + "</p> <p>Concelho: "+ concelho + "</p>Freguesia: " + freguesia + "</p><p>Preço: "+ preco +" €</p>   <p>Finalidade:" +ilha+"</p> <p>Concelho:"+concelho+"</p> <p>Freguesia:"+freguesia+"</p>     <a href='imovel.php?id="+id+"'>Mais Informações do imovel</a>"
       });
 
       marker[marker.length-1].setMap(map);
