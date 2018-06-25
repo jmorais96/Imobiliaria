@@ -37,7 +37,7 @@
 
 
 
-    function addMarker(id, lat, lng, rua, tipoImovel, area, preco, icon, img) {
+    function addMarker(id, lat, lng, rua, tipoImovel, area, preco, icon, img, ilha, concelho, freguesia) {
       icon="images/pins/"+icon;
       console.log(icon);
       marker.push( new google.maps.Marker({
@@ -46,7 +46,7 @@
       }));
 
       var infowindow = new google.maps.InfoWindow({
-        content: "<img src='imoveis/"+id+"/"+img+"'> <h3>"+rua+"</h3> <br> <h4>Tipo de imovel:" + tipoImovel + " </h4> <br><h4>area: "+area+"</h4> <br> <h4>Preco: "+preco+" €</h4> <br> <br> <a href='imovel.php?id="+id+"'>Mais Informações do imovel</a>"
+        content: "<img src='imoveis/"+id+"/"+img+"'> <h3>"+rua+"</h3>   <p>Tipo de imovel:" + tipoImovel + " </p>  <p>area: "+area+"</p>   <p>Preco: "+preco+" €</p>   <p>Ilha:"+ilha+"</p> <p>Concelho:"+concelho+"</p> <p>Freguesia:"+freguesia+"</p>     <a href='imovel.php?id="+id+"'>Mais Informações do imovel</a>"
       });
 
       marker[marker.length-1].setMap(map);
@@ -70,7 +70,7 @@
     }
 
     $("button").click(function(){
-      $("#caixa1a").html("<h3>Mude os seus dados pessoais</h3>");
+      $("#caixa1a").html("<h3>Mude os seus dados pessoais</p>");
       $(".caixa2").hide();
       $("#mudarDados").hide();
       $("#formDados").show();

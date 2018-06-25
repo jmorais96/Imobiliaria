@@ -217,11 +217,11 @@ class imovel{
   public function addMarker(){
 
     echo("addMarker(". $this->getIdImovel() .", ". $this->getLat() .", ". $this->getLng() .", '" . $this->getRua() ."', '". $this->getTipoImovel() ."', '" . $this->getArea() ."', '" . $this->getPreco() ."'
-    , '" . $this->getIconMarcador() ."','". $this->getNomeImagemPrincipal() ."' );");
+    , '" . $this->getIconMarcador() ."','". $this->getNomeImagemPrincipal() ."','". $this->getIlha() ."','". $this->getConcelho() ."','". $this->getFreguesia() ."' );");
   }
 
   public function toMarker(){
-    return array( $this->getIdImovel() ,$this->getLat(), $this->getLng(), $this->getRua(), $this->getTipoImovel(), $this->getArea(), $this->getPreco(),$this->getIconMarcador(), $this->getNomeImagemPrincipal());
+    return array( $this->getIdImovel() ,$this->getLat(), $this->getLng(), $this->getRua(), $this->getTipoImovel(), $this->getArea(), $this->getPreco(),$this->getIconMarcador(), $this->getNomeImagemPrincipal(), $this->getIlha(), $this->getConcelho(), $this->getFreguesia() );
   }
 
   public function latLng(){
