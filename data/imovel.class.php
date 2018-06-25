@@ -83,7 +83,7 @@ class imovel{
   public function getTipoImovel(){
     return   $this->tipoImovel;
   }
- 
+
   public function getIconMarcador(){
     return   $this->iconMarcador;
   }
@@ -217,11 +217,11 @@ class imovel{
   public function addMarker(){
 
     echo("addMarker(". $this->getIdImovel() .", ". $this->getLat() .", ". $this->getLng() .", '" . $this->getRua() ."', '". $this->getTipoImovel() ."', '" . $this->getArea() ."', '" . $this->getPreco() ."'
-    , '" . $this->getIconMarcador() ."' );");
+    , '" . $this->getIconMarcador() ."','". $this->getNomeImagemPrincipal() ."' );");
   }
 
   public function toMarker(){
-    return array( $this->getIdImovel() ,$this->getLat(), $this->getLng(), $this->getRua(), $this->getTipoImovel(), $this->getArea(), $this->getPreco(),$this->getIconMarcador());
+    return array( $this->getIdImovel() ,$this->getLat(), $this->getLng(), $this->getRua(), $this->getTipoImovel(), $this->getArea(), $this->getPreco(),$this->getIconMarcador(), $this->getNomeImagemPrincipal());
   }
 
   public function latLng(){

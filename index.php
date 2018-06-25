@@ -357,7 +357,7 @@
                   console.log(pesquisa);
                   pesquisa=JSON.parse(pesquisa)
                   for (imovel of pesquisa) {
-                    addMarker(imovel[0], parseFloat(imovel[1]), parseFloat(imovel[2]), imovel[3], imovel[4], imovel[5], imovel[6], imovel[7]);
+                    addMarker(imovel[0], parseFloat(imovel[1]), parseFloat(imovel[2]), imovel[3], imovel[4], imovel[5], imovel[6], imovel[7], imovel[8]);
                   }
                 }
               }
