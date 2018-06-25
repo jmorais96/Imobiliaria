@@ -126,7 +126,7 @@
           //var_dump($imagens);
           $imoveis[] = new imovel($id['idImovel'],
           $id['gestor'],
-          $id['finalidade'],
+          $finalidade[0]['finalidade'],
           $tipoImovel[0]['tipoImovel'],
           $id['area'],
           $id['preco'],

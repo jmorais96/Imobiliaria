@@ -37,7 +37,7 @@
 
 
 
-    function addMarker(id, lat, lng, rua, tipoImovel, area, preco, icon, img, ilha, concelho, freguesia) {
+    function addMarker(id, lat, lng, rua, tipoImovel, finalidade, preco, icon, img, ilha, concelho, freguesia) {
       icon="images/pins/"+icon;
       console.log(icon);
       marker.push( new google.maps.Marker({
@@ -46,7 +46,7 @@
       }));
 
       var infowindow = new google.maps.InfoWindow({
-        content: "<img src='imoveis/"+id+"/"+img+"'> <h3>"+rua+"</h3>   <p>Tipo de imovel:" + tipoImovel + " </p>  <p>area: "+area+"</p>   <p>Preco: "+preco+" €</p>   <p>Ilha:"+ilha+"</p> <p>Concelho:"+concelho+"</p> <p>Freguesia:"+freguesia+"</p>     <a href='imovel.php?id="+id+"'>Mais Informações do imovel</a>"
+        content: "<img src='imoveis/"+id+"/"+img+"'> <h3>"+rua+"</h3>   <p>Tipo de imovel:" + tipoImovel + " </p>  <p>Finalidade: "+finalidade+"</p>   <p>Preco: "+preco+" €</p>   <p>Ilha:"+ilha+"</p> <p>Concelho:"+concelho+"</p> <p>Freguesia:"+freguesia+"</p>     <a href='imovel.php?id="+id+"'>Mais Informações do imovel</a>"
       });
 
       marker[marker.length-1].setMap(map);
