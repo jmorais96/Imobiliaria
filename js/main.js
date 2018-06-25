@@ -35,8 +35,6 @@
       });
     }
 
-
-
     function addMarker(id, lat, lng, rua, tipoImovel, finalidade, preco, icon, img, ilha, concelho, freguesia) {
       icon="images/pins/"+icon;
       console.log(icon);
@@ -46,7 +44,7 @@
       }));
 
       var infowindow = new google.maps.InfoWindow({
-        content: "<img src='imoveis/"+id+"/"+img+"'> <h3>"+rua+"</h3>   <p>Tipo de imovel:" + tipoImovel + " </p>  <p>Finalidade: "+finalidade+"</p>   <p>Preco: "+preco+" €</p>   <p>Ilha:"+ilha+"</p> <p>Concelho:"+concelho+"</p> <p>Freguesia:"+freguesia+"</p>     <a href='imovel.php?id="+id+"'>Mais Informações do imovel</a>"
+        content: "<img style='margin: 0 0 10px 25%;' src='imoveis/" + id + "/" + img + "'> <h3>" + tipoImovel + " | " + rua + " | " + preco + "€ </h3><br><p style='font-size:1.3rem'><i class='far fa-map fa-1x'></i> Ilha: " + ilha + "</p><p style='font-size:1.3rem'><i class='far fa-compass fa-1x'></i> Concelho: " + concelho + "</p><p style='font-size:1.3rem'><i class='fas fa-location-arrow fa-1x'></i> Freguesia: " + freguesia + "</p><p style='font-size:1.3rem'><i class='fas fa-money-bill-wave fa-1x'></i> Preço: " + preco + "€</p><p style='font-size:1.3rem'><i class='fas fa-piggy-bank fa-1x'></i> Finalidade: " + finalidade + "</p> <p style='font-size:1.3rem'><i class='fas fa-home fa-1x'></i> Tipo de imóvel: " + tipoImovel + "</p> </p> <a style='font-size:1.3rem; text-decoration:none; margin-left: 15%; color: #DC2D27;' href='imovel.php?id=" + id + "'>Obter mais Informações acerca do imovel</a>"
       });
 
       marker[marker.length-1].setMap(map);
