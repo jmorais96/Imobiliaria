@@ -4,7 +4,7 @@
 
       private $idVisita;
       private $user;
-      private $gestor;
+      private $imovel;
       private $dataHora;
       private $estado;
 

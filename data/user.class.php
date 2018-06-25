@@ -85,12 +85,10 @@
     }
 
     public function setFreguesia($freguesia){
-      $bd=new imobiliaria('config.ini');
-      $this->freguesia=$bd->freguesia_id($freguesia);
+      $this->freguesia=$freguesia;
     }
 
     public function update(){
-      $bd=new imobiliaria('config.ini');
       return $arr = array(':idUser' => ($this->getIdUser()), ':email' => ($this->getMail()), ':nomeProprio' => ($this->getName()) , ':sobrenome' => ($this->getLastName()) , ':password' => ($this->password) , ':contacto' => ($this->getContact()) , ':idFreguesia' => ($this->getFreguesia()));
     }
 
