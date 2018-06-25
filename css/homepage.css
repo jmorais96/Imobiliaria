@@ -104,20 +104,20 @@ img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 2
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ED2B2A;
+  background-color: #DC2D27;
 }
 
 /* Toogler do formulário de pesquisa */
 .btn_toogler {
   font-size: 35px;
-  color: #ED2B2A;
+  color: #d1d1e0;
   cursor: pointer;
   transition: all 300ms ease-in-out;
-  color: white;
+
 }
 
 .btn_toogler:hover{
-    color: #d1d1e0;
+  color: white;
 }
 
 /* Formulário de pesquisa */
