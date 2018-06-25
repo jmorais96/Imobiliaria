@@ -242,6 +242,7 @@ button#registar {
     transition-timing-function: linear;
 }
 
+
 button#encontrar:hover {
     background-color: #fff;
     color: #DC2D27;
@@ -267,6 +268,10 @@ img#icon {height: 70px;}
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.redbox {
+    background-color: red;
 }
 
 /* Símbolo de copyright do footer */
