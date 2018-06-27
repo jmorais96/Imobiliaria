@@ -115,23 +115,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <body>
 
   <!-- HEADER/NAVBAR -->
-  <div class="container-header">
+  <div class="container-header container-header-registo">
   <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="index.php"><img id="icon" src="images/logo.png"/></a>
 
-  <!-- Toogler que aparecerá nos menores ecrãs -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span></button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav mx-auto header-registo">
 
-            <h3>Página de registo da imobiliária</h3>
+            <h3>Registe-se na nossa imobiliária!</h3>
 
         </ul>
 
-    </div>
 
         <!-- Contacto Telefónico -->
         <div class="phone">
