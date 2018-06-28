@@ -9,7 +9,7 @@
   // Iniciar a sessão
   session_start();
 
-  // Incluir funcionalidade de logout
+  // Incluir a funcionalidade de logout
   require_once('assets/logout.php');
 
   // Ligação à base de dados 
@@ -29,7 +29,7 @@
   //var_dump($imovel);
   //$todasImagens=$imovel->getNomeImagems();
 
-  // Operação que permite ao user iniciar sessão 
+  // Operação que permite ao user (cliente) iniciar sessão 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['pass'])) {
       $_SESSION['cliente'] = $bd->loginCliente($_POST['mail'], $_POST['pass']);
@@ -122,7 +122,7 @@
           <a class="nav-link" href="area_cliente.php">Área de Cliente</a>
       </li>
 
-      <!-- Link de navegação que faz logout" -->
+      <!-- Link de navegação que permite fazer "logout" -->
       <li class="nav-item">
           <a class="nav-link" href="?acao=logout">Logout</a>
       </li>
