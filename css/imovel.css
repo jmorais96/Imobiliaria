@@ -2,6 +2,17 @@
 /* ESTILIZAÇÃO DA PÁGINA DE PERFIL DO IMÓVEL */
 /*********************************************/
 
+/* Título da página de perfil do imóvel */
+i.fas.fa-eye.fa-1x {
+  color: #cacaca;
+  transition: background 300ms ease-in-out;
+}
+
+i.fas.fa-eye.fa-1x:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
 /* Slider do perfil do imóvel */
 .slider-wrapper {
   margin: 0 0 100px 28%;
@@ -155,6 +166,36 @@ div.info-piscina, div.info-codpostal, div.info-dataconstrucao {
   margin: 22px 0 0 20px;
   height: 500px;
   width: 800px;
+}
+
+/* FORMULÁRIO DE VISITA */
+#caixa_formulario {margin-top: 20px;}
+#formulario label {font-size: 1.3em;}
+
+/* Data e hora da visita */
+[type="date"], [type="time"] {
+  margin-left: 15px;
+  height: 23px;
+}
+
+[type="date"] {width: 140px;}
+
+/* Botão de submissão do formulário de visita */
+#button_send {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 10px;
+  background: #7a7a7a;
+  color: #fff;
+  text-transform: uppercase;
+  transition: background 300ms ease-in-out;
+}
+
+#button_send:hover {
+  background: #fff;
+  color: #7a7a7a;
+  cursor: pointer;
 }
 
 /* MEDIA QUERIES */
