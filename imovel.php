@@ -374,37 +374,41 @@
       
       <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-      <!-- FORMULÁRIO QUE PERMITE AO CLIENTE MARCAR UMA VISITA -->
+      <!-- ÁREA DO MAPA -->
+      <div class="map mx-auto"></div>
+      <!-- FINAL DA ÁREA DO MAPA -->
+
+      
+
+    </div>
+
+    <!-- FORMULÁRIO QUE PERMITE AO CLIENTE MARCAR UMA VISITA -->
       <?php if (isset($_SESSION['cliente'])) { ?>
       <div id="caixa_formulario">
           <div id="formulario">
               <form action="" method="POST">
                    
                    <!-- Título do formulário -->
-                   <h3>Marque a sua visita!<br></h3>
+                   <h3><i class="far fa-eye fa-1x"></i>Marque já sua visita!</h3>
                     
-                   *Dia: <input id="field" type="date" name="dia" placeholder="ex:18/09/2018"><br>
-                   <label> err_dia  </label>
+                   <label><i class="far fa-calendar-alt fa-1x"></i>Dia</label>
+                   <input id="field" type="date" name="dia" placeholder="ex:18/09/2018"><br>
 
-                   *Hora: <input id="field" type="time" name="hora" placeholder="EX: 19:53"><br>
-                   <label> err_hora  </label>
+                   <label><i class="far fa-clock fa-1x"></i>Hora</label>
+                   <input id="field" type="time" name="hora" placeholder="EX: 19:53"><br>
 
-                   <input id="button_send" type="submit" value="Enviar" name="visita">
-                   </form>
+                   <input id="button_send" type="submit" value="Marcar visita" name="visita">
 
-                   <h5>*  Envie-nos a sua sugestão de visita e avaliaremos a disponibilidade associada. Entraremos em contacto consigo o mais brevemente possível.</h5>
               </form>
+              
+              <!-- Frase de incentivo à marcação de visita -->
+              <h5>Envie-nos a sua sugestão de visita e avaliaremos a disponibilidade associada. Entraremos em contacto consigo o mais brevemente possível.</h5>
+            
             </div>
       </div>
     
     <?php } ?>
     <!-- FORMULÁRIO QUE PERMITE AO CLIENTE MARCAR UMA VISITA -->
-
-    <!-- ÁREA DO MAPA -->
-    <div class="map mx-auto"></div>
-    <!-- FINAL DA ÁREA DO MAPA -->
-
-    </div>
 
   </div>
   </div>
