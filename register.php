@@ -1,26 +1,31 @@
-<!-- Adicionar a classe Imobiliária -->
 <?php
-
+  
+  // Incluir a classe Imobiliaria
   require_once('data/imobiliaria.class.php');
 
+  // Incluir a class User 
   require_once('data/user.class.php');
 
+  // Iniciar a sessão 
   session_start();
-
+  
+  // Se o user já for um cliente que se encontra registado, será redirecionado para o índex
   if (isset($_SESSION['cliente'])) {
 
       header("location:index.php");
 
   }
 
-  $bd=new imobiliaria("data/config.ini");
+  // Ligação à base de dados 
+  $bd = new imobiliaria("data/config.ini");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-  // MENSAGENS DE VERIFICAÇÃO
-  $message = "";
 
   // PROCESSO DE REGISTO
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+  // Mensagens de verificação definidas atempadamente 
+  $message = "";
+
   if(isset($_POST['registar'])) {
 
       $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
@@ -35,9 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       //$sql = 'INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto)
       //VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto)';
-
-
-
 
       // Verificar se existem campos vazios
       if(empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($password_rewrite)) {
@@ -68,14 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       /* necessário criar condições de inserção */
 
-
+        // Verificar se o email introduzido já se encontra na base de dados 
         if (!$bd->mailClienteExists($email)) {
           $_SESSION['cliente']= $bd->registarCliente($email, $firstname, $lastname, $password, $contact, $ilha, $concelho, $freguesia);
           //var_dump($_SESSION['cliente']);
           header("location:index.php");
         }
-
-
 
   }
 
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
@@ -108,30 +108,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Título da página -->
-    <title>Mais Imobiliária | Página de Registo</title>
+    <title>Mais Imobiliária | Página de registo</title>
 
   </head>
 
   <body>
 
   <!-- HEADER/NAVBAR -->
-  <div class="container-header">
+  <div class="container-header container-header-registo">
   <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="index.php"><img id="icon" src="images/logo.png"/></a>
 
-  <!-- Toogler que aparecerá nos menores ecrãs -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span></button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+        
         <ul class="navbar-nav mx-auto header-registo">
-
-            <h3>Página de registo da imobiliária</h3>
+            <!-- Título do formulário de registo -->
+            <h3>Registe-se na nossa imobiliária!</h3>
 
         </ul>
 
-    </div>
 
         <!-- Contacto Telefónico -->
         <div class="phone">
@@ -148,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form action="" method="post">
 
+            <!-- Informações básicas do utilizador -->
             <div id="top-form">
 
                 <!-- Nome próprio do utilizador -->
@@ -164,6 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             </div>
 
+            <!-- Palavras-passe a serem introduzidas -->
             <div id="pass-form">
 
                 <!-- Palavra-passe do utilizador -->
@@ -180,6 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             </div>
 
+            <!-- Contacto do utilizador - email serve como "username" -->
             <div id="contact-form">
 
                 <!-- Email do utilizador -->
@@ -196,9 +193,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             </div>
 
+            <!-- Localização do utilizador -->
             <div id="location-form">
-
-                <!-- Localização do utilizador -->
 
                 <!-- Ilha do utilizador -->
                 <div class="form-group">
@@ -226,9 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             </div>
 
-
-
-            <!-- Botão de submissão -->
+            <!-- Botão de submissão do formulário de registo -->
             <button type="submit" name="registar" class="btn-user">Criar conta</button>
 
         </form>
@@ -269,7 +263,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-    <!-- Script para a localização do utilizador -->
+    <!-- Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha -->  
     <script type="text/javascript">
         $(document).ready(function(){
             $("#ilha").change(function(){
@@ -301,7 +295,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         });
     </script>
-
-
 
 </html>

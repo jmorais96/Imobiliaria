@@ -233,6 +233,10 @@ button#encontrar:hover {
     color: #DC2D27;
 }
 
+.add_prop_box input[type=checkbox] {
+    width: 5%!important;
+}
+
 /**********/
 /* FOOTER */
 /**********/

@@ -15,7 +15,7 @@
   // Iniciar a sessão 
   session_start();
 
-  // Incluir a funcionalidade de 'Logout'
+  // Incluir a funcionalidade de logout
   require_once('assets/logout.php');
 
   // Impedir que um utilizador que não seja cliente tenha acesso à área associada ao mesmo 
@@ -23,10 +23,10 @@
     header("location:index.php");
   }
 
-  // Conexão à base de dados
+  // Ligação à base de dados
   $bd = new imobiliaria("data/config.ini");
 
-  // Funcionalidade de 'Update' nos dados do cliente 
+  // Funcionalidade de "update" nos dados do cliente 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_SESSION['cliente']->validarPassword(md5($_POST['passwordAtual']))) {
 
@@ -69,7 +69,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
@@ -83,7 +83,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Título da página -->
-    <title>Mais Imobiliária | Bem-vindo</title>
+    <title>Mais Imobiliária | Área de Cliente</title>
 
   </head>
 
@@ -133,6 +133,8 @@
 
   <div class="container_index">
     <div id="caixas_pesquisa">
+            
+            <!-- Título da área de cliente -->
             <div class="pesquisa_grande">
                  <h3>Área de Cliente</h3>
             </div>
@@ -141,72 +143,90 @@
       <div class="container_info">
             <div id="sub_container_info">
               
+              <!-- Mensagem de "boas-vindas" -->
               <div id="caixa1a">
                  <h3>Bem-Vindo(a), <?php echo $_SESSION['cliente']->getFullName(); ?></h3>
               </div>
 
+              <!-- Informações pessoais do cliente -->
               <div id="caixa1b">
+
+                      <!-- Email do cliente -->
                       <div id="caixa2" class="caixa2">
                           <img id="icon2" src="images/email.svg">
                           <h3>E-mail: <?php  echo $_SESSION['cliente']->getMail(); ?></h3>
                       </div>
+
                       <!-- <div id="caixa2" "caixa2">
                          <img id="icon2" src="images/key.svg">
                          <h3>Password: </h3>
                       </div> -->
+
+                      <!-- Contacto telefónico do cliente -->
                       <div id="caixa2" class="caixa2">
                          <img id="icon2" src="images/phone.svg">
                          <h3>Telefone: <?php echo $_SESSION['cliente']->getContact(); ?></h3>
                       </div>
 
+                      <!-- Localização do cliente -->
                       <div id="caixa2" class="caixa2">
                         <img id="icon2" src="images/local.svg">
                         <h3> Habitação: <?php echo $_SESSION['cliente']->getIlha() . ", " . $_SESSION['cliente']->getConcelho() . ", " . $_SESSION['cliente']->getFreguesia();?></h3>
                       </div>
 
+                      <!-- Opção para a alteração dos dados pessoais -->
                       <button id="mudarDados">Alterar dados pessoais</button>
 
+                      <!-- Tabela com os dados que serão alterados -->
                       <table id="formDados" class="table table-bordered table-hover">
 
                         <form class="" action="" method="post" >
 
+                          <!-- Alteração do nome próprio -->
                           <tr>
                             <td> <label for="firstname">Nome Próprio:</label> </td>
                             <td> <input type="text" name="firstname" value=""> </td>
                           </tr>
-
+                          
+                          <!-- Alteração do apelido -->
                           <tr>
                             <td> <label for="lastname">Apelido:</label> </td>
                             <td> <input type="text" name="lastname" value=""> </td>
                           </tr>
-
+                          
+                          <!-- Alteração da palavra-passe -->
                           <tr>
                             <td> <label for="password">Palavra-passe:</label> </td>
                             <td> <input type="password" name="password" value=""> </td>
                           </tr>
 
+                          <!-- Alteração da palavra-passe - rewrite -->
                           <tr>
                             <td> <label for="password_rewrite">Reescreva a palavra-passe:</label> </td>
                             <td> <input type="password" name="password_rewrite" value=""> </td>
                           </tr>
-
+                          
+                          <!-- Alteração do email de preferência -->  
                           <tr>
                             <td> <label for="email">Email de preferência:</label> </td>
                             <td> <input type="email" name="email" value=""> </td>
                           </tr>
-
+                          
+                          <!-- Alteração do contacto de preferência -->
                           <tr>
                             <td> <label for="contact">Contacto de preferência:</label> </td>
                             <td> <input type="number" name="contact" value=""> </td>
                           </tr>
-
+                          
+                          <!-- Alteração da ilha de residência -->
                           <tr>
                             <td> <label for="island">Ilha de residência:</label> </td>
                             <td> <select name="ilha" id="ilha">
                                 <?php $bd->selectIlha(); ?>
                             </select> </td>
                           </tr>
-
+                          
+                          <!-- Alteração do concelho de residência -->
                           <tr>
                             <td> <label for="concelho">Cidade de residência:</label> </td>
                             <td> <select name="concelho" id="concelho">
@@ -214,6 +234,7 @@
                             </select> </td>
                           </tr>
 
+                          <!-- Alteração da freguesia de residência -->
                           <tr>
                             <td> <label for="freguesia">Freguesia de residência:</label> </td>
                             <td> <select name="freguesia" id="freguesia">
@@ -221,11 +242,13 @@
                             </select> </td>
                           </tr>
 
+                          <!-- Pedido para inserção da palavra-passe atual, de modo a permitir que as alterações sejam sucedidas -->
                           <tr>
-                            <td> <label for="freguesia">Password Atual</label> </td>
+                            <td> <label for="passwordAtual">Password Atual</label> </td>
                             <td> <input type="password" name="passwordAtual" value="" required> </td>
                           </tr>
 
+                          <!-- Botão de submissão do formulário de alteração de dados -->
                           <tr>
                             <td colspan="12"> <input type="submit" value="Proceder com a alteração dos Dados" class="alterarDados" name="registar"> </td>
                           </tr>
@@ -238,9 +261,10 @@
             </div>
       </div>
 
-          <div id="caixa1a">
-              <h3>Consulte aqui o estado das suas visitas:</h3>
-          </div>
+      <!-- Verificação do estado das visitas -->
+      <div id="caixa1a">
+          <h3>Consulte aqui o estado das suas visitas:</h3>
+      </div>
 
       </div>
       <div class=contain>
@@ -257,7 +281,9 @@
           <tbody>
           <?php
 
+            // Aceder às visitas presentes na base de dados 
             foreach ($bd->getVisitasUser($_SESSION['cliente']) as $value) {
+          
           ?>
 
             <tr>
@@ -266,16 +292,17 @@
               <td> <?php echo $value->getHora() ?> </td>
               <td> <?php echo $value->getEstado() ?> </td>
             <tr>
-         <?php
-          }
-         ?>
+        
+         <?php } ?>
+
           </tbody>
 
-      </table>
+         </table>  
+          
         </div>
-  </div>
       </div>
     </div>
+  </div>
 
     <!-- FOOTER -->
     <footer>
@@ -287,16 +314,13 @@
               </div>
               <div class="copyright">
           <p class="copyright"><span class="copyright-simbol">&#169;</span> 2018 Mais Imobiliária</p>
-              </div>
+          </div>
         </div>
       </div>
     </footer>
     <!-- FINAL DO FOOTER -->
 
   </body>
-
-
-    <!-- Ficheiros JavaScript pessois -->
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -313,7 +337,8 @@
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
-
+    
+    <!-- Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha --> 
     <script type="text/javascript">
 
     $(document).ready(function(){
@@ -342,7 +367,6 @@
             }
             });
         });
-
 
     });
 

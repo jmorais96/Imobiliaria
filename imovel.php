@@ -9,27 +9,34 @@
   // Iniciar a sessão
   session_start();
 
-  // Incluir funcionalidade de logout
+  // Incluir a funcionalidade de logout
   require_once('assets/logout.php');
 
+  // Ligação à base de dados 
   $bd = new imobiliaria('data/config.ini');
 
+  // Condição que define que um imóvel necessita possuir um id para ter uma página própria 
   if (!isset($_GET['id'])) {
     header("location:index.php");
   }
 
+  // Receber as informações do imóvel da base de dados e guardar as mesmas numa variável 
   $imovel = $bd->getImovel($_GET['id']);
   if (!isset($imovel)){
     header("location:index.php");
   }
+
   //var_dump($imovel);
   //$todasImagens=$imovel->getNomeImagems();
+
+  // Operação que permite ao user (cliente) iniciar sessão 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['pass'])) {
-      $_SESSION['cliente']=$bd->loginCliente($_POST['mail'], $_POST['pass']);
+      $_SESSION['cliente'] = $bd->loginCliente($_POST['mail'], $_POST['pass']);
       //var_dump($_SESSION['cliente']);
     }
 
+    // Funcionalidade que permite ao user marcar uma visita a um dado imóvel
     if (isset($_SESSION['cliente']) && isset($_POST['dia']) && isset($_POST['hora'])) {
       $bd->registarVisita($_SESSION['cliente']->getIdUser(), $_POST['dia'], $_POST['hora'], $imovel);
     }
@@ -115,7 +122,7 @@
           <a class="nav-link" href="area_cliente.php">Área de Cliente</a>
       </li>
 
-      <!-- Link de navegação que faz logout" -->
+      <!-- Link de navegação que permite fazer "logout" -->
       <li class="nav-item">
           <a class="nav-link" href="?acao=logout">Logout</a>
       </li>
@@ -173,22 +180,26 @@
   <!-- PERFIL DO IMÓVEL -->
   <div id="container_imovel">
 
-    <!-- Título da página / nome do imóvel -->
-    <h2 class="text-center"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> €</h2>
+    <!-- Título da página / nome e informação básica do imóvel -->
+    <h2 class="text-center"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> € <a href="#"></a><i title="Marcar visita ao imóvel" class="fas fa-eye fa-1x" id="atalho_marcar_visita"></i></h2>
 
     <!-- Slider com as imagens associadas ao imóvel -->
     <div class="slider-wrapper">
-
+        
+        <!-- Container do slider com a imagem principal da galeria do imóvel -->
         <div class="slider-container">
           <img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imovel->getNomeImagemPrincipal(); ?>" alt="Imagem principal do imóvel">
         </div>
-
+        
+        <!-- Container com a lista de imagens que o user poderá escolher --> 
         <div class="img-container" id="img_container">
           <ul>
+            
             <?php foreach($imovel->getImagens() as $imagem) {
+            
             ?>
 
-              <li><img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imagem->getNomeImagem(); ?>" alt="Imagem principal do imóvel"></li>
+              <li><img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imagem->getNomeImagem(); ?>" alt="Imagem secundária do imóvel"></li>
 
             <?php } ?>
 
@@ -196,9 +207,11 @@
         </div>
 
     </div>
-    <!-- Final do slider com as imagens associadas ao imóvel -->
+    <!-- FINAL DO SLIDER COM AS IMAGENS ASSOCIADAS AO IMÓVEL -->
+              
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-    <!-- Especificações do imóvel -->
+    <!-- ESPECIFICAÇÕES DO IMÓVEL -->
     <div id="sub_container">
 
       <!-- Descrição do imóvel -->
@@ -207,7 +220,7 @@
       <!-- Informações do imóvel em detalhe -->
       <h3><i class="fas fa-info-circle fa-1x"></i>Informações em detalhe:</h3>
 
-      <!-- Localização do imóvel -->
+      <!-- Divisão que contém a localização do imóvel -->
       <div class="row location">
 
       <!-- Ilha do imóvel -->
@@ -229,7 +242,8 @@
       </span>
 
       </div>
-
+      
+      <!-- Divisão que contém mais informações pertinentes acerca do imóvel --> 
       <div class="row info_second">
 
       <!-- Preço do imóvel -->
@@ -257,7 +271,8 @@
       </span>
 
     </div>
-
+    
+    <!-- Divisão que contém as restantes informações acerca do imóvel e o mapa -->
     <div id="down_container">
 
     <div class="left_info_container">
@@ -355,35 +370,45 @@
       </span>
 
       </div>
-      <!-- Final das especificações do imóvel -->
+      <!-- FINAL DAS ESPECIFICAÇÕES DO IMÓVEL -->
+      
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+      <!-- ÁREA DO MAPA -->
+      <div class="map mx-auto"></div>
+      <!-- FINAL DA ÁREA DO MAPA -->
+
+      
+
+    </div>
+
+    <!-- FORMULÁRIO QUE PERMITE AO CLIENTE MARCAR UMA VISITA -->
       <?php if (isset($_SESSION['cliente'])) { ?>
       <div id="caixa_formulario">
           <div id="formulario">
               <form action="" method="POST">
-                  <!--formulario-->
-                   <h3>Marque a sua visita!<br></h3>
+                   
+                   <!-- Título do formulário -->
+                   <h3><i class="far fa-eye fa-1x"></i>Marque já sua visita!</h3>
+                    
+                   <label><i class="far fa-calendar-alt fa-1x"></i>Dia</label>
+                   <input id="field" type="date" name="dia" placeholder="ex:18/09/2018"><br>
 
-                      *Dia: <input id="field" type="date" name="dia" placeholder="ex:18/09/2018"><br>
-                    <label> err_dia  </label>
+                   <label><i class="far fa-clock fa-1x"></i>Hora</label>
+                   <input id="field" type="time" name="hora" placeholder="EX: 19:53"><br>
 
-                    *Hora: <input id="field" type="time" name="hora" placeholder="EX: 19:53"><br>
-                    <label> err_hora  </label>
+                   <input id="button_send" type="submit" value="Marcar visita" name="visita">
 
-                    <input id="button_send" type="submit" value="Enviar" name="visita">
-                    </form>
-
-                    <h5>*  Envie-nos a sua sugestão para avaliarmos disponilidade. Entraremos em contacto consigo o mais breve possível.</h5>
               </form>
+              
+              <!-- Frase de incentivo à marcação de visita -->
+              <h5>Envie-nos a sua sugestão de visita e avaliaremos a disponibilidade associada. Entraremos em contacto consigo o mais brevemente possível.</h5>
+            
             </div>
       </div>
+    
     <?php } ?>
-
-
-    <!-- MAPA -->
-    <div class="map mx-auto"></div>
-
-    </div>
+    <!-- FORMULÁRIO QUE PERMITE AO CLIENTE MARCAR UMA VISITA -->
 
   </div>
   </div>
@@ -408,6 +433,7 @@
 
     <!-- Ficheiros JavaScript -->
     <script src="js/gallery-slider.js"></script>
+    <script src="js/imovel.js"></script>
 
     <!-- jQuery CDN da Google -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -418,7 +444,7 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-    <!-- Script para dar corrigir o layout da página de acordo com o número de imagens do slider -->
+    <!-- Script que atualiza o layout da página de acordo com o número de imagens do slider -->
     <script>
 
       var element = document.getElementById("img_container");

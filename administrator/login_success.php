@@ -1,96 +1,115 @@
 <?php
-// Incluir a classe Imobiliária
-require_once('../data/imobiliaria.class.php');
 
-// Incluir a classe Funcionario
-require_once('../data/funcionario.class.php');
+  // Incluir a classe Imobiliária
+  require_once('../data/imobiliaria.class.php');
 
-// Incluir a classe Imovel
-require_once('../data/imovel.class.php');
+  // Incluir a classe Funcionario
+  require_once('../data/funcionario.class.php');
 
-// Incluir a classe imagem
-require_once('../data/imagem.class.php');
+  // Incluir a classe Imovel
+  require_once('../data/imovel.class.php');
 
-// Incluir a classe user
-require_once('../data/user.class.php');
+  // Incluir a classe imagem
+  require_once('../data/imagem.class.php');
 
-// Incluir a classe visita
-require_once('../data/visita.class.php');
+  // Incluir a classe user
+  require_once('../data/user.class.php');
 
-// Iniciar a sessão
-session_start();
+  // Incluir a classe visita
+  require_once('../data/visita.class.php');
 
-if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
-   session_destroy();
+  // Iniciar a sessão
+  session_start();
 
-   header('location: index.php');
-}
+  // Funcionalidade de logout
+  if (isset($_GET['acao']) && $_GET['acao'] == 'logout'){
+    session_destroy();
 
+    header('location: index.php');
+  }
+
+  // Ligação à base de dados
   $bd = new imobiliaria('../data/config.ini');
 
+  // Funcionalidade que permite registar um gestor
   if(isset($_POST['submit_manager'])) {
 
+      // Verificar se o gestor já não se encontra registado
       if(!$bd->mailGestorExists($_POST['email'])) {
 
+          // Registar um novo gestor
           $bd->registarGestor($_POST['email'], $_POST['nome'], $_POST['sobrenome'], $_POST['password'], $_POST['contacto']);
 
       }
 
   }
 
-if(isset($_POST['edit_manager'])) {
-//codigo do botao de editar gestor
+  // Funcionalidade que permite editar um gestor
+  if(isset($_POST['edit_manager'])) {
+  //codigo do botao de editar gestor
 
+  // Comando SQL para proceder ao 'update' dos dados de um funcionário
   $sql="UPDATE funcionario SET ";
 
+  // Definir um array que irá guardar os campos a serem alterados
   $campos=[];
+
+  // Atualização do email do funcionário
   if ($_POST['email']) {
 
     $campos['email']=$_POST['email'];
     $sql .= "email = :email, ";
   }
+
+  // Atualização do nome do funcionário
   if ($_POST['nome']) {
     $campos['nomeProprio']=$_POST['nome'];
     $sql .= "nomeProprio = :nomeProprio, ";
   }
 
+  // Atualização do sobrenome do funcionário
   if ($_POST['sobrenome']) {
     $campos['sobrenome']=$_POST['sobrenome'];
     $sql .= "sobrenome = :sobrenome, ";
   }
 
+  // Atualização da password do funcionário
   if ($_POST['password']) {
-
     $campos['password']=$_POST['password'];
     $sql .= "password = :password, ";
   }
 
+  // Atualização do contacto do funcionário
   if ($_POST['contacto']) {
     $campos['contacto']=$_POST['contacto'];
     $sql .= "contacto = :contacto, ";
   }
 
+  // Atualização do id do funcionário
   if ($_POST['id']) {
     $sql=substr($sql, 0, -2);
     $campos['idFuncionario']=$_POST['id'];
     $sql .= " where idFuncionario = :idFuncionario";
   }
 
+   // Verificar se a nova password e o 'retype' da mesma correspondem
    if ((isset($_POST['password'])) && (isset($_POST['retype'])) ) {
      if ($_POST['password']==$_POST['retype']) {
 
+       // Proceder por fim à edição do funcionário, utilizando a instrução SQL e o array com os campos
        if (md5($_POST['passAdmin'])==$_SESSION['funcionario']->getPassword()) {
          $bd->editarGestor($sql, $campos);
        }
 
      }
-   }else {
+   } else {
      if (md5($_POST['passAdmin'])==$_SESSION['funcionario']->getPassword()) {
        $bd->editarGestor($sql, $campos);
      }
    }
 
 }
+
 
 if (!isset($_SESSION['funcionario'])) {
   header("location:../index.php");
@@ -105,8 +124,6 @@ if (isset($_SESSION['funcionario'])) {
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
  <head>
@@ -116,7 +133,7 @@ if (isset($_SESSION['funcionario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="../css/homepage.css" type="text/css">
@@ -134,26 +151,26 @@ if (isset($_SESSION['funcionario'])) {
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Título da página -->
-    <title>Mais Imobiliária | Bem-vindo</title>
+    <title>Mais Imobiliária | Área administrativa</title>
 
   </head>
 
   <body>
 
     <!-- HEADER/NAVBAR -->
-  <div class="container-header">
-  <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="index.php"><img id="icon" src="../images/logo.png"/></a>
+    <div class="container-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="index.php"><img id="icon" src="../images/logo.png"/></a>
 
-  <!-- Toogler que aparecerá nos menores ecrãs -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span></button>
+    <!-- Toogler que aparecerá nos menores ecrãs -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span></button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav mx-auto">
 
-        <!-- Link de navegação "Home" -->
+        <!-- Link de navegação "Logout" -->
         <li class="nav-item">
             <a class="nav-link" href="?acao=logout">Logout</a>
         </li>
@@ -162,17 +179,11 @@ if (isset($_SESSION['funcionario'])) {
 
     </div>
 
-        <!-- Contacto Telefónico -->
-        <div class="phone">
-            <img id="phoneIcon" src="../images/call-answer.svg" alt="Contacto Telefónico"/>
-            <p id="phone-number">296 012 345</p>
-        </div>
-
     </nav>
 </div>
 <!-- FINAL DO HEADER/NAVBAR  -->
 
-<div class="container_admin" style= " margin: 0 10%;">
+<div class="container_admin" style="margin: 0 10%;">
 
     <!--<div class="nav_box">
       <div class="user_box">
@@ -182,20 +193,25 @@ if (isset($_SESSION['funcionario'])) {
     <div class="nav_holder">
     </div>
     <div class="backend_admin">
-        <h1>Administração</h1>
+        <h1>Área de administração</h1>
     </div>
     <div class="res_admin">
-         <?php //se o login for feito com sucesso
+         <?php
+
+            // Mensagem que aparecerá caso o login seja efetuado com sucesso
             if(isset($_SESSION['funcionario'])){
                 echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h4>';
-            }
-            //caso contrario reencaminha de volta ao index.php
-            else{
+
+            /* Caso o admin não consiga efetuar o login é reencaminhado para a página 'index.php' do back-end */
+            } else {
                 header('location:index.php');
             }
-        ?>
+
+            ?>
 
     </div>
+
+    <!-- Tabuladores da área de administração -->
     <div class="admin_container">
     <div class="tab">
       <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Estatísticas</button>
@@ -204,6 +220,7 @@ if (isset($_SESSION['funcionario'])) {
       <button class="tablinks" onclick="openCity(event, 'Madrid')" >Edição de Gestores</button>
     </div>
 
+    <!-- Secção das estatísticas -->
     <div id="London" class="tabcontent">
       <div class="statistics">
       </div>
@@ -221,11 +238,18 @@ if (isset($_SESSION['funcionario'])) {
 
     </div>
 
+    <!-- Secção dos imóveis propostos -->
     <div id="Paris" class="tabcontent">
       <div id="notifications">
+
+        <!-- Acesso aos imóveis propostos -->
         <?php
-        $propostos = $bd->imoveisPropostos();
+
+          $propostos = $bd->imoveisPropostos();
+
         ?>
+
+        <!-- Notificações dos imóveis -->
         <button id="num_notifications">Pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></button>
         <button id="num_notifications1">Pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></button>
         <div id="notifications_box">
@@ -237,8 +261,10 @@ if (isset($_SESSION['funcionario'])) {
 
           ?>
 
+          <!-- Notificação associada a cada imóvel e detalhes do mesmo -->
           <div class="notification">
-          <a href="../p_imovel.php/id=pendente"><div class="thumbnail_notification">
+          <a href="../p_imovel.php/id=pendente">
+          <div class="thumbnail_notification">
             <div class="thumb_img_notification">
               <img src="../imoveis/<?php echo $pendente->getIdImovel(); ?>/<?php echo $pendente->getNomeImagemPrincipal(); ?>" alt="">
             </div>
@@ -262,6 +288,8 @@ if (isset($_SESSION['funcionario'])) {
       <div class="management1">
 
         <?php
+
+          // Acesso aos imóveis destacados
           $destaque = $bd->imoveisDestacados();
 
           if (isset($destaque)) {
@@ -282,31 +310,46 @@ if (isset($_SESSION['funcionario'])) {
             </div>
           </a>
 
-        <?php }} ?>
+        <?php } } ?>
 
       </div>
     </div>
     <div id="Tokyo" class="tabcontent">
       <div class="admin_container">
-        <!-- Form para criar gestor -->
+
+        <!-- FORMULÁRIO QUE CRIA GESTORES -->
         <div class="boxh2">
             <h2>Adicionar gestor</h2>
         </div>
         <form class="add_manager" action="" method="post">
+
+          <!-- Email do gestor -->
           <label>Email:<input type="email" name="email" placeholder="exemplo@exemplo.pt" value=""/></label>
+
+          <!-- Nome próprio do gestor -->
           <label>Nome próprio:<input type="text" name="nome" placeholder="Primeiro Nome" value=""/></label>
+
+          <!-- Apelido do gestor -->
           <label>Apelido:<input type="text" name="sobrenome" placeholder="Apelido" value=""/></label>
+
+          <!-- Password do gestor -->
           <label>Password:<input type="password" name="password" placeholder="Palavra passe" value=""/></label>
+
+          <!-- Password 'retype' do gestor -->
           <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value=""/></label>
+
+          <!-- Contacto do gestor -->
           <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
 
-
+          <!-- Botão de submissão para o formulário que cria novos gestores -->
           <input type="submit" name="submit_manager" value="criar">
 
         </form>
       </div>
     </div>
+    <!-- FINAL FORMULÁRIO QUE CRIA GESTORES -->
 
+    <!-- Listagem dos gestores -->
     <div id="Madrid" class="tabcontent">
       <div class="admin_container">
 
@@ -345,44 +388,67 @@ if (isset($_SESSION['funcionario'])) {
     </div>
   </div>
 
+  <!-- FORMULÁRIO QUE EDITA GESTORES -->
 
- <!-- AO CLICAR NO BOTAO EDITAR GESTOR -->
-    <?php
-     foreach ($bd->getWorkers() as $value) {
-    ?>
+  <!-- Obter a listagem de todos os gestores -->
+  <?php
+    foreach ($bd->getWorkers() as $value) {
+  ?>
+
+  <!-- Obter o email de cada gestor -->
   <div id="<?php echo $value->getEmail(); ?>" class="tabcontent">
+
       <div class="admin_container">
-        <!-- Form para criar gestor -->
+
+        <!-- Formulário que edita gestores -->
         <div class="boxh2">
             <h2>Editar gestor</h2>
         </div>
+
         <form class="add_manager" action="" method="post">
+
+          <!-- Novo email do gestor -->
           <label>Email:<input type="email" name="email" value="<?php echo $value->getEmail(); ?>" placeholder=""/></label>
+
+          <!-- Alteração do nome próprio do gestor -->
           <label>Nome próprio:<input type="text" name="nome" value="<?php echo $value->getNomeProprio(); ?>" placeholder=""/></label>
+
+          <!-- Alteração do apelido do gestor -->
           <label>Apelido:<input type="text" name="sobrenome" value="<?php echo $value->getSobrenome(); ?>" placeholder=""/></label>
+
+          <!-- Alteração da password do gestor -->
           <label>Password:<input type="password" name="password" value="" placeholder=""/></label>
+
+          <!-- Confirmação da nova password do gestor -->
           <label>Confirmar password:<input type="password" name="retype" value="" placeholder=""/></label>
+
+          <!-- Novo contacto do gestor -->
           <label>Contacto:<input type="contacto" name="contacto" value="<?php echo $value->getContacto(); ?>" placeholder=""/></label>
+
+          <!-- Pedido da password administrativa de modo ao admin poder efetuar as alterações -->
           <label>Password Administrativa:<input type="password" name="passAdmin" value="" placeholder=""/></label>
+
+          <!-- Id do funcionário enviado como campo 'hidden' -->
           <input type="hidden" name="id" value="<?php echo $value->getIdFuncionario(); ?>">
 
           <input type="submit" name="edit_manager" value="editar">
+          <!-- Botão de submissão para o formulário que edita gestores -->
 
         </form>
       </div>
     </div>
+    <!-- FINAL DO FORMULÁRIO QUE EDITA GESTORES -->
 
-    <?php
-  }
-  ?>
-   <!-- FIM DO BOTAO EDITAR IMOVEL -->
+    <?php } ?>
 
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Ficheiros JavaScript -->
   <script src="../js/admin_container.js"></script>
-  <script src="../js/pesquisa.js"></script>
-  <script src="../js/filter.js"></script>
-  <script src="../js/popup.js"></script><!-- Script para login -->
+
+  <!-- Script para as notificações -->
   <script type="text/javascript">
     var num_notifications = document.getElementById('num_notifications');
     var num_notifications1 = document.getElementById('num_notifications1');
@@ -399,50 +465,52 @@ if (isset($_SESSION['funcionario'])) {
     notifications_box.style.display = "none";
 }
 
+    /* Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha */
+    $(document).ready(function(){
+        $("#ilha").change(function(){
+            let ilha = $("#ilha").val();
+            $.ajax({
+            type:'POST',
+            url:'../assets/concelho.php',
+            data:"idIlha="+ ilha,
+            success:function(html){
+                $('#concelho').html(html);
 
-
-        // Localizacao
-        $(document).ready(function(){
-            $("#ilha").change(function(){
-                let ilha = $("#ilha").val();
-                $.ajax({
-                type:'POST',
-                url:'../assets/concelho.php',
-                data:"idIlha="+ ilha,
-                success:function(html){
-                    $('#concelho').html(html);
-
-                }
-                });
+            }
             });
+        });
 
-            $("#concelho").change(function(){
-                let concelho = $("#concelho").val();
-                $.ajax({
-                type:'POST',
-                url:'../assets/freguesia.php',
-                data:"idConcelho="+ concelho,
-                success:function(html){
-                    $('#freguesia').html(html);
+        $("#concelho").change(function(){
+            let concelho = $("#concelho").val();
+            $.ajax({
+            type:'POST',
+            url:'../assets/freguesia.php',
+            data:"idConcelho="+ concelho,
+            success:function(html){
+                $('#freguesia').html(html);
 
-                }
-                });
+            }
             });
-
-
         });
 
 
+    });
+
   </script>
+
   <?php
 
+  // Aviso para o facto de um gestor possuir imóveis em seu nome
   if (isset($_GET['acao']) && $_GET['acao']=='gestor') {
-    echo "<script> window.alert('Este gestor tem imoveis em seu nome') </script>";
+    echo "<script> window.alert('Este gestor tem imóveis em seu nome') </script>";
   }
+
+  // Aviso para o facto de já existirem 6 imóveis em destaque
   if (isset($_GET['acao']) && $_GET['acao']=='destaqueko') {
-    echo "<script> window.alert('Já existe 6 imoveis em destaque') </script>";
+    echo "<script> window.alert('Já existem 6 imoveis em destaque') </script>";
   }
   ?>
+
 </div>
 </body>
 </html>

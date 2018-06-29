@@ -24,11 +24,13 @@
   }
 
 
-  // Criar a ligação à base de dados
+  // Ligação à base de dados
   $bd = new imobiliaria("../data/config.ini");
 
+  // Funcionalidade que aceita colocar um imóvel como destacado 
   $bd->aceitarDestaque($_GET['id']);
 
+  // Redirecionar o user para a página 'login_success.php' 
   header("location:login_success.php");
 
 ?>

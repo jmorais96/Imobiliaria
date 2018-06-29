@@ -1,15 +1,25 @@
 <!-- Adicionar a classe imóvel -->
 <?php
-
+    
+    // Incluir a classe Imovel
     require_once('data/imovel.class.php');
+
+    // Incluir a classe User
     require_once('data/user.class.php');
+
+    // Incluir a classe Imagem
     require_once('data/imagem.class.php');
+    
+    // Iniciar a sessão 
     session_start();
 
+    // Incluir a funcionalidade de logout 
     require_once('assets/logout.php');
+
+    // Ligação à base de dados 
     $bd = new imobiliaria('data/config.ini');
 
-
+    // Operação que permite ao user (cliente) iniciar sessão
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['cliente']=$bd->loginCliente($_POST['mail'], $_POST['pass']);
       //var_dump($_SESSION['cliente']);
@@ -27,7 +37,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <!-- Folhas de estilo -->
     <link rel="stylesheet" href="css/homepage.css" type="text/css">
@@ -39,6 +49,8 @@
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
+    
+    <!-- Script associado ao geocode -->
     <script>
     <?php
     if (isset($_SESSION['cliente'])) { ?>
@@ -94,7 +106,7 @@
             <a class="nav-link" href="area_cliente.php">Área de Cliente</a>
         </li>
 
-        <!-- Link de navegação que faz log out" -->
+        <!-- Link de navegação que permite fazer "logout" -->
         <li class="nav-item">
             <a class="nav-link" href="?acao=logout">Logout</a>
         </li>
@@ -163,7 +175,7 @@
     <!-- PESQUISA DO ÍNDEX -->
     <div class="container_form">
 
-        <!-- Título do formulário de pesquisa -->
+        <!-- Primeira parte do formulário - especificações -->
         <div class="formTitle">
             <img id="lupaIcon" src="images/lupa.png"/>
             <p>O QUE PROCURAS?</p>
@@ -174,37 +186,46 @@
 
             <div id="searchForm">
 
+                <!-- Finalidade procurada -->
                 <select id="index" name="finalidade">
                     <?php $bd->selectFinalidade(); ?>
                 </select>
 
+                <!-- Tipo de imóvel procurado -->
                 <select id="index" name="tipoImovel">
                    <?php $bd->selectTipoImovel(); ?>
                 </select>
-
+                
+                <!-- Tipologia de imóvel procurada -->
                 <select id="index" name="tipologia">
                     <?php $bd->selectTipologia(); ?>
                 </select>
 
+                <!-- Segunda parte do formulário - localização -->
                 <div class="formTitleSecondary">
                 <img id="locationIcon" src="images/location.png"/>
                 <p>Onde procuras?</p>
                 </div>
 
+                <!-- Ilha do imóvel pretendido -->
                 <select id="ilha" name="ilha">
                     <?php $bd->selectIlha(); ?>
                 </select>
 
+                <!-- Concelho do imóvel pretendido -->
                 <select id="concelho" name="concelho">
                     <option value="">Selecione um concelho</option>
                 </select>
 
+                <!-- Freguesia do imóvel pretendido -->
                 <select id="freguesia" name="freguesia">
                     <option value="">Selecione uma freguesia</option>
                 </select>
 
+                <!-- Terceira parte do formulário - preço -->
                 <input id="index" type="number" name="preco" placeholder="Preço máximo do imóvel"/>
 
+                <!-- Botão de submissão do formulário -->
                 <button id="encontrar">Encontrar Imóvel</button>
 
             </div>
@@ -212,9 +233,10 @@
         <!-- Final do formulário de pesquisa -->
 
     </div>
-
     <!-- FINAL DA PESQUISA DO ÍNDEX -->
+  
   </div>
+    
     <!-- FOOTER -->
     <footer>
         <div class="container_footer">
@@ -251,12 +273,10 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-
+    <!-- Script que permite escolher concelho e freguesia consoante a ilha escolhida -->
     <script type="text/javascript">
 
         $(document).ready(function(){
-
-
 
             $("#ilha").change(function(){
                 let ilha = $("#ilha").val();
@@ -282,9 +302,11 @@
                 }
                 });
             });
-
+            
+            // Acesso aos imóveis em destaque
             <?php $bd->destaque(); ?>
-
+            
+            // Script associado ao formulário de pesquisa 
             $("#encontrar").click(function() {
               let sql="select * from todosimoveis";
               //alert("here");
@@ -296,7 +318,6 @@
                 valores['finalidade']=$("[name= finalidade ]").val();
                 //alert("here");
               }
-
 
               if ($("[name= tipoImovel ]").val()) {
                 condicoes.push("tipoImovel = :tipoImovel");
@@ -359,7 +380,7 @@
         });
     </script>
 
-    <script type="text/javascript" id="resposta">
-
-    </script>
+    <!-- Resposta ao pedido AJAX associado à pesquisa -->
+    <script type="text/javascript" id="resposta"></script>
+    
 </html>

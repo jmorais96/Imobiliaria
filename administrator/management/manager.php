@@ -26,7 +26,7 @@
 
   // Incluir a funcionalidade de log out
 
-  require_once('../../assets/logout.php');
+  require_once('../../assets/logout_manager.php');
 
   // Reencaminhar o utilizar para o índex caso este não seja um funcionário
   if (!isset($_SESSION['funcionario'])) {
