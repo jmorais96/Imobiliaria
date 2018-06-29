@@ -76,12 +76,23 @@ input {
     border-radius: 5px;
 }
 
+.add_prop_button {text-align: center;}
 input[type="submit"] {
+    margin: 20px 0;
     width: 200px;
+    padding: 20px;
+    font-size: 1.2rem;
     background-color: #ED2B2A;
     color: white;
-    border-radius: 7px;
-    padding: 5px;
+    border-radius: 0px !important;
+    line-height: 0;
+    text-transform: uppercase;
+    transition: background 300ms ease-in-out;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    background: darkred;
 }
 
 .boxh2 {
@@ -123,7 +134,9 @@ b {margin-top: 0; margin-bottom: 1rem; color: darkred;}
 /********************/
 /* CENTRO DA PÁGINA */
 /********************/
-.container_admin {margin: 0 10%;}
+.container_admin {
+    margin: 0 10%;
+}
 
 option {
     display: flex;
@@ -157,11 +170,20 @@ option {
     display: flex;
 }
 
-input.searchTerm {background-color: #ED2B2A;}
+input.searchTerm {
+    background-color: #ED2B2A;
+    width: 120px !important;
+}
 
 input.searchTerm::placeholder {
     color: #fff;
     background-color: #ED2B2A;
+}
+
+i.fas.fa-search.fa-1x {
+    color: #ED2B2A;
+    font-size: 25px;
+    margin: 5px;
 }
 
 input.searchTerm:focus {color: #fff;}
@@ -180,6 +202,11 @@ input.searchTerm:focus {color: #fff;}
 
 #visita{display: none;}
 #adicionarImovel{display: none;}
+#adicionarImovel h2 {
+    background-color: #808080;
+    color: #fff;
+    padding: 20px;
+}
 
 #btnImoveis,
 #btnAdicionarImovel,
@@ -542,9 +569,60 @@ button.edit, button.visits_noti {cursor: pointer;}
 
 select {
     text-transform: none;
-    width: 100%;
     background-color: lightgrey;
+    height: 35px;
+}
+
+.first_info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5%;
+}
+
+.second_info {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 5%;
+}
+
+.third_info {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 5%;
+}
+
+.third_info img {
+    display: flex;
+    flex-direction: row;
     height: 40px;
+    color: #808080;
+}
+
+.forth_info {
+    justify-content: space-between;
+    margin: 20px 5%;
+}
+
+.forth_info img {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    color: #808080;
+}
+
+#area, #preco {width: 150px;}
+
+input.extras_number {
+    height: 30px;
+}
+
+.add_prop_box [type="date"] {
+    height: 35px;
+    width: 150px;
+}
+
+input {
+    width: 20%;
 }
 
 textarea {
@@ -552,12 +630,44 @@ textarea {
     background-color: lightgrey;
 }
 
-.add_prop_box{
-    margin-top:10px;
+.fifth_info_location {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 3%;
+}
+
+.sixth_info {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 5%;
+}
+
+.sixth_info img {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin-right: 8px;
+    color: #808080;
+}
+
+.sixth_info #morada_add {width: 300px;}
+.sixth_info #codpostal_add {width: 80px;}
+
+.add_prop_location {
+    display: flex;
+    flex-direction: row;
+}
+
+.add_prop_box {
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
-.Titulos_Imoveis{
+.add_prop_box label {
+    font-size: 1.2rem;
+}
+
+.Titulos_Imoveis {
     display: flex;
     flex-direction: column;
     width: 10%;
