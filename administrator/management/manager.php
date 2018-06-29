@@ -33,7 +33,6 @@
     header("location:../index.php");
   }
 
-
   // Criar a ligação à base de dados
   $bd = new imobiliaria("../../data/config.ini");
 
@@ -53,9 +52,6 @@ if(isset($_POST['accept'])) {
 
 }
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -74,6 +70,7 @@ if(isset($_POST['accept'])) {
     <link rel="stylesheet" href="../../css/homepageManager.css" type="text/css">
     <link rel="stylesheet" href="../../css/gestor.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="../../css/gerirImovelTable.css">
+    <link rel="stylesheet" type="text/css" href="../../css/imovel.css">
 
     <!-- Ícones Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -145,7 +142,7 @@ if(isset($_POST['accept'])) {
          <h2>Lista de Imóveis</h2>
          <div class="wrap">
            <div class="search">
-              <input type="text" id="filter" class="searchTerm" placeholder="Pesquise aqui">
+              <i class="fas fa-search fa-1x"></i><input type="text" id="filter" class="searchTerm" placeholder="Pesquise aqui...">
               <!--<button type="submit" class="searchButton">
                 <i class="fa fa-search"></i>
              </button>-->
@@ -227,15 +224,7 @@ if(isset($_POST['accept'])) {
   <?php } ?>
   </div>
 
-
-
-
-
-    <!--  AO CLICAR EM EDITAR IMOVEL MUDA PARA EDICAO_IMOVEL.PHP -->
-
-
-
-
+    <!-- AO CLICAR EM EDITAR IMOVEL MUDA PARA EDICAO_IMOVEL.PHP -->
 
     <!-- - - - - - - - - - - - - - - - - -->
     <!-- FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
@@ -244,151 +233,199 @@ if(isset($_POST['accept'])) {
     <div id="adicionarImovel" class="tabcontent">
         <form class="add_property" action="" method="post" enctype="multipart/form-data" >
 
-        <!-- Gestor do imóvel -->
+      <!-- Gestor do imóvel -->
       <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
+        
+      <!-- Título do formulário de adição do imóvel -->
+      <h2>Novo Imóvel <i class="fas fa-plus-square fa-1x" style="color: #fff"></i></h2>
+      
+      <div class="row first_info">
 
-       <h2>Novo Imóvel</h2>
-
-      <!-- Finalidade do imóvel -->
-      <div class="add_prop_box">
-      <div><label>Finalidade</label></div>
-        <select name="finalidade">
-          <?php $bd->selectFinalidade() ?>
-        </select>
-      </div>
-
-      <!-- Tipo do imóvel -->
-      <div class="add_prop_box">
-      <div><label for="tipoImovel">Tipo de imóvel</label></div>
-        <select name="tipoImovel" id="tipoImovel">
-          <?php $bd->selectTipoImovel() ?>
-        </select>
-      </div>
-
-
-      <div id="extras">
-
-        <!-- Tipologia do imóvel -->
+        <!-- Finalidade do imóvel -->
         <div class="add_prop_box">
-          <div><label>Tipologia</label></div>
-          <select name="tipologia" id="tipologia">
-            <?php $bd->selectTipologia() ?>
+        <label>Finalidade</label>
+          <i class="fas fa-piggy-bank fa-2x" style="color: #808080"></i><select name="finalidade">
+            <?php $bd->selectFinalidade() ?>
           </select>
         </div>
 
-        <!-- Numero de quartos do imóvel -->
+        <!-- Tipo do imóvel -->
         <div class="add_prop_box">
-          <div><label>Numero de Quartos</label></div>
-          <input type="number" name="quartos" value="">
+        <div><label for="tipoImovel">Tipo de imóvel</label></div>
+          <i class="fas fa-home fa-2x" style="color: #808080"></i><select name="tipoImovel" id="tipoImovel">
+            <?php $bd->selectTipoImovel() ?>
+          </select>
         </div>
 
-        <!-- Numero de casas de Banho do imóvel -->
-        <div class="add_prop_box">
-          <div><label>Numero de casas de Banho</label></div>
-          <input type="number" name="casasBanho" value="">
-        </div>
+        <div id="extras">
 
-        <!-- Garagem  -->
-        <div class="add_prop_box">
-          <div><label>Garagem</label></div>
-          <input type="checkbox" name="garagem" value="garagem">
+          <!-- Tipologia do imóvel -->
+          <div class="add_prop_box">
+            <label>Tipologia</label>
+            <i class="fas fa-building fa-2x" style="color: #808080"></i><select name="tipologia" id="tipologia">
+              <?php $bd->selectTipologia() ?>
+            </select>
+          </div>
         </div>
-
-        <!-- Piscina  -->
-        <div class="add_prop_box">
-          <div><label>Piscina</label></div>
-          <input type="checkbox" name="piscina" value="piscina">
-        </div>
-
-        <!-- Mobilia  -->
-        <div class="add_prop_box">
-          <div><label>Mobilada</label></div>
-          <input type="checkbox" name="mobilia" value="mobilia">
-        </div>
-
-        <!-- Data de Construção do Imovel  -->
-        <div class="add_prop_box">
-          <div><label>Data de Construção</label></div>
-          <input type="date" name="dataConstrucao" value="">
-        </div>
-
-        <!-- Informação sobre do imóvel -->
-        <div class="add_prop_box">
-          <div><label>Informação do imovel</label></div><textarea name="informacao"/></textarea>
-        </div>
-
+      
       </div>
+        
+        <div class="row second_info">
+          
+          <!-- Número de quartos do imóvel -->
+          <div class="add_prop_box">
+            <label>Número de Quartos</label>
+            <i class="fas fa-bed fa-2x" style="color: #808080"></i><input type="number" name="quartos" value="" class="extras_number">
+          </div>
 
-      <!-- Área do imóvel -->
-      <div class="add_prop_box">
-      <div><label for="area">Área do imóvel</label></div>
-        <input type="text" name="area" id="area" placeholder="150Km2">
-      </div>
+          <!-- Numero de casas de Banho do imóvel -->
+          <div class="add_prop_box">
+            <label>Número de casas de Banho</label>
+            <i class="fas fa-bath fa-2x" style="color: #808080"></i><input type="number" name="casasBanho" value="" class="extras_number">
+          </div>
+        
+        </div>
+        
+        <div class="row third_info">
 
-      <!-- Preço do imóvel -->
-      <div class="add_prop_box">
-      <div><label for="preco">Preço do imóvel</label></div>
-        <input type="text" name="preco" id="preco" placeholder="5000€">
+          <!-- Garagem -->
+          <div class="add_prop_box add_prop_box_divisoes">
+            <label>Garagem</label>
+            <div class="row"><i class="fas fa-warehouse fa-2x" style="color: #808080"></i>
+            <input type="checkbox" name="garagem" value="garagem"></div>
+          </div>
+
+          <!-- Piscina -->
+          <div class="add_prop_box add_prop_box_divisoes">
+            <label>Piscina</label>
+            <div class="row">
+            <div class="info-piscina">
+            <img src="../../images/piscina-icon-manager.png" alt="Ícone da piscina"></div><input type="checkbox" name="piscina" value="piscina"></div>
+          </div>
+
+          <!-- Mobília -->
+          <div class="add_prop_box add_prop_box_divisoes">
+            <label>Mobilada</label>
+            <div class="row"><i class="fas fa-box fa-2x" style="color: #808080"></i>
+            <input type="checkbox" name="mobilia" value="mobilia"></div>
+          </div>
+
+        </div>
+
+         <!-- Informação sobre do imóvel -->
+        <div class="add_prop_box">
+          <label>Informação do imóvel</label>
+          <textarea name="informacao"/></textarea>
+        </div>
+        
+      <div class="row forth_info">
+      
+        <!-- Data de Construção do Imóvel -->
+        <div class="add_prop_box">
+          <label>Data de construção</label>
+          <div class="row">
+            <div class="info-dataconstrucao">
+            <img src="../../images/icons/construcao-icon-manager.png" alt="Ícone da data de construção do imóvel">
+          </div>
+          <input type="date" name="dataConstrucao" value=""></div>
+        </div>
+        
+        <!-- Área do imóvel -->
+        <div class="add_prop_box">
+        <label for="area">Área do imóvel</label>
+         <div class="row"><i class="fas fa-chart-area fa-2x" style="color: #808080"></i>
+          <input type="text" name="area" id="area" placeholder="150Km2"></div>
+        </div>
+
+        <!-- Preço do imóvel -->
+        <div class="add_prop_box">
+        <label for="preco">Preço do imóvel</label>
+          <div class="row"><i class="fas fa-money-bill-wave fa-2x" style="color: #808080"></i>
+          <input type="text" name="preco" id="preco" placeholder="5000€"></div>
+        </div>
+
       </div>
 
       <!-- Descrição do imóvel -->
       <div class="add_prop_box">
-        <div><label>Descrição do imovel</label></div><textarea name="descricao" value="descrição"/></textarea>
+        <label>Descrição do imovel</label><textarea name="descricao" value="descrição" rows="10"/></textarea>
       </div>
-
-
+                  
       <!-- Estado do imóvel -->
       <div class="add_prop_box">
-      <div><label for="estado">Estado do imóvel</label></div>
-      <select  name="estado" id="estado">
+      <label for="estado">Estado do imóvel</label>
+      <div class="row"><i class="fas fa-truck-loading fa-2x" style="color: #808080"></i>
+      <select name="estado" id="estado">
           <option value="">Selecione um estado</option>
           <option value="Em obras">Em obras</option>
           <option value="Pronto a habitar">Pronto a habitar</option>
-      </select>
+      </select></div>
       </div>
-
-      <!-- Ilha do imóvel -->
-      <div class="add_prop_box">
-      <div><label>Ilha</label></div>
-        <select name="ilha" id="ilha" >
-          <?php $bd->selectIlha(); ?>
-        </select>
-      </div>
-
-      <!-- Concelho do imóvel -->
-      <div class="add_prop_box">
-        <div><label>Concelho</label></div>
-          <select  name="concelho" id="concelho" >
-            <option value="">Selecione um concelho</option>
-          </select>
+      
+      <div class="row fifth_info_location">
+      
+        <!-- Ilha do imóvel -->
+        <div class="add_prop_box"> 
+        <label>Ilha</label>
+        <div class="add_prop_location">
+          <i class="fas fa-map fa-2x" style="color: #808080"></i><select name="ilha" id="ilha" >
+            <?php $bd->selectIlha(); ?>
+          </select></div>
         </div>
 
-      <!-- Freguesia do imóvel -->
-      <div class="add_prop_box">
-        <div><label>Freguesia</label></div>
-          <select  name="freguesia" id="freguesia">
-            <option value="">Selecione uma freguesia</option>
-          </select>
+        <!-- Concelho do imóvel -->
+        <div class="add_prop_box">
+          <label>Concelho</label>
+          <div class="add_prop_location">
+            <i class="fas fa-compass fa-2x" style="color: #808080"></i><select name="concelho" id="concelho">
+              <option value="">Selecione um concelho</option>
+            </select></div>
+          </div>
+
+        <!-- Freguesia do imóvel -->
+        <div class="add_prop_box">
+          <label>Freguesia</label>
+          <div class="add_prop_location">
+            <i class="fas fa-location-arrow fa-2x" style="color: #808080"></i><select name="freguesia" id="freguesia">
+              <option value="">Selecione uma freguesia</option>
+            </select></div>
+          </div>
+
+      </div>
+
+      <div class="row sixth_info">
+
+        <!-- Morada do imóvel -->
+        <div class="add_prop_box">
+          <label for="morada">Morada</label>
+          <i class="fas fa-road fa-2x" style="color: #808080"></i><input type="text" name="morada" id="morada_add" placeholder="Introduza aqui a morada do imóvel"/>
         </div>
 
-      <!-- Morada do imóvel -->
-      <div class="add_prop_box">
-        <div><label for="morada">Morada</label></div><input type="text" name="morada" value="morada"/>
+        <!-- Código postal do imóvel -->
+        <div class="add_prop_box">
+          <label>Código postal</label>
+          <div class="row">
+            <div class="info-dataconstrucao">
+            <img src="../../images/icons/codpostal-icon-manager.png" alt="Ícone do código postal do imóvel">
+          </div>
+          <input type="text" name="codPostal" placeholder="9500-503" id="codpostal_add"/></div>
+        </div>
+
       </div>
 
-      <!-- Código postal do imóvel -->
-      <div class="add_prop_box">
-        <div><label>Código postal</label></div><input type="text" name="codPostal" placeholder="9500-503"/>
-      </div>
-
-      <!-- Opção para destaque na homepage -->
-      <div class="add_prop_box">
-          <div><label>Destaque na homepage</label></div><input type="checkbox" name="featured" value="featured"/>
+      <!-- Opção para colocar em destaque na homepage -->
+      <div class="add_prop_box add_prop_destaque">
+        <div class="row">
+          <i class="fas fa-star fa-2x" style="color: #808080"></i><label>Destaque na homepage</label>
+          <input type="checkbox" name="featured" value="featured"/></div>
         </div>
 
       <!-- Imagem(s) do imóvel -->
       <div class="add_prop_box">
-        <div><label>Imagem(s)</label></div><br><input type="file" name="img[]" multiple="multiple">
+        <div class="row">
+        <i class="far fa-images fa-2x" style="color: #808080"></i><label>Imagem(s)</label>
+        <br></div>
+        <input type="file" name="img[]" multiple="multiple">
       </div>
 
       <!-- Latitude e longitude do imóvel -->
@@ -400,7 +437,7 @@ if(isset($_POST['accept'])) {
       <!-- Mapa-->
       <div class="map" style="height:500px;"></div>
 
-      <div class="add_prop_box">
+      <div class="add_prop_box add_prop_button">
           <input type="submit" name="add_imovel" value="Adicionar imóvel"/>
       </div>
 
@@ -413,8 +450,6 @@ if(isset($_POST['accept'])) {
 
     <div id="visita" class="tabcontent">
      <div class="admin_container">
-
-
 
     <!-- LISTA VISITAS MARCADAS -->
     <h2>Lista de Visitas Aceites</h2>
@@ -472,6 +507,7 @@ if(isset($_POST['accept'])) {
 
 
     <script>
+
       $(document).on("click", ".visits_noti", function(event){
           event.preventDefault();
           $(this).next('.notifications_box1').toggle();

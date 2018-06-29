@@ -209,18 +209,6 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
 
     <div id="imoveis" class="tabcontent">
 
-     <div class="titulo">
-         <h2>Lista de Imóveis</h2>
-         <div class="wrap">
-           <div class="search">
-              <input type="text" class="searchTerm" placeholder="Pesquise aqui">
-              <!--<button type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-             </button>-->
-           </div>
-        </div>
-     </div>
-
     <!-- AO CLICAR NO BOTAO EDITAR IMOVEL -->
   <div id="<?php echo $imovel->getIdImovel(); ?>" class="tabcontent">
       <div class="admin_container">
