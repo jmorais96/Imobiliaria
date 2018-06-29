@@ -17,8 +17,10 @@
 
   // Incluir a classe visita
   require_once('../data/visita.class.php');
-
+  
+  // Iniciar a sessão 
   session_start();
+  
   // Reencaminhar o utilizar para o índex caso este não seja um funcionário
   if (!isset($_SESSION['funcionario'])) {
     header("location:../index.php");
