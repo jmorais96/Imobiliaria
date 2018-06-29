@@ -83,7 +83,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Título da página -->
-    <title>Mais Imobiliária | Bem-vindo</title>
+    <title>Mais Imobiliária | Área de Cliente</title>
 
   </head>
 

@@ -1,29 +1,39 @@
 <?php
-require_once('../data/imobiliaria.class.php');
-require_once("../data/funcionario.class.php");
-session_start();
 
- if (isset($_POST['login'])){
-     if(!empty($_POST['email']) && !empty($_POST['password'])){
+  // Incluir a classe Imobiliária
+  require_once('../data/imobiliaria.class.php');
 
-          $db = new imobiliaria("../data/config.ini");
-          //var_dump($db);
-          $_SESSION['funcionario']=$db->loginFuncionario($_POST['email'], $_POST['password']);
-          if (isset($_SESSION['funcionario'])) {
-            if ($_SESSION['funcionario']->getTipoUser()=="Administrador") {
-              header("location:login_success.php");
-            }elseif ($_SESSION['funcionario']->getTipoUser()=="Gestor") {
-              header("location:management/manager.php");
+  // Incluir a classe Funcionario
+  require_once("../data/funcionario.class.php");
+  
+  // Iniciar a sessão 
+  session_start();
+  
+  // Funcionalidade de login back-end
+  if (isset($_POST['login'])){
+    
+    // Se os campos 'email' e 'password' estiverem devidamente preenchidos, o código abaixo é executado
+    if(!empty($_POST['email']) && !empty($_POST['password'])){
+
+            // Ligação à base de dados 
+            $db = new imobiliaria("../data/config.ini");
+            //var_dump($db);
+            $_SESSION['funcionario']=$db->loginFuncionario($_POST['email'], $_POST['password']);
+            if (isset($_SESSION['funcionario'])) {
+              if ($_SESSION['funcionario']->getTipoUser()=="Administrador") {
+                header("location:login_success.php");
+              }elseif ($_SESSION['funcionario']->getTipoUser()=="Gestor") {
+                header("location:management/manager.php");
+              }
             }
+        
+        /* Caso os campos 'email' e 'password' não estejam devidamente preenchidos, o user verá a mensagem abaixo definida */
+        } else {
+              $message = '<label>Todos os campos devem ser preenchidos</lable>';
           }
-      }
-        //os campos se estiverem preenchidos executa
-        else {
-            $message = '<label>Todos os campos devem ser preenchidos</lable>';
-        }
- }
+  }
 
-  // Restrições da página 
+  // RESTRIÇÕES DA PÁGINA DE LOGIN BACK-END
 
   // Impedir que um cliente aceda ao login administrativo
    if (isset($_SESSION['cliente'])) {
@@ -39,6 +49,7 @@ session_start();
 
 <!DOCTYPE html>
 <html>
+  
   <head>
 
     <!-- MetaTags -->
@@ -55,6 +66,7 @@ session_start();
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	<title>Mais Imobiliária | Login administrativo</title>
+  
   </head>
   <body>
 
@@ -63,7 +75,8 @@ session_start();
             <div class="container">
                 <div class="icon">
                    <img id="icon" src="../images/logo.png"/>
-
+                   
+                   <!-- Formulário de login back-end -->
                    <form action="" method="POST">
 
                             <input type="text" name="email" placeholder="E-mail" class="form-control" >
@@ -75,6 +88,7 @@ session_start();
                     </form>
 
                     <?php
+                      // Mensagem que aparecerá caso o login back-end não seja bem-sucedido
                       if(isset($message)){
                         echo '<label class="text-danger">'.$message.'</label>';
                       }

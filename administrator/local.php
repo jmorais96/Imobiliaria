@@ -1,4 +1,5 @@
 <?php
+
   // Incluir a classe Imobiliária
   require_once('../data/imobiliaria.class.php');
 
@@ -16,24 +17,29 @@
 
   // Incluir a classe visita
   require_once('../data/visita.class.php');
-
+  
+  // Iniciar a sessão 
   session_start();
+  
   // Reencaminhar o utilizar para o índex caso este não seja um funcionário
   if (!isset($_SESSION['funcionario'])) {
     header("location:../index.php");
   }
 
-  // Criar a ligação à base de dados
+  // Ligação à base de dados
   $bd = new imobiliaria("../data/config.ini");
 
+  // Listar todos os imóveis registadis na base de dados 
   $id=$bd->query("select idImovel from todosimoveis");
   foreach ($id as $value) {
     $imoveis[]=$bd->getImovel($value['idImovel']);
   }
 
+  // Procedimentos associados ao ficheiro CSV 'local'
   header('Content-Type: application/csv; charset=UTF-8');
   header('Content-Disposition: attachment;filename="local.csv";');
 
+  // Abrir o ficheiro 'local.csv' e introduzir dados no mesmo
   $file=fopen("php://output", "w");
   foreach ($bd->query('SELECT ilha FROM ilha') as $value) {
     $total=0;
