@@ -9,6 +9,7 @@ session_start();
           $db = new imobiliaria("../data/config.ini");
           //var_dump($db);
           $_SESSION['funcionario']=$db->loginFuncionario($_POST['email'], $_POST['password']);
+
           if (isset($_SESSION['funcionario'])) {
             if ($_SESSION['funcionario']->getTipoUser()=="Administrador") {
               header("location:login_success.php");
@@ -23,7 +24,7 @@ session_start();
         }
  }
 
-  // Restrições da página 
+  // Restrições da página
 
   // Impedir que um cliente aceda ao login administrativo
    if (isset($_SESSION['cliente'])) {
@@ -32,7 +33,7 @@ session_start();
 
   // Impedir que um funcionário com a sessão já iniciada aceda ao login administrativo
   if (isset($_SESSION['funcionario'])) {
-    header("location:management/manager.php");
+    header("location:login_success.php");
   }
 
 ?>

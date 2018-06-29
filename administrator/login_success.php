@@ -92,6 +92,16 @@ if(isset($_POST['edit_manager'])) {
 
 }
 
+if (!isset($_SESSION['funcionario'])) {
+  header("location:../index.php");
+}
+
+if (isset($_SESSION['funcionario'])) {
+  if ($_SESSION['funcionario']->getTipoUser()=="Gestor") {
+    header("location:management/manager.php");
+  }
+}
+
 
 ?>
 
