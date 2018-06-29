@@ -108,7 +108,7 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Título da página -->
-    <title>Mais Imobiliária | Página de Registo</title>
+    <title>Mais Imobiliária | Página de registo</title>
 
   </head>
 
