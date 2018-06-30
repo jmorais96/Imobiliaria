@@ -112,11 +112,11 @@ if(isset($_POST['accept'])) {
         <h1>Gestão de Conteúdos</h1>
     </div>
     <div class="res_admin">
-         <?php //se o login for feito com sucesso
+         <?php //se o login for efetuado com sucesso
             if(isset($_SESSION['funcionario'])){
-                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h4>';
+                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'!</h4>';
             }
-            //caso contrario reencaminha de volta ao index.php
+            //caso contrário reencaminha de volta ao index.php
             else{
                 header('location:index.php');
             }
@@ -224,7 +224,7 @@ if(isset($_POST['accept'])) {
   <?php } ?>
   </div>
 
-    <!-- AO CLICAR EM EDITAR IMOVEL MUDA PARA EDICAO_IMOVEL.PHP -->
+    <!-- AO CLICAR EM EDITAR IMOVEL A PÁGINA MUDA PARA EDICAO_IMOVEL.PHP -->
 
     <!-- - - - - - - - - - - - - - - - - -->
     <!-- FORMULÁRIO DE ADIÇÃO DE IMÓVEIS -->
@@ -278,7 +278,7 @@ if(isset($_POST['accept'])) {
             <i class="fas fa-bed fa-2x" style="color: #808080"></i><input type="number" name="quartos" value="" class="extras_number">
           </div>
 
-          <!-- Numero de casas de Banho do imóvel -->
+          <!-- Numero de casas de banho do imóvel -->
           <div class="add_prop_box">
             <label>Número de casas de Banho</label>
             <i class="fas fa-bath fa-2x" style="color: #808080"></i><input type="number" name="casasBanho" value="" class="extras_number">
@@ -312,15 +312,15 @@ if(isset($_POST['accept'])) {
 
         </div>
 
-         <!-- Informação sobre do imóvel -->
-        <div class="add_prop_box">
-          <label>Informação do imóvel</label>
-          <textarea name="informacao"/></textarea>
-        </div>
+      <!-- Informações sobre o imóvel -->
+      <div class="add_prop_box">
+        <label>Informações sobre o imóvel</label>
+        <textarea name="informacao"/></textarea>
+      </div>
         
       <div class="row forth_info">
       
-        <!-- Data de Construção do Imóvel -->
+        <!-- Data de construção do imóvel -->
         <div class="add_prop_box">
           <label>Data de construção</label>
           <div class="row">
@@ -341,14 +341,15 @@ if(isset($_POST['accept'])) {
         <div class="add_prop_box">
         <label for="preco">Preço do imóvel</label>
           <div class="row"><i class="fas fa-money-bill-wave fa-2x" style="color: #808080"></i>
-          <input type="text" name="preco" id="preco" placeholder="5000€"></div>
+          <input type="text" name="preco" id="preco" placeholder="5000000€"></div>
         </div>
 
       </div>
 
       <!-- Descrição do imóvel -->
       <div class="add_prop_box">
-        <label>Descrição do imovel</label><textarea name="descricao" value="descrição" rows="10"/></textarea>
+        <label>Descrição do imovel</label>
+        <textarea name="descricao" value="descrição" rows="10"/></textarea>
       </div>
                   
       <!-- Estado do imóvel -->
@@ -398,7 +399,8 @@ if(isset($_POST['accept'])) {
         <!-- Morada do imóvel -->
         <div class="add_prop_box">
           <label for="morada">Morada</label>
-          <i class="fas fa-road fa-2x" style="color: #808080"></i><input type="text" name="morada" id="morada_add" placeholder="Introduza aqui a morada do imóvel"/>
+          <i class="fas fa-road fa-2x" style="color: #808080"></i>
+          <input type="text" name="morada" id="morada_add" placeholder="Introduza aqui a morada do imóvel..."/>
         </div>
 
         <!-- Código postal do imóvel -->
@@ -505,14 +507,15 @@ if(isset($_POST['accept'])) {
       <!-- Bootstrap JS -->
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-
     <script>
 
+      // Script para notificação de visitas
       $(document).on("click", ".visits_noti", function(event){
           event.preventDefault();
           $(this).next('.notifications_box1').toggle();
       });
-
+      
+      // Script para alteração dos extras consoante o tipo de imóvel
       $("#tipoImovel").change(function(){
           let tipoImovel = $("#tipoImovel").val();
           if (tipoImovel==1) {
@@ -525,7 +528,8 @@ if(isset($_POST['accept'])) {
             $('#extras').hide();
           }
       });
-
+      
+      // Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha 
       $("#ilha").change(function(){
           let ilha = $("#ilha").val();
           $.ajax({
@@ -551,7 +555,7 @@ if(isset($_POST['accept'])) {
           });
       });
 
-
+      // Scripts para mudança de "tabs" na área de gestão
       $("#btnAdicionarImovel").click(function(){
         $("#imoveis").hide();
         $("#visita").hide();
@@ -571,7 +575,8 @@ if(isset($_POST['accept'])) {
         $("#adicionarImovel").hide();
         $("#visita").show();
       });
-
+      
+      // Script para o marcador do mapa
       marker="";
       google.maps.event.addListener(map, 'click', function(event) {
         if (marker == "") {
@@ -595,7 +600,8 @@ if(isset($_POST['accept'])) {
         $("[name=lat]").val(coordenadas[0]);
         $("[name=lng]").val(coordenadas[1]);
       }
-
+      
+      // Script para o filtro da pesquisa
       $("#filter").on("keyup", function() {
         //alert('here');
         let value = $(this).val().toLowerCase();
