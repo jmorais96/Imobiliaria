@@ -390,7 +390,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
             <div class="info-dataconstrucao">
             <img src="../../images/icons/codpostal-icon-manager.png" alt="Ícone do código postal do imóvel">
           </div>
-          <input type="text" name="codigo" id="codpostal_add" value="<?php echo $imovel->getCodPostal();?>"/></div>
+          <input type="text" name="codPostal" id="codpostal_add" value="<?php echo $imovel->getCodPostal();?>"/></div>
         </div>
 
       </div>
