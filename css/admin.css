@@ -316,3 +316,40 @@ flex-direction: row;
 a.imovel_proposto {
     text-decoration: none;
 }
+
+.add_manager {margin-top: 10px;}
+
+.add_prop_box {text-align: center;}
+.add_prop_button input[type="submit"] {
+    margin: 20px 0;
+    width: 200px;
+    padding: 20px;
+    font-size: 1.2rem;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 0px !important;
+    line-height: 0;
+    text-transform: uppercase;
+    transition: background 300ms ease-in-out;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    background: darkred;
+}
+
+button.edit {
+    padding: 20px;
+    margin-left: 25%;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 0 !important;
+    text-transform: capitalize;
+    line-height: 0;
+    transition: background 300ms ease-in-out;
+}
+
+button.edit:hover {
+    cursor: pointer;
+    background: darkred;
+}
