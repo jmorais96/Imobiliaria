@@ -107,6 +107,11 @@ ul {
     padding-bottom: 5%;
 }
 
+#sub_container p {
+  font-size: 1.6rem!important;
+  text-align: justify;
+}
+
 #sub_container2 {
   padding-left: 10%;
     padding-right: 10%;
