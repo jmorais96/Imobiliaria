@@ -15,7 +15,7 @@ a.nav-link {
     padding: 5px 50px;
     transition-duration: 0.5s;
     transition-timing-function: linear;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 a.nav-link:hover {background-color: #ED2B2A; color: #fff !important;}
@@ -656,7 +656,7 @@ textarea {
     display: flex;
    /* justify-content: space-between;*/
   /*  margin: 20px 3%;*/
-    
+
 }
 
 .sixth_info {
@@ -733,9 +733,15 @@ img#icon {height: 70px; margin-bottom: 20px;}
     justify-content: center;
 }
 
+#extras{
+  display: none;
+}
+
+
+
 /*****************/
 /* MEDIA QUERIES */
 /*****************/
 @media only screen and (max-width: 600px) {
-    
+
 }
