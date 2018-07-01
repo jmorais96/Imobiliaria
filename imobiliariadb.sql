@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: 01-Jul-2018 às 18:26
--- Versão do servidor: 5.7.21
--- PHP Version: 5.6.35
+-- Host: 127.0.0.1
+-- Generation Time: Jul 01, 2018 at 10:18 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,20 +25,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `concelho`
+-- Table structure for table `concelho`
 --
 
-DROP TABLE IF EXISTS `concelho`;
-CREATE TABLE IF NOT EXISTS `concelho` (
-  `idConcelho` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `concelho` (
+  `idConcelho` int(11) UNSIGNED NOT NULL,
   `concelho` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `idIlha` int(11) UNSIGNED NOT NULL,
-  PRIMARY KEY (`idConcelho`),
-  KEY `fk_concelho_ilha_idx` (`idIlha`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `idIlha` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `concelho`
+-- Dumping data for table `concelho`
 --
 
 INSERT INTO `concelho` (`idConcelho`, `concelho`, `idIlha`) VALUES
@@ -65,35 +62,32 @@ INSERT INTO `concelho` (`idConcelho`, `concelho`, `idIlha`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `destaque`
+-- Table structure for table `destaque`
 --
 
-DROP TABLE IF EXISTS `destaque`;
-CREATE TABLE IF NOT EXISTS `destaque` (
+CREATE TABLE `destaque` (
   `idImovel` int(10) UNSIGNED NOT NULL,
-  `destacado` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idImovel`),
-  KEY `fk_idImovel_idImovel_idx` (`idImovel`)
+  `destacado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `destaque`
+-- Dumping data for table `destaque`
 --
 
 INSERT INTO `destaque` (`idImovel`, `destacado`) VALUES
 (1, 1),
-(2, 0),
-(3, 1);
+(4, 1),
+(6, 0),
+(7, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `extras`
+-- Table structure for table `extras`
 --
 
-DROP TABLE IF EXISTS `extras`;
-CREATE TABLE IF NOT EXISTS `extras` (
-  `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `extras` (
+  `idImovel` int(11) UNSIGNED NOT NULL,
   `tipologia` int(11) UNSIGNED NOT NULL,
   `quartos` tinyint(3) UNSIGNED NOT NULL,
   `casasBanho` tinyint(3) UNSIGNED NOT NULL,
@@ -101,14 +95,11 @@ CREATE TABLE IF NOT EXISTS `extras` (
   `piscina` tinyint(1) NOT NULL,
   `mobilia` tinyint(1) NOT NULL,
   `dataConstrucao` date NOT NULL,
-  `informacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idImovel`),
-  KEY `fk_idImovel_extras` (`idImovel`),
-  KEY `fk_idTipologia_extras_idx` (`tipologia`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `informacao` varchar(500) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `extras`
+-- Dumping data for table `extras`
 --
 
 INSERT INTO `extras` (`idImovel`, `tipologia`, `quartos`, `casasBanho`, `garagem`, `piscina`, `mobilia`, `dataConstrucao`, `informacao`) VALUES
@@ -117,18 +108,16 @@ INSERT INTO `extras` (`idImovel`, `tipologia`, `quartos`, `casasBanho`, `garagem
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `finalidade`
+-- Table structure for table `finalidade`
 --
 
-DROP TABLE IF EXISTS `finalidade`;
-CREATE TABLE IF NOT EXISTS `finalidade` (
-  `idFinalidade` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `finalidade` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idFinalidade`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `finalidade` (
+  `idFinalidade` int(11) UNSIGNED NOT NULL,
+  `finalidade` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `finalidade`
+-- Dumping data for table `finalidade`
 --
 
 INSERT INTO `finalidade` (`idFinalidade`, `finalidade`) VALUES
@@ -138,20 +127,17 @@ INSERT INTO `finalidade` (`idFinalidade`, `finalidade`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `freguesia`
+-- Table structure for table `freguesia`
 --
 
-DROP TABLE IF EXISTS `freguesia`;
-CREATE TABLE IF NOT EXISTS `freguesia` (
-  `idFreguesia` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `freguesia` (
+  `idFreguesia` int(11) UNSIGNED NOT NULL,
   `freguesia` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `idConcelho` int(11) UNSIGNED NOT NULL,
-  PRIMARY KEY (`idFreguesia`),
-  KEY `fk_freguesia_1_idx` (`idConcelho`)
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `idConcelho` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `freguesia`
+-- Dumping data for table `freguesia`
 --
 
 INSERT INTO `freguesia` (`idFreguesia`, `freguesia`, `idConcelho`) VALUES
@@ -315,24 +301,21 @@ INSERT INTO `freguesia` (`idFreguesia`, `freguesia`, `idConcelho`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `funcionario`
+-- Table structure for table `funcionario`
 --
 
-DROP TABLE IF EXISTS `funcionario`;
-CREATE TABLE IF NOT EXISTS `funcionario` (
-  `idFuncionario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `funcionario` (
+  `idFuncionario` int(11) UNSIGNED NOT NULL,
   `email` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `nomeProprio` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `sobrenome` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `contacto` int(11) NOT NULL,
-  `tipoUser` int(11) UNSIGNED NOT NULL,
-  PRIMARY KEY (`idFuncionario`),
-  KEY `fk_tipoUser_tipo_user_idx` (`tipoUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `tipoUser` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `funcionario`
+-- Dumping data for table `funcionario`
 --
 
 INSERT INTO `funcionario` (`idFuncionario`, `email`, `password`, `nomeProprio`, `sobrenome`, `contacto`, `tipoUser`) VALUES
@@ -343,53 +326,65 @@ INSERT INTO `funcionario` (`idFuncionario`, `email`, `password`, `nomeProprio`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `galeria`
+-- Table structure for table `galeria`
 --
 
-DROP TABLE IF EXISTS `galeria`;
-CREATE TABLE IF NOT EXISTS `galeria` (
-  `idImagem` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `galeria` (
+  `idImagem` int(10) UNSIGNED NOT NULL,
   `idImovel` int(11) UNSIGNED NOT NULL,
-  `nomeImagem` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `descricao` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`idImagem`),
-  KEY `fk_idImovel_galeria_idx` (`idImovel`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `nomeImagem` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `descricao` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `galeria`
+-- Dumping data for table `galeria`
 --
 
 INSERT INTO `galeria` (`idImagem`, `idImovel`, `nomeImagem`, `descricao`) VALUES
 (1, 2, 'transferir(1).jpg', 'imagem 2-1'),
 (2, 1, 'Como-Investir-em-Imoveis-3-min.jpg', 'imagem 1-1'),
 (3, 1, 'transferir.jpg', 'imagem 1-2'),
-(4, 3, '8407597849-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(5, 3, '8408789835-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(6, 3, '8413141203-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(7, 3, '8453477970-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(8, 3, '8455757798-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(9, 3, '8470524608-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(10, 3, '8476380394-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(11, 3, '8482623885-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(12, 3, '8489851074-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL),
-(13, 3, '8496094565-apart-t2-c-lugar-de-garagem-sao-jose.jpg', NULL);
+(14, 4, 'terreno1.jpg', NULL),
+(15, 4, 'terreno2.jpg', NULL),
+(16, 4, 'terreno3.jpg', NULL),
+(17, 4, 'terreno4.jpg', NULL),
+(18, 4, 'terreno5.jpg', NULL),
+(19, 4, 'terreno6.jpg', NULL),
+(20, 4, 'terreno7.jpg', NULL),
+(21, 4, 'terreno8.jpg', NULL),
+(22, 4, 'terreno9.jpg', NULL),
+(29, 6, 'horta1.jpg', NULL),
+(30, 6, 'horta2.jpg', NULL),
+(31, 6, 'horta3.jpg', NULL),
+(32, 6, 'horta4.jpg', NULL),
+(33, 6, 'horta5.jpg', NULL),
+(34, 6, 'horta6.jpg', NULL),
+(35, 7, 'moradia1.jpg', NULL),
+(36, 7, 'moradia2.jpg', NULL),
+(37, 7, 'moradia3.jpg', NULL),
+(38, 7, 'moradia4.jpg', NULL),
+(39, 7, 'moradia5.jpg', NULL),
+(40, 7, 'moradia6.jpg', NULL),
+(41, 7, 'moradia7.jpg', NULL),
+(42, 7, 'moradia8.jpg', NULL),
+(43, 7, 'moradia9.jpg', NULL),
+(44, 7, 'moradia10.jpg', NULL),
+(45, 7, 'moradia11.jpg', NULL),
+(46, 7, 'moradia12.jpg', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ilha`
+-- Table structure for table `ilha`
 --
 
-DROP TABLE IF EXISTS `ilha`;
-CREATE TABLE IF NOT EXISTS `ilha` (
-  `idIlha` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ilha` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idIlha`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `ilha` (
+  `idIlha` int(11) UNSIGNED NOT NULL,
+  `ilha` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `ilha`
+-- Dumping data for table `ilha`
 --
 
 INSERT INTO `ilha` (`idIlha`, `ilha`) VALUES
@@ -409,8 +404,7 @@ INSERT INTO `ilha` (`idIlha`, `ilha`) VALUES
 -- Stand-in structure for view `imoveisdestacados`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `imoveisdestacados`;
-CREATE TABLE IF NOT EXISTS `imoveisdestacados` (
+CREATE TABLE `imoveisdestacados` (
 `idImovel` int(10) unsigned
 ,`destacado` tinyint(1)
 ,`gestor` int(11) unsigned
@@ -442,8 +436,7 @@ CREATE TABLE IF NOT EXISTS `imoveisdestacados` (
 -- Stand-in structure for view `imoveispropostos`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `imoveispropostos`;
-CREATE TABLE IF NOT EXISTS `imoveispropostos` (
+CREATE TABLE `imoveispropostos` (
 `idImovel` int(10) unsigned
 ,`destacado` tinyint(1)
 ,`gestor` int(11) unsigned
@@ -472,12 +465,11 @@ CREATE TABLE IF NOT EXISTS `imoveispropostos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `imovel`
+-- Table structure for table `imovel`
 --
 
-DROP TABLE IF EXISTS `imovel`;
-CREATE TABLE IF NOT EXISTS `imovel` (
-  `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `imovel` (
+  `idImovel` int(11) UNSIGNED NOT NULL,
   `gestor` int(11) UNSIGNED NOT NULL,
   `finalidade` int(11) UNSIGNED NOT NULL,
   `tipoImovel` int(11) UNSIGNED NOT NULL,
@@ -490,38 +482,33 @@ CREATE TABLE IF NOT EXISTS `imovel` (
   `lng` double NOT NULL,
   `idFreguesia` int(11) UNSIGNED NOT NULL,
   `situacao` enum('Ativo','Concluído') COLLATE utf8_unicode_ci NOT NULL,
-  `estado` enum('Em obras','Pronto a habitar') COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idImovel`),
-  KEY `fktipo_imovel_imovel_idx` (`tipoImovel`),
-  KEY `fk_idimovel_frequesia_idx` (`idFreguesia`),
-  KEY `fk_finalidade_idFinaldiade_idx` (`finalidade`),
-  KEY `fk_gestor_gestao` (`gestor`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `estado` enum('Em obras','Pronto a habitar') COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `imovel`
+-- Dumping data for table `imovel`
 --
 
 INSERT INTO `imovel` (`idImovel`, `gestor`, `finalidade`, `tipoImovel`, `area`, `preco`, `descricao`, `rua`, `codPostal`, `lat`, `lng`, `idFreguesia`, `situacao`, `estado`) VALUES
 (1, 2, 1, 2, '500m*500m', '1000000.00', 'Casa Muito Bonita', 'Rua do Amorim, 7-G', '9500-102', 37.7484039, -25.6668802, 38, 'Ativo', 'Em obras'),
 (2, 2, 2, 3, 'ssdfs', '34234.00', 'sdgdfgd', 'fdgdfg', 'dfgdfg', 37.7724084, -25.7431675, 1, 'Ativo', 'Pronto a habitar'),
-(3, 2, 1, 1, '106 mÂ²', '139.00', 'Apartamento T2 em Ã³timo estado de conservaÃ§Ã£o, orientado a poente. Situado na Rua do Paiol com estacionamento exterior privativo e ainda lugar de garagem e arrecadaÃ§Ã£o na cave.\r\nConstituÃ­do por: hall, sala, cozinha com zona de tratamento de roupa, corredor de acesso aos quartos com roupeiro, 2 quartos cama e w.c.', 'Rua do Paiol, nÂº8', '', 37.745380694564844, -25.68036550055922, 38, 'Ativo', 'Pronto a habitar');
+(4, 2, 1, 3, '19.348mÂ²', '112.64', 'Artigo rÃºstico sito na Rua de Baixo, Calheta, com mais de 19.000m2.\r\nVista para a ilha do Pico. \r\nBons acessos e acesso ao mar.', 'Rua da calheta, nÂº8', '', 38.601144201275844, -28.0177345290258, 104, 'Ativo', ''),
+(6, 2, 1, 2, '110 mÂ² (Ãºtil)', '129.00', 'Moradia tÃ©rrea tipologia T2, (com potencial de ampliaÃ§Ã£o), inserida num terreno de 1343m2, e que se divide, em dois quartos, cozinha, casa de banho, sala e arrecadaÃ§Ã£o.\r\nNo exterior com vÃ¡rias zonas ajardinadas, quinta com diversas Ã¡rvores de fruto,canil, e outros anexos de apoio. \r\nLocalizada em zona calma, de fÃ¡ceis acessos e a poucos minutos da cidade da Horta.', 'Rua da Luz, nÂº 12', '', 38.53052026613092, -28.678762175215866, 137, 'Ativo', 'Pronto a habitar'),
+(7, 2, 1, 2, '', '0.00', 'Moradia nova para venda inclui todo o mobiliÃ¡rio da moradia . Cozinha toda equipada, bom quintal e churrasqueira, casa de mÃ¡quina com bomba de calor com entrada para estacionar e garagem.', 'Rua do RosÃ¡rio, nÂº3', '', 37.76006649641703, -25.565445717502143, 7, 'Ativo', 'Pronto a habitar');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipologia`
+-- Table structure for table `tipologia`
 --
 
-DROP TABLE IF EXISTS `tipologia`;
-CREATE TABLE IF NOT EXISTS `tipologia` (
-  `idTipologia` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `tipologia` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idTipologia`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `tipologia` (
+  `idTipologia` int(11) UNSIGNED NOT NULL,
+  `tipologia` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `tipologia`
+-- Dumping data for table `tipologia`
 --
 
 INSERT INTO `tipologia` (`idTipologia`, `tipologia`) VALUES
@@ -535,19 +522,17 @@ INSERT INTO `tipologia` (`idTipologia`, `tipologia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_imovel`
+-- Table structure for table `tipo_imovel`
 --
 
-DROP TABLE IF EXISTS `tipo_imovel`;
-CREATE TABLE IF NOT EXISTS `tipo_imovel` (
-  `idTipoImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tipo_imovel` (
+  `idTipoImovel` int(11) UNSIGNED NOT NULL,
   `tipoImovel` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `iconMarcador` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idTipoImovel`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `iconMarcador` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `tipo_imovel`
+-- Dumping data for table `tipo_imovel`
 --
 
 INSERT INTO `tipo_imovel` (`idTipoImovel`, `tipoImovel`, `iconMarcador`) VALUES
@@ -562,18 +547,16 @@ INSERT INTO `tipo_imovel` (`idTipoImovel`, `tipoImovel`, `iconMarcador`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipo_user`
+-- Table structure for table `tipo_user`
 --
 
-DROP TABLE IF EXISTS `tipo_user`;
-CREATE TABLE IF NOT EXISTS `tipo_user` (
-  `idTipoUser` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(45) NOT NULL,
-  PRIMARY KEY (`idTipoUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE TABLE `tipo_user` (
+  `idTipoUser` int(11) UNSIGNED NOT NULL,
+  `tipo` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `tipo_user`
+-- Dumping data for table `tipo_user`
 --
 
 INSERT INTO `tipo_user` (`idTipoUser`, `tipo`) VALUES
@@ -586,8 +569,7 @@ INSERT INTO `tipo_user` (`idTipoUser`, `tipo`) VALUES
 -- Stand-in structure for view `todosimoveis`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `todosimoveis`;
-CREATE TABLE IF NOT EXISTS `todosimoveis` (
+CREATE TABLE `todosimoveis` (
 `idImovel` int(11) unsigned
 ,`gestor` int(11) unsigned
 ,`finalidade` int(11) unsigned
@@ -615,25 +597,21 @@ CREATE TABLE IF NOT EXISTS `todosimoveis` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `utilizador`
+-- Table structure for table `utilizador`
 --
 
-DROP TABLE IF EXISTS `utilizador`;
-CREATE TABLE IF NOT EXISTS `utilizador` (
-  `idUser` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `utilizador` (
+  `idUser` int(11) UNSIGNED NOT NULL,
   `email` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
   `nomeProprio` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `sobrenome` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `contacto` int(11) UNSIGNED NOT NULL,
-  `idFreguesia` int(11) UNSIGNED NOT NULL,
-  PRIMARY KEY (`idUser`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  KEY `fk_idFreguesia_user_idx` (`idFreguesia`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `idFreguesia` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `utilizador`
+-- Dumping data for table `utilizador`
 --
 
 INSERT INTO `utilizador` (`idUser`, `email`, `nomeProprio`, `sobrenome`, `password`, `contacto`, `idFreguesia`) VALUES
@@ -642,23 +620,19 @@ INSERT INTO `utilizador` (`idUser`, `email`, `nomeProprio`, `sobrenome`, `passwo
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `visita`
+-- Table structure for table `visita`
 --
 
-DROP TABLE IF EXISTS `visita`;
-CREATE TABLE IF NOT EXISTS `visita` (
-  `idVisita` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `visita` (
+  `idVisita` int(11) UNSIGNED NOT NULL,
   `user` int(11) UNSIGNED NOT NULL,
   `idImovel` int(11) UNSIGNED NOT NULL,
   `dataVisita` datetime NOT NULL,
-  `estadoVisita` enum('Aceite','NÃ£o Aceite','Em apreciaÃ§Ã£o','') COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idVisita`),
-  KEY `fk_imovel_visita_idx` (`idImovel`),
-  KEY `fk_user_visita_idx` (`user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `estadoVisita` enum('Aceite','NÃ£o Aceite','Em apreciaÃ§Ã£o','') COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `visita`
+-- Dumping data for table `visita`
 --
 
 INSERT INTO `visita` (`idVisita`, `user`, `idImovel`, `dataVisita`, `estadoVisita`) VALUES
@@ -692,48 +666,233 @@ DROP TABLE IF EXISTS `todosimoveis`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `todosimoveis`  AS  select `imovel`.`idImovel` AS `idImovel`,`imovel`.`gestor` AS `gestor`,`imovel`.`finalidade` AS `finalidade`,`imovel`.`tipoImovel` AS `tipoImovel`,`imovel`.`area` AS `area`,`imovel`.`preco` AS `preco`,`imovel`.`descricao` AS `descricao`,`imovel`.`rua` AS `rua`,`imovel`.`codPostal` AS `codPostal`,`imovel`.`lat` AS `lat`,`imovel`.`lng` AS `lng`,`imovel`.`idFreguesia` AS `idFreguesia`,`imovel`.`situacao` AS `situacao`,`imovel`.`estado` AS `estado`,`extras`.`tipologia` AS `tipologia`,`extras`.`quartos` AS `quartos`,`extras`.`casasBanho` AS `casasBanho`,`extras`.`garagem` AS `garagem`,`extras`.`piscina` AS `piscina`,`extras`.`mobilia` AS `mobilia`,`extras`.`dataConstrucao` AS `dataConstrucao`,`extras`.`informacao` AS `informacao` from (`imovel` left join `extras` on((`imovel`.`idImovel` = `extras`.`idImovel`))) ;
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `concelho`
+--
+ALTER TABLE `concelho`
+  ADD PRIMARY KEY (`idConcelho`),
+  ADD KEY `fk_concelho_ilha_idx` (`idIlha`);
+
+--
+-- Indexes for table `destaque`
+--
+ALTER TABLE `destaque`
+  ADD PRIMARY KEY (`idImovel`),
+  ADD KEY `fk_idImovel_idImovel_idx` (`idImovel`);
+
+--
+-- Indexes for table `extras`
+--
+ALTER TABLE `extras`
+  ADD PRIMARY KEY (`idImovel`),
+  ADD KEY `fk_idImovel_extras` (`idImovel`),
+  ADD KEY `fk_idTipologia_extras_idx` (`tipologia`);
+
+--
+-- Indexes for table `finalidade`
+--
+ALTER TABLE `finalidade`
+  ADD PRIMARY KEY (`idFinalidade`);
+
+--
+-- Indexes for table `freguesia`
+--
+ALTER TABLE `freguesia`
+  ADD PRIMARY KEY (`idFreguesia`),
+  ADD KEY `fk_freguesia_1_idx` (`idConcelho`);
+
+--
+-- Indexes for table `funcionario`
+--
+ALTER TABLE `funcionario`
+  ADD PRIMARY KEY (`idFuncionario`),
+  ADD KEY `fk_tipoUser_tipo_user_idx` (`tipoUser`);
+
+--
+-- Indexes for table `galeria`
+--
+ALTER TABLE `galeria`
+  ADD PRIMARY KEY (`idImagem`),
+  ADD KEY `fk_idImovel_galeria_idx` (`idImovel`);
+
+--
+-- Indexes for table `ilha`
+--
+ALTER TABLE `ilha`
+  ADD PRIMARY KEY (`idIlha`);
+
+--
+-- Indexes for table `imovel`
+--
+ALTER TABLE `imovel`
+  ADD PRIMARY KEY (`idImovel`),
+  ADD KEY `fktipo_imovel_imovel_idx` (`tipoImovel`),
+  ADD KEY `fk_idimovel_frequesia_idx` (`idFreguesia`),
+  ADD KEY `fk_finalidade_idFinaldiade_idx` (`finalidade`),
+  ADD KEY `fk_gestor_gestao` (`gestor`);
+
+--
+-- Indexes for table `tipologia`
+--
+ALTER TABLE `tipologia`
+  ADD PRIMARY KEY (`idTipologia`);
+
+--
+-- Indexes for table `tipo_imovel`
+--
+ALTER TABLE `tipo_imovel`
+  ADD PRIMARY KEY (`idTipoImovel`);
+
+--
+-- Indexes for table `tipo_user`
+--
+ALTER TABLE `tipo_user`
+  ADD PRIMARY KEY (`idTipoUser`);
+
+--
+-- Indexes for table `utilizador`
+--
+ALTER TABLE `utilizador`
+  ADD PRIMARY KEY (`idUser`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email`),
+  ADD KEY `fk_idFreguesia_user_idx` (`idFreguesia`);
+
+--
+-- Indexes for table `visita`
+--
+ALTER TABLE `visita`
+  ADD PRIMARY KEY (`idVisita`),
+  ADD KEY `fk_imovel_visita_idx` (`idImovel`),
+  ADD KEY `fk_user_visita_idx` (`user`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `concelho`
+--
+ALTER TABLE `concelho`
+  MODIFY `idConcelho` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `extras`
+--
+ALTER TABLE `extras`
+  MODIFY `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `finalidade`
+--
+ALTER TABLE `finalidade`
+  MODIFY `idFinalidade` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `freguesia`
+--
+ALTER TABLE `freguesia`
+  MODIFY `idFreguesia` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+
+--
+-- AUTO_INCREMENT for table `funcionario`
+--
+ALTER TABLE `funcionario`
+  MODIFY `idFuncionario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `galeria`
+--
+ALTER TABLE `galeria`
+  MODIFY `idImagem` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `ilha`
+--
+ALTER TABLE `ilha`
+  MODIFY `idIlha` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `imovel`
+--
+ALTER TABLE `imovel`
+  MODIFY `idImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tipologia`
+--
+ALTER TABLE `tipologia`
+  MODIFY `idTipologia` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tipo_imovel`
+--
+ALTER TABLE `tipo_imovel`
+  MODIFY `idTipoImovel` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tipo_user`
+--
+ALTER TABLE `tipo_user`
+  MODIFY `idTipoUser` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `utilizador`
+--
+ALTER TABLE `utilizador`
+  MODIFY `idUser` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `visita`
+--
+ALTER TABLE `visita`
+  MODIFY `idVisita` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Limitadores para a tabela `concelho`
+-- Constraints for table `concelho`
 --
 ALTER TABLE `concelho`
   ADD CONSTRAINT `concelho_ibfk_1` FOREIGN KEY (`idIlha`) REFERENCES `ilha` (`idIlha`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `destaque`
+-- Constraints for table `destaque`
 --
 ALTER TABLE `destaque`
   ADD CONSTRAINT `destaque_ibfk_1` FOREIGN KEY (`idImovel`) REFERENCES `imovel` (`idImovel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `extras`
+-- Constraints for table `extras`
 --
 ALTER TABLE `extras`
   ADD CONSTRAINT `extras_ibfk_1` FOREIGN KEY (`idImovel`) REFERENCES `imovel` (`idImovel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `extras_ibfk_2` FOREIGN KEY (`tipologia`) REFERENCES `tipologia` (`idTipologia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `freguesia`
+-- Constraints for table `freguesia`
 --
 ALTER TABLE `freguesia`
   ADD CONSTRAINT `freguesia_ibfk_1` FOREIGN KEY (`idConcelho`) REFERENCES `concelho` (`idConcelho`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `funcionario`
+-- Constraints for table `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`tipoUser`) REFERENCES `tipo_user` (`idTipoUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `galeria`
+-- Constraints for table `galeria`
 --
 ALTER TABLE `galeria`
   ADD CONSTRAINT `galeria_ibfk_1` FOREIGN KEY (`idImovel`) REFERENCES `imovel` (`idImovel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `imovel`
+-- Constraints for table `imovel`
 --
 ALTER TABLE `imovel`
   ADD CONSTRAINT `imovel_ibfk_1` FOREIGN KEY (`tipoImovel`) REFERENCES `tipo_imovel` (`idTipoImovel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -742,13 +901,13 @@ ALTER TABLE `imovel`
   ADD CONSTRAINT `imovel_ibfk_4` FOREIGN KEY (`gestor`) REFERENCES `funcionario` (`idFuncionario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `utilizador`
+-- Constraints for table `utilizador`
 --
 ALTER TABLE `utilizador`
   ADD CONSTRAINT `utilizador_ibfk_1` FOREIGN KEY (`idFreguesia`) REFERENCES `freguesia` (`idFreguesia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `visita`
+-- Constraints for table `visita`
 --
 ALTER TABLE `visita`
   ADD CONSTRAINT `visita_ibfk_1` FOREIGN KEY (`idImovel`) REFERENCES `imovel` (`idImovel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
