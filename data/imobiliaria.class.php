@@ -346,27 +346,27 @@
     }
 
      public function editarImovel($imovel, $finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $idImovel){
-
+        //echo "<script> alert('here'); </script>";
           $sql = 'UPDATE imovel SET finalidade=:finalidade, tipoImovel=:tipoImovel, area=:area, preco=:preco, descricao=:descricao, rua=:rua, codPostal=:codPostal, lat=:lat, lng=:lng, situacao=:situacao, estado=:estado WHERE idImovel = :idImovel';
 
-        /*$print = */ array('finalidade'=>$finalidade, 'tipoImovel'=>$tipoImovel, 'area'=>$area, 'preco'=>$preco, 'descricao'=>$descricao, 'rua'=>$rua, 'codPostal'=>$codPostal, 'lat'=>$lat, 'lng'=>$lng,  'situacao'=>$situacao,
+        $print =  array('finalidade'=>$finalidade, 'tipoImovel'=>$tipoImovel, 'area'=>$area, 'preco'=>$preco, 'descricao'=>$descricao, 'rua'=>$rua, 'codPostal'=>$codPostal, 'lat'=>$lat, 'lng'=>$lng,  'situacao'=>$situacao,
           'estado'=>$estado, 'idImovel'=>$idImovel);
-        // $this->query($sql, $print);
-      //   var_dump($print);
+         $this->query($sql, $print);
+         //var_dump($print);
 
          if ($tipologia != NULL){
            if ($imovel->getTipologia()!=NULL) {
              $sql = 'UPDATE extras SET tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao WHERE idImovel = :idImovel';
 
-          /* $print2 =*/  array('tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao, 'idImovel'=>$idImovel);
-              //$this->query($sql, $print2);
+             $print2 =  array('tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao, 'idImovel'=>$idImovel);
+             $this->query($sql, $print2);
               //var_dump($print2);
            }else {
              $sql = 'INSERT into extras VALUES idImovel:idImovel tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao';
 
-          /* $print2 =*/  array( "idImovel"=>$imovel->getIdImovel() ,'tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao);
-              //$this->query($sql, $print2);
-              //var_dump($print2);
+             $print2 =  array( "idImovel"=>$imovel->getIdImovel() ,'tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao);
+             $this->query($sql, $print2);
+             var_dump($print2);
            }
          }
     }

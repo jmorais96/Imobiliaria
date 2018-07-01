@@ -76,7 +76,7 @@ input {
     border-radius: 5px;
 }
 
-.add_prop_button {/*text-align: center;*/f}
+.add_prop_button {text-align: center;}
 
 input[type="submit"] {
     margin: 20px 0;
@@ -89,6 +89,7 @@ input[type="submit"] {
     line-height: 0;
     text-transform: uppercase;
     transition: background 300ms ease-in-out;
+    margin-left: 130%;
 }
 
 input[type="submit"]:hover {
