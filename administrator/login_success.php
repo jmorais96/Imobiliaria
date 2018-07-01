@@ -181,7 +181,7 @@ if (isset($_SESSION['funcionario'])) {
     <div class="nav_holder">
     </div>
     <div class="backend_admin">
-        <h1>Área de Administração</h1>
+        <h1>Área Administrativa</h1>
     </div>
     <div class="res_admin">
          <?php
@@ -210,20 +210,35 @@ if (isset($_SESSION['funcionario'])) {
 
     <!-- Secção das estatísticas -->
     <div id="London" class="tabcontent">
-      <div class="statistics">
+      
+      <div class="row pdf_first_row">
+        
+        <div class="pdf_box">
+          Vendas por gestor:<a href="gestor.php" onclick="window.open('pdf_gestor.php');"> 
+          <button type="button" name="button">Gerar PDF</button> </a>
+        </div>
+        
+        <div class="pdf_box">
+          Imóveis por tipo:<a href="tipo.php" onclick="window.open('pdf_tipo.php');"> 
+          <button>Gerar PDF</button></a>
+        </div>
+      
       </div>
-      Vendas por gestor:<a href="gestor.php" onclick="window.open('pdf_gestor.php');"> <button type="button" name="button">Gerar PDF</button> </a>
+      
+      <div class="row pdf_second_row">
+      
+      <div class="pdf_box">
+        Imóveis por preço:<a href="preco.php" onclick="window.open('pdf_preco.php');">
+        <button>Gerar PDF</button></a>
+      </div>
 
-      <br>
-        Imóveis por tipo:<a href="tipo.php" onclick="window.open('pdf_tipo.php');"><button>Gerar pdf</button></a>
-      <br>
-
-      Imóveis por intervalo de preço:<a href="preco.php" onclick="window.open('pdf_preco.php');"><button>Gerar pdf</button></a>
-      <br>
-
-      Imóveis por local:<a href="local.php" onclick="window.open('pdf_local.php');"> <button>Gerar pdf</button></a>
-      <br>
-
+      <div class="pdf_box">
+        Imóveis por local:<a href="local.php" onclick="window.open('pdf_local.php');"> 
+        <button>Gerar PDF</button></a>
+      </div>
+      
+      </div>
+    
     </div>
 
     <!-- Secção dos imóveis propostos -->

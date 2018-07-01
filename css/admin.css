@@ -15,7 +15,7 @@
     letter-spacing: .5px;
 }
 
-html, body{height: 100vh; width: 100%;}
+html, body{height: 100vh; width: 100%; overflow-x: hidden;}
 
 img {height: 100%;}
 
@@ -123,6 +123,40 @@ a.nav-link:hover {
     color: #fff!important;
 }
 
+/* Tabulador das estatísticas */ 
+.pdf_first_row,
+.pdf_second_row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pdf_box {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-top: 25px;
+    padding: 50px;
+    background-color: #A9A9A9;
+    transition: background 300ms ease-in-out;
+    border: 2px solid rgb(209, 209, 209);
+}
+
+.pdf_box:hover {
+    background-color: rgb(114, 114, 114);
+}
+
+.pdf_box a {text-decoration: none;}
+
+.pdf_box button {
+    background-color: inherit !important;
+    color: rgb(226, 226, 226);
+    transition: color 300ms ease-in-out;
+}
+
+.pdf_box button:hover {
+    cursor: pointer;
+    color: #fff;
+}
+
 .t_workers {
     display: flex;
     width: 100%;
@@ -201,7 +235,7 @@ h7 {width: 20%;}
 }
 
   #notifications_box {
-    display:none;
+display:none;
   flex-direction:row;
   flex-wrap: wrap;
   justify-content: flex-start;
