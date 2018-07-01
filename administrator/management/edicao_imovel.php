@@ -146,6 +146,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
     <link rel="stylesheet" href="../../css/homepageManager.css" type="text/css">
     <link rel="stylesheet" href="../../css/gestor.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="../../css/gerirImovelTable.css">
+    <link rel="stylesheet" type="text/css" href="../../css/imovel.css">
 
     <!-- Ícones Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -178,7 +179,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
   <span class="navbar-toggler-icon"></span></button>
 
   <!-- Link de navegação "Encerrar sessão" -->
-  <a class="nav-link" href="?acao=logout">Encerrar sessão</a>
+  <a class="nav-link" href="?acao=logout">ENCERRAR SESSÃO</a>
 
 </nav>
  </div>
@@ -197,7 +198,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
     <div class="res_admin">
          <?php //se o login for feito com sucesso
             if(isset($_SESSION['funcionario'])){
-                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h4>';
+                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'!</h4>';
             }
             //caso contrario reencaminha de volta ao index.php
             else{
@@ -215,79 +216,232 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
 
 <div class="admin_container">
     <div class="tab">
-      <a href="manager.php" class="tablinks">< Retroceder</a>
+      <a href="manager.php" class="tablinks retroceder"><i class="fas fa-chevron-left"></i> RETROCEDER</a>
     </div>
 
 
     <div id="imoveis" class="tabcontent">
 
-     <div class="titulo">
-         <h2>Lista de Imóveis</h2>
-         <div class="wrap">
-           <div class="search">
-              <input type="text" class="searchTerm" placeholder="Pesquise aqui">
-              <!--<button type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-             </button>-->
-           </div>
-        </div>
-     </div>
-
     <!-- AO CLICAR NO BOTAO EDITAR IMOVEL -->
-  <div id="<?php echo $imovel->getIdImovel(); ?>" class="tabcontent">
+    <div id="<?php echo $imovel->getIdImovel(); ?>" class="tabcontent">
       <div class="admin_container">
-        <!-- Form para criar gestor -->
-        <div class="boxh2">
-            <h2>Editar imóvel</h2>
-        </div>
-        <form class="add_manager" action="" method="post">
-          <label>Finalidade: <select class="" name="finalidade">
-            <?php  $bd->selectFinalidade(); ?>
-          </select> </label>
-          <label>Descricao:<input type="text" name="descricao" value="<?php echo $imovel->getDescricao(); ?>" placeholder=""/></label>
-          <label>Rua:<input type="text" name="rua" value="<?php echo $imovel->getRua(); ?>" placeholder=""/></label>
-          <label>Código-postal:<input type="text" name="codigo" value="<?php echo $imovel->getCodPostal();?>" placeholder=""/></label>
-          <label>Área:<input type="text" name="area" value="<?php echo $imovel->getArea();?>" placeholder=""/></label>
-          <label>Preço:<input type="text" name="preco" value="<?php echo $imovel->getPreco();?>" placeholder=""/></label>
-          <label>Situação:<input type="text" name="situacao" value="<?php echo $imovel->getSituacao();?>" placeholder=""/></label>
-          <label>Estado:<input type="text" name="estado" value="<?php echo $imovel->getEstado();?>" placeholder=""/></label>
-          <input type="hidden" name="idImovel" value="<?php echo $imovel->getIdImovel(); ?>">
-          <label>Tipo Imovel:<select class="" name="tipoImovel">
+          
+        <!-- Título do formulário de edição de imóveis -->
+        <h2 class="editar-titulo">Editar Imóvel <i class="far fa-edit fa-1x"></i></h2>
+          
+        <!-- - - - - - - - - - - - - - - - - -->
+        <!-- FORMULÁRIO DE EDIÇÃO DE IMÓVEIS -->
+        <!-- - - - - - - - - - - - - - - - - -->
+        <form action="" method="post">
+
+          <div class="row first_info">
+          
+          <!-- Finalidade do imóvel -->
+          <div class="add_prop_box">
+            <label>Finalidade:</label> 
+            <i class="fas fa-piggy-bank fa-2x" style="color: #808080"></i><select name="finalidade">
+              <?php  $bd->selectFinalidade(); ?>
+            </select> 
+          </div>
+          
+          <!-- Tipo do imóvel -->
+          <div class="add_prop_box">
+            <label>Tipo de imóvel:</label>
+            <i class="fas fa-home fa-2x" style="color: #808080"></i><select name="tipoImovel">
             <?php  $bd->selectTipoImovel(); ?>
-          </select></label>
-          <label>Codigo Postal:<input type="text" name="codPostal" value="<?php echo $imovel->getCodPostal();?>" placeholder=""/></label>
-          <label>Tipologia:<select class="" name="tipologia">
+          </select>
+          </div>
+          
+          <!-- Tipologia do imóvel -->
+          <div class="add_prop_box">
+          <label>Tipologia:</label>
+          <i class="fas fa-building fa-2x" style="color: #808080"></i><select name="tipologia">
             <?php  $bd->selectTipologia() ?>
-          </select></label>
-          <label>Numero de Quartos:<input type="text" name="quartos" value="<?php echo $imovel->getQuartos();?>" placeholder=""/></label>
-          <label>Numero de casas de banho:<input type="text" name="casasBanho" value="<?php echo $imovel->getCasasBanho();?>" placeholder=""/></label>
-          <label>Garagem:<input type="checkbox" name="garagem" value="garagem" <?php if ($imovel->getGaragem()=="Sim") {echo "checked";} ?>></label>
-          <label>Piscina:<input type="checkbox" name="piscina" value="piscina"<?php if ($imovel->getPiscina()=="Sim") {echo "checked";} ?>></label>
-          <label>Mobilada:<input type="checkbox" name="mobilia" value="mobilia"<?php if ($imovel->getMobilia()=="Sim") {echo "checked";} ?>></label>
-          <label>Data de Construcao:<input type="text" name="dataConstrucao" value="<?php echo $imovel->getDataConstrucao();?>" placeholder=""/></label>
-          <label>Informações:<input type="text" name="informacao" value="<?php echo $imovel->getInformacao();?>" placeholder=""/></label>
+          </select>
+          </div>
+         
+        </div>
 
+        <div class="row second_info">
+          
+          <!-- Número de quartos do imóvel -->
+          <div class="add_prop_box">
+            <label>Número de Quartos</label>
+            <i class="fas fa-bed fa-2x" style="color: #808080"></i><input type="text" name="quartos" value="<?php echo $imovel->getQuartos();?>" class="extras_number" />
+          </div>
 
-          <!-- PARA LATITUDE E LONGITUDE DO IMOVEL -->
+          <!-- Numero de casas de banho do imóvel -->
+          <div class="add_prop_box">
+            <label>Número de casas de Banho</label>
+            <i class="fas fa-bath fa-2x" style="color: #808080"></i><input type="text" name="casasBanho" value="<?php echo $imovel->getCasasBanho();?>" class="extras_number"/>
+          </div>
+
+        </div>
+
+        <div class="row third_info">
+
+          <!-- Garagem -->
+          <div class="add_prop_box add_prop_box_divisoes">
+            <label>Garagem</label>
+            <div class="row"><i class="fas fa-warehouse fa-2x" style="color: #808080"></i>
+            <input type="checkbox" name="garagem" value="garagem" <?php if ($imovel->getGaragem()=="Sim") {echo "checked";} ?>></div>
+          </div>
+
+          <!-- Piscina -->
+          <div class="add_prop_box add_prop_box_divisoes">
+            <label>Piscina</label>
+            <div class="row">
+            <div class="info-piscina">
+            <img src="../../images/piscina-icon-manager.png" alt="Ícone da piscina"></div><input type="checkbox" name="piscina" value="piscina"<?php if ($imovel->getPiscina()=="Sim") {echo "checked";} ?>></div>
+          </div>
+
+          <!-- Mobília -->
+          <div class="add_prop_box add_prop_box_divisoes">
+            <label>Mobilada</label>
+            <div class="row"><i class="fas fa-box fa-2x" style="color: #808080"></i>
+            <input type="checkbox" name="mobilia" value="mobilia"<?php if ($imovel->getMobilia()=="Sim") {echo "checked";} ?>></div>
+          </div>
+
+        </div>
+
+        <!-- Informação sobre do imóvel -->
+        <div class="add_prop_box">
+          <label>Informações sobre o imóvel</label>
+          <textarea name="informacao"/><?php echo $imovel->getInformacao(); ?></textarea>
+        </div>
+
+        <div class="row forth_info">
+      
+        <!-- Data de construção do imóvel -->
+        <div class="add_prop_box">
+          <label>Data de construção</label>
+          <div class="row">
+            <div class="info-dataconstrucao">
+            <img src="../../images/icons/construcao-icon-manager.png" alt="Ícone da data de construção do imóvel">
+          </div>
+          <input type="date" name="dataConstrucao" value="<?php echo $imovel->getDataConstrucao();?>" /></div>
+        </div>
+        
+        <!-- Área do imóvel -->
+        <div class="add_prop_box">
+        <label for="area">Área do imóvel</label>
+         <div class="row"><i class="fas fa-chart-area fa-2x" style="color: #808080"></i>
+          <input type="text" name="area" id="area" value="<?php echo $imovel->getArea();?>" /></div>
+        </div>
+
+        <!-- Preço do imóvel -->
+        <div class="add_prop_box">
+        <label for="preco">Preço do imóvel</label>
+          <div class="row"><i class="fas fa-money-bill-wave fa-2x" style="color: #808080"></i>
+          <input type="text" name="preco" id="preco" value="<?php echo $imovel->getPreco();?>"/></div>
+        </div>
+
+      </div>
+          
+          <!-- Descrição do imóvel -->
+          <div class="add_prop_box">
+          <label>Descricao:</label>
+          <textarea name="descricao" value="descrição" rows="10"/><?php echo $imovel->getDescricao(); ?></textarea>
+
+          <!-- Estado do imóvel -->
+          <div class="add_prop_box">
+            <label for="estado">Estado do imóvel</label>
+            <div class="row"><i class="fas fa-truck-loading fa-2x" style="color: #808080"></i>
+            <select name="estado" id="estado">
+                <option value="<?php echo $imovel->getEstado();?>"><?php echo $imovel->getEstado();?></option>
+                <option value="Pronto a habitar">Pronto a habitar</option>
+            </select></div>
+          </div>
+
+          <div class="row fifth_info_location">
+      
+        <!-- Ilha do imóvel -->
+        <div class="add_prop_box"> 
+        <label>Ilha</label>
+        <div class="add_prop_location">
+          <i class="fas fa-map fa-2x" style="color: #808080"></i>
+          <select name="ilha" id="ilha">
+            <option value="value="<?php echo $imovel->getIlha(); ?>><?php echo $imovel->getIlha();?></option>        
+            <?php $bd->selectIlha(); ?>
+          </select></div>
+        </div>
+
+        <!-- Concelho do imóvel -->
+        <div class="add_prop_box">
+          <label>Concelho</label>
+          <div class="add_prop_location">
+            <i class="fas fa-compass fa-2x" style="color: #808080"></i><select name="concelho" id="concelho">
+              <option value="<?php echo $imovel->getIlha();?>"><?php echo $imovel->getConcelho();?></option>
+            </select></div>
+          </div>
+
+        <!-- Freguesia do imóvel -->
+        <div class="add_prop_box">
+          <label>Freguesia</label>
+          <div class="add_prop_location">
+            <i class="fas fa-location-arrow fa-2x" style="color: #808080"></i><select name="freguesia" id="freguesia">
+              <option value="<?php echo $imovel->getFreguesia();?>"><?php echo $imovel->getFreguesia();?></option>
+            </select></div>
+          </div>
+
+      </div>
+
+      <div class="row sixth_info">
+
+        <!-- Morada do imóvel -->
+        <div class="add_prop_box">
+          <label for="morada">Morada</label>
+          <i class="fas fa-road fa-2x" style="color: #808080"></i>
+          <input type="text" name="rua" id="morada_add" value="<?php echo $imovel->getRua(); ?>"/>
+        </div>
+
+        <!-- Código postal do imóvel -->
+        <div class="add_prop_box">
+          <label>Código postal</label>
+          <div class="row">
+            <div class="info-dataconstrucao">
+            <img src="../../images/icons/codpostal-icon-manager.png" alt="Ícone do código postal do imóvel">
+          </div>
+          <input type="text" name="codPostal" id="codpostal_add" value="<?php echo $imovel->getCodPostal();?>"/></div>
+        </div>
+
+      </div>
+
+      <!-- Situação do imóvel -->
+      <div class="add_prop_box">
+          <label for="situacao">Situação do imóvel</label>
+          <i class="far fa-question-circle fa-2x" style="color: #808080"></i>
+          <input type="text" name="situacao" value="<?php echo $imovel->getSituacao();?>"/>
+      </div>
+      
+      <!-- Imagem(s) do imóvel -->
+      <div class="add_prop_box">
+        <div class="row">
+        <i class="far fa-images fa-2x" style="color: #808080"></i><label>Imagem(s)</label>
+        <br></div>
+        <input type="file" name="img[]" multiple="multiple">
+      </div>
+
+      <!-- Id do imóvel como campo "hidden" -->
+      <input type="hidden" name="idImovel" value="<?php echo $imovel->getIdImovel(); ?>">
+
+          <!-- Para latitude e longitude do imóvel -->
           <div class="map"style="height:500px; weight:500px;"></div>
           <input type="hidden" name="lat" value="">
           <input type="hidden" name="lng" value="">
 
-
-          <input type="submit" name="edit_imovel" value="editar">
+          <div class="add_prop_box add_prop_button">  
+            <input type="submit" name="edit_imovel" value="Editar Imóvel">
+          </div>
 
         </form>
       </div>
     </div>
 
-  <!-- FIM DO BOTAO EDITAR IMOVEL -->
-
-
   </div>
-
-
-
-
+    <!-- - - - - - - - - - - - - - - - - - - -  -->
+    <!-- FIM DO FORMULÁRIO DE EDIÇÃO DE IMÓVEIS -->
+    <!-- - - - - - - - - - - - - - - - - - - -  -->
 
     <!-- API Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrXJ1v5Tyan8210Bl76AnTl0HdcK0BdEY&callback=initMap"></script>
@@ -308,11 +462,14 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
 
 
     <script>
+
+      // Script para notificação de visitas
       $(document).on("click", ".visits_noti", function(event){
           event.preventDefault();
           $(this).next('.notifications_box1').toggle();
       });
-
+      
+      // Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha 
       $("#ilha").change(function(){
           let ilha = $("#ilha").val();
           $.ajax({
@@ -338,7 +495,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
           });
       });
 
-
+      // Scripts para mudança de "tabs" na área de gestão
       $("#btnAdicionarImovel").click(function(){
         $("#imoveis").hide();
         $("#visita").hide();
@@ -359,8 +516,8 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
         $("#visita").show();
       });
 
-
-      var  markerImovel="";
+      // Script para a marcação da latitude e longitude
+      var markerImovel="";
       var position=""
       function latLng(lat, lng){
           markerImovel = new google.maps.Marker({
@@ -372,10 +529,10 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
       markerImovel.setMap(map);
       }
 
+      // Acesso à latitude e longitude do imóvel 
       <?php $imovel->latLng(); ?>
 
-
-
+      // Script para o marcador do mapa
       google.maps.event.addListener(map, 'click', function(event) {
         if (markerImovel == "") {
           placeMarker(event.latLng);

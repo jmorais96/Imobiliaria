@@ -35,11 +35,11 @@
     $imoveis[]=$bd->getImovel($value['idImovel']);
   }
 
-  // Procedimentos associados ao ficheiro CSV 'local'
+  // Procedimentos associados aos pdf's estatísticos dos gestores
   header('Content-Type: application/csv; charset=UTF-8');
   header('Content-Disposition: attachment;filename="local.csv";');
 
-  // Abrir o ficheiro 'local.csv' e introduzir dados no mesmo
+  // Abrir o ficheiro 'local.csv' e introduzir as estatíticas no mesmo 
   $file=fopen("php://output", "w");
   foreach ($bd->query('SELECT ilha FROM ilha') as $value) {
     $total=0;
