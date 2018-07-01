@@ -298,22 +298,22 @@
       </span>
 
       <!-- Tipologia do imóvel -->
+      <?php if ($imovel->getTipologia()!=NULL) { ?>
       <span id="info_group">
       <h6>Tipologia:</h6>
         <p><i class="fas fa-building fa-1x"></i>
-        <?php if ($imovel->getTipologia()!=NULL) { ?>
-        <?php echo $imovel->getTipologia(); ?><br>
-        <?php } ?></p>
+        <?php echo $imovel->getTipologia(); ?><br></p>
       </span>
+      <?php } ?>
 
       <!-- Número de quartos do imóvel -->
+      <?php if ($imovel->getQuartos()!=NULL) { ?>
       <span id="info_group">
       <h6>Número de quartos:</h6>
         <p><i class="fas fa-bed fa-1x"></i>
-        <?php if ($imovel->getQuartos()!=NULL) { ?>
-        <?php echo $imovel->getQuartos(); ?> quartos
-        <?php } ?>
+        <?php echo $imovel->getQuartos(); ?> quartos</p>
       </span>
+    <?php } ?>
 
       <!-- Número de casas de banho do imóvel -->
       <?php if ($imovel->getCasasBanho()!=NULL) { ?>
