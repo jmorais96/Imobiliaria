@@ -215,8 +215,14 @@ h7 {width: 20%;}
   margin-top: 20px;
   font-size: 1.3rem;
   background-color: #A9A9A9;
-  width: 350px;
+  width: 450px;
+  cursor: pointer;
   color: #fff;
+  transition: background 300ms ease-in-out;
+}
+
+#num_notifications:hover {
+   background-color: rgb(73, 73, 73);
 }
 
 #num_notifications1 {
@@ -227,8 +233,8 @@ h7 {width: 20%;}
   align-items: center;
   font-size: 1.3rem;
   width: 350px;
-  background-color: rgb(73, 73, 73);
-  color: #acac;
+  background-color: #A9A9A9;
+  color: #fff;
 }
 
 #notifications_box {

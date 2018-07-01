@@ -350,6 +350,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
             <select name="estado" id="estado">
                 <option value="<?php echo $imovel->getEstado();?>"><?php echo $imovel->getEstado();?></option>
                 <option value="Pronto a habitar">Pronto a habitar</option>
+                <option value="Em obras">Em obras</option>
             </select></div>
           </div>
 

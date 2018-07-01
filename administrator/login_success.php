@@ -257,7 +257,7 @@ if (isset($_SESSION['funcionario'])) {
 
         <!-- Notificações dos imóveis -->
         <p id="num_notifications" class="imoveis_pendentes_msg">Número de imóveis pendentes: <?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></p>
-        <p id="num_notifications1">Número de imóveis pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></p>
+        <p id="num_notifications1">Número de imóveis pendentes: <?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></p>
 
         <div id="notifications_box">
           <?php
