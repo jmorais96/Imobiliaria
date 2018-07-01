@@ -148,7 +148,8 @@ if(isset($_POST['accept'])) {
         </div>
      </div>
 
-      <?php foreach ($imoveis as $imovel) {?>
+      <?php if (isset($imoveis)) {
+         foreach ($imoveis as $imovel) {?>
         <div class="management">
 
           <div class="t_workers">
@@ -219,7 +220,7 @@ if(isset($_POST['accept'])) {
           </div>
         </div>
     </div>
-  <?php } ?>
+  <?php }} ?>
   </div>
 
     <!-- AO CLICAR EM EDITAR IMOVEL A PÁGINA MUDA PARA EDICAO_IMOVEL.PHP -->
@@ -233,10 +234,10 @@ if(isset($_POST['accept'])) {
 
       <!-- Gestor do imóvel -->
       <input type="hidden" name="gestor" value="<?php echo $_SESSION['funcionario']->getIdFuncionario(); ?>">
-        
+
       <!-- Título do formulário de adição do imóvel -->
       <h2>Novo Imóvel <i class="fas fa-plus-square fa-1x" style="color: #fff"></i></h2>
-      
+
       <div class="row first_info">
 
         <!-- Finalidade do imóvel -->
@@ -265,11 +266,11 @@ if(isset($_POST['accept'])) {
             </select>
           </div>
         </div>
-      
+
   <!--    </div> -->
-        
+
         <div class="row second_info">
-          
+
           <!-- Número de quartos do imóvel -->
           <div class="add_prop_box">
             <label>Número de Quartos</label>
@@ -281,9 +282,9 @@ if(isset($_POST['accept'])) {
             <label>Número de casas de Banho</label>
             <i class="fas fa-bath fa-2x" style="color: #808080"></i><input type="number" name="casasBanho" value="" class="extras_number">
           </div>
-        
+
         </div>
-        
+
         <div class="row third_info">
 
           <!-- Garagem -->
@@ -315,9 +316,9 @@ if(isset($_POST['accept'])) {
         <label>Informações sobre o imóvel</label>
         <textarea name="informacao"/></textarea>
       </div>
-        
+
       <div class="row forth_info">
-      
+
         <!-- Data de construção do imóvel -->
         <div class="add_prop_box">
           <label>Data de construção</label>
@@ -327,7 +328,7 @@ if(isset($_POST['accept'])) {
           </div>
           <input type="date" name="dataConstrucao" value=""></div>
         </div>
-        
+
         <!-- Área do imóvel -->
         <div class="add_prop_box">
         <label for="area">Área do imóvel</label>
@@ -349,7 +350,7 @@ if(isset($_POST['accept'])) {
         <label>Descrição do imovel</label>
         <textarea name="descricao" value="descrição" rows="10"/></textarea>
       </div>
-                  
+
       <!-- Estado do imóvel -->
       <div class="add_prop_box">
       <label for="estado">Estado do imóvel</label>
@@ -360,11 +361,11 @@ if(isset($_POST['accept'])) {
           <option value="Pronto a habitar">Pronto a habitar</option>
       </select></div>
       </div>
-      
+
       <div class="row fifth_info_location">
-      
+
         <!-- Ilha do imóvel -->
-        <div class="add_prop_box"> 
+        <div class="add_prop_box">
         <label>Ilha</label>
         <div class="add_prop_location">
           <i class="fas fa-map fa-2x" style="color: #808080"></i><select name="ilha" id="ilha" >
@@ -512,7 +513,7 @@ if(isset($_POST['accept'])) {
           event.preventDefault();
           $(this).next('.notifications_box1').toggle();
       });
-      
+
       // Script para alteração dos extras consoante o tipo de imóvel
       $("#tipoImovel").change(function(){
           let tipoImovel = $("#tipoImovel").val();
@@ -526,8 +527,8 @@ if(isset($_POST['accept'])) {
             $('#extras').hide();
           }
       });
-      
-      // Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha 
+
+      // Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha
       $("#ilha").change(function(){
           let ilha = $("#ilha").val();
           $.ajax({
@@ -573,7 +574,7 @@ if(isset($_POST['accept'])) {
         $("#adicionarImovel").hide();
         $("#visita").show();
       });
-      
+
       // Script para o marcador do mapa
       marker="";
       google.maps.event.addListener(map, 'click', function(event) {
@@ -598,7 +599,7 @@ if(isset($_POST['accept'])) {
         $("[name=lat]").val(coordenadas[0]);
         $("[name=lng]").val(coordenadas[1]);
       }
-      
+
       // Script para o filtro da pesquisa
       $("#filter").on("keyup", function() {
         //alert('here');
