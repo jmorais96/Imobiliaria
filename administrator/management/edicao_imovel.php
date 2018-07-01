@@ -135,7 +135,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
  //var_dump($_POST);
  $bd->editarImovel($imovel, $_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['rua'], $_POST['codPostal'], $_POST['lat'], $_POST['lng'], /*$_POST['idFreguesia'],*/ $_POST['situacao'], $_POST['estado'], $_POST['tipologia'], $_POST['quartos'], $_POST['casasBanho'], $_POST['garagem'], $_POST['piscina'], $_POST['mobilia'], $_POST['dataConstrucao'], $_POST['informacao'], $_POST['idImovel']);
 
- //header("location:manager.php");
+ header("location:manager.php");
 
 }
 
