@@ -1,6 +1,5 @@
 <?php
 
-
   // Incluir a classe Imobiliária
   require_once('../../data/imobiliaria.class.php');
 

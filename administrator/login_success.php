@@ -341,9 +341,10 @@ if (isset($_SESSION['funcionario'])) {
 
         <!-- FORMULÁRIO QUE CRIA GESTORES -->
         <div class="boxh2">
-            <h2>Adicionar gestor</h2>
+            <h2>Adicionar Novo Gestor</h2>
         </div>
-        <form class="add_manager" action="" method="post">
+       
+       <form class="add_manager" action="" method="post">
 
           <!-- Email do gestor -->
           <label>Email:<input type="email" name="email" placeholder="exemplo@exemplo.pt" value=""/></label>
@@ -355,16 +356,18 @@ if (isset($_SESSION['funcionario'])) {
           <label>Apelido:<input type="text" name="sobrenome" placeholder="Apelido" value=""/></label>
 
           <!-- Password do gestor -->
-          <label>Password:<input type="password" name="password" placeholder="Palavra passe" value=""/></label>
+          <label>Palavra-passe:<input type="password" name="password" placeholder="Escreva aqui a palavra-passe" value=""/></label>
 
           <!-- Password 'retype' do gestor -->
-          <label>Comfirmar password:<input type="password" name="retype" placeholder="Confirmar a palavra passe" value=""/></label>
+          <label>Confirmar palavra-passe:<input type="password" name="retype" placeholder="Confirmar a palavra-passe escolhida" value=""/></label>
 
           <!-- Contacto do gestor -->
-          <label>Contacto:<input type="contacto" name="contacto" placeholder="contacto" value=""/></label>
+          <label>Contacto:<input type="contacto" name="contacto" placeholder="Contacto de preferência escolhido" value=""/></label>
 
           <!-- Botão de submissão para o formulário que cria novos gestores -->
-          <input type="submit" name="submit_manager" value="criar">
+          <div class="add_prop_box add_prop_button">
+            <input type="submit" name="submit_manager" value="Adicionar gestor">
+          </div>
 
         </form>
       </div>
@@ -383,7 +386,7 @@ if (isset($_SESSION['funcionario'])) {
               <th>Apelido</th>
               <th>Email</th>
               <th>Contacto</th>
-              <th>Editar</th>
+              <th class="editar_gestor">Editar</th>
             </tr>
           </thead>
           <tbody>
@@ -424,7 +427,7 @@ if (isset($_SESSION['funcionario'])) {
 
         <!-- Formulário que edita gestores -->
         <div class="boxh2">
-            <h2>Editar gestor</h2>
+            <h2>Editar Gestor</h2>
         </div>
 
         <form class="add_manager" action="" method="post">
@@ -439,22 +442,24 @@ if (isset($_SESSION['funcionario'])) {
           <label>Apelido:<input type="text" name="sobrenome" value="<?php echo $value->getSobrenome(); ?>" placeholder=""/></label>
 
           <!-- Alteração da password do gestor -->
-          <label>Password:<input type="password" name="password" value="" placeholder=""/></label>
+          <label>Palavra-passe:<input type="password" name="password" value="" placeholder="Escreva aqui a nova palavra-passe do gestor"/></label>
 
           <!-- Confirmação da nova password do gestor -->
-          <label>Confirmar password:<input type="password" name="retype" value="" placeholder=""/></label>
+          <label>Confirmar palavra-passe:<input type="password" name="retype" value="" placeholder="Reescreva a nova palavra-passe escolhida"/></label>
 
           <!-- Novo contacto do gestor -->
           <label>Contacto:<input type="contacto" name="contacto" value="<?php echo $value->getContacto(); ?>" placeholder=""/></label>
 
           <!-- Pedido da password administrativa de modo ao admin poder efetuar as alterações -->
-          <label>Password Administrativa:<input type="password" name="passAdmin" value="" placeholder=""/ required></label>
+          <label>Password Administrativa:<input type="password" name="passAdmin" value="" placeholder="Introduza aqui a sua palavra-passe de administrador" required/></label>
 
           <!-- Id do funcionário enviado como campo 'hidden' -->
           <input type="hidden" name="id" value="<?php echo $value->getIdFuncionario(); ?>">
-
-          <input type="submit" name="edit_manager" value="editar">
+          
           <!-- Botão de submissão para o formulário que edita gestores -->
+          <div class="add_prop_box add_prop_button">
+            <input type="submit" name="edit_manager" value="editar">
+          </div>
 
         </form>
       </div>
