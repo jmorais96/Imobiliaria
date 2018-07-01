@@ -151,7 +151,7 @@ if (isset($_SESSION['funcionario'])) {
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
     <!-- Título da página -->
-    <title>Mais Imobiliária | Área administrativa</title>
+    <title>Mais Imobiliária | Área Administrativa</title>
 
   </head>
 
@@ -160,27 +160,15 @@ if (isset($_SESSION['funcionario'])) {
     <!-- HEADER/NAVBAR -->
     <div class="container-header">
     <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="index.php"><img id="icon" src="../images/logo.png"/></a>
+    
+    <!-- Logótipo da página -->
+    <a class="navbar-brand" href="login_success.php"><img id="icon" class="logo" src="../images/logo.png"/></a>
 
-    <!-- Toogler que aparecerá nos menores ecrãs -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span></button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav mx-auto">
-
-        <!-- Link de navegação "Logout" -->
-        <li class="nav-item">
-            <a class="nav-link" href="?acao=logout">Logout</a>
-        </li>
-
-        </ul>
-
-    </div>
+    <!-- Link de navegação "Encerrar sessão" -->
+    <a class="nav-link encerrar_admin" href="?acao=logout" style="margin-right: 20%; padding: 5px 50px;">ENCERRAR SESSÃO</a>
 
     </nav>
-</div>
+  </div>
 <!-- FINAL DO HEADER/NAVBAR  -->
 
 <div class="container_admin" style="margin: 0 10%;">
@@ -193,14 +181,14 @@ if (isset($_SESSION['funcionario'])) {
     <div class="nav_holder">
     </div>
     <div class="backend_admin">
-        <h1>Área de administração</h1>
+        <h1>Área de Administração</h1>
     </div>
     <div class="res_admin">
          <?php
 
             // Mensagem que aparecerá caso o login seja efetuado com sucesso
             if(isset($_SESSION['funcionario'])){
-                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'</h4>';
+                echo '<h4>Login efetuado com sucesso. Bem-vindo '.$_SESSION['funcionario']->getFullName().'!</h4>';
 
             /* Caso o admin não consiga efetuar o login é reencaminhado para a página 'index.php' do back-end */
             } else {
@@ -227,13 +215,13 @@ if (isset($_SESSION['funcionario'])) {
       Vendas por gestor:<a href="gestor.php" onclick="window.open('pdf_gestor.php');"> <button type="button" name="button">Gerar PDF</button> </a>
 
       <br>
-        Imoveis por tipo:<a href="tipo.php" onclick="window.open('pdf_tipo.php');"><button>Gerar pdf</button></a>
+        Imóveis por tipo:<a href="tipo.php" onclick="window.open('pdf_tipo.php');"><button>Gerar pdf</button></a>
       <br>
 
-      Imoveis por intervalo de preço:<a href="preco.php" onclick="window.open('pdf_preco.php');"><button>Gerar pdf</button></a>
+      Imóveis por intervalo de preço:<a href="preco.php" onclick="window.open('pdf_preco.php');"><button>Gerar pdf</button></a>
       <br>
 
-      Imoveis por local:<a href="local.php" onclick="window.open('pdf_local.php');"> <button>Gerar pdf</button></a>
+      Imóveis por local:<a href="local.php" onclick="window.open('pdf_local.php');"> <button>Gerar pdf</button></a>
       <br>
 
     </div>

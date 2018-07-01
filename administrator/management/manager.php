@@ -90,10 +90,9 @@ if(isset($_POST['accept'])) {
 
   <body>
 
-
   <!-- HEADER/NAVBAR -->
   <div class="container-header">
-  <nav class="navbar navbar-expand-lg navbar-light ">
+  <nav class="navbar navbar-expand-lg navbar-light">
 
   <!-- Logótipo da página -->
   <a class="navbar-brand" href="manager.php"><img id="icon" class="logo" src="../../images/logo.png"/></a>
@@ -102,7 +101,7 @@ if(isset($_POST['accept'])) {
   <a class="nav-link" href="?acao=logout">ENCERRAR SESSÃO</a>
 
 </nav>
- </div>
+</div>
 <!-- FINAL DO HEADER/NAVBAR  -->
 
 <div class="container_admin">
