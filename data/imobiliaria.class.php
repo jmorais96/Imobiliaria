@@ -487,7 +487,7 @@
           $sql='select destacado from destaque where idImovel = :idImovel';
           $destaque=$this->query($sql, array('idImovel' => $id['idImovel']));
 
-          $imagens=$this->getImagens($pesquisa[0]['idImovel']);
+          $imagens=$this->getImagens($id['idImovel']);
           //var_dump($imagens);
           $imoveis[] = new imovel($id['idImovel'],
           $id['gestor'],
