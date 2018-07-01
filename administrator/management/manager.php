@@ -243,7 +243,7 @@ if(isset($_POST['accept'])) {
         <!-- Finalidade do imóvel -->
         <div class="add_prop_box">
         <label>Finalidade</label>
-          <i class="fas fa-piggy-bank fa-2x" style="color: #808080"></i><select name="finalidade">
+          <i class="fas fa-piggy-bank fa-2x" style="color: #808080"></i><select name="finalidade" required>
             <?php $bd->selectFinalidade() ?>
           </select>
         </div>
@@ -251,7 +251,7 @@ if(isset($_POST['accept'])) {
         <!-- Tipo do imóvel -->
         <div class="add_prop_box">
         <div><label for="tipoImovel">Tipo de imóvel</label></div>
-          <i class="fas fa-home fa-2x" style="color: #808080"></i><select name="tipoImovel" id="tipoImovel">
+          <i class="fas fa-home fa-2x" style="color: #808080"></i><select name="tipoImovel" id="tipoImovel" required>
             <?php $bd->selectTipoImovel() ?>
           </select>
         </div>
@@ -326,21 +326,21 @@ if(isset($_POST['accept'])) {
             <div class="info-dataconstrucao">
             <img src="../../images/icons/construcao-icon-manager.png" alt="Ícone da data de construção do imóvel">
           </div>
-          <input type="date" name="dataConstrucao" value=""></div>
+          <input type="date" name="dataConstrucao" value="" required></div>
         </div>
 
         <!-- Área do imóvel -->
         <div class="add_prop_box">
         <label for="area">Área do imóvel</label>
          <div class="row"><i class="fas fa-chart-area fa-2x" style="color: #808080"></i>
-          <input type="text" name="area" id="area" placeholder="150Km2"></div>
+          <input type="text" name="area" id="area" placeholder="150Km2" required></div>
         </div>
 
         <!-- Preço do imóvel -->
         <div class="add_prop_box">
         <label for="preco">Preço do imóvel</label>
           <div class="row"><i class="fas fa-money-bill-wave fa-2x" style="color: #808080"></i>
-          <input type="text" name="preco" id="preco" placeholder="5000000€"></div>
+          <input type="text" name="preco" id="preco" placeholder="5000000€" required></div>
         </div>
 
       </div>
@@ -348,14 +348,14 @@ if(isset($_POST['accept'])) {
       <!-- Descrição do imóvel -->
       <div class="add_prop_box2">
         <label>Descrição do imovel</label>
-        <textarea name="descricao" value="descrição" rows="10"/></textarea>
+        <textarea name="descricao" value="descrição" rows="10" required /></textarea>
       </div>
 
       <!-- Estado do imóvel -->
       <div class="add_prop_box">
       <label for="estado">Estado do imóvel</label>
       <div class="row"><i class="fas fa-truck-loading fa-2x" style="color: #808080"></i>
-      <select name="estado" id="estado">
+      <select name="estado" id="estado" required>
           <option value="">Selecione um estado</option>
           <option value="Em obras">Em obras</option>
           <option value="Pronto a habitar">Pronto a habitar</option>
@@ -368,7 +368,7 @@ if(isset($_POST['accept'])) {
         <div class="add_prop_box">
         <label>Ilha</label>
         <div class="add_prop_location">
-          <i class="fas fa-map fa-2x" style="color: #808080"></i><select name="ilha" id="ilha" >
+          <i class="fas fa-map fa-2x" style="color: #808080"></i><select name="ilha" id="ilha" required >
             <?php $bd->selectIlha(); ?>
           </select></div>
         </div>
@@ -377,7 +377,7 @@ if(isset($_POST['accept'])) {
         <div class="add_prop_box">
           <label>Concelho</label>
           <div class="add_prop_location">
-            <i class="fas fa-compass fa-2x" style="color: #808080"></i><select name="concelho" id="concelho">
+            <i class="fas fa-compass fa-2x" style="color: #808080"></i><select name="concelho" id="concelho" required>
               <option value="">Selecione um concelho</option>
             </select></div>
           </div>
@@ -386,7 +386,7 @@ if(isset($_POST['accept'])) {
         <div class="add_prop_box">
           <label>Freguesia</label>
           <div class="add_prop_location">
-            <i class="fas fa-location-arrow fa-2x" style="color: #808080"></i><select name="freguesia" id="freguesia">
+            <i class="fas fa-location-arrow fa-2x" style="color: #808080"></i><select name="freguesia" id="freguesia" required>
               <option value="">Selecione uma freguesia</option>
             </select></div>
           </div>
@@ -399,7 +399,7 @@ if(isset($_POST['accept'])) {
         <div class="add_prop_box">
           <label for="morada">Morada</label>
           <i class="fas fa-road fa-2x" style="color: #808080"></i>
-          <input type="text" name="morada" id="morada_add" placeholder="Introduza aqui a morada do imóvel..."/>
+          <input type="text" name="morada" id="morada_add" placeholder="Introduza aqui a morada do imóvel..."/ required>
         </div>
 
         <!-- Código postal do imóvel -->
@@ -407,9 +407,9 @@ if(isset($_POST['accept'])) {
           <label>Código postal</label>
           <div class="row">
             <div class="info-dataconstrucao">
-            <img src="../../images/icons/codpostal-icon-manager.png" alt="Ícone do código postal do imóvel">
+            <img src="../../images/icons/codpostal-icon-manager.png" alt="Ícone do código postal do imóvel" >
           </div>
-          <input type="text" name="codPostal" placeholder="9500-503" id="codpostal_add"/></div>
+          <input type="text" name="codPostal" placeholder="9500-503" id="codpostal_add" required /></div>
         </div>
 
       </div>
@@ -426,13 +426,13 @@ if(isset($_POST['accept'])) {
         <div class="row">
         <i class="far fa-images fa-2x" style="color: #808080"></i><label>Imagem(s)</label>
         <br></div>
-        <input type="file" name="img[]" multiple="multiple">
+        <input type="file" name="img[]" multiple="multiple" required >
       </div>
 
       <!-- Latitude e longitude do imóvel -->
       <div class="add_prop_box">
-        <input type="hidden" name="lat" value="">
-        <input type="hidden" name="lng" value="">
+        <input type="hidden" name="lat" value="" required >
+        <input type="hidden" name="lng" value="" required >
       </div>
 
       <!-- Mapa-->
