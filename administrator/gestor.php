@@ -33,11 +33,11 @@ $bd = new imobiliaria("../data/config.ini");
 // Obter todos os gestores registados e guardar os mesmos numa variável 
 $gestores = $bd->getWorkers();
 
-// Procedimentos associados ao ficheiro CSV dos gestores 
+// Procedimentos associados aos pdf's estatísticos dos gestores 
 header('Content-Type: application/csv; charset=UTF-8');
 header('Content-Disposition: attachment;filename="gestor.csv";');
 
-// Abrir o ficheiro 'gestor.csv' e introduzir dados no mesmo 
+// Abrir o ficheiro 'gestor.csv' e introduzir as estatíticas no mesmo 
 $file = fopen("php://output", "w");
 
     foreach ($gestores as $value) {
