@@ -4,7 +4,7 @@
 
 /* Título da página de perfil do imóvel */
 i.fas.fa-eye.fa-1x {
-  color: #cacaca;
+  color: grey !important;
   transition: background 300ms ease-in-out;
 }
 
@@ -15,25 +15,38 @@ i.fas.fa-eye.fa-1x:hover {
 
 /* Slider do perfil do imóvel */
 .slider-wrapper {
-  margin: 0 0 100px 28%;
+  /*margin: 0 0 100px 28%;*/
+       
 }
 
 .slider-container {
-  width: 600px;
+  width: 100%;
   height: 400px;
-  margin-bottom: 25px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+ /* margin-bottom: 25px;*/
+ /* border: 2px solid rgba(255, 255, 255, 0.8);*/
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+ul {
+    margin-top: 0;
+    margin-bottom: 0;
+        padding-left: 10%;
+    padding-right: 10%;
+}
+
+.img-container {
+    background-color: #3E3E3F;
+        height: 100px;
 }
 
 .slider-container img {
   height: 100%;
   width: 100%;
+ object-fit: cover;
 }
 
 .img-container ul {
   list-style: none;
-  width: 600px;
 }
 
 .img-container ul li {
@@ -41,8 +54,8 @@ i.fas.fa-eye.fa-1x:hover {
   height: 100px;
   float: left;
   cursor: pointer;
-  margin: 3px 5px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+ /* margin: 3px 5px;
+  border: 2px solid rgba(255, 255, 255, 0.8);*/
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -75,8 +88,8 @@ i.fas.fa-eye.fa-1x:hover {
 
 /* Container do imóvel */ 
 #container_imovel {
-  background: #7f8c8d;
-  color: #fff;
+  background: lightgrey;
+  /*color: #fff;*/
 }
 
 /* Título do perfil do imóvel */
@@ -88,44 +101,64 @@ i.fas.fa-eye.fa-1x:hover {
 /* Especificações do imóvel */
 
 #sub_container {
-  padding: 70px;
+  padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+#sub_container2 {
+  padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: darkred;
+    color: white;
 }
 
 #sub_container h3 {
   padding: 10px 0;
   font-size: 1.9rem;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid darkred;
 }
 
 #sub_container p {
-  padding: 20px;
-  font-size: 1.3rem;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+ /* padding: 20px;*/
+  font-size: 3.3rem;
+ /* border: 2px solid rgba(255, 255, 255, 0.8);*/
 }
 
 /* Títulos secundários do perfil do imóvel */ 
 #sub_container h5 {
   margin-top: 30px;
   font-size: 1.5rem;
+    color: darkred;
 }
 
 .location {
-  margin: 30px 15%;
+  margin: 0px 0%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid darkred;
 }
 
 .info_second {
-  margin: 30px 5%;
+  margin: 0px 0%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid darkred;
 }
 
 
 #info_group p {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  padding: 0;
+  border: 0;
+  margin-top: 5px;
+}
+
+#info_group2 p {
+  font-size: 1rem;
   padding: 0;
   border: 0;
   margin-top: 5px;
@@ -138,11 +171,16 @@ i.fas.fa-eye.fa-1x:hover {
   margin-top: 5px;
 }
 
+ h6 {
+  font-size: 1rem;
+ color:darkred;
+}
+
 /* Ícones */
 i {margin-right: 10px;}
 
 /* Container das opções secundárias */
-.left_info_container {margin-top: 20px;}
+.left_info_container {margin-top: 20px; width: 30%}
 .left_info_container img {height: 2em; margin: 0 10px 0 0;}
 div.info-piscina, div.info-codpostal, div.info-dataconstrucao {
   display: flex; 
@@ -151,21 +189,26 @@ div.info-piscina, div.info-codpostal, div.info-dataconstrucao {
 }
 
 #down_container .left_info_container {
-  padding: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  /*padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.8);*/
 }
 
 /* Container dos elementos da parte inferior da página (informações secundárias e mapa) */
 #down_container {
   display: flex;
   justify-content: space-between;
+        border-bottom: 2px solid darkred;
+padding-bottom: 10px;
 }
 
 /* Mapa */
 #down_container .map {
-  margin: 22px 0 0 20px;
-  height: 500px;
-  width: 800px;
+      /* margin: 0px 0 0 0px; */
+    height: 650px;
+    width: 100%;
+    margin-left: 20px;
+    padding-left: 20px;
+    margin-top: 10px;
 }
 
 /* FORMULÁRIO DE VISITA */
@@ -267,3 +310,8 @@ div.info-piscina, div.info-codpostal, div.info-dataconstrucao {
    }
 
    }
+
+
+.text-center {
+    text-align: left!important;
+}
