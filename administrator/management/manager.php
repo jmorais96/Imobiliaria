@@ -1,6 +1,5 @@
 <?php
 
-
   // Incluir a classe Imobiliária
   require_once('../../data/imobiliaria.class.php');
 
@@ -256,7 +255,7 @@ if(isset($_POST['accept'])) {
           </select>
         </div>
 
-        <div id="extras">
+      <!--  <div id="extras">-->
 
           <!-- Tipologia do imóvel -->
           <div class="add_prop_box">
@@ -267,7 +266,7 @@ if(isset($_POST['accept'])) {
           </div>
         </div>
       
-      </div>
+  <!--    </div> -->
         
         <div class="row second_info">
           
@@ -312,7 +311,7 @@ if(isset($_POST['accept'])) {
         </div>
 
       <!-- Informações sobre o imóvel -->
-      <div class="add_prop_box">
+      <div class="add_prop_box2">
         <label>Informações sobre o imóvel</label>
         <textarea name="informacao"/></textarea>
       </div>
@@ -346,7 +345,7 @@ if(isset($_POST['accept'])) {
       </div>
 
       <!-- Descrição do imóvel -->
-      <div class="add_prop_box">
+      <div class="add_prop_box2">
         <label>Descrição do imovel</label>
         <textarea name="descricao" value="descrição" rows="10"/></textarea>
       </div>

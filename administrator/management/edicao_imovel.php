@@ -305,7 +305,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
         </div>
 
         <!-- Informação sobre do imóvel -->
-        <div class="add_prop_box">
+        <div class="add_prop_box2">
           <label>Informações sobre o imóvel</label>
           <textarea name="informacao"/><?php echo $imovel->getInformacao(); ?></textarea>
         </div>
@@ -339,17 +339,18 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
       </div>
 
           <!-- Descrição do imóvel -->
-          <div class="add_prop_box">
+          <div class="add_prop_box2">
           <label>Descricao:</label>
           <textarea name="descricao" value="descrição" rows="10"/><?php echo $imovel->getDescricao(); ?></textarea>
 
           <!-- Estado do imóvel -->
-          <div class="add_prop_box">
+          <div class="add_prop_box2">
             <label for="estado">Estado do imóvel</label>
             <div class="row"><i class="fas fa-truck-loading fa-2x" style="color: #808080"></i>
             <select name="estado" id="estado">
                 <option value="<?php echo $imovel->getEstado();?>"><?php echo $imovel->getEstado();?></option>
                 <option value="Pronto a habitar">Pronto a habitar</option>
+                <option value="Em obras">Em obras</option>
             </select></div>
           </div>
 

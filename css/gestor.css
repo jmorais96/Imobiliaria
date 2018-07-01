@@ -76,7 +76,8 @@ input {
     border-radius: 5px;
 }
 
-.add_prop_button {text-align: center;}
+.add_prop_button {/*text-align: center;*/f}
+
 input[type="submit"] {
     margin: 20px 0;
     width: 200px;
@@ -585,23 +586,25 @@ select {
     text-transform: none;
     background-color: lightgrey;
     height: 35px;
+    width: 70%;
 }
+
 
 .first_info {
     display: flex;
-    justify-content: space-between;
+  /*  justify-content: space-between;*/
     margin: 0 5%;
 }
 
 .second_info {
     display: flex;
-    justify-content: space-around;
+  /*  justify-content: space-around;*/
     margin: 20px 5%;
 }
 
 .third_info {
     display: flex;
-    justify-content: space-between;
+  /*  justify-content: space-around;*/
     margin: 20px 5%;
 }
 
@@ -624,6 +627,11 @@ select {
     color: #808080;
 }
 
+.row {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
 #area, #preco {width: 150px;}
 
 input.extras_number {
@@ -636,7 +644,7 @@ input.extras_number {
 }
 
 input {
-    width: 20%;
+    width: 80%;
 }
 
 textarea {
@@ -646,14 +654,15 @@ textarea {
 
 .fifth_info_location {
     display: flex;
-    justify-content: space-between;
-    margin: 20px 3%;
+   /* justify-content: space-between;*/
+  /*  margin: 20px 3%;*/
+    
 }
 
 .sixth_info {
     display: flex;
-    justify-content: space-around;
-    margin: 20px 5%;
+   /* justify-content: space-between;*/
+   /* margin: 20px 5%;*/
 }
 
 .sixth_info img {
@@ -664,7 +673,7 @@ textarea {
     color: #808080;
 }
 
-.sixth_info #morada_add {width: 300px;}
+.sixth_info #morada_add {width: 70%;}
 .sixth_info #codpostal_add {width: 80px;}
 
 .add_prop_location {
@@ -675,6 +684,15 @@ textarea {
 .add_prop_box {
     margin-top: 10px;
     margin-bottom: 20px;
+    width: 30%;
+    margin-right: 3%;
+}
+
+.add_prop_box2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+
 }
 
 .add_prop_box label {

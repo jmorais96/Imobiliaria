@@ -215,8 +215,14 @@ h7 {width: 20%;}
   margin-top: 20px;
   font-size: 1.3rem;
   background-color: #A9A9A9;
-  width: 350px;
+  width: 450px;
+  cursor: pointer;
   color: #fff;
+  transition: background 300ms ease-in-out;
+}
+
+#num_notifications:hover {
+   background-color: rgb(73, 73, 73);
 }
 
 #num_notifications1 {
@@ -227,8 +233,8 @@ h7 {width: 20%;}
   align-items: center;
   font-size: 1.3rem;
   width: 350px;
-  background-color: rgb(73, 73, 73);
-  color: #acac;
+  background-color: #A9A9A9;
+  color: #fff;
 }
 
 #notifications_box {
@@ -315,4 +321,41 @@ flex-direction: row;
 
 a.imovel_proposto {
     text-decoration: none;
+}
+
+.add_manager {margin-top: 10px;}
+
+.add_prop_box {text-align: center;}
+.add_prop_button input[type="submit"] {
+    margin: 20px 0;
+    width: 200px;
+    padding: 20px;
+    font-size: 1.2rem;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 0px !important;
+    line-height: 0;
+    text-transform: uppercase;
+    transition: background 300ms ease-in-out;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    background: darkred;
+}
+
+button.edit {
+    padding: 20px;
+    margin-left: 25%;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 0 !important;
+    text-transform: capitalize;
+    line-height: 0;
+    transition: background 300ms ease-in-out;
+}
+
+button.edit:hover {
+    cursor: pointer;
+    background: darkred;
 }
