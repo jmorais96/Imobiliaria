@@ -993,6 +993,9 @@
 
     public function eliminarImovel($id){
 
+      $sql ='DELETE from destaque where idImovel = :idImovel';
+      $this->query($sql, array('idImovel' => $id ));
+
       $sql ='DELETE from extras where idImovel = :idImovel';
       $this->query($sql, array('idImovel' => $id ));
 
