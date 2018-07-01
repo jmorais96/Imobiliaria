@@ -181,7 +181,7 @@
   <div id="container_imovel">
 
     <!-- Título da página / nome e informação básica do imóvel -->
-      <h2 class="text-center" style="margin-bottom: 10px"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> € 
+      <h2 class="text-center"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> €</h2> 
       
       <?php if (isset($_SESSION['cliente'])) { ?><a href="#"></a><i title="Marcar visita ao imóvel" class="fas fa-eye fa-1x" id="atalho_marcar_visita"></i></h2><?php } ?>
 
