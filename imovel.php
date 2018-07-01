@@ -179,8 +179,10 @@
 
   <!-- PERFIL DO IMÓVEL -->
   <div id="container_imovel">
+    
+    <div id="sub_container2">
 
-    <!-- Título da página / nome e informação básica do imóvel -->
+      <!-- Título da página / nome e informação básica do imóvel -->
       <h2 class="text-center" style="margin-bottom: 10px"><?php echo $imovel->getTipoImovel();?> | <?php echo $imovel->getRua();?> | <?php echo $imovel->getPreco();?> € 
       
       <?php if (isset($_SESSION['cliente'])) { ?><a href="#"></a><i title="Marcar visita ao imóvel" class="fas fa-eye fa-1x" id="atalho_marcar_visita"></i></h2><?php } ?>
@@ -280,24 +282,24 @@
     <div class="left_info_container">
 
       <!-- Rua do imóvel -->
-      <span id="info_group">
-      <h5>Rua do imóvel:</h5>
+      <span id="info_group2">
+      <h6>Rua do imóvel:</h6>
         <p><i class="fas fa-road fa-1x"></i><?php echo $imovel->getRua(); ?>
         <br>
       <div class="info-codpostal">
-        <img src="images/icons/codpostal-icon.png" alt=""><p>Código postal: <?php echo $imovel->getCodPostal(); ?></p>
+        <img src="images/icons/codpostal-icon-manager.png" alt=""><p>Código postal: <?php echo $imovel->getCodPostal(); ?></p>
       </div>
       </span>
 
       <!-- Área do imóvel -->
       <span id="info_group">
-      <h5>Área total do imóvel:</h5>
+      <h6>Área total do imóvel:</h6>
         <p><i class="fas fa-chart-area fa-1x"></i><?php echo $imovel->getArea(); ?></p>
       </span>
 
       <!-- Tipologia do imóvel -->
       <span id="info_group">
-      <h5>Tipologia:</h5>
+      <h6>Tipologia:</h6>
         <p><i class="fas fa-building fa-1x"></i>
         <?php if ($imovel->getTipologia()!=NULL) { ?>
         <?php echo $imovel->getTipologia(); ?><br>
@@ -306,7 +308,7 @@
 
       <!-- Número de quartos do imóvel -->
       <span id="info_group">
-      <h5>Número de quartos:</h5>
+      <h6>Número de quartos:</h6>
         <p><i class="fas fa-bed fa-1x"></i>
         <?php if ($imovel->getQuartos()!=NULL) { ?>
         <?php echo $imovel->getQuartos(); ?> quartos
@@ -316,7 +318,7 @@
       <!-- Número de casas de banho do imóvel -->
       <?php if ($imovel->getCasasBanho()!=NULL) { ?>
       <span id="info_group">
-      <h5>Número de casas de banho:</h5>
+      <h6>Número de casas de banho:</h6>
         <p><i class="fas fa-bath fa-1x"></i>
         <?php echo $imovel->getCasasBanho(); ?> casas de banho
         <?php } ?></p>
@@ -325,7 +327,7 @@
       <!-- Verificar se o imóvel possui garagem -->
       <?php if ($imovel->getGaragem()!=NULL) { ?>
       <span id="info_group">
-        <h5>Garagem:</h5>
+        <h6>Garagem:</h6>
         <p><i class="fas fa-warehouse fa-1x"></i>
         <?php echo $imovel->getGaragem(); ?>
         <?php } ?>
@@ -334,7 +336,7 @@
       <!-- Verificar se o imóvel possui piscina -->
       <?php if ($imovel->getPiscina()!=NULL) { ?>
       <span id="info_group">
-      <h5>Piscina:</h5>
+          <h6>Piscina:</h6>
       <div class="info-piscina">
         <img src="images/icons/piscina-icon.png" alt="Ícone da piscina">
           <p><?php echo $imovel->getPiscina(); ?>
@@ -345,7 +347,7 @@
       <!-- Verificar se o imóvel possui mobília -->
       <?php if ($imovel->getMobilia()!=NULL) { ?>
       <span id="info_group">
-      <h5>Mobilado:</h5>
+      <h6>Mobilado:</h6>
         <p><i class="fas fa-box fa-1x"></i>
         <?php echo $imovel->getMobilia(); ?>
         <?php } ?></p>
@@ -354,7 +356,7 @@
       <!-- Data de construção do imóvel -->
       <?php if ($imovel->getDataConstrucao()!=NULL) { ?>
       <span id="info_group">
-      <h5>Data de construção:</h5>
+      <h6>Data de construção:</h6>
       <div class="info-dataconstrucao">
         <img src="images/icons/construcao-icon.png" alt="Ícone da data de construção">
           <p><?php echo $imovel->getDataConstrucao(); ?>
@@ -365,7 +367,7 @@
       <!-- Verificar se o imóvel possui informação -->
       <?php if ($imovel->getInformacao()!=NULL) { ?>
         <span id="info_group">
-        <h5>Mobilado:</h5>
+        <h6>Mobilado:</h6>
         <p><i class="fas fa-box fa-1x"></i>
         <?php echo $imovel->getInformacao(); ?>
         <?php } ?>
