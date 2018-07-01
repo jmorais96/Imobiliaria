@@ -201,7 +201,7 @@
             
             ?>
 
-              <li><img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imagem->getNomeImagem(); ?>" alt="Imagem secundária do imóvel"></li>
+              <li><img src="<?php echo "imoveis/" . $imovel->getIdImovel() . "/" . $imagem->getNomeImagem(); ?>" alt="Imagens da galeria do imóvel"></li>
 
             <?php } ?>
 
