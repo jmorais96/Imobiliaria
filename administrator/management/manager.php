@@ -256,66 +256,71 @@ if(isset($_POST['accept'])) {
           </select>
         </div>
 
-      <!--  <div id="extras">-->
+     
+     </div> 
+     
+     
+      <div id="extras">
 
-          <!-- Tipologia do imóvel -->
-          <div class="add_prop_box">
-            <label>Tipologia</label>
-            <i class="fas fa-building fa-2x" style="color: #808080"></i><select name="tipologia" id="tipologia">
-              <?php $bd->selectTipologia() ?>
-            </select>
-          </div>
+        <!-- Tipologia do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Tipologia</label></div>
+          <select name="tipologia" id="tipologia">
+            <?php $bd->selectTipologia() ?>
+          </select>
         </div>
 
-  <!--    </div> -->
-
-        <div class="row second_info">
-
-          <!-- Número de quartos do imóvel -->
-          <div class="add_prop_box">
-            <label>Número de Quartos</label>
-            <i class="fas fa-bed fa-2x" style="color: #808080"></i><input type="number" name="quartos" value="" class="extras_number">
-          </div>
-
-          <!-- Numero de casas de banho do imóvel -->
-          <div class="add_prop_box">
-            <label>Número de casas de Banho</label>
-            <i class="fas fa-bath fa-2x" style="color: #808080"></i><input type="number" name="casasBanho" value="" class="extras_number">
-          </div>
-
+        <!-- Numero de quartos do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Numero de Quartos</label></div>
+          <input type="number" name="quartos" value="">
         </div>
 
-        <div class="row third_info">
-
-          <!-- Garagem -->
-          <div class="add_prop_box add_prop_box_divisoes">
-            <label>Garagem</label>
-            <div class="row"><i class="fas fa-warehouse fa-2x" style="color: #808080"></i>
-            <input type="checkbox" name="garagem" value="garagem"></div>
-          </div>
-
-          <!-- Piscina -->
-          <div class="add_prop_box add_prop_box_divisoes">
-            <label>Piscina</label>
-            <div class="row">
-            <div class="info-piscina">
-            <img src="../../images/piscina-icon-manager.png" alt="Ícone da piscina"></div><input type="checkbox" name="piscina" value="piscina"></div>
-          </div>
-
-          <!-- Mobília -->
-          <div class="add_prop_box add_prop_box_divisoes">
-            <label>Mobilada</label>
-            <div class="row"><i class="fas fa-box fa-2x" style="color: #808080"></i>
-            <input type="checkbox" name="mobilia" value="mobilia"></div>
-          </div>
-
+        <!-- Numero de casas de Banho do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Numero de casas de Banho</label></div>
+          <input type="number" name="casasBanho" value="">
         </div>
 
-      <!-- Informações sobre o imóvel -->
-      <div class="add_prop_box2">
-        <label>Informações sobre o imóvel</label>
-        <textarea name="informacao"/></textarea>
+        <!-- Garagem  -->
+        <div class="add_prop_box">
+          <div><label>Garagem</label></div>
+          <input type="checkbox" name="garagem" value="garagem">
+        </div>
+
+        <!-- Piscina  -->
+        <div class="add_prop_box">
+          <div><label>Piscina</label></div>
+          <input type="checkbox" name="piscina" value="piscina">
+        </div>
+
+        <!-- Mobilia  -->
+        <div class="add_prop_box">
+          <div><label>Mobilada</label></div>
+          <input type="checkbox" name="mobilia" value="mobilia">
+        </div>
+
+        <!-- Data de Construção do Imovel  -->
+        <div class="add_prop_box">
+          <div><label>Data de Construção</label></div>
+          <input type="date" name="dataConstrucao" value="">
+        </div>
+
+        <!-- Informação sobre do imóvel -->
+        <div class="add_prop_box">
+          <div><label>Informação do imovel</label></div><textarea name="informacao"/></textarea>
+        </div>
+
       </div>
+     
+     
+     
+
+
+
+       
+
+      
 
       <div class="row forth_info">
 

@@ -785,7 +785,7 @@
       }
 
 
-      public function registarGestor($mail, $nome, $sobrenome, $pass, $contact){
+      public function registarGestor($mail, $pass, $nome, $sobrenome, $contact){
 
         $sql = 'SELECT idTipoUser FROM tipo_user WHERE tipo = :tipo';
         $tipo = $this->query($sql, array(":tipo" => "Gestor"));
