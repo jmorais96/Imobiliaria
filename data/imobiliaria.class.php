@@ -160,7 +160,11 @@
         }else {
           $imovel="";
         }
-        echo json_encode($resultado);
+
+        if (isset($resultado)){
+          echo json_encode($resultado);
+        }
+
 
 
     }
@@ -926,7 +930,7 @@
       $arr = array('gestor' => $campos['gestor'] , 'finalidade' => $campos['finalidade'], 'tipoImovel' => $campos['tipoImovel'], 'area' => $campos['area'], 'preco' => $campos['preco'], 'descricao' => $campos['descricao'],
        'morada' => $campos['morada'], 'codPostal' => $campos['codPostal'], 'lat' => $campos['lat'], 'lng' => $campos['lng'], 'freguesia' => $campos['freguesia'], 'estado' => $campos['estado']);
 
-      
+
       $this->query($sql, $arr);
 
       $sql='SELECT idImovel from imovel order by idImovel desc limit 1';

@@ -1,6 +1,6 @@
 <!-- Adicionar a classe imóvel -->
 <?php
-    
+
     // Incluir a classe Imovel
     require_once('data/imovel.class.php');
 
@@ -9,14 +9,14 @@
 
     // Incluir a classe Imagem
     require_once('data/imagem.class.php');
-    
-    // Iniciar a sessão 
+
+    // Iniciar a sessão
     session_start();
 
-    // Incluir a funcionalidade de logout 
+    // Incluir a funcionalidade de logout
     require_once('assets/logout.php');
 
-    // Ligação à base de dados 
+    // Ligação à base de dados
     $bd = new imobiliaria('data/config.ini');
 
     // Operação que permite ao user (cliente) iniciar sessão
@@ -49,7 +49,7 @@
     <!-- Ficheiros JavaScript -->
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
-    
+
     <!-- Script associado ao geocode -->
     <script>
     <?php
@@ -195,7 +195,7 @@
                 <select id="index" name="tipoImovel">
                    <?php $bd->selectTipoImovel(); ?>
                 </select>
-                
+
                 <!-- Tipologia de imóvel procurada -->
                 <select id="index" name="tipologia">
                     <?php $bd->selectTipologia(); ?>
@@ -234,9 +234,9 @@
 
     </div>
     <!-- FINAL DA PESQUISA DO ÍNDEX -->
-  
+
   </div>
-    
+
     <!-- FOOTER -->
     <footer>
         <div class="container_footer">
@@ -302,13 +302,13 @@
                 }
                 });
             });
-            
+
             // Acesso aos imóveis em destaque
             <?php $bd->destaque(); ?>
-            
-            // Script associado ao formulário de pesquisa 
+
+            // Script associado ao formulário de pesquisa
             $("#encontrar").click(function() {
-              let sql="select * from todosimoveis";
+              let sql="SELECT * FROM todosimoveis inner join freguesia USING (idFreguesia) INNER JOIN concelho USING(idconcelho) INNER JOIN ilha USING (idIlha)";
               //alert("here");
               let condicoes=[];
               let valores=[];
@@ -330,10 +330,21 @@
                 valores['tipologia']=$("[name= tipologia ]").val();
               }
 
-              if ($("[name= freguesia ]").val()) {
+              if (($("[name= freguesia ]").val()) && $("[name= freguesia ]").val()!="Selecione uma freguesia" ) {
                 condicoes.push("freguesia = :freguesia");
                 valores['freguesia']=$("[name= freguesia ]").val();
               }
+
+              if (($("[name= concelho ]").val()) && $("[name= concelho ]").val()!="Selecione um concelho" ) {
+                condicoes.push("idConcelho = :concelho");
+                valores['concelho']=$("[name= concelho ]").val();
+              }
+
+              if (($("[name= ilha ]").val()) && $("[name= ilha ]").val()!="Selecione uma ilha" ) {
+                condicoes.push("idIlha = :ilha");
+                valores['ilha']=$("[name= ilha ]").val();
+              }
+
               if ($("[name= preco ]").val()) {
                 condicoes.push("preco <= :preco");
                 valores['preco']=$("[name= preco ]").val();
@@ -382,5 +393,5 @@
 
     <!-- Resposta ao pedido AJAX associado à pesquisa -->
     <script type="text/javascript" id="resposta"></script>
-    
+
 </html>
