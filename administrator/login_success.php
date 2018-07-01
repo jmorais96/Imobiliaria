@@ -160,7 +160,7 @@ if (isset($_SESSION['funcionario'])) {
     <!-- HEADER/NAVBAR -->
     <div class="container-header">
     <nav class="navbar navbar-expand-lg navbar-light">
-    
+
     <!-- Logótipo da página -->
     <a class="navbar-brand" href="login_success.php"><img id="icon" class="logo" src="../images/logo.png"/></a>
 
@@ -210,35 +210,35 @@ if (isset($_SESSION['funcionario'])) {
 
     <!-- SECÇÃO DAS ESTATÍSITICAS -->
     <div id="London" class="tabcontent">
-      
+
       <div class="row pdf_first_row">
-        
+
         <div class="pdf_box">
-          Vendas por gestor:<a href="gestor.php" onclick="window.open('pdf_gestor.php');"> 
+          Vendas por gestor:<a href="gestor.php" onclick="window.open('pdf_gestor.php');">
           <button type="button" name="button">Gerar PDF</button> </a>
         </div>
-        
+
         <div class="pdf_box">
-          Imóveis por tipo:<a href="tipo.php" onclick="window.open('pdf_tipo.php');"> 
+          Imóveis por tipo:<a href="tipo.php" onclick="window.open('pdf_tipo.php');">
           <button>Gerar PDF</button></a>
         </div>
-      
+
       </div>
-      
+
       <div class="row pdf_second_row">
-      
+
       <div class="pdf_box">
         Imóveis por preço:<a href="preco.php" onclick="window.open('pdf_preco.php');">
         <button>Gerar PDF</button></a>
       </div>
 
       <div class="pdf_box">
-        Imóveis por local:<a href="local.php" onclick="window.open('pdf_local.php');"> 
+        Imóveis por local:<a href="local.php" onclick="window.open('pdf_local.php');">
         <button>Gerar PDF</button></a>
       </div>
-      
+
       </div>
-    
+
     </div>
     <!-- FINAL SECÇÃO DAS ESTATÍSITICAS -->
 
@@ -258,7 +258,7 @@ if (isset($_SESSION['funcionario'])) {
         <!-- Notificações dos imóveis -->
         <p id="num_notifications" class="imoveis_pendentes_msg">Número de imóveis pendentes: <?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></p>
         <p id="num_notifications1">Número de imóveis pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></p>
-        
+
         <div id="notifications_box">
           <?php
 
@@ -270,15 +270,15 @@ if (isset($_SESSION['funcionario'])) {
 
           <!-- Notificação associada a cada imóvel e detalhes do mesmo -->
           <div class="notification">
-          
-          <a href="../p_imovel.php/id=pendente" class="imovel_proposto">
-          
+
+          <a href="../imovel.php/id=pendente" class="imovel_proposto">
+
           <div class="thumbnail_notification">
-            
+
           <div class="thumb_img_notification">
               <img src="../imoveis/<?php echo $pendente->getIdImovel(); ?>/<?php echo $pendente->getNomeImagemPrincipal(); ?>" alt="Imagem principal do imóvel">
             </div>
-            
+
             <div class="thumbnail_info_notification">
               <p><i class="fas fa-piggy-bank fa-1x" style="color: #fff"></i> Finalidade: <?php echo $pendente->getFinalidade(); ?></p>
               <p><i class="fas fa-map fa-1x" style="color: #fff"></i> Localização: <?php echo $pendente->getIlha(); ?> - <?php echo $pendente->getConcelho(); ?> - <?php echo $pendente->getFreguesia(); ?></p>
@@ -286,7 +286,7 @@ if (isset($_SESSION['funcionario'])) {
               <p><i class="fas fa-money-bill-wave fa-1x" style="color: #fff"></i> Preço: <?php echo $pendente->getPreco(); ?></p>
             </div>
           </div>
-        
+
         </a>
 
           <div id="feature_aprovation">
@@ -310,9 +310,9 @@ if (isset($_SESSION['funcionario'])) {
 
             foreach ($destaque as $destaque){ ?>
 
-          <a class="imovel_proposto" href="../p_imovel.php?id=<?php echo $destaque->getIdImovel(); ?>">
+          <a class="imovel_proposto" href="../imovel.php?id=<?php echo $destaque->getIdImovel(); ?>">
               <div class="thumbnail_management">
-              
+
               <div class="thumb_img_management">
                 <img src="../imoveis/<?php echo $destaque->getIdImovel(); ?>/<?php echo $destaque->getNomeImagemPrincipal(); ?>" alt="Imagem principal do imóvel">
               </div>
@@ -332,7 +332,7 @@ if (isset($_SESSION['funcionario'])) {
     </div>
 
     <!-- SECÇÃO DOS IMÓVEIS PROPOSTOS PARA DESTAQUE -->
-    
+
     <!-- - - - - - - - - - - - - - - - - - - - - - -->
 
     <!-- SECÇÃO DA ADIÇÃO DE NOVOS GESTORES -->
