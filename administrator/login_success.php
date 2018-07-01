@@ -208,7 +208,7 @@ if (isset($_SESSION['funcionario'])) {
       <button class="tablinks" onclick="openCity(event, 'Madrid')" >Edição de Gestores</button>
     </div>
 
-    <!-- Secção das estatísticas -->
+    <!-- SECÇÃO DAS ESTATÍSITICAS -->
     <div id="London" class="tabcontent">
       
       <div class="row pdf_first_row">
@@ -240,8 +240,11 @@ if (isset($_SESSION['funcionario'])) {
       </div>
     
     </div>
+    <!-- FINAL SECÇÃO DAS ESTATÍSITICAS -->
 
-    <!-- Secção dos imóveis propostos -->
+    <!-- - - - - - - - - - - - - - - - - -->
+
+    <!-- SECÇÃO DOS IMÓVEIS PROPOSTOS PARA DESTAQUE -->
     <div id="Paris" class="tabcontent">
       <div id="notifications">
 
@@ -253,8 +256,9 @@ if (isset($_SESSION['funcionario'])) {
         ?>
 
         <!-- Notificações dos imóveis -->
-        <button id="num_notifications">Pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></button>
-        <button id="num_notifications1">Pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></button>
+        <p id="num_notifications" class="imoveis_pendentes_msg">Número de imóveis pendentes: <?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></p>
+        <p id="num_notifications1">Número de imóveis pendentes:<?php if (is_array($propostos)){echo count($propostos);}else{echo "0";} ?></p>
+        
         <div id="notifications_box">
           <?php
 
@@ -266,18 +270,25 @@ if (isset($_SESSION['funcionario'])) {
 
           <!-- Notificação associada a cada imóvel e detalhes do mesmo -->
           <div class="notification">
-          <a href="../p_imovel.php/id=pendente">
+          
+          <a href="../p_imovel.php/id=pendente" class="imovel_proposto">
+          
           <div class="thumbnail_notification">
-            <div class="thumb_img_notification">
-              <img src="../imoveis/<?php echo $pendente->getIdImovel(); ?>/<?php echo $pendente->getNomeImagemPrincipal(); ?>" alt="">
+            
+          <div class="thumb_img_notification">
+              <img src="../imoveis/<?php echo $pendente->getIdImovel(); ?>/<?php echo $pendente->getNomeImagemPrincipal(); ?>" alt="Imagem principal do imóvel">
             </div>
+            
             <div class="thumbnail_info_notification">
-              <p> Finalidade: <?php echo $pendente->getFinalidade(); ?></p>
-              <p><?php echo $pendente->getIlha(); ?> - <?php echo $pendente->getConcelho(); ?> - <?php echo $pendente->getFreguesia(); ?></p>
-              <p><?php echo $pendente->getRua(); ?></p>
-              <p><?php echo $pendente->getPreco(); ?></p>
+              <p><i class="fas fa-piggy-bank fa-1x" style="color: #fff"></i> Finalidade: <?php echo $pendente->getFinalidade(); ?></p>
+              <p><i class="fas fa-map fa-1x" style="color: #fff"></i> Localização: <?php echo $pendente->getIlha(); ?> - <?php echo $pendente->getConcelho(); ?> - <?php echo $pendente->getFreguesia(); ?></p>
+              <p><i class="fas fa-road fa-1x" style="color: #fff"></i> Morada: <?php echo $pendente->getRua(); ?></p>
+              <p><i class="fas fa-money-bill-wave fa-1x" style="color: #fff"></i> Preço: <?php echo $pendente->getPreco(); ?></p>
             </div>
-          </div></a>
+          </div>
+        
+        </a>
+
           <div id="feature_aprovation">
             <a class="aprove_feature" href="destaque.php?id=<?php echo $pendente->getIdImovel(); ?>"><button type="button" >v</button></a>
             <a class="disaprove_feature" href="n_destaque.php?id=<?php echo $pendente->getIdImovel(); ?>"><button type="button" >x</button></a>
@@ -299,16 +310,18 @@ if (isset($_SESSION['funcionario'])) {
 
             foreach ($destaque as $destaque){ ?>
 
-          <a href="../p_imovel.php?id=<?php echo $destaque->getIdImovel(); ?>">
-            <div class="thumbnail_management">
+          <a class="imovel_proposto" href="../p_imovel.php?id=<?php echo $destaque->getIdImovel(); ?>">
+              <div class="thumbnail_management">
+              
               <div class="thumb_img_management">
-                <img src="../imoveis/<?php echo $destaque->getIdImovel(); ?>/<?php echo $destaque->getNomeImagemPrincipal(); ?>" alt="">
+                <img src="../imoveis/<?php echo $destaque->getIdImovel(); ?>/<?php echo $destaque->getNomeImagemPrincipal(); ?>" alt="Imagem principal do imóvel">
               </div>
+
               <div class="thumbnail_info_management">
-                <p> Finalidade: <?php echo $destaque->getFinalidade(); ?></p>
-                <p><?php echo $destaque->getIlha(); ?> - <?php echo $destaque->getConcelho(); ?> - <?php echo $destaque->getFreguesia(); ?></p>
-                <p><?php echo $destaque->getRua(); ?></p>
-                <p><?php echo $destaque->getPreco(); ?></p>
+                <p><i class="fas fa-piggy-bank fa-1x" style="color: #fff"></i> Finalidade: <?php echo $destaque->getFinalidade(); ?></p>
+                <p><i class="fas fa-map fa-1x" style="color: #fff"></i> Localização: <?php echo $destaque->getIlha(); ?> - <?php echo $destaque->getConcelho(); ?> - <?php echo $destaque->getFreguesia(); ?></p>
+                <p><i class="fas fa-road fa-1x" style="color: #fff"></i> Morada: <?php echo $destaque->getRua(); ?></p>
+                <p><i class="fas fa-money-bill-wave fa-1x" style="color: #fff"></i> Preço: <?php echo $destaque->getPreco(); ?>€</p>
               </div>
             </div>
           </a>
@@ -317,6 +330,12 @@ if (isset($_SESSION['funcionario'])) {
 
       </div>
     </div>
+
+    <!-- SECÇÃO DOS IMÓVEIS PROPOSTOS PARA DESTAQUE -->
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - -->
+
+    <!-- SECÇÃO DA ADIÇÃO DE NOVOS GESTORES -->
     <div id="Tokyo" class="tabcontent">
       <div class="admin_container">
 
