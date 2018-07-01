@@ -121,7 +121,7 @@ if (isset($_POST['mobilia'])) {
 if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstrucao();
  if($_POST['informacao']=="")$_POST['informacao']=$imovel->getInformacao();
 
- //var_dump($_POST);
+ var_dump($_POST);
  $bd->editarImovel($imovel, $_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['rua'], $_POST['codPostal'], $_POST['lat'], $_POST['lng'], /*$_POST['idFreguesia'],*/ $_POST['situacao'], $_POST['estado'], $_POST['tipologia'], $_POST['quartos'], $_POST['casasBanho'], $_POST['garagem'], $_POST['piscina'], $_POST['mobilia'], $_POST['dataConstrucao'], $_POST['informacao'], $_POST['idImovel']);
 
  //header("location:manager.php");
@@ -225,25 +225,25 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
     <!-- AO CLICAR NO BOTAO EDITAR IMOVEL -->
     <div id="<?php echo $imovel->getIdImovel(); ?>" class="tabcontent">
       <div class="admin_container">
-          
+
         <!-- Título do formulário de edição de imóveis -->
         <h2 class="editar-titulo">Editar Imóvel <i class="far fa-edit fa-1x"></i></h2>
-          
+
         <!-- - - - - - - - - - - - - - - - - -->
         <!-- FORMULÁRIO DE EDIÇÃO DE IMÓVEIS -->
         <!-- - - - - - - - - - - - - - - - - -->
         <form action="" method="post">
 
           <div class="row first_info">
-          
+
           <!-- Finalidade do imóvel -->
           <div class="add_prop_box">
-            <label>Finalidade:</label> 
+            <label>Finalidade:</label>
             <i class="fas fa-piggy-bank fa-2x" style="color: #808080"></i><select name="finalidade">
               <?php  $bd->selectFinalidade(); ?>
-            </select> 
+            </select>
           </div>
-          
+
           <!-- Tipo do imóvel -->
           <div class="add_prop_box">
             <label>Tipo de imóvel:</label>
@@ -251,7 +251,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
             <?php  $bd->selectTipoImovel(); ?>
           </select>
           </div>
-          
+
           <!-- Tipologia do imóvel -->
           <div class="add_prop_box">
           <label>Tipologia:</label>
@@ -259,11 +259,11 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
             <?php  $bd->selectTipologia() ?>
           </select>
           </div>
-         
+
         </div>
 
         <div class="row second_info">
-          
+
           <!-- Número de quartos do imóvel -->
           <div class="add_prop_box">
             <label>Número de Quartos</label>
@@ -311,7 +311,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
         </div>
 
         <div class="row forth_info">
-      
+
         <!-- Data de construção do imóvel -->
         <div class="add_prop_box">
           <label>Data de construção</label>
@@ -321,7 +321,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
           </div>
           <input type="date" name="dataConstrucao" value="<?php echo $imovel->getDataConstrucao();?>" /></div>
         </div>
-        
+
         <!-- Área do imóvel -->
         <div class="add_prop_box">
         <label for="area">Área do imóvel</label>
@@ -337,7 +337,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
         </div>
 
       </div>
-          
+
           <!-- Descrição do imóvel -->
           <div class="add_prop_box">
           <label>Descricao:</label>
@@ -354,14 +354,14 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
           </div>
 
           <div class="row fifth_info_location">
-      
+
         <!-- Ilha do imóvel -->
-        <div class="add_prop_box"> 
+        <div class="add_prop_box">
         <label>Ilha</label>
         <div class="add_prop_location">
           <i class="fas fa-map fa-2x" style="color: #808080"></i>
           <select name="ilha" id="ilha">
-            <option value="value="<?php echo $imovel->getIlha(); ?>><?php echo $imovel->getIlha();?></option>        
+            <option value="value="<?php echo $imovel->getIlha(); ?>><?php echo $imovel->getIlha();?></option>
             <?php $bd->selectIlha(); ?>
           </select></div>
         </div>
@@ -413,7 +413,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
           <i class="far fa-question-circle fa-2x" style="color: #808080"></i>
           <input type="text" name="situacao" value="<?php echo $imovel->getSituacao();?>"/>
       </div>
-      
+
       <!-- Imagem(s) do imóvel -->
       <div class="add_prop_box">
         <div class="row">
@@ -430,7 +430,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
           <input type="hidden" name="lat" value="">
           <input type="hidden" name="lng" value="">
 
-          <div class="add_prop_box add_prop_button">  
+          <div class="add_prop_box add_prop_button">
             <input type="submit" name="edit_imovel" value="Editar Imóvel">
           </div>
 
@@ -468,8 +468,8 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
           event.preventDefault();
           $(this).next('.notifications_box1').toggle();
       });
-      
-      // Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha 
+
+      // Script para a localização do utilizador, dando concelhos e freguesias como opções a partir da ilha
       $("#ilha").change(function(){
           let ilha = $("#ilha").val();
           $.ajax({
@@ -529,7 +529,7 @@ if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstr
       markerImovel.setMap(map);
       }
 
-      // Acesso à latitude e longitude do imóvel 
+      // Acesso à latitude e longitude do imóvel
       <?php $imovel->latLng(); ?>
 
       // Script para o marcador do mapa
