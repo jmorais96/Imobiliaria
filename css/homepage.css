@@ -1,107 +1,140 @@
+/***************************/
+/* ESTILIZAÇÃO DA HOMEPAGE */
+/***************************/
+
+/*********/
 /* GERAL */
+/*********/
 * {
     padding: 0;
     margin: 0;
     border: 0;
+    box-sizing: border-box;
     font-size: 15px;
     font-family: 'PT Sans';
+    letter-spacing: .5px;
 }
 
 html, body{height: 100vh; width: 100%;}
 
-/* HEADER */
-.header {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+img {height: 100%;}
 
-.container_header {
-    display: flex;
-    height: 15%;
-    align-items: center;
-    justify-content: center;
-}
+label {padding-top: 8px;}
+
+/*****************************/
+/* HEADER/NAVBAR DA HOMEPAGE */
+/*****************************/
+.container-header {width: 100%; height: 15%; background-color: white;}
+nav.navbar.navbar-expand-lg.navbar-light {margin: 0 10%;justify-content: space-between;}
 
 /* Items de navegação */
-.navItems {
-    display: flex;
-    align-self: center;
-    width: 50%;
-    justify-content: space-evenly;
-    font-weight: bold;
-    margin: 0 auto;
-    border-bottom: 2px solid #ED2B2A;
-}
-
-.navItems #navItem {padding: 5px 50px;}
-
-#navItem {
+.navbar-light .navbar-nav .nav-link {
     font-size: 18px;
-    margin-bottom: 8px;
-    padding: 6px 30px 3px;
+    color: #231F20;
+    border-bottom: 2px solid #ED2B2A;
+    margin: 0 20px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 5px 50px;
     transition-duration: 0.5s;
     transition-timing-function: linear;
-    color: #231F20;
+    cursor: pointer;
 }
 
-#navItem:hover {
-    background-color: #ED2B2A;
-    color: #fff;
-}
+a.nav-link:hover {background-color: #ED2B2A; color: #fff!important;}
+
+/* Toogler do menu após "collapse" */
+button.navbar-toggler {background-color: #ED2B2A;}
+
+/* Menu após "collapse" */
+.navbar-collapse.collapse.show {z-index: 10000000; text-align: center; margin-top: 5px;}
 
 /* Logótipo */
-.header img{height: 70px;}
+.header img {height: 70px;}
 
 /* Contacto */
 .contact img {height: 30px;}
+.phone {display: flex; align-items: center; justify-content: flex-end;}
+#phoneIcon {align-self: center; min-width: 25px; min-height: 70%; margin: 0 5px 10px 0;}
+#phone-number {font-size: 17px; font-weight: bold;}
 
-.phone {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
+/* MÓDULO DE LOGIN */
+.modal-header {background-color: #ED2B2A; color: #fff; font-weight: bold;}
+.modal-title {text-transform: uppercase;}
+.modal-body {margin-top: 15px;}
+input.form-control.input-email {margin-left: 10px; width: 90%;}
+input.form-control.input-password {margin: 8px 0 0 13px; width: 90%;}
+.close {color: #e9e9e9; transition-duration: 0.5s; transition-timing-function: linear;}
+.close:hover {color: #fff;}
 
-#phoneIcon {
-    align-self: center;
-    width: 12%;
-    height: 70%;
-    margin-right: 5px;
-}
-
-#phone-number {
-    font-size: 17px;
+.modal-footer .btn {
+    background-color: #ED2B2A;
+    font-size: 18px;
+    text-transform: uppercase;
     font-weight: bold;
+    color: #fff;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
 }
 
+.modal-footer .btn:hover {background-color: darkred;}
+
+/* Ícones do módulo de login */
+.fa-user-alt, .fa-unlock {font-size: 25px; color: #111;}
+
+/********************/
 /* CENTRO DA PÁGINA */
+/********************/
 
 /* Formulário de pesquisa */
 
-img#lupaIcon {
-    align-self: center;
-    margin-right: 10px;
-    height: 25px;
-    width: 25px;
-}
-
-img#locationIcon {
-    align-self: center;
-    margin-right: 10px;
-    height: 25px;
-    width: 25px;
-}
-
+/* Ícones do formulário de pesquisa */
+img#lupaIcon {align-self: center; margin-right: 10px; height: 25px; width: 25px;}
+img#locationIcon {align-self: center; margin-right: 10px; height: 25px; width: 25px;}
 #icon {align-self: center;}
 
+.container_body{
+  display: flex;
+  height: 70%;
+  background-color: #282828;
+}
+
+#toogler{
+  width: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #DC2D27;
+}
+
+/* Toogler do formulário de pesquisa */
+.btn_toogler {
+  font-size: 35px;
+  color: #d1d1e0;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+
+}
+
+.btn_toogler:hover{
+  color: white;
+}
+
+/* Formulário de pesquisa */
 .formTitle {
     width: 80%;
     display: flex;
     align-self: center;
-    margin-bottom: -5px;
+    text-align: center;
+}
+
+.formTitle2 {
+    width: 100%;
+    color: white;
     text-transform: uppercase;
+    display: flex;
+    align-self: center;
+    margin-bottom: -5px;
 }
 
 .formTitleSecondary {
@@ -112,39 +145,18 @@ img#locationIcon {
     text-transform: uppercase;
 }
 
-.formTitle > p,
-.formTitleSecondary > p {
-    color: #fff;
-    font-size: 20px;
-}
+.formTitle > p, .formTitleSecondary > p {color: #fff; font-size: 16px; margin-bottom: 6px;}
 
-.searchForm {
+.searchForm {display: flex; align-self: center; width: 80%; height: 70%;}
+#searchForm {display: flex; flex-direction: column; justify-content: center; width: 100%;}
+
+.formulario-registo {
     display: flex;
     align-self: center;
     width: 80%;
-    height: 70%;
-}
-
-#searchForm {
-    display: flex;
+    height: 90%;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
-}
-
-/* Menu do formulário de pesquisa */
-
-.menu ul {
-  display: flex;
-  list-style-type: none;
-  justify-content: space-around;
-  width: 150%;
-}
-
-.menu ul li a {
-  text-decoration: none;
-  color: Grey;
-  font-weight: bold;
 }
 
 option {
@@ -176,10 +188,9 @@ option {
   font-weight: bold;
 }
 
-#index,
-#ilha,
-#concelho,
-#freguesia {
+
+
+#index, #ilha, #concelho, #freguesia {
     margin-top: 8px;
     border-radius: 4px;
     border: none;
@@ -188,19 +199,24 @@ option {
 }
 
 /* Mapa */
-.map {
-    height: 70%;
-    width: 75%;
-    display: flex;
-}
+.map {height: 100%; width: 96%; display: flex;}
+.map_extended {width: 75%;}
 
+/* Container do formulário de pesquisa */
 .container_form {
-    height: 70%;
+    height: 100%;
+    width: 0;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: #282828;
 }
+
+.container_form_escondido {
+    width: 20%;
+    transition: all 500ms ease;
+ }
 
 button#encontrar {
     align-self: center;
@@ -221,43 +237,89 @@ button#encontrar {
     transition-timing-function: linear;
 }
 
+button#registar {
+    align-self: center;
+    margin-top: 5%;
+    border-radius: 3px;
+    background-color: #DC2D27;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+
 button#encontrar:hover {
     background-color: #fff;
     color: #DC2D27;
 }
 
+
+.checkbox{
+  color: white;
+}
+
+.container_admin{
+      margin: 0 10%;
+}
+
+/**********/
 /* FOOTER */
-.footer {
-    display: flex;
-    width: 80%;
-}
+/**********/
+footer {width: 100%;height: 15%;}
+.footer {display: flex; width: 80%;}
 
-img#icon {
-    height: 70px;
-}
+/* Logótipo do footer */
+img#icon {height: 70px;}
+.footer img#icon {margin-top: 10px;}
 
+/* Container do footer */
 .container_footer {
+  height: 100%;
     background-color: #DC2D27;
-    height: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.redbox {
+    background-color: red;
+}
+
+/* Símbolo de copyright do footer */
 .copyright {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: bold;
     text-transform: uppercase;
-    font-weight: 500;
     width: 100%;
     color:white;
 }
 
-.copyright-simbol {
-    margin-right: 5px;
-    font-size: 25px;
-    font-weight: 500;
+.copyright-simbol {margin-right: 5px; font-size: 25px; font-weight: 500;}
+
+/*****************/
+/* MEDIA QUERIES */
+/*****************/
+
+ @media only screen and (max-width: 1000px) {
+
+    .navbar-light .navbar-nav .nav-link {
+        color: #fff;
+        background-color: #ED2B2A;
+        border-bottom: 2px solid #fff;
+    }
+
+    .phone {display: none;}
+
 }

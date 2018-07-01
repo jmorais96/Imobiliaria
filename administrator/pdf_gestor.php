@@ -1,80 +1,71 @@
 <?php
 
-  $id=$_POST['id'];
-  $file=fopen("../data/gestores.csv", "r");
-  while (!feof($file)) {
-    $gestor=fgetcsv($file,0,";");
-    if ($gestor[0]==$id) {
-      break;
-    }
-  }
-  $file=fopen("../data/vendas.csv", "r");
-  while (!feof($file)) {
-    $data=fgetcsv($file,0,";");
-    if ($data[1]==$id) {
-      $venda[]=$data;
-      $ano[]=$data[9];
-    }
-  }
-  fclose($file);
-
-  if (isset($ano)) {
 
 
-    $anos=array_unique($ano);
+// Incluir a classe Imobiliária
+require_once('../data/imobiliaria.class.php');
 
-    $meses = array( 'Janeiro',
-        'Fevereiro',
-        'Março',
-        'Abril',
-        'Maio',
-        'Junho',
-        'Julho',
-        'Agosto',
-        'Setembro',
-        'Outubro',
-        'Novembro',
-        'Dezembro'
-    );
+// Incluir a classe Funcionario
+require_once('../data/funcionario.class.php');
+
+// Incluir a classe Imovel
+require_once('../data/imovel.class.php');
+
+// Incluir a classe imagem
+require_once('../data/imagem.class.php');
+
+// Incluir a classe user
+require_once('../data/user.class.php');
+
+// Incluir a classe visita
+require_once('../data/visita.class.php');
+
+session_start();
+// Reencaminhar o utilizar para o índex caso este não seja um funcionário
+if (!isset($_SESSION['funcionario'])) {
+  header("location:../index.php");
+}
+
+
+// Criar a ligação à base de dados
+$bd = new imobiliaria("../data/config.ini");
+
+$gestores = $bd->getWorkers();
 
 
     require("fpdf/fpdf.php");
     $pdf=new FPDF();
     $pdf->AddPage();
     $pdf->SetFont("Arial","B",16);
-    $pdf->Cell(0,10, utf8_decode("Vendas do gestor: ".$gestor[3]) ,1,1,"C");
-    for ($i=0; $i <count($anos) ; $i++) {
-      $pdf->Cell(0,10, utf8_decode("Ano ".$ano[$i]) ,1,1,"C");
-      $total=0;
-      for ($j=0; $j <12 ; $j++) {
-        $contador=0;
-        $valor=0;
-        $totalano=0;
-        foreach ($venda as $value) {
-          if ($value[8]==$j+1) {
-            $valor+=$value[6];
-            $total+=$value[6];
-            ++$contador;
+    $pdf->Cell(0,10, utf8_decode("Vendas por gestor") ,1,1,"C");
+    foreach ($gestores as $value) {
+      if ($value->getTipoUser()=="Gestor") {
+        $imoveis=$bd->imoveisGestor($value->getIdFuncionario());
+        if (isset($imoveis)) {
+          $total=0;
+          foreach ($imoveis as $imovel) {
+
+            if ($imovel->getSituacao()=="Concluído") {
+                ++$total;
+            }
           }
-          ++$totalano;
+            $pdf->Cell(95,10, utf8_decode($value->getFullName()." : "),1,0);
+            $pdf->Cell(95,10, utf8_decode($total),1,1);
+
+        }else {
+          $pdf->Cell(95,10, utf8_decode($value->getFullName()." : "),1,0);
+          $pdf->Cell(95,10, utf8_decode("0"),1,1);
         }
-        $pdf->Cell(95,10, utf8_decode($meses[$j]." : "),1,0);
-        $pdf->Cell(95,10, utf8_decode("$valor euros  com $contador vendas"),1,1);
       }
-      $pdf->Cell(95,10, utf8_decode("Total do ano ". $ano[$i] .": "),1,0);
-      $pdf->Cell(95,10, utf8_decode(" $total euros com $totalano vendas"),1,1);
     }
-    $pdf->output();
-  }else{
 
-    require("fpdf/fpdf.php");
-    $pdf=new FPDF();
-    $pdf->AddPage();
-    $pdf->SetFont("Arial","B",16);
-    $pdf->Cell(0,10, utf8_decode("Vendas do gestor: ".$gestor[3]) ,1,1,"C");
-    $pdf->Cell(0,10, utf8_decode("Este gestor nao efecuou vendas ainda") ,1,1,"C");
     $pdf->output();
-
-  }
+    // require("fpdf/fpdf.php");
+    // $pdf=new FPDF();
+    // $pdf->AddPage();
+    // $pdf->SetFont("Arial","B",16);
+    // $pdf->Cell(0,10, utf8_decode("Vendas do gestor: ".$gestor[3]) ,1,1,"C");
+    // $pdf->Cell(0,10, utf8_decode("Este gestor nao efecuou vendas ainda") ,1,1,"C");
+    // $pdf->output();
 
 ?>

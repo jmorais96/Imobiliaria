@@ -1,0 +1,169 @@
+/****************************************/
+/* ESTILIZAÇÃO DA FORMULÁRIO DE REGISTO */
+/****************************************/
+
+/* HEADER/NAVBAR DO FORMULÁRIO DE PESQUISA */
+.header-registo h3 {
+    font-size: 25px;
+    color: #231F20;
+    border-bottom: 2px solid #ED2B2A;
+    margin: 0 20px;
+    padding: 5px 50px;
+    text-transform: uppercase;
+}
+
+
+/* Formulário de registo */
+.register-wrapper {
+    background-image: url(../images/register-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.super_container_form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/houseRegister.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#pass-form, #top-form, #contact-form  {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    margin: 20px 6%;
+}
+
+#location-form {
+    margin: 20px 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px;
+}
+
+.register-wrapper label {
+    color: #fff;
+    margin: 16px 0;
+    font-size: 1.5rem;
+}
+
+.register-wrapper input {margin-top: -10px;}
+
+#location-form .form-group select {margin-top: -10px;}
+
+.register-wrapper form .btn-user {
+    margin: auto;
+    display: grid;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 18px;
+    background: #ED2B2A;
+    color: #fff;
+    text-transform: uppercase;
+    transition: background 300ms ease-in-out;
+}
+
+.register-wrapper form .btn-user:hover {
+    background: rgb(172, 0, 0);
+    cursor: pointer;
+}
+
+/* MEDIA QUERIES */ 
+ @media only screen and (max-width: 1000px) {
+    
+    .container-header {height: 100px !important;}
+    
+    .register-wrapper {padding: 100px 0;}
+
+    .header-registo h3 {
+        font-size: 21px;
+        color: #231F20;
+        border-bottom: 2px solid #ED2B2A;
+        margin-top: 10px;
+        padding: 5px 25px;
+        text-transform: uppercase;
+    }
+
+    .register-wrapper label {
+        color: #fff;
+        margin: 30px 0 20px 0;
+        font-size: 1.4rem;
+    }
+
+    .register-wrapper input {
+       height: 50px;
+    }
+
+    #location-form .form-group select {
+        width: 230px;
+        height: 70px;
+    }
+
+    .register-wrapper form .btn-user {
+        margin: auto;
+        display: grid;
+        text-align: center;
+        font-size: 1.3rem;
+        padding: 20px;
+        background: #ED2B2A;
+        color: #fff;
+        margin-top: 70px;
+        text-transform: uppercase;
+    }
+ }
+
+@media only screen and (max-width: 360px) {
+    
+    .container-header {height: 100px !important;}
+
+    img#icon {display: none;}
+    
+    .header-registo h3 {
+        font-size: 15px;
+        color: #231F20;
+        border-bottom: 2px solid #ED2B2A;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .register-wrapper {padding: 0px;}
+
+    .register-wrapper label {
+        color: #fff;
+        font-size: 1rem;
+        margin-top: 5px;
+    }
+
+    .register-wrapper input {
+         height: 30px;
+         width: 150px;
+    }
+
+    #location-form .form-group select {
+        width: 100px;
+        height: 30px;
+    }
+
+    #location-form {margin: 0 1%;}
+
+    .register-wrapper form .btn-user {
+        margin: auto;
+        display: grid;
+        text-align: center;
+        font-size: 1.1rem;
+        padding: 10px;
+        background: #ED2B2A;
+        color: #fff;
+        margin-top: 50px;
+        text-transform: uppercase;
+    }
+
+    footer {display: none;}
+
+}

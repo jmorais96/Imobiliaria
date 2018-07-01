@@ -1,0 +1,361 @@
+/**************************************/
+/* ESTILIZAÇÃO DA ÁREA ADMINISTRATIVA */
+/**************************************/
+
+/*********/
+/* GERAL */
+/*********/
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: 'PT Sans';
+    letter-spacing: .5px;
+}
+
+html, body{height: 100vh; width: 100%; overflow-x: hidden;}
+
+img {height: 100%;}
+
+label {display: flex;
+    padding-top: 8px;
+    flex-direction: column;
+}
+
+/****************************************/
+/* HEADER/NAVBAR DA ÁREA ADMINISTRATIVA */
+/****************************************/
+.container-header {width: 100%;height: 15%;}
+nav.navbar.navbar-expand-lg.navbar-light {margin: 0 10%; justify-content: space-between; width: 100%;}
+
+/***************/
+/* TABULADORES */
+/***************/
+.tab {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top:5px;
+}
+
+button.tablinks {
+    color: #231F20!important;
+    border-bottom: 2px solid #ED2B2A;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.tab .tablinks {
+    background-color: #fff;
+    transition: background 300ms ease-in-out;
+    padding: 5px 50px;
+    margin-top: -5px;
+    text-transform: uppercase;
+}
+
+.tab .tablinks:hover {
+    background-color: #ED2B2A;
+    color: #fff!important;
+}
+
+input {
+    width: 100%;
+        background-color: lightgrey;
+    height: 35px;
+    padding-left: 5px;
+}
+
+input[type="submit"] {
+    width: 200px;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+.boxh2{
+    background-color: dimgray;
+    color: white;
+    padding: 10px 10px 1px 10px;
+}
+
+.backend_admin{
+    background-color: darkred;
+    color: white;
+    padding: 10px 10px 1px 10px;
+}
+.res_admin{
+    background-color: darkgrey;
+    color: white;
+    padding: 10px 10px 1px 10px;
+}
+
+h4 {
+    color: #fff!important;
+    font-size: 1.2rem;
+}
+
+button:focus {outline:0;}
+
+/* Items de navegação */
+a.nav-link {
+    font-size: 18px;
+    color: #231F20!important;
+    border-bottom: 2px solid #ED2B2A;
+    font-weight: bold;
+    margin: 0 20px;
+    padding: 5px 50px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    cursor: pointer;
+}
+
+a.nav-link:hover {
+    background-color: #ED2B2A;
+    color: #fff!important;
+}
+
+/* Tabulador das estatísticas */ 
+.pdf_first_row,
+.pdf_second_row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pdf_box {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-top: 25px;
+    padding: 50px;
+    background-color: #A9A9A9;
+    transition: background 300ms ease-in-out;
+    border: 2px solid rgb(209, 209, 209);
+}
+
+.pdf_box:hover {
+    background-color: rgb(114, 114, 114);
+}
+
+.pdf_box a {text-decoration: none;}
+
+.pdf_box button {
+    background-color: inherit !important;
+    color: rgb(226, 226, 226);
+    transition: color 300ms ease-in-out;
+}
+
+.pdf_box button:hover {
+    cursor: pointer;
+    color: #fff;
+}
+
+.t_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding-top: 2px;
+    background-color: grey;
+    color: white;
+    padding-top: 4px;
+}
+
+.r_workers {
+    display: flex;
+    width: 100%;
+    background-color: lightgrey;
+     flex-direction: column;
+}
+
+.titul_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.result_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+h5 {width: 100%;}
+h7 {width: 20%;}
+
+.edit {
+    background-color: #DC2D27;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    width: 150px;
+}
+
+/* Notificações */
+#notifications {
+  background-color: white;
+}
+
+#num_notifications {
+  border: 2px solid rgb(209, 209, 209);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 1.3rem;
+  background-color: #A9A9A9;
+  width: 450px;
+  cursor: pointer;
+  color: #fff;
+  transition: background 300ms ease-in-out;
+}
+
+#num_notifications:hover {
+   background-color: rgb(73, 73, 73);
+}
+
+#num_notifications1 {
+  display: none;
+  border: 2px solid #A9A9A9;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  width: 350px;
+  background-color: #A9A9A9;
+  color: #fff;
+}
+
+#notifications_box {
+display:none;
+flex-direction:row;
+flex-wrap: wrap;
+justify-content: flex-start;
+align-items:flex-start;
+width: 100%;
+padding: 6px;
+color: white;
+}
+
+#notifications_box > .notification > a {width: 80%; text-decoration: none;}
+
+.notification {
+  margin: 2px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#feature_aprovation {
+width: 20%;
+display: flex;
+flex-direction: row;
+}
+
+#feature_aprovation > .aprove_feature {
+  border: 0;
+  outline: none;
+  background-color: green;
+  width: 50%;
+}
+
+#feature_aprovation > .disaprove_feature {
+  border: 0;
+  outline: none;
+  background-color: red;
+  width: 50%;
+}
+
+.thumbnail_notification {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  color: black;
+}
+
+.thumb_img_notification {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  background-color: grey;
+}
+
+.thumb_img_notification > img {
+  width: 60%;
+  object-fit:cover;
+}
+
+.thumbnail_info_notification {
+  width: 60%;
+  background-color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.thumbnail_info_management {
+    background-color: #A9A9A9;
+    padding: 15px;
+    margin: 20px;
+    border: 2px solid #D1D1D1;
+}
+
+.thumbnail_info_management:hover {
+    background-color: rgb(114, 114, 114);
+}
+
+.thumbnail_info_management > p {
+    color: #fff;
+    font-size: 1.2rem;
+} 
+
+a.imovel_proposto {
+    text-decoration: none;
+}
+
+.add_manager {margin-top: 10px;}
+
+.add_prop_box {text-align: center;}
+.add_prop_button input[type="submit"] {
+    margin: 20px 0;
+    width: 200px;
+    padding: 20px;
+    font-size: 1.2rem;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 0px !important;
+    line-height: 0;
+    text-transform: uppercase;
+    transition: background 300ms ease-in-out;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    background: darkred;
+}
+
+button.edit {
+    padding: 20px;
+    margin-left: 25%;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 0 !important;
+    text-transform: capitalize;
+    line-height: 0;
+    transition: background 300ms ease-in-out;
+}
+
+button.edit:hover {
+    cursor: pointer;
+    background: darkred;
+}
