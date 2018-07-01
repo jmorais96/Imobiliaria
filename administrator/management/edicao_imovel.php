@@ -49,6 +49,17 @@
 
 if(isset($_POST['edit_imovel'])) {
 
+ if($_POST['finalidade']==""){
+
+   $_POST['finalidade']=$bd->query("select * from finalidade WHERE finalidade= :finalidade", array('finalidade' => $imovel->getFinalidade()));
+   $_POST['finalidade']=$_POST['finalidade'][0]['idFinalidade'];
+ }
+ if($_POST['tipoImovel']==""){
+
+   $_POST['tipoImovel']=$bd->query("select * from tipo_imovel WHERE tipoImovel= :tipoImovel", array('tipoImovel' => $imovel->getTipoImovel()));
+   $_POST['tipoImovel']=$_POST['tipoImovel'][0]['idTipoImovel'];
+
+ }
  if($_POST['area']=="")$_POST['area']=$imovel->getArea();
  if($_POST['preco']=="")$_POST['preco']=$imovel->getPreco();
  if($_POST['descricao']=="")$_POST['descricao']=$imovel->getDescricao();
@@ -79,7 +90,7 @@ if (isset($_POST['garagem'])) {
     }
   }
 }else {
-  $_POST['garagem']=NULL;
+  $_POST['garagem']=0;
 }
 
 if (isset($_POST['piscina'])) {
@@ -97,7 +108,7 @@ if (isset($_POST['piscina'])) {
        }
    }
 }else {
-  $_POST['piscina']=NULL;
+  $_POST['piscina']=0;
 }
 
 if (isset($_POST['mobilia'])) {
@@ -115,13 +126,13 @@ if (isset($_POST['mobilia'])) {
        }
    }
  }else {
-   $_POST['mobilia']=NULL;
+   $_POST['mobilia']=0;
  }
 
 if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstrucao();
  if($_POST['informacao']=="")$_POST['informacao']=$imovel->getInformacao();
 
- var_dump($_POST);
+ //var_dump($_POST);
  $bd->editarImovel($imovel, $_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['rua'], $_POST['codPostal'], $_POST['lat'], $_POST['lng'], /*$_POST['idFreguesia'],*/ $_POST['situacao'], $_POST['estado'], $_POST['tipologia'], $_POST['quartos'], $_POST['casasBanho'], $_POST['garagem'], $_POST['piscina'], $_POST['mobilia'], $_POST['dataConstrucao'], $_POST['informacao'], $_POST['idImovel']);
 
  //header("location:manager.php");
