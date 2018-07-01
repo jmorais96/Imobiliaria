@@ -345,7 +345,7 @@
         $this->query($sql, array('idImovel' => $id ));
     }
 
-     public function editarImovel($finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $idImovel){
+     public function editarImovel($imovel, $finalidade, $tipoImovel, $area, $preco, $descricao, $rua, $codPostal, $lat, $lng, $situacao, $estado, $tipologia, $quartos, $casasBanho, $garagem, $piscina, $mobilia, $dataConstrucao, $informacao, $idImovel){
 
           $sql = 'UPDATE imovel SET finalidade=:finalidade, tipoImovel=:tipoImovel, area=:area, preco=:preco, descricao=:descricao, rua=:rua, codPostal=:codPostal, lat=:lat, lng=:lng, situacao=:situacao, estado=:estado WHERE idImovel = :idImovel';
 
@@ -355,11 +355,19 @@
       //   var_dump($print);
 
          if ($tipologia != NULL){
+           if ($imovel->getTipologia()!=NULL) {
              $sql = 'UPDATE extras SET tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao WHERE idImovel = :idImovel';
 
           /* $print2 =*/  array('tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao, 'idImovel'=>$idImovel);
               //$this->query($sql, $print2);
               //var_dump($print2);
+           }else {
+             $sql = 'INSERT into extras VALUES idImovel:idImovel tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao';
+
+          /* $print2 =*/  array( "idImovel"=>$imovel->getIdImovel() ,'tipologia'=>$tipologia, 'quartos'=>$quartos, 'casasBanho'=>$casasBanho, 'garagem'=>$garagem, 'piscina'=>$piscina, 'mobilia'=>$mobilia, 'dataConstrucao'=>$dataConstrucao, 'informacao'=>$informacao);
+              //$this->query($sql, $print2);
+              //var_dump($print2);
+           }
          }
     }
 

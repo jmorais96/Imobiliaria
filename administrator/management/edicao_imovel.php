@@ -64,53 +64,65 @@ if(isset($_POST['edit_imovel'])) {
  if($_POST['casasBanho']=="")$_POST['casasBanho']=$imovel->getCasasBanho();
 
 //se nada for escrito mantem o valor senao escreve 1 para sim e 0 para nao
- if($_POST['garagem']==""){
-     if ($imovel->getGaragem() =="Sim") {
-        $_POST['garagem']=1;
-     } else {
-          $_POST['garagem']=0;
-     }
- } else {
-      if($_POST['garagem']=="Sim") {
-          $_POST['garagem']=1;
-     } else {
-          $_POST['garagem']=0;
-     }
- }
+if (isset($_POST['garagem'])) {
+  if($_POST['garagem']==""){
+    if ($imovel->getGaragem() =="Sim") {
+      $_POST['garagem']=1;
+    } else {
+      $_POST['garagem']=0;
+    }
+  } else {
+    if($_POST['garagem']=="Sim") {
+      $_POST['garagem']=1;
+    } else {
+      $_POST['garagem']=0;
+    }
+  }
+}else {
+  $_POST['garagem']=NULL;
+}
 
-if($_POST['piscina']==""){
-     if ($imovel->getPiscina() =="Sim") {
-        $_POST['piscina']=1;
-     } else {
-          $_POST['piscina']=0;
-     }
- } else {
-     if($_POST['piscina']=="Sim") {
+if (isset($_POST['piscina'])) {
+  if($_POST['piscina']==""){
+       if ($imovel->getPiscina() =="Sim") {
           $_POST['piscina']=1;
-     } else {
-          $_POST['piscina']=0;
-     }
- }
+       } else {
+            $_POST['piscina']=0;
+       }
+   } else {
+       if($_POST['piscina']=="Sim") {
+            $_POST['piscina']=1;
+       } else {
+            $_POST['piscina']=0;
+       }
+   }
+}else {
+  $_POST['piscina']=NULL;
+}
 
-if($_POST['mobilia']==""){
-    if ($imovel->getMobilia() =="Sim") {
+if (isset($_POST['mobilia'])) {
+  if($_POST['mobilia']==""){
+      if ($imovel->getMobilia() =="Sim") {
+              $_POST['mobilia']=1;
+           } else {
+                $_POST['mobilia']=0;
+       }
+  } else {
+       if($_POST['mobilia']=="Sim") {
             $_POST['mobilia']=1;
-         } else {
-              $_POST['mobilia']=0;
-     }
-} else {
-     if($_POST['mobilia']=="Sim") {
-          $_POST['mobilia']=1;
-     } else {
-          $_POST['mobilia']=0;
-     }
+       } else {
+            $_POST['mobilia']=0;
+       }
+   }
+ }else {
+   $_POST['mobilia']=NULL;
  }
 
 if($_POST['dataConstrucao']!=="")$_POST['dataConstrucao']=$imovel->getDataConstrucao();
  if($_POST['informacao']=="")$_POST['informacao']=$imovel->getInformacao();
 
-
- $bd->editarImovel($_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['rua'], $_POST['codPostal'], $_POST['lat'], $_POST['lng'], /*$_POST['idFreguesia'],*/ $_POST['situacao'], $_POST['estado'], $_POST['tipologia'], $_POST['quartos'], $_POST['casasBanho'], $_POST['garagem'], $_POST['piscina'], $_POST['mobilia'], $_POST['dataConstrucao'], $_POST['informacao'], $_POST['idImovel']);
+ //var_dump($_POST);
+ $bd->editarImovel($imovel, $_POST['finalidade'], $_POST['tipoImovel'], $_POST['area'], $_POST['preco'], $_POST['descricao'], $_POST['rua'], $_POST['codPostal'], $_POST['lat'], $_POST['lng'], /*$_POST['idFreguesia'],*/ $_POST['situacao'], $_POST['estado'], $_POST['tipologia'], $_POST['quartos'], $_POST['casasBanho'], $_POST['garagem'], $_POST['piscina'], $_POST['mobilia'], $_POST['dataConstrucao'], $_POST['informacao'], $_POST['idImovel']);
 
  //header("location:manager.php");
 

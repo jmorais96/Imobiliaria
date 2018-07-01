@@ -426,7 +426,7 @@ if (isset($_SESSION['funcionario'])) {
           <label>Contacto:<input type="contacto" name="contacto" value="<?php echo $value->getContacto(); ?>" placeholder=""/></label>
 
           <!-- Pedido da password administrativa de modo ao admin poder efetuar as alterações -->
-          <label>Password Administrativa:<input type="password" name="passAdmin" value="" placeholder=""/></label>
+          <label>Password Administrativa:<input type="password" name="passAdmin" value="" placeholder=""/ required></label>
 
           <!-- Id do funcionário enviado como campo 'hidden' -->
           <input type="hidden" name="id" value="<?php echo $value->getIdFuncionario(); ?>">
