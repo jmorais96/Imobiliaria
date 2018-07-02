@@ -1,0 +1,233 @@
+////////////////////////////
+          VIEWS 
+///////////////////////////
+
+// View de todos os imóveis 
+create VIEW todosimoveis as 
+	select * 
+	from imovel 
+	left join extras using (idImovel)
+
+// View para os imóveis destacados 
+create VIEW imoveisdestacados as 
+        select * 
+        from destaque inner JOIN imovel using(idimovel)
+        left join extras using (idImovel) 
+        where destacado = 1
+
+// View para os imóveis propostos 
+create VIEW imoveispropostos as 
+	select * 
+	from destaque inner JOIN imovel using(idimovel) 
+	left join extras using (idImovel) 
+	where destacado <> 1
+
+
+
+
+
+
+
+
+/////////////////////////////////
+    QUERIES PARA IMÓVEIS 
+////////////////////////////////
+
+// Query para obter os imóveis que estão em destaque e ativos 
+select * from imoveisdestacados WHERE situacao = "Ativo"
+
+// Query com o objetivo de saber se o imóvel encontra-se proposto para destaque, em destaque ou nenhum dos anteriores 
+select destacado from destaque where idImovel = :idImovel
+
+// Query com o objetivo de aceder a todos os imóveis ativos 
+SELECT * FROM todosimoveis where situacao = "Ativo"
+
+// Query com o objetivo de saber todos os imóveis de um dado gestor 
+select * from todosimoveis where gestor = :idGestor
+
+// Query com objetivo de aceder a toda a informação de um dado imóvel através do id 
+SELECT * FROM todosimoveis where idImovel= :idImovel
+
+// Query com o objetivo de saber todas as imagens de um dado imóvel 
+select * from galeria WHERE idImovel = :idImovel
+
+// Propor um imóvel para destaque 
+INSERT INTO destaque (idImovel, destacado) VALUES(:idImovel, 0 )
+
+// Query para editar imóveis 
+UPDATE imovel SET finalidade=:finalidade, tipoImovel=:tipoImovel, area=:area, preco=:preco, descricao=:descricao, rua=:rua, codPostal=:codPostal, lat=:lat, lng=:lng, situacao=:situacao, estado=:estado WHERE idImovel = :idImovel
+
+// Colocar um imóvel em destaque 
+UPDATE destaque set destacado = 1 where idImovel = :idImovel
+
+// Negar/retirar um imóvel de destaque 
+DELETE FROM destaque WHERE idImovel = :idImovel
+
+// Obter todos os imóveis propostos para destaque 
+select * from imoveispropostos
+
+// Obter todos os imóveis destacados 
+select * from imoveisdestacados
+
+// Query que permite a adição de um imóvel 
+INSERT INTO imovel (gestor, finalidade, tipoImovel, area, preco, descricao, rua, codPostal, lat, lng, idFreguesia, situacao, estado) VALUES(:gestor, :finalidade, :tipoImovel, :area, :preco, :descricao, :morada, :codPostal, :lat, :lng, :freguesia, "Ativo", :estado)
+
+// Query que permite saber o id do último imóvel a ser inserido 
+SELECT idImovel from imovel order by idImovel desc limit 1
+
+// Marcar um imóvel como comprado 
+UPDATE imovel set situacao = "Concluído" where idImovel = :idImovel
+
+// Marcar um imóvel como vendido 
+UPDATE imovel set situacao = "Ativo" where idImovel = :idImovel
+
+// Query que permite eliminar um imóvel de destaque pelo id do imóvel
+DELETE from destaque where idImovel = :idImovel
+
+// Query que permite eliminar os extras de um imóvel pelo id do imóvel
+DELETE from extras where idImovel = :idImovel
+
+// Query que permite eliminar as imagens de um imóvel pelo id do imóvel
+DELETE from galeria where idImovel = :idImovel
+
+// Query que permite eliminar as visitas de um imóvel pelo id do imóvel
+DELETE from visita where idImovel = :idImovel
+
+// Query que permite eliminar o imóvel em si pelo id do imóvel
+DELETE from imovel where idImovel = :idImovel
+
+// Listar todos os tipos de imóvel 
+select * from tipo_imovel
+
+// Inserir extras num dado imóvel 
+INSERT INTO extras (idImovel, tipologia, quartos, casasBanho, garagem, piscina, mobilia, dataConstrucao, informacao) VALUES(:idImovel, :tipologia, :quartos, :casasBanho, :garagem, :piscina, :mobilia, :dataConstrucao, :informacao)
+
+// Query de pesquisa 
+SELECT * FROM todosimoveis inner join freguesia USING (idFreguesia) INNER JOIN concelho USING(idconcelho) INNER JOIN ilha USING (idIlha) where [finalidade = :finalidade] and [tipoImovel = :tipoImovel] and [tipologia = :tipologia] and [freguesia = :freguesia] and [idConcelho = :concelho] and [idIlha = :ilha] and [preco <= :preco] and situacao = "Ativo"
+
+
+
+
+
+
+
+/////////////////////////////////
+   QUERIES PARA UTILIZADORES 
+////////////////////////////////
+
+// Verificar se o email de um utilizador já se encontra registado na base de dados 
+select count(*) from utilizador where email = :email
+
+// Query para inserir utilizadores 
+INSERT INTO utilizador (email, nomeProprio, sobrenome, password, contacto, idFreguesia) VALUES(:email, :nomeProprio, :sobrenome, :password, :contacto, :idFreguesia)'
+
+// Saber o id do último utilizador a ser registado 
+SELECT idUser from utilizador order by email desc limit 1
+
+// Query que permite saber se existe um utilizador registado com um dado email e password 
+SELECT * FROM utilizador WHERE email = :email AND password = :password
+
+// Query que permite atualizar os dados de um cliente 
+UPDATE utilizador SET email = :email, nomeProprio = :nomeProprio, sobrenome = :sobrenome, password = :password, contacto = :contacto, idFreguesia = :idFreguesia  WHERE idUser = :idUser
+
+// Query que permite receber informações do utilizador consoante o seu id 
+SELECT * FROM utilizador where idUser= :idUser
+
+
+
+
+
+
+
+/////////////////////////////////
+   QUERIES PARA FUNCIONÁRIOS 
+////////////////////////////////
+
+// Query que permite saber se existe um funcionário registado com um dado email e password 
+SELECT * FROM funcionario WHERE email = :email AND password = :password
+
+// Query que permite listar todos os funcionários
+SELECT * FROM funcionario
+
+// Query que permite registar um funcionário 
+INSERT INTO funcionario (email, password, nomeProprio, sobrenome, contacto, tipoUser) VALUES(:email, :password, :nomeProprio, :sobrenome, :contacto, :tipoUser)
+
+// Query que permite saber se o email de um funcionário já se encontra na base de dados 
+select count(*) from funcionario where email = :email
+
+
+
+
+
+
+/////////////////////////////////
+    QUERIES PARA VISITAS 
+////////////////////////////////
+
+// Query que permite registar uma nova visita 
+INSERT INTO visita (user, idImovel, dataVisita, estadoVisita) VALUES(:user, :idImovel, :dataVisita, :estadoVisita)
+
+// Listar todas as visitas de um utilizador consoante o seu id 
+SELECT * FROM visita WHERE user = :idUser
+
+// Listar todas as visitas consoante o id do imóvel e estado da visita esteja "Em apreciação" 
+SELECT * FROM visita WHERE idImovel = :idImovel AND estadoVisita = 'Em apreciação'
+
+// Listar todas as visitas aceites 
+SELECT * FROM visita WHERE estadoVisita = 'Aceite'
+
+// Query que aceita uma visita consoante o id 
+UPDATE visita SET estadoVisita = :estadoVisita  WHERE idVisita = :idVisita
+
+// Query que nega uma visita consoante o id 
+UPDATE visita SET estadoVisita = :estadoVisita  WHERE idVisita = :idVisita
+
+
+
+
+
+
+
+
+/////////////////////////////////
+    QUERIES PARA 'OUTROS' 
+////////////////////////////////
+
+// Query de finalidade através do id
+select finalidade from finalidade where idFinalidade = :idFinalidade
+
+// Query do tipoImovel através do id 
+select * from tipo_imovel where idTipoImovel = :tipoImovel
+
+// Query de freguesia e id do concelho através do id 
+select * from freguesia where idFreguesia = :idFreguesia
+
+// Query do concelho e id da ilha através do id 
+select * from concelho where idConcelho = :idConcelho
+
+// Query da ilha através do id 
+select * from ilha where idIlha = :idIlha
+
+// Query da tipologia através do id 
+select tipologia from tipologia where idTipologia = :idTipologia
+
+// Query para editar os extras 
+UPDATE extras SET tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao WHERE idImovel = :idImovel
+
+// Adicionar extras a um dado imóvel 
+INSERT into extras VALUES idImovel:idImovel tipologia=:tipologia, quartos=:quartos, casasBanho=:casasBanho, garagem=:garagem, piscina=:piscina, mobilia=:mobilia, dataConstrucao=:dataConstrucao, informacao=:informacao
+
+// Listar finalidades 
+select * from finalidade
+
+// Listar todas as tipologias 
+select * from tipologia
+
+// Listar todas as ilhas 
+select * from ilha
+
+// Listar todas os concelhos consoante a ilha 
+select * from concelho where idIlha = :idIlha
+
+// Listar todas as freguesias consoante o concelho 
+select * from freguesia where idconcelho = :idConcelho

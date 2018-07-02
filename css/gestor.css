@@ -1,0 +1,747 @@
+/*********************************/
+/* ESTILIZAÇÃO DA ÁREA DE GESTÃO */
+/*********************************/
+label {display: flex; padding-top: 8px; flex-direction: column;}
+
+/* HEADER DA ÁREA DE GESTÃO */
+.container-header {width: 100%; height: 15%; display: flex; justify-content: space-between;}
+
+/* Items de navegação */
+a.nav-link {
+    font-size: 18px;
+    color: #231F20!important;
+    border-bottom: 2px solid #ED2B2A;
+    font-weight: bold;
+    padding: 5px 50px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    cursor: pointer;
+}
+
+a.nav-link:hover {background-color: #ED2B2A; color: #fff !important;}
+
+/* Logótipo */
+.container-header#icon.logo {height: 70px;}
+
+/* MÓDULO DE LOGIN */
+.modal-header {background-color: #ED2B2A; color: #fff; font-weight: bold;}
+.modal-title {text-transform: uppercase;}
+.modal-body {margin-top: 15px;}
+input.form-control.input-email {margin-left: 10px; width: 90%;}
+input.form-control.input-password {margin: 8px 0 0 13px; width: 90%;}
+.close {color: #e9e9e9; transition-duration: 0.5s; transition-timing-function: linear;}
+.close:hover {color: #fff;}
+
+.modal-footer .btn {
+    background-color: #ED2B2A;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+.modal-footer .btn:hover {background-color: red;}
+
+/* Ícones do módulo de login */
+.fa-user-alt,
+.fa-unlock {font-size: 25px;color: #111;}
+
+/* Tabuladores */
+.tab {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 5px;
+}
+
+button.tablinks {
+    color: #231F20 !important;
+    border-bottom: 2px solid #ED2B2A;
+    font-weight: bold;
+    padding: 5px 50px;
+    margin: -5px 0 20px 0;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input {
+    width: 100%;
+    background-color: lightgrey;
+    height: 35px;
+    padding-left: 5px;
+    border-radius: 5px;
+}
+
+.add_prop_button {/*text-align: center;*/f}
+
+input[type="submit"] {
+    margin: 20px 0;
+    width: 200px;
+    padding: 20px;
+    font-size: 1.2rem;
+    background-color: #ED2B2A;
+    color: white;
+    border-radius: 0px !important;
+    line-height: 0;
+    text-transform: uppercase;
+    transition: background 300ms ease-in-out;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    background: darkred;
+}
+
+.boxh2 {
+    background-color: dimgray;
+    color: white;
+    padding: 10px 10px 1px 10px;
+}
+
+.backend_admin {background-color: darkred; color: white;padding: 10px 10px 1px 10px;}
+
+.res_admin {background-color: darkgrey; padding: 10px 10px 1px 10px;}
+.res_admin h4 {color: white; font-size: 1.2rem;}
+
+/* Botões da área de gestão */
+button:focus {outline: 0;}
+b {margin-top: 0; margin-bottom: 1rem; color: darkred;}
+
+.header-gestao h3 {
+  font-size: 25px;
+  color: #231F20;
+  border-bottom: 2px solid #ED2B2A;
+  margin: 0 20px;
+  padding: 5px 50px;
+  text-transform: uppercase;
+}
+
+.logout_gestor {
+  padding: 18px;
+  color: #fff;
+  font-size: 17px;
+  text-transform: uppercase;
+  background-color: #DE2C26;
+  cursor: pointer;
+  transition: background 300ms ease-in-out;
+}
+
+.logout_gestor:hover {background-color: rgb(192, 21, 15);}
+
+/********************/
+/* CENTRO DA PÁGINA */
+/********************/
+.container_admin {
+    margin: 0 10%;
+}
+
+option {
+    display: flex;
+    width: 20px;
+    height: 50%;
+}
+
+.pesquisa {
+    height: 10%;
+    background-color: #282828;
+    display: flex;
+    align-items: baseline;
+}
+
+.pesquisa * {
+    margin-top: 5%;
+    height: 70%;
+    border-radius: 25px;
+}
+
+.pesquisa form {
+    margin-left: 20%;
+}
+
+.pesquisa input[type="submit"] {
+    background-color: grey;
+    font-weight: bold;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    display: flex;
+}
+
+input.searchTerm {
+    background-color: #ED2B2A;
+    width: 120px !important;
+}
+
+input.searchTerm::placeholder {
+    color: #fff;
+    background-color: #ED2B2A;
+}
+
+i.fas.fa-search.fa-1x {
+    color: #ED2B2A;
+    font-size: 25px;
+    margin: 5px;
+}
+
+input.searchTerm:focus {color: #fff;}
+
+#index,
+#ilha,
+#concelho,
+#freguesia {
+    margin-top: 8px;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+    height: 40px;
+}
+a.tablinks.retroceder {
+    margin-top: -5px;
+    padding: 5px 50px;
+}
+
+a.tablinks.retroceder:hover {
+    background-color: #ED2B2A;
+    color: #fff !important;
+}
+
+.editar-titulo {
+    background-color: #808080;
+    color: #fff;
+    padding: 20px;
+}
+
+#visita{display: none;}
+#adicionarImovel{display: none;}
+#adicionarImovel h2 {
+    background-color: #808080;
+    color: #fff;
+    padding: 20px;
+}
+
+#btnImoveis,
+#btnAdicionarImovel,
+#btnAdicionarVisita
+{background-color: #fff;}
+
+#btnImoveis:hover,
+#btnAdicionarImovel:hover,
+#btnAdicionarVisita:hover {background-color: #ED2B2A; color: #fff!important;}
+
+#notifications {
+  width: 800px;
+  position: absolute;
+  top: 0px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#num_notifications {
+  border: 0;
+  outline: none;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--colorPrimary);
+  color: white;
+}
+
+#num_notifications1 {
+  border: 0;
+  outline: none;
+  border-radius: 0px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--colorPrimaryDark);
+  color: white;
+}
+
+#notifications_box {
+  display:none;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items:flex-start;
+  width: 100%;
+  padding: 6px;
+  background-color: darkgrey;
+  color: white;
+}
+
+#notifications_box > .notification > a {width: 80%;}
+
+.notification {
+  margin: 2px;
+  background-color: blue;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#feature_aprovation {
+width: 20%;
+display: flex;
+flex-direction: row;
+}
+
+#feature_aprovation > .aprove_feature {
+  border: 0;
+  outline: none;
+  background-color: green;
+  width: 50%;
+}
+
+#feature_aprovation > .disaprove_feature {
+  border: 0;
+  outline: none;
+    background-color: red;
+  width: 50%;
+}
+
+.thumbnail_notification {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  color: black;
+}
+
+.thumb_img_notification {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.thumb_img_notification > img {
+  width: 60%;
+  object-fit:cover;
+}
+
+.thumbnail_info_notification {
+  width: 60%;
+  background-color: white;
+  padding: 10px;
+}
+
+.thumbnail_management {
+  width: 100%;
+  display: flex;
+  color: black;
+    justify-content: space-between;
+}
+
+.thumb_img_management {
+  width: 20%;
+  display: flex;
+}
+
+.thumb_img_management > img {
+object-fit:cover;
+}
+
+.thumbnail_info_management {
+  width: 80%;
+  background-color: white;
+  padding: 10px;
+}
+
+.notifications_box1{
+  display: none;
+  width: 350px;
+}
+
+a.tablinks {
+    text-decoration: none;
+    color: #231F20!important;
+    border-bottom: 2px solid #ED2B2A;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Mapa */
+.map {height: 70%; width: 100%; display: flex;}
+
+.super_container_form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/houseRegister.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container_form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #282828;
+    align-self: center;
+}
+
+button#encontrar {
+    align-self: center;
+    border-radius: 3px;
+    margin-top: 5%;
+    background-color: #DC2D27;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 10%;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+button#registar {
+    align-self: center;
+    margin-top: 5%;
+    border-radius: 3px;
+    background-color: #DC2D27;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+button#encontrar:hover {
+    background-color: #fff;
+    color: #DC2D27;
+}
+
+.visit_aprovation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add_manager {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.t_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding-top: 2px;
+    background-color: grey;
+    color: white;
+    padding-left: 10px;
+    padding-top: 9px;
+}
+
+.r_workers {
+    display: flex;
+    width: 100%;
+    background-color: lightgrey;
+     flex-direction: column;
+}
+
+.titul_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+        padding-left: 10px;
+}
+
+.result_workers {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+h5 {
+    width: 100%;
+}
+
+h7 {
+    width: 20%;
+}
+
+.edit {
+    background-color: #DC2D27;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 7px;
+    width: 350px;
+    cursor: pointer;
+}
+
+.accept {
+    background-color: #DC2D27;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.refuse {
+    background-color: #DC2D27;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    width: 350px;
+    cursor: pointer;
+}
+
+.visits_noti{
+    background-color: #DC2D27;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 7px;
+    width: 350px;
+    cursor: pointer;
+}
+
+.ask_for_feature {
+    background-color: #DC2D27;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 7px;
+    width: 350px;
+    cursor: pointer;
+}
+
+.delete {
+    background-color: #DC2D27;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 7px;
+    width: 350px;
+    cursor: pointer;
+    transition: background 300ms ease-in-out;
+}
+
+.buttons_management {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    text-align: right;
+    cursor: pointer;
+}
+
+.buttons_management button {
+    font-size: 1.1rem;
+}
+
+.buttons_management button:hover {background-color: darkred;}
+
+figure img{
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+button.edit, button.visits_noti {cursor: pointer;}
+
+select {
+    text-transform: none;
+    background-color: lightgrey;
+    height: 35px;
+    width: 70%;
+}
+
+
+.first_info {
+    display: flex;
+  /*  justify-content: space-between;*/
+    margin: 0 5%;
+}
+
+.second_info {
+    display: flex;
+  /*  justify-content: space-around;*/
+    margin: 20px 5%;
+}
+
+.third_info {
+    display: flex;
+  /*  justify-content: space-around;*/
+    margin: 20px 5%;
+}
+
+.third_info img {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    color: #808080;
+}
+
+.forth_info {
+    justify-content: space-between;
+    margin: 20px 5%;
+}
+
+.forth_info img {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    color: #808080;
+}
+
+.row {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+#area, #preco {width: 150px;}
+
+input.extras_number {
+    height: 30px;
+}
+
+.add_prop_box [type="date"] {
+    height: 35px;
+    width: 150px;
+}
+
+input {
+    width: 80%;
+}
+
+textarea {
+    width: 100%;
+    background-color: lightgrey;
+}
+
+.fifth_info_location {
+    display: flex;
+   /* justify-content: space-between;*/
+  /*  margin: 20px 3%;*/
+
+}
+
+.sixth_info {
+    display: flex;
+   /* justify-content: space-between;*/
+   /* margin: 20px 5%;*/
+}
+
+.sixth_info img {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin-right: 8px;
+    color: #808080;
+}
+
+.sixth_info #morada_add {width: 70%;}
+.sixth_info #codpostal_add {width: 80px;}
+
+.add_prop_location {
+    display: flex;
+    flex-direction: row;
+}
+
+.add_prop_box {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 30%;
+    margin-right: 3%;
+}
+
+.add_prop_box2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+
+}
+
+.add_prop_box label {
+    font-size: 1.2rem;
+}
+
+.Titulos_Imoveis {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.Resultados_Imoveis{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    margin-top: 10px;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/**********/
+/* FOOTER */
+/**********/
+.footer {display: flex; width: 80%;}
+img#icon {height: 70px; margin-bottom: 20px;}
+
+.container_footer {
+    background-color: #DC2D27;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#extras{
+  display: none;
+}
+
+
+
+/*****************/
+/* MEDIA QUERIES */
+/*****************/
+@media only screen and (max-width: 600px) {
+
+}

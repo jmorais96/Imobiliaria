@@ -1,28 +1,18 @@
-/* vermelho: #DC2D27
- cinza escuro: #515254
- títulos: bebas neue
-outro vermelho mais escuro: #8C1919
- texto: pt sans */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-p {
-    padding: 10px;
+#phoneIcon {
+    height: 25px;
 }
 
-#caixa2> h2{
+#caixa2 > h2{
     font-size: 15px;
     padding-top: 13px;
     color: dimgrey;
 }
 
-#caixa2> h3{
-    font-size: 15px;
+#caixa2 > h3{
+    font-size: 18px;
     padding-top: 13px;
     color: dimgrey;
+    margin: 0 !important;
 }
 
 #caixa3> h3{
@@ -122,19 +112,22 @@ input {
     margin: 3px;
     border-radius: 3px;
     width: 100%;
-
 }
 
-button {
-    margin: 3px;
-    border-radius: 3px;
-    background-color: #DC2D27;
+button#mudarDados {
+    background-color: #515254;
     border: none;
     text-align: center;
     text-decoration: none;
-    font-size: 14px;
-    margin: 6px 4px;
+    font-size: 18px;
+    text-transform: uppercase;
     cursor: pointer;
+    color: #fff;
+    transition: background 300ms ease-in-out;
+}
+
+button#mudarDados:hover {
+    background: #808080;
 }
 
 .destaques {
@@ -145,7 +138,7 @@ button {
 
 .container_index {
     display: flex;
-    width: 80%;
+    width: 100%;
     flex-direction: column;
 }
 
@@ -185,13 +178,13 @@ button {
 .caixa_texto_esq {
     display: flex;
     flex-direction: column;
-    width:60%;
+    width: 60%;
 }
 
 .caixa_texto_dir {
     display: flex;
     flex-direction: column;
-    width:40%;
+    width: 40%;
 }
 
 .pesquisa:nth-child(1), .pesquisa:nth-child(2), .pesquisa:nth-child(3){
@@ -207,6 +200,12 @@ button {
     display: flex;
     flex-direction: column;
     background-color: #515254;
+}
+
+.pesquisa_grande h3 {
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
 }
 
 #sub_container {
@@ -270,7 +269,13 @@ button {
 #caixa1a {
     background-color: #DC2D27;
     width: 100%;
-    margin-bottom: 10px;
+    margin: 0!important;
+    padding: 0;
+    color: #fff;
+}
+
+#caixa1a h3 {
+   margin: 0 !important;
 }
 
 #caixa1b {
@@ -310,16 +315,31 @@ button {
     justify-content: center;
 }
 
+input.alterardados {
+    color: #fff;
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #515254;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #fff;
+    transition: background 300ms ease-in-out;
+    margin-left: 10%;
+}
+
+input.alterardados:hover {
+    background: #808080;
+}
+
 #sub_container_info {
-    margin-top: 10px;
-    margin-bottom: 10px;
     width: 100%;
     margin-right: 5px;
 }
 
 #sub_container_visitas {
-    margin-top: 10px;
-    margin-bottom: 10px;
     width: 60%;
     margin-left: 5px;
 }
@@ -343,3 +363,15 @@ button {
 .contain {
     height: 100%;
 }
+
+  #formDados{
+    display: none;
+    background-color: lightgrey;
+    width: 100%;
+  }
+  
+
+  #formDados input[type=submit]{
+    width: 80%;
+
+  }
