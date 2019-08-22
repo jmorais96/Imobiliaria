@@ -10,5 +10,4 @@ Real Estate agency app built using object-oriented PHP. It has features like: cu
 * Develop a search functionality based on parameters and keywords;
 * How to create an "advanced" database (with features like views or triggers);
 * Make an app secure by encrypting data;
-* How to create and export CSV files with statistics (in this case related to sales);
-* (...)
+* How to create and export CSV files with statistics (in this case related to sales).
